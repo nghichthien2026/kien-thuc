@@ -18,7 +18,7 @@ await page.locator('#lesson-search').fill('');assert.equal(await page.locator('[
 await page.locator('#simulate').click();assert.equal(await page.locator('#simulate').isDisabled(),true);
 await page.waitForFunction(()=>document.querySelector('#simulation-status').textContent.includes('Hoàn tất'),null,{timeout:8000});assert.equal(await page.locator('.pipeline .complete').count(),4);
 await page.locator('#simulate').click();await page.waitForFunction(()=>document.querySelector('#simulation-status').textContent.includes('Hoàn tất'),null,{timeout:8000});
-await page.locator('.next-lesson').click();await page.locator('#demo-frame').waitFor();
+await page.locator('#sidebar a[href*="auto-layout"]').click();await page.locator('#demo-frame').waitFor();
 await page.screenshot({path:'qa/auto-layout-desktop.png',fullPage:true});
 await page.locator('input[value="column"]').check();assert.equal(await page.locator('#demo-frame').evaluate(el=>getComputedStyle(el).flexDirection),'column');
 await page.locator('#gap').fill('32');await page.locator('#padding').fill('40');assert.match(await page.locator('#css-output').textContent(),/gap: 32px; padding: 40px/);
@@ -28,6 +28,7 @@ for(const width of [320,375,390,768,1024,1440]){
  await page.setViewportSize({width,height:900});
  for(const path of ['', 'thiet-ke/auto-layout/']){
   await page.goto(base+path);
+  assert.equal(await page.locator('.brand,.sidebar-caption,.sidebar-bottom,.next-lesson,.page-footer,.demo-badge').count(),0,'Removed decorative blocks must stay absent');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,`overflow at ${width}: ${path}`);
   if(path && width<=390){await page.locator('#gap').fill('32');await page.locator('#padding').fill('40');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,`max controls overflow ${width}`);await page.locator('#reset-layout').click();}
   if(width===390)await page.screenshot({path:`qa/${path?'auto-layout':'dev'}-mobile.png`,fullPage:true});

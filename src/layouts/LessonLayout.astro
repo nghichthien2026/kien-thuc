@@ -10,22 +10,19 @@ const { title, topic, current, sections } = Astro.props;
 <head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="color-scheme" content="dark"/><title>{title} · Kiến thức</title><link rel="icon" href={href('favicon.svg')} type="image/svg+xml"/></head>
 <body>
 <a class="skip" href="#noi-dung">Đến nội dung</a>
-<header class="mobile-header"><a class="brand" href={href()}><Icon name="book"/>Kiến thức</a><button id="menu-toggle" aria-label="Mở danh mục bài học" aria-expanded="false" aria-controls="sidebar"><Icon name="menu"/></button></header>
+<header class="mobile-header"><button id="menu-toggle" aria-label="Mở danh mục bài học" aria-expanded="false" aria-controls="sidebar"><Icon name="menu"/></button></header>
 <div id="nav-backdrop" hidden></div>
 <aside class="sidebar" id="sidebar">
-<a class="brand desktop-brand" href={href()}><span class="brand-icon"><Icon name="book" size={29}/></span>Kiến thức<span class="brand-dot"></span></a>
-<p class="sidebar-caption">Hiểu sâu. Ghi nhớ lâu.</p>
 <label class="search"><Icon name="search" size={18}/><input id="lesson-search" type="search" placeholder="Tìm bài học…" aria-label="Tìm bài học" autocomplete="off"/><kbd>/</kbd></label>
 <nav aria-label="Danh mục bài học">
 {[...new Set(lessons.map(lesson => lesson.topic))].map((category, i)=><section class="nav-group" data-category><h2><span>{category}</span><span class="nav-count">{String(lessons.filter(lesson => lesson.topic === category).length).padStart(2, '0')}</span></h2><ul>{lessons.filter(l=>l.topic===category).map(l=><li data-search={`${l.title} ${l.topic} ${l.keywords}`}><a href={href(l.path)} aria-current={current===l.path?'page':undefined}><Icon name={i===0?'file':'layers'} size={19}/><span>{l.title}</span></a></li>)}</ul></section>)}
 <p id="search-empty" hidden>Chưa có bài học phù hợp.<br/>Thử “Dev” hoặc “Auto Layout”.</p>
 <p id="search-status" class="sr-only" aria-live="polite"></p>
 </nav>
-<div class="sidebar-bottom"><span class="small-label">SỔ TAY CÁ NHÂN</span><p>Mỗi ngày, hiểu thêm<br/>một chút.</p><span class="demo-dot"></span><span>{String(lessons.length).padStart(2, '0')} bài học minh họa</span></div>
 </aside>
-<div class="page-shell"><div class="topline"><div class="breadcrumb"><span>{topic}</span><span>/</span><span>{topic==='DevOps'?'Môi trường':'Bố cục'}</span></div><span class="demo-badge">BẢN MẪU</span></div>
+<div class="page-shell"><div class="topline"><div class="breadcrumb"><span>{topic}</span><span>/</span><span>{topic==='DevOps'?'Môi trường':'Bố cục'}</span></div></div>
 <div class="reading-grid"><main id="noi-dung" tabindex="-1"><slot/></main><nav class="toc" aria-label="Trong bài này"><span class="small-label">TRONG BÀI NÀY</span>{sections.map((s,i)=><a href={`#${s.id}`} class={i===0?'is-active':''}>{s.label}</a>)}</nav></div>
-<footer class="page-footer"><span>Kiến thức <span class="footer-slash">/</span> Sổ tay học tập cá nhân</span><span>Nội dung minh họa · 2026</span></footer></div>
+</div>
 <script>
 const input = document.querySelector<HTMLInputElement>('#lesson-search')!;
 const normalize = (value:string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').toLowerCase();
