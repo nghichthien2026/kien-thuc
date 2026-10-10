@@ -1,0 +1,650 @@
+{
+  "title": "Your practical DSA roadmap",
+  "subtitle": "11 connected stages. One clear next step.",
+  "intro": "Data structures organize information; algorithms turn it into answers. This guide expands the eleven stages in your roadmap into an actual learning path. Use Python 3 for the examples, or translate the ideas into a language you already know. Progress by what you can explain and build, rather than a calendar deadline. The advanced stage is an optional menu, not a condition for being good at DSA.",
+  "foundations": {
+    "title": "Before stage 1: build your toolkit",
+    "intro": "The picture begins with arrays, but these foundations make every later topic easier. If you already know them, use the checks to skip ahead.",
+    "tasks": [
+      "Programming: write functions, loops and conditionals; use variables, lists, dictionaries and sets; understand return values, references and mutation. Run a small program and read an error message without guessing.",
+      "Complexity: define the input size n and count how work grows. Compare O(1), O(log n), O(n), O(n log n), O(n²) and exponential work. Big-O is an asymptotic upper bound, not a stopwatch. Distinguish worst-case, expected and amortized costs; include extra memory.",
+      "Sorting: trace insertion sort and understand why its worst case is quadratic. Use sorted() for a new Python list and list.sort() to change an existing one. After recursion, implement merge sort and explain its O(n log n) work and usual O(n) auxiliary space.",
+      "Hashing: use a set for membership and a dictionary for key–value lookup or counting. Understand collisions and hashable keys. Lookup is typically expected O(1), not a universal worst-case guarantee; hashing a long fresh string also takes work.",
+      "Reasoning: practice tiny hand-worked examples, simple invariants and a short correctness argument. An invariant is a fact that remains true as your loop runs, such as “everything before this index has already been counted.”"
+    ],
+    "checks": [
+      "Can you write a frequency counter and explain when a set loses information?",
+      "Can you explain why a nested loop is sometimes quadratic, but two consecutive loops are linear?",
+      "Can you test empty, singleton, duplicate and negative-value inputs?"
+    ],
+    "sourceIds": [
+      "python-data",
+      "mit-sorting",
+      "mit-hashing"
+    ]
+  },
+  "firstSession": [
+    "Write a function that returns the largest number in a nonempty list, without max(). Decide what your function should do for an empty list.",
+    "Trace it on [4, -2, 9, 9]. Write down what your “best so far” variable means after each step.",
+    "Add tests for one item, all-negative values and repeated maxima. Then explain its O(n) time and O(1) extra space."
+  ],
+  "studyTips": [
+    "For each exercise: clarify the contract, make a tiny example, write a simple correct solution, then improve it.",
+    "Try independently before reading a hint. If you use a solution, close it and rebuild the idea later from a blank file.",
+    "Keep a short mistake log: the failing case, the broken assumption and the corrected invariant.",
+    "Mix a new problem with an older one. Being able to recognize and explain a pattern matters more than a solved-problem count.",
+    "Move on when you can explain the approach, implement it without copying and test edge cases. Revisit a topic whenever a later stage exposes a gap."
+  ],
+  "stages": [
+    {
+      "number": 1,
+      "id": "arrays",
+      "title": "Arrays",
+      "summary": "Learn to turn positions, ranges and a single pass into useful answers.",
+      "modules": [
+        {
+          "title": "1. Read and change a sequence",
+          "text": "Practice zero-based indices, traversal, updating an element and slicing. Distinguish an index from the value stored there. Draw a five-cell array before touching code."
+        },
+        {
+          "title": "2. Keep useful information while scanning",
+          "text": "Track a minimum, maximum, running sum or frequency map. State exactly what your variables summarize after processing the first i elements."
+        },
+        {
+          "title": "3. Introduce range patterns",
+          "text": "Build prefix sums for repeated range totals. Then use two pointers on sorted data and a fixed-size sliding window. Variable-size windows need a condition that can be maintained correctly; revisit them with strings."
+        }
+      ],
+      "exercises": [
+        {
+          "title": "Move zeroes",
+          "prompt": "Move all zeroes to the end while preserving the order of nonzero values. Try an in-place write pointer.",
+          "example": "[0, 3, 0, 2] → [3, 2, 0, 0]",
+          "hint": "Where should the next nonzero value be written?"
+        },
+        {
+          "title": "Range totals",
+          "prompt": "Build prefix sums, then answer inclusive index-range sum queries.",
+          "example": "[2, 4, -1, 3], query [1, 3] → 6",
+          "hint": "Use a prefix array starting with zero; subtract two prefix entries."
+        }
+      ],
+      "checks": [
+        "Explain why one forward scan is sufficient for moving zeroes.",
+        "Answer a range query without scanning its range again."
+      ],
+      "pitfalls": [
+        "Slicing copies data; it can quietly add time and memory.",
+        "Do not assume a positive-number sliding-window proof still works when negatives are allowed."
+      ],
+      "complexity": "A Python list is a dynamic array: indexed access is O(1); append is amortized O(1), although a resizing append can be O(n). Middle insertion/deletion and linear search are O(n). Prefix preprocessing is O(n); each range query is O(1).",
+      "sourceIds": [
+        "mit-structures",
+        "python-data"
+      ]
+    },
+    {
+      "number": 2,
+      "id": "strings",
+      "title": "Strings",
+      "summary": "Treat text as a sequence, while being explicit about what counts as a character.",
+      "modules": [
+        {
+          "title": "1. Establish the text rules",
+          "text": "Practice indexing, splitting, joining and parsing. Decide whether case, spaces and punctuation matter before solving a text problem."
+        },
+        {
+          "title": "2. Count and compare",
+          "text": "Use character frequencies to test anagrams. Use two pointers for palindromes, and compare this with reversing the entire string."
+        },
+        {
+          "title": "3. Grow and shrink a window",
+          "text": "Find the longest substring without repeated characters using a set or last-seen dictionary. Explain why the left boundary never moves backward. Save rolling hashes and advanced pattern matching for later."
+        }
+      ],
+      "exercises": [
+        {
+          "title": "Anagram test",
+          "prompt": "For lowercase English letters, decide whether two strings have the same character counts.",
+          "example": "\"listen\", \"silent\" → True; \"aab\", \"abb\" → False",
+          "hint": "Compare frequencies, not just sets."
+        },
+        {
+          "title": "Longest unique substring",
+          "prompt": "Return the length of the longest substring containing no repeated code point.",
+          "example": "\"abba\" → 2",
+          "hint": "When a repeat arrives, move the left boundary only as far forward as necessary."
+        }
+      ],
+      "checks": [
+        "Distinguish substring from subsequence.",
+        "Explain why both boundaries together move at most O(n) times."
+      ],
+      "pitfalls": [
+        "Python strings are immutable. Repeatedly building longer strings by concatenation can be quadratic; collect pieces and join.",
+        "Python str indexes Unicode code points, which are not always user-perceived characters. Normalization and grapheme-aware processing are separate requirements; do not silently assume ASCII."
+      ],
+      "complexity": "A linear scan is O(n) in the number of code points. Frequency-map space depends on the number of distinct symbols. Comparing or copying a length-k substring can cost O(k).",
+      "sourceIds": [
+        "python-unicode",
+        "mit-hashing"
+      ]
+    },
+    {
+      "number": 3,
+      "id": "linked-lists",
+      "title": "Linked lists",
+      "summary": "Practice changing connections without losing the rest of the structure.",
+      "modules": [
+        {
+          "title": "1. Draw nodes and references",
+          "text": "Build a small Node class with value and next fields. Traverse from the head until None. A Python list is not a linked list."
+        },
+        {
+          "title": "2. Rewire carefully",
+          "text": "Insert at the head, remove after a known predecessor and reverse a singly linked list. Save the next reference before overwriting it; use a dummy head when it simplifies boundary cases."
+        },
+        {
+          "title": "3. Compare list variants",
+          "text": "Understand previous links in a doubly linked list and the stopping rule in a circular list. Then try slow/fast pointers for finding the middle or detecting a cycle."
+        }
+      ],
+      "exercises": [
+        {
+          "title": "Reverse a list",
+          "prompt": "Return the new head after reversing every next link.",
+          "example": "1 → 2 → 3 → None becomes 3 → 2 → 1 → None",
+          "hint": "Maintain previous, current and saved-next references."
+        },
+        {
+          "title": "Detect a cycle",
+          "prompt": "Return whether repeatedly following next can revisit a node.",
+          "example": "A → B → C → B gives True; A → B → None gives False",
+          "hint": "Compare node identity, not equal values."
+        }
+      ],
+      "checks": [
+        "Reverse an empty list and a single-node list safely.",
+        "Explain why two nodes with the same value need not be the same node."
+      ],
+      "pitfalls": [
+        "Finding the node still takes time. “Linked-list insertion is O(1)” only applies when the necessary node/reference is already known.",
+        "Deleting a singly linked node normally requires its predecessor; do not generalize a special trick to all cases."
+      ],
+      "complexity": "Search and access by index are O(n). Head insertion is O(1). Iterative reversal is O(n) time with O(1) extra space. Doubly linked lists spend additional space on previous references.",
+      "sourceIds": [
+        "mit-structures"
+      ]
+    },
+    {
+      "number": 4,
+      "id": "stack-queue",
+      "title": "Stack & queue",
+      "summary": "Choose the next item by arrival order or by most recent use.",
+      "modules": [
+        {
+          "title": "1. Use the two interfaces",
+          "text": "A stack is last-in, first-out; a queue is first-in, first-out. Trace push/pop and enqueue/dequeue by hand before implementing either."
+        },
+        {
+          "title": "2. Pick Python containers",
+          "text": "Use list.append/pop for a stack and collections.deque with append/popleft for a queue. Handle removal from an empty container deliberately."
+        },
+        {
+          "title": "3. Apply and revisit",
+          "text": "Use stacks for matching brackets and queues for ordered processing. After the basics, revisit monotonic stacks with next-greater-element problems and deques with sliding-window maxima; they are extensions, not entry requirements."
+        }
+      ],
+      "exercises": [
+        {
+          "title": "Balanced brackets",
+          "prompt": "Accept (), [] and {} only; return whether nesting is valid.",
+          "example": "\"{[()]}\" → True; \"([)]\" → False",
+          "hint": "Each closing bracket must match the most recent unmatched opener."
+        },
+        {
+          "title": "Queue with two stacks",
+          "prompt": "Implement enqueue and dequeue using an input and an output stack.",
+          "example": "enqueue 4, enqueue 7, dequeue → 4",
+          "hint": "Move items only when the output stack is empty."
+        }
+      ],
+      "checks": [
+        "Explain why a queue is needed for level-by-level processing.",
+        "Show why each item in a two-stack queue is transferred at most once."
+      ],
+      "pitfalls": [
+        "Python list.pop(0) shifts remaining elements and is O(n).",
+        "A monotonic stack may contain a nested while loop yet still do O(n) total pushes and pops."
+      ],
+      "complexity": "List stack operations at the end are amortized O(1); deque endpoint operations are O(1). A two-stack queue has amortized O(1) operations, although one dequeue can trigger O(n) work.",
+      "sourceIds": [
+        "python-data"
+      ]
+    },
+    {
+      "number": 5,
+      "id": "recursion",
+      "title": "Recursion",
+      "summary": "Solve a smaller version of the same problem, then combine the result.",
+      "modules": [
+        {
+          "title": "1. Name the contract and base case",
+          "text": "Say what one function call returns. Choose a base case and a measure that gets smaller on every recursive step. Trace calls and returns separately."
+        },
+        {
+          "title": "2. Understand the call stack",
+          "text": "Record each call’s parameters and local variables. Rewrite a simple recursive traversal iteratively to see what an explicit stack replaces."
+        },
+        {
+          "title": "3. Add divide-and-conquer, then choices",
+          "text": "Implement merge sort after understanding its merge step. Introduce backtracking with subsets: choose, explore, undo. Revisit harder backtracking after tree traversals rather than blocking progress here."
+        }
+      ],
+      "exercises": [
+        {
+          "title": "Recursive sum",
+          "prompt": "Sum a list by advancing an index rather than slicing the remainder.",
+          "example": "[2, 5, -1] → 6; [] → 0",
+          "hint": "The index reaching len(values) is the base case."
+        },
+        {
+          "title": "All subsets",
+          "prompt": "Produce each subset of distinct input values exactly once.",
+          "example": "[1, 2] → [], [1], [2], [1, 2] in any order",
+          "hint": "For each value, decide whether to include it."
+        }
+      ],
+      "checks": [
+        "Explain both why your recursion terminates and why it returns the right result.",
+        "Identify the maximum call depth and count the number of generated results."
+      ],
+      "pitfalls": [
+        "Recursion is not automatically efficient: repeated subproblems can multiply work.",
+        "Python has a recursion-depth limit; prefer iterative traversal for potentially very deep inputs."
+      ],
+      "complexity": "Recursive indexed summation uses O(n) time and O(n) call-stack space. Materializing all subsets needs Θ(n·2ⁿ) total output space/time in the usual list representation; recursion depth alone is only O(n).",
+      "sourceIds": [
+        "mit-recursion"
+      ]
+    },
+    {
+      "number": 6,
+      "id": "binary-search",
+      "title": "Binary search",
+      "summary": "Discard half the possibilities using a condition that changes in one direction.",
+      "modules": [
+        {
+          "title": "1. Search sorted data",
+          "text": "Start with ascending arrays and an explicit interval convention. Trace empty, one-item and missing-target cases. Never mix inclusive and half-open bounds."
+        },
+        {
+          "title": "2. Find boundaries, not just equality",
+          "text": "Implement the first index with value ≥ target, then the first with value > target. Use these boundaries to count duplicates."
+        },
+        {
+          "title": "3. Search an answer space",
+          "text": "Try integer square root, then a feasibility problem. Prove that the predicate is monotonic: once true, it remains true, or vice versa. A large search space alone does not justify binary search."
+        }
+      ],
+      "exercises": [
+        {
+          "title": "First occurrence",
+          "prompt": "Return the leftmost index of a target, or -1 if absent.",
+          "example": "[1, 2, 2, 4], target 2 → 1",
+          "hint": "Find the lower bound, then verify equality."
+        },
+        {
+          "title": "Integer square root",
+          "prompt": "For a nonnegative integer x, return the largest integer r with r*r ≤ x.",
+          "example": "x = 17 → 4",
+          "hint": "Keep track of which side contains feasible candidates."
+        }
+      ],
+      "checks": [
+        "State what your search interval still contains after each iteration.",
+        "Prove that every iteration makes the interval smaller."
+      ],
+      "pitfalls": [
+        "Searching unsorted data with ordinary binary search is invalid.",
+        "bisect returns an insertion position, which does not prove the value exists."
+      ],
+      "complexity": "Binary search uses O(log n) comparisons on a random-access array. If a feasibility check costs C, answer-space search costs O(C log R) for R candidate values. Inserting into a Python list after bisect still costs O(n).",
+      "sourceIds": [
+        "python-bisect"
+      ],
+      "code": {
+        "title": "A reusable lower-bound search",
+        "language": "python",
+        "text": "def lower_bound(values, target):\n    lo, hi = 0, len(values)\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if values[mid] < target:\n            lo = mid + 1\n        else:\n            hi = mid\n    return lo\n\nassert lower_bound([1, 2, 2, 4], 2) == 1\nassert lower_bound([], 2) == 0",
+        "explanation": "Precondition: values is sorted in ascending order. All positions before lo are too small; positions at or after hi are valid lower-bound candidates. The result may equal len(values)."
+      }
+    },
+    {
+      "number": 7,
+      "id": "trees",
+      "title": "Trees",
+      "summary": "Use recursive structure to organize hierarchical information.",
+      "modules": [
+        {
+          "title": "1. Learn the shape",
+          "text": "Define root, child, leaf, depth and height. Distinguish a general tree, a binary tree and a binary search tree (BST); they are different promises."
+        },
+        {
+          "title": "2. Traverse systematically",
+          "text": "Implement preorder, inorder and postorder DFS, then level-order BFS with a queue. Choose the order based on when the parent needs its children’s results."
+        },
+        {
+          "title": "3. Maintain search order",
+          "text": "Search and insert in a BST with an explicit duplicate policy. Validate using inherited lower/upper bounds, then learn why balanced trees maintain short paths. Rotations can be a later study."
+        }
+      ],
+      "exercises": [
+        {
+          "title": "Maximum depth",
+          "prompt": "Return the number of nodes on the longest root-to-leaf path; an empty tree has depth zero.",
+          "example": "Root 1 with children 2 and 3 → 2",
+          "hint": "Combine child depths after recursive calls return."
+        },
+        {
+          "title": "Validate a BST",
+          "prompt": "Assume distinct keys. Check that every node satisfies all ancestor bounds.",
+          "example": "Root 10, right child 15, and 15’s left child 6 → False",
+          "hint": "Checking only immediate parent–child pairs misses this violation."
+        }
+      ],
+      "checks": [
+        "Explain why inorder traversal of a valid BST produces sorted keys.",
+        "Choose DFS or BFS and account for its memory on a narrow versus wide tree."
+      ],
+      "pitfalls": [
+        "A binary tree is not necessarily a BST.",
+        "BST operations are O(height), not unconditionally O(log n); sorted insertion can create a chain."
+      ],
+      "complexity": "A full traversal visits n nodes in O(n) time. Recursive DFS uses O(h) stack space. BFS uses O(w) queue space for maximum width w. A balanced BST has O(log n) height; an unbalanced one may have O(n).",
+      "sourceIds": [
+        "mit-trees"
+      ]
+    },
+    {
+      "number": 8,
+      "id": "heap",
+      "title": "Heap",
+      "summary": "Keep the next highest-priority item easy to retrieve.",
+      "modules": [
+        {
+          "title": "1. Separate heap order from sorted order",
+          "text": "A min-heap puts the smallest value at the root; it does not sort siblings or the entire array. Learn the array positions of parents and children."
+        },
+        {
+          "title": "2. Maintain the invariant",
+          "text": "Trace sift-up after insertion and sift-down after removal. Use heapq.heapify, heappush and heappop in Python. For broadly compatible max-priority numeric examples, store negative priorities."
+        },
+        {
+          "title": "3. Keep only what matters",
+          "text": "Maintain a heap of size k for the k largest values. Add a tie-break counter when priority entries contain tasks that cannot be compared directly."
+        }
+      ],
+      "exercises": [
+        {
+          "title": "Kth largest",
+          "prompt": "Return the kth largest value, counting duplicates, for 1 ≤ k ≤ n.",
+          "example": "[3, 1, 5, 5, 2], k = 2 → 5",
+          "hint": "Keep a min-heap containing only the largest k values seen."
+        },
+        {
+          "title": "Merge sorted streams",
+          "prompt": "Merge several already-sorted lists into one sorted result.",
+          "example": "[1, 4], [2, 3], [] → [1, 2, 3, 4]",
+          "hint": "The heap needs only the next available item from each stream."
+        }
+      ],
+      "checks": [
+        "Explain why the root of a size-k min-heap is the kth largest retained value.",
+        "Distinguish a priority queue’s behavior from its heap implementation."
+      ],
+      "pitfalls": [
+        "The heap’s internal list is not globally sorted.",
+        "Validate k; decide how empty input and priority ties should behave."
+      ],
+      "complexity": "Peek is O(1); push/pop are O(log n); bottom-up heapify is O(n). Keeping the top k uses O(n log k) time for k ≥ 2 and O(k) space; k = 1 is a linear scan.",
+      "sourceIds": [
+        "python-heap"
+      ]
+    },
+    {
+      "number": 9,
+      "id": "graphs",
+      "title": "Graphs",
+      "summary": "Model connections first, then choose a traversal or path algorithm.",
+      "modules": [
+        {
+          "title": "1. Represent the problem",
+          "text": "Identify vertices, edges, direction and weights. Build an adjacency list; contrast its storage with an adjacency matrix. Include disconnected vertices."
+        },
+        {
+          "title": "2. Traverse and remember",
+          "text": "Use BFS for minimum edge-count paths in an unweighted graph, and DFS for exploration and components. Mark visited vertices at discovery so cycles do not create repeated work."
+        },
+        {
+          "title": "3. Respect algorithm conditions",
+          "text": "Learn topological sorting for directed acyclic graphs. Then use a heap-based Dijkstra implementation for nonnegative edge weights. Negative edges need another method, such as Bellman–Ford."
+        },
+        {
+          "title": "4. Revisit spanning trees",
+          "text": "After union–find in the optional stage, try Kruskal; after heaps, try Prim. A minimum spanning tree connects an undirected weighted graph cheaply and solves a different problem from shortest paths."
+        }
+      ],
+      "exercises": [
+        {
+          "title": "Fewest hops",
+          "prompt": "Find the minimum number of edges from A to D, or report unreachable.",
+          "example": "Edges A–B, A–C, C–D → 2",
+          "hint": "BFS discovers vertices in increasing distance layers."
+        },
+        {
+          "title": "Course dependencies",
+          "prompt": "Return a valid order of courses from prerequisite edges, or report a cycle.",
+          "example": "A → C, B → C → either A,B,C or B,A,C",
+          "hint": "Repeatedly remove a vertex whose remaining indegree is zero."
+        }
+      ],
+      "checks": [
+        "Explain why ordinary BFS fails for arbitrary unequal edge weights.",
+        "Test a disconnected graph, a cycle and a single isolated vertex."
+      ],
+      "pitfalls": [
+        "An undirected edge normally belongs in both adjacency lists.",
+        "Dijkstra requires nonnegative weights; a visited-set shortcut copied from BFS is not a substitute for understanding relaxation."
+      ],
+      "complexity": "With adjacency lists, BFS/DFS run in O(V + E) time and use O(V) auxiliary state beyond graph storage. Binary-heap Dijkstra is commonly O((V + E) log V) on simple graphs; duplicate heap entries and graph representation affect the precise bound.",
+      "sourceIds": [
+        "mit-bfs",
+        "mit-dijkstra"
+      ]
+    },
+    {
+      "number": 10,
+      "id": "dynamic-programming",
+      "title": "Dynamic programming",
+      "summary": "Reuse solutions to precisely defined subproblems.",
+      "modules": [
+        {
+          "title": "1. Define the state in a sentence",
+          "text": "Before writing a table, say what dp[i] or dp[i][j] means. Identify which information must be remembered so the next decision is valid."
+        },
+        {
+          "title": "2. Write transitions and base cases",
+          "text": "List the choices that produce each state, then specify starting and impossible states. Write a small recursive version to expose repeated work."
+        },
+        {
+          "title": "3. Cache, order, then optimize",
+          "text": "Add memoization, or compute bottom-up in dependency order. Explain where the final answer lives. Only compress space after the full table is correct and you understand which old states are still needed."
+        }
+      ],
+      "exercises": [
+        {
+          "title": "Climbing stairs",
+          "prompt": "Count ways to reach step n using moves of one or two steps. Define one way to reach step zero: take no steps.",
+          "example": "n = 4 → 5",
+          "hint": "ways[i] = ways[i-1] + ways[i-2]."
+        },
+        {
+          "title": "Minimum coins",
+          "prompt": "Given positive coin denominations usable repeatedly, find the fewest coins for an amount, or -1 if impossible.",
+          "example": "coins [1, 3, 4], amount 6 → 2",
+          "hint": "Greedily taking the largest coin first gives the wrong answer here."
+        }
+      ],
+      "checks": [
+        "State the meaning, transition, base cases, evaluation order and final answer without looking at code.",
+        "Explain the number of states multiplied by work per state."
+      ],
+      "pitfalls": [
+        "Memoization only helps when identical states recur; include every relevant variable in the cache key.",
+        "Coin-change O(amount × coin types) depends on the numeric amount, not merely its bit length; it is pseudopolynomial."
+      ],
+      "complexity": "Stairs uses O(n) arithmetic operations and can use O(1) stored states. Exact counts grow, so big-integer arithmetic is not truly constant-cost for arbitrarily large n. A full coin table uses O(amount) space.",
+      "sourceIds": [
+        "mit-recursion",
+        "mit-dp"
+      ],
+      "code": {
+        "title": "Start with an explicit DP table",
+        "language": "python",
+        "text": "def stair_ways(n):\n    if n < 0:\n        raise ValueError(\"n must be nonnegative\")\n    ways = [0] * (n + 1)\n    ways[0] = 1\n    for step in range(1, n + 1):\n        ways[step] = ways[step - 1]\n        if step >= 2:\n            ways[step] += ways[step - 2]\n    return ways[n]\n\nassert stair_ways(0) == 1\nassert stair_ways(4) == 5",
+        "explanation": "Contract: n is a nonnegative integer. ways[step] counts all valid move sequences ending at that step. The final move was either one or two steps, so the two cases are disjoint."
+      }
+    },
+    {
+      "number": 11,
+      "id": "advanced",
+      "title": "Advanced topics",
+      "summary": "Choose a branch that supports the problems you actually want to solve.",
+      "modules": [
+        {
+          "title": "1. Tries for prefixes",
+          "text": "After strings and trees, implement insert, whole-word lookup and prefix lookup. Mark word endings separately so “car” and “cart” can coexist."
+        },
+        {
+          "title": "2. Union–find for connectivity",
+          "text": "After graphs, learn find and union with path compression and union by size/rank. Apply it to incremental connectivity and Kruskal’s minimum spanning tree algorithm."
+        },
+        {
+          "title": "3. Range-query structures",
+          "text": "After prefix sums and trees, learn a Fenwick tree for prefix sums with updates, or a segment tree for range aggregates. Define the combine operation and identity before implementation."
+        },
+        {
+          "title": "4. Bitmasks and specialized algorithms",
+          "text": "After subsets and DP, represent small sets with bits and try subset DP. Pick advanced string algorithms, greedy proofs or further graph algorithms only when a concrete problem motivates them."
+        }
+      ],
+      "exercises": [
+        {
+          "title": "Prefix dictionary",
+          "prompt": "Insert car, cart and dog; distinguish a whole word from a prefix.",
+          "example": "lookup(\"ca\") → False; starts_with(\"ca\") → True",
+          "hint": "A path existing is not the same as an end-of-word marker."
+        },
+        {
+          "title": "Online connectivity",
+          "prompt": "Start with vertices 0–3, then union(0,1) and union(2,3). Query, merge, and query again.",
+          "example": "connected(0,3) → False; union(1,2); connected(0,3) → True",
+          "hint": "Compare representatives rather than direct parent pointers."
+        }
+      ],
+      "checks": [
+        "Explain why the specialized structure is preferable to a simpler baseline.",
+        "Complete one chosen branch thoroughly before collecting several unfamiliar templates."
+      ],
+      "pitfalls": [
+        "Advanced does not mean universally better: implementation complexity and memory can outweigh benefits.",
+        "Bitmask enumeration is exponential in the number of represented elements; keep that universe small."
+      ],
+      "complexity": "Trie lookup is O(L) with constant-time child access assumptions. Union–find with both optimizations has near-constant amortized cost O(α(n)). Standard segment-tree point updates and range queries are O(log n); build is O(n).",
+      "sourceIds": [
+        "opendsa",
+        "princeton-trie",
+        "cornell-segment"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "python-data",
+      "title": "Python tutorial: lists, stacks, queues, sets and dictionaries",
+      "url": "https://docs.python.org/3/tutorial/datastructures.html"
+    },
+    {
+      "id": "python-unicode",
+      "title": "Python Unicode HOWTO",
+      "url": "https://docs.python.org/3/howto/unicode.html"
+    },
+    {
+      "id": "python-bisect",
+      "title": "Python bisect: sorted-array boundaries",
+      "url": "https://docs.python.org/3/library/bisect.html"
+    },
+    {
+      "id": "python-heap",
+      "title": "Python heapq: heap operations and priority queues",
+      "url": "https://docs.python.org/3/library/heapq.html"
+    },
+    {
+      "id": "mit-structures",
+      "title": "MIT 6.006: data structures and dynamic arrays",
+      "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec2/"
+    },
+    {
+      "id": "mit-sorting",
+      "title": "MIT 6.006: sorting",
+      "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec3/"
+    },
+    {
+      "id": "mit-hashing",
+      "title": "MIT 6.006: hashing",
+      "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec4/"
+    },
+    {
+      "id": "mit-trees",
+      "title": "MIT 6.006: binary trees",
+      "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec6/"
+    },
+    {
+      "id": "mit-bfs",
+      "title": "MIT 6.006: breadth-first search",
+      "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec9/"
+    },
+    {
+      "id": "mit-dijkstra",
+      "title": "MIT 6.006: Dijkstra’s algorithm",
+      "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec13/"
+    },
+    {
+      "id": "mit-recursion",
+      "title": "MIT 6.006: recursive algorithms and DP foundations",
+      "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec15/"
+    },
+    {
+      "id": "mit-dp",
+      "title": "MIT 6.006: dynamic programming subproblems",
+      "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec16/"
+    },
+    {
+      "id": "opendsa",
+      "title": "Virginia Tech OpenDSA: union–find and path compression",
+      "url": "https://opendsa-server.cs.vt.edu/OpenDSA/Books/CS3/html/UnionFind.html"
+    },
+    {
+      "id": "princeton-trie",
+      "title": "Princeton Algorithms: trie operations and complexity",
+      "url": "https://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/TrieST.html"
+    },
+    {
+      "id": "cornell-segment",
+      "title": "Cornell CS 5199: segment trees",
+      "url": "https://www.cs.cornell.edu/courses/cs5199/2019fa/resource/SegmentTrees.pdf"
+    }
+  ],
+  "sourceNote": "Further reading from official Python documentation and university teaching materials. The study sequence, explanations and exercises here are an original learning guide; these links support and deepen the underlying concepts."
+}

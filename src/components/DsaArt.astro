@@ -1,0 +1,21 @@
+---
+interface Props { step: number; }
+const {step}=Astro.props;
+const titles=['Indexed array','Character sequence','Singly linked list','Stack and queue','Recursive calls','Binary search interval','Binary search tree','Min heap','Undirected graph','Dynamic programming table','Trie prefix tree'];
+const descriptions=['Array values 4, 7, 2, 9 at indices 0 through 3.','The word code is a sequence of four characters.','Nodes 3, 5 and 8 point to the next node, ending at null.','A stack removes the newest item; a queue removes the oldest item.','Factorial of 3 calls factorial of 2, then factorial of 1.','In sorted values 1, 3, 5, 7, 9, the middle value 5 divides the interval.','The root 5 has smaller children on the left and larger children on the right.','The root 1 is no greater than children 3 and 2; the tree is complete.','Four vertices are joined by edges, with a cycle and a diagonal.','Each Fibonacci value is the sum of the previous two stored values.','A trie shares prefix c between the words car and cat.'];
+---
+<svg class="dsa-art" viewBox="0 0 180 100" role="img" aria-labelledby={`dsa-art-title-${step} dsa-art-desc-${step}`}>
+<title id={`dsa-art-title-${step}`}>{titles[step-1]}</title><desc id={`dsa-art-desc-${step}`}>{descriptions[step-1]}</desc>
+<defs><marker id={`arrow-${step}`} markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="currentColor"/></marker></defs>
+{step===1&&<g>{[4,7,2,9].map((v,i)=><g><rect x={13+i*40} y="27" width="37" height="37" rx="3"/><text x={31+i*40} y="51">{v}</text><text class="annotation" x={31+i*40} y="80">{i}</text></g>)}</g>}
+{step===2&&<g>{['c','o','d','e'].map((v,i)=><g><path d={`M${15+i*40} 62h30`}/><text class="large" x={30+i*40} y="54">{v}</text></g>)}<text class="annotation" x="90" y="84">ordered characters</text></g>}
+{step===3&&<g>{[3,5,8].map((v,i)=><g><circle cx={25+i*55} cy="46" r="17"/><text x={25+i*55} y="52">{v}</text><path d={`M${43+i*55} 46h17`} marker-end={`url(#arrow-${step})`}/></g>)}<text class="annotation" x="163" y="70">null</text></g>}
+{step===4&&<g>{[0,1,2].map(i=><rect x="18" y={63-i*20} width="44" height="17" rx="2"/>)}<path d="M40 8v10m-8-7 8 7 8-7"/><text class="annotation" x="40" y="97">LIFO</text>{[0,1,2].map(i=><rect x={83+i*27} y="40" width="24" height="27" rx="2"/>)}<path d="M84 27h70" marker-end={`url(#arrow-${step})`}/><text class="annotation" x="122" y="87">FIFO</text></g>}
+{step===5&&<g>{[3,2,1].map((v,i)=><g><rect x={12+i*36} y={7+i*29} width="76" height="26" rx="5"/><text x={50+i*36} y={25+i*29}>fact({v})</text></g>)}<path d="M90 20h24v9M125 50h26v10" marker-end={`url(#arrow-${step})`}/></g>}
+{step===6&&<g>{[1,3,5,7,9].map((v,i)=><g><rect x={7+i*34} y="34" width="30" height="31" rx="3" opacity={i===2?1:.45}/><text x={22+i*34} y="55">{v}</text></g>)}<path d="M90 9v18" marker-end={`url(#arrow-${step})`}/><text class="annotation" x="90" y="87">middle → compare → halve</text></g>}
+{(step===7||step===8)&&<g><path d="M90 18L49 48L27 79M49 48L70 79M90 18L132 48"/>{[[90,18],[49,48],[132,48],[27,79],[70,79]].map(([x,y],i)=><g><circle cx={x} cy={y} r="14"/><text x={x} y={y+5}>{(step===7?[5,3,8,1,4]:[1,3,2,7,6])[i]}</text></g>)}</g>}
+{step===9&&<g><path d="M47 20H132V78H47ZM47 20L132 78"/>{[[47,20],[132,20],[132,78],[47,78]].map(([x,y],i)=><g><circle cx={x} cy={y} r="15"/><text x={x} y={y+5}>{['A','B','C','D'][i]}</text></g>)}</g>}
+{step===10&&<g>{[0,1,1,2,3,5].map((v,i)=><g><rect x={10+(i%3)*53} y={7+Math.floor(i/3)*43} width="48" height="37" rx="3"/><text x={34+(i%3)*53} y={31+Math.floor(i/3)*43}>{v}</text></g>)}<text class="annotation" x="90" y="98">F(n) = F(n−1) + F(n−2)</text></g>}
+{step===11&&<g><path d="M90 15V43M90 43L52 78M90 43L128 78"/>{[[90,15,'c'],[90,43,'a'],[52,78,'r'],[128,78,'t']].map(([x,y,v])=><g><circle cx={x} cy={y} r="14"/><text x={x} y={Number(y)+5}>{v}</text></g>)}</g>}
+</svg>
+<style>.dsa-art{width:150px;height:84px;color:var(--accent);stroke:currentColor;stroke-width:2;fill:none}.dsa-art rect,.dsa-art circle{fill:color-mix(in srgb,var(--accent) 22%,#fff)}.dsa-art text{fill:#122232;stroke:none;text-anchor:middle;font-size:17px;font-weight:750;font-family:ui-monospace,monospace}.dsa-art .annotation{font-size:10px;font-weight:600}.dsa-art .large{font-size:36px}</style>

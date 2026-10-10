@@ -10,7 +10,7 @@ assert.equal((css.match(/left:20px;right:auto;top:14px/g)||[]).length,1,'One aut
 
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 async function load(path,mobile=false){const html=await readFile(`dist/${path}index.html`,'utf8');const dom=new JSDOM(html,{runScripts:'outside-only',url:`https://example.invalid${base}${path}`,pretendToBeVisual:true});const w=dom.window;w.matchMedia=()=>({matches:mobile,addEventListener(){}});w.IntersectionObserver=class{observe(){}};const original=w.setTimeout.bind(w);w.setTimeout=(fn)=>original(fn,1);for(const script of w.document.querySelectorAll('script')){assert.equal(script.hasAttribute('src'),false,'Update test to resolve external JS assets');w.eval(`(()=>{${script.textContent}\n})()`);}return dom;}
-const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/'];
+const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/'];
 for(const path of paths){
 const dom=await load(path);const d=dom.window.document;
 const header=d.querySelector(".mobile-header");assert.equal(header.firstElementChild.id,"menu-toggle");assert.equal(header.querySelector(".header-slogan").textContent,"Học - Học nữa - Học mãi");
@@ -114,5 +114,41 @@ assert.match(roadmap.body.textContent,/Kubernetes.*không bắt buộc/);
 assert.match(roadmap.body.textContent,/SQL/);assert.match(roadmap.body.textContent,/ORM/);
 assert.equal(roadmap.querySelectorAll('img').length,0,'Roadmap visuals are original vectors, not a raster poster');
 roadmapDom.window.close();
-const roadmapLive=await load('lap-trinh/lo-trinh/');const rs=roadmapLive.window.document.querySelector('#lesson-search');rs.value='lap trinh';rs.dispatchEvent(new roadmapLive.window.Event('input'));assert.equal(roadmapLive.window.document.querySelectorAll('[data-search]:not([hidden])').length,1);roadmapLive.window.close();
+const roadmapLive=await load('lap-trinh/lo-trinh/');const rs=roadmapLive.window.document.querySelector('#lesson-search');rs.value='lap trinh';rs.dispatchEvent(new roadmapLive.window.Event('input'));assert.equal(roadmapLive.window.document.querySelectorAll('[data-search]:not([hidden])').length,2);roadmapLive.window.close();
 console.log('PASS developer roadmap: 8 phases and detailed curricula, module content/source links/checkpoints, repeatable native details, first-session starter, 4 projects, layered stack, unique IDs, no-JS content, search.');
+
+
+// DSA: English semantics, real original illustrations, and concrete no-JS curriculum.
+const dsaData=JSON.parse(await readFile('src/data/dsa-roadmap.json','utf8'));
+const dsaDom=new JSDOM(await readFile('dist/lap-trinh/dsa-roadmap/index.html','utf8'));
+const da=dsaDom.window.document;
+assert.equal(da.querySelector('article.dsa').lang,'en');
+assert.equal(da.querySelectorAll('.dsa-stage').length,11);
+assert.equal(da.querySelectorAll('.dsa-art[role="img"]').length,11);
+assert.equal(da.querySelectorAll('.dsa-arrow').length,10);
+assert.equal(da.querySelectorAll('.dsa-study').length,11);
+assert.equal(da.querySelectorAll('.dsa-study[open]').length,0);
+assert.equal(da.querySelectorAll('.dsa-exercise').length,22);
+assert.equal(da.querySelectorAll('.dsa img').length,0);
+const dsaIds=[...da.querySelectorAll('[id]')].map(e=>e.id);assert.equal(dsaIds.length,new Set(dsaIds).size);
+for(const [i,stage] of dsaData.stages.entries()){
+ const row=da.getElementById(`stage-${stage.id}`);assert.ok(row);
+ assert.equal(row.querySelector('h3').textContent,stage.title);
+ assert.equal(row.querySelector('.dsa-number').textContent,String(i+1).padStart(2,'0'));
+ assert.ok(row.querySelector('svg title').textContent);assert.ok(row.querySelector('svg desc').textContent);
+ assert.ok(stage.modules.length>=3);assert.equal(stage.exercises.length,2);
+ for(const text of [stage.summary,stage.complexity,...stage.checks,...stage.pitfalls,...stage.modules.flatMap(m=>[m.title,m.text]),...stage.exercises.flatMap(e=>[e.title,e.prompt,e.example,e.hint])])assert.ok(row.textContent.includes(text),'DSA curriculum text preserved');
+ for(const id of stage.sourceIds){const source=dsaData.sources.find(s=>s.id===id);assert.ok(source);assert.ok(row.querySelector(`a[href="${source.url}"]`));}
+ if(stage.code)assert.equal(row.querySelector('pre code').textContent,stage.code.text);
+}
+for(const details of da.querySelectorAll('.dsa details')){assert.equal(details.open,false);details.querySelector('summary').click();assert.equal(details.open,true);details.querySelector('summary').click();assert.equal(details.open,false);}
+assert.equal(da.querySelectorAll('.dsa-foundations li').length,dsaData.foundations.tasks.length+dsaData.foundations.checks.length);
+assert.equal(da.querySelectorAll('.dsa-first li').length,dsaData.firstSession.length);
+assert.equal(da.querySelectorAll('.dsa-references a').length,dsaData.sources.length);
+assert.match(await readFile('src/styles/dsa-roadmap.css','utf8'),/@media\(prefers-reduced-motion:reduce\)/);
+dsaDom.window.close();
+const dsaLive=await load('lap-trinh/dsa-roadmap/',true);const ds=dsaLive.window.document;const input=ds.querySelector('#lesson-search');
+ds.querySelector('#menu-toggle').click();assert.equal(ds.activeElement.id,'menu-toggle');
+for(const query of ['dsa','dynamic programming','cau truc du lieu']){input.value=query;input.dispatchEvent(new dsaLive.window.Event('input'));assert.equal(ds.querySelectorAll('[data-search]:not([hidden])').length,1);assert.match(ds.querySelector('[data-search]:not([hidden])').textContent,/DSA Roadmap/);}
+dsaLive.window.close();
+console.log('PASS DSA: 11 original accessible diagrams, English article language, 22 exercises, all curriculum/source/code text, unique IDs, reversible native disclosures without JS, mobile menu and search regression.');

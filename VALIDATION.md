@@ -59,3 +59,12 @@ GitHub Pages deployment is enabled in `.github/workflows/pages.yml`, triggered b
 - No progress tracker, authentication, backend or other site functionality added; all other lesson source files and shared header/menu code remain unchanged
 - Astro check and the four-page release build/DOM checks passed; tests now assert all module content, source references, course criteria, native toggling and existing mobile-menu behavior
 - Local browser suite could not start because Chromium socket creation is prohibited by the execution environment. Live cloud-browser inspection is performed separately after the exact deployment; this source report does not claim a visual pass
+
+
+## English DSA roadmap (10 October 2026)
+
+- Added `/lap-trinh/dsa-roadmap/` as the fifth lesson, under Lập trình; the article is explicitly `lang="en"` while the shared Vietnamese navigation is unchanged.
+- 11 numbered stages, 11 original accessible SVG diagrams, 22 exercises, separate prerequisite guidance, first-session starter, linked teaching references, native expandable learning sections and hints. No screenshot embedding or JavaScript dependency for article content.
+- Astro check: zero errors, warnings or hints. Root-base and `/kien-thuc/` production builds and five-lesson DOM suites passed. Existing four lesson source pages retained byte-for-byte.
+- Exhaustive small-array lower-bound cases agree with Python `bisect_left`; DP example assertions, recurrence and negative-input behavior checked.
+- Local preview could not be reached from the supported cloud browser (connection refused). Live browser QA is performed after deployment; DOM checks alone are not visual or screen-reader certification.
