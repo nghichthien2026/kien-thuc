@@ -11,7 +11,7 @@ assert.equal((css.match(/left:20px;right:auto;top:14px/g)||[]).length,1,'One aut
 assert.match(css,/\.sidebar\{[^}]*overflow-y:auto/,'Desktop sidebar remains scrollable in short viewports');
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 async function load(path,mobile=false){const html=await readFile(`dist/${path}index.html`,'utf8');const dom=new JSDOM(html,{runScripts:'outside-only',url:`https://example.invalid${base}${path}`,pretendToBeVisual:true});const w=dom.window;w.matchMedia=()=>({matches:mobile,addEventListener(){}});w.IntersectionObserver=class{observe(){}};const original=w.setTimeout.bind(w);w.setTimeout=(fn)=>original(fn,1);for(const script of w.document.querySelectorAll('script')){assert.equal(script.hasAttribute('src'),false,'Update test to resolve external JS assets');w.eval(`(()=>{${script.textContent}\n})()`);}return dom;}
-const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/', 'tieng-anh/cum-tu-voi-time/'];
+const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/', 'tieng-anh/cum-tu-voi-time/', 'lap-trinh/cau-truc-backend/'];
 for(const path of paths){
 const dom=await load(path);const d=dom.window.document;
 const header=d.querySelector(".mobile-header");assert.equal(header.firstElementChild.id,"menu-toggle");assert.equal(header.querySelector(".header-slogan").textContent,"Học - Học nữa - Học mãi");
@@ -115,7 +115,7 @@ assert.match(roadmap.body.textContent,/Kubernetes.*không bắt buộc/);
 assert.match(roadmap.body.textContent,/SQL/);assert.match(roadmap.body.textContent,/ORM/);
 assert.equal(roadmap.querySelectorAll('img').length,0,'Roadmap visuals are original vectors, not a raster poster');
 roadmapDom.window.close();
-const roadmapLive=await load('lap-trinh/lo-trinh/');const rs=roadmapLive.window.document.querySelector('#lesson-search');rs.value='lap trinh';rs.dispatchEvent(new roadmapLive.window.Event('input'));assert.equal(roadmapLive.window.document.querySelectorAll('[data-search]:not([hidden])').length,2);roadmapLive.window.close();
+const roadmapLive=await load('lap-trinh/lo-trinh/');const rs=roadmapLive.window.document.querySelector('#lesson-search');rs.value='lap trinh';rs.dispatchEvent(new roadmapLive.window.Event('input'));assert.equal(roadmapLive.window.document.querySelectorAll('[data-search]:not([hidden])').length,3);roadmapLive.window.close();
 console.log('PASS developer roadmap: 8 phases and detailed curricula, module content/source links/checkpoints, repeatable native details, first-session starter, 4 projects, layered stack, unique IDs, no-JS content, search.');
 
 
@@ -217,3 +217,13 @@ assert.equal(vt.querySelectorAll('.time-introduction,.time-map-grid,.time-line')
 for(const panel of vt.querySelectorAll('.time-situation')){assert.ok(panel.querySelector('.time-dialogue strong'));assert.ok(panel.querySelector('.time-dialogue-meaning').textContent);assert.ok(vt.querySelector(panel.getAttribute('href')));}
 for(const phrase of ['Last time','This time','Next time'])assert.ok(vt.querySelector('.time-mini-story').textContent.includes(phrase));
 visualTeaching.window.close();console.log('PASS visual teaching: 3 accessible original scenes, bilingual contextual examples, 3-moment story, correct group links, removed abstract boxes/statistics.');
+
+const backendDoc=new JSDOM(await readFile('dist/lap-trinh/cau-truc-backend/index.html','utf8')).window.document;
+assert.equal(backendDoc.querySelectorAll('.backend-role').length,8);
+assert.equal(backendDoc.querySelectorAll('.root-file').length,6);
+for(const name of ['config','controllers','middlewares','models','routes','services','utils','test']){assert.ok(backendDoc.querySelector(`#role-${name}`));assert.ok(backendDoc.querySelector(`.tree-entry[href="#role-${name}"]`));}
+for(const name of ['node_modules/','src/','unit/','integration/','.env','.gitignore','package.json','package-lock.json','server.js','README.md'])assert.ok(backendDoc.querySelector('.backend-tree').textContent.includes(name));
+assert.match(backendDoc.querySelector('#role-routes').textContent,/endpoint/);
+assert.match(backendDoc.querySelector('#role-services').textContent,/logic/);
+assert.equal(backendDoc.querySelectorAll('img').length,0);
+console.log('PASS backend structure: complete tree, eight correctly linked roles, six root-file explanations, no framework/database assumptions or image dependencies.');

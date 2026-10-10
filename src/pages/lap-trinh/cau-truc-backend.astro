@@ -1,0 +1,49 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import BackendIcon from '../../components/BackendIcon.astro';
+import '../../styles/backend-structure.css';
+const folders = [
+ {name:'config',title:'Cấu hình',text:'Thiết lập môi trường, kết nối cơ sở dữ liệu.',color:'#62b5ff'},
+ {name:'controllers',title:'Điều phối yêu cầu',text:'Nhận request, gọi xử lý và trả response.',color:'#56d9cb'},
+ {name:'middlewares',title:'Xử lý trung gian',text:'Xác thực, kiểm tra dữ liệu, ghi log.',color:'#a4d96c'},
+ {name:'models',title:'Mô hình dữ liệu',text:'Định nghĩa cấu trúc và quy tắc dữ liệu.',color:'#f1c466'},
+ {name:'routes',title:'Định tuyến',text:'Khai báo endpoint, nối với controller.',color:'#c19bff'},
+ {name:'services',title:'Nghiệp vụ',text:'Xử lý logic, truy cập dữ liệu, gọi dịch vụ ngoài.',color:'#ffaf64'},
+ {name:'utils',title:'Tiện ích',text:'Các hàm hỗ trợ dùng lại ở nhiều nơi.',color:'#ff8b88'},
+];
+const files = [
+ {name:'.env',icon:'lock',text:'Biến môi trường; không commit bí mật.'},
+ {name:'.gitignore',icon:'file',text:'Các tệp và thư mục Git cần bỏ qua.'},
+ {name:'package.json',icon:'code',text:'Thông tin dự án, scripts và dependencies.'},
+ {name:'package-lock.json',icon:'lock',text:'Khóa phiên bản để cài đặt nhất quán.'},
+ {name:'server.js',icon:'code',text:'Điểm khởi chạy server.'},
+ {name:'README.md',icon:'book',text:'Giới thiệu và cách chạy dự án.'},
+];
+---
+<LessonLayout title="Cấu trúc source code Backend" topic="Lập trình" subtitle="Cấu trúc Backend" current="lap-trinh/cau-truc-backend/" sections={[{id:'cau-truc',label:'Cây thư mục'},{id:'tep-goc',label:'Các tệp gốc'}]}>
+<article class="backend-article">
+<section id="cau-truc">
+<header class="backend-heading"><div class="eyebrow"><span class="eyebrow-line"></span> SOURCE CODE · NODE.JS</div><h1>Cấu trúc<br/><span>Backend</span></h1><p>Mỗi thư mục, một vai trò.</p></header>
+<div class="backend-map">
+<div class="backend-tree" aria-label="Cây thư mục Backend">
+<div class="tree-caption"><span class="tree-lights" aria-hidden="true"><i></i><i></i><i></i></span><span>PROJECT EXPLORER</span></div>
+<div class="tree-root"><BackendIcon name="folder" size={24}/><strong>BACKEND<span>/</span></strong></div>
+<ul class="tree-branches">
+<li class="tree-node dependency"><span class="tree-entry"><BackendIcon name="folder" size={18}/><span>node_modules/</span></span></li>
+<li class="tree-node"><span class="tree-entry src-folder"><BackendIcon name="folder" size={18}/><strong>src/</strong></span><ul>
+{folders.map(folder=><li class="tree-node" style={`--role:${folder.color}`}><a class="tree-entry role-link" href={`#role-${folder.name}`}><BackendIcon name={folder.name} size={18}/><span>{folder.name}/</span></a></li>)}
+</ul></li>
+<li class="tree-node" style="--role:#f38ec7"><a class="tree-entry role-link" href="#role-test"><BackendIcon name="test" size={18}/><span>test/</span></a><ul><li class="tree-node"><span class="tree-entry"><BackendIcon name="test" size={17}/><span>unit/</span></span></li><li class="tree-node"><span class="tree-entry"><BackendIcon name="test" size={17}/><span>integration/</span></span></li></ul></li>
+{files.map(file=><li class="tree-node tree-file"><a class="tree-entry" href={`#file-${file.name.replaceAll('.','-')}`}><BackendIcon name={file.icon} size={17}/><span>{file.name}</span></a></li>)}
+</ul>
+<div class="tree-foot"><BackendIcon name="code" size={15}/><span>JavaScript · npm</span></div>
+</div>
+<div class="backend-roles" aria-label="Vai trò các thư mục">
+{folders.map(folder=><section id={`role-${folder.name}`} class="backend-role" style={`--role:${folder.color}`}><span class="role-icon"><BackendIcon name={folder.name} size={25}/></span><div><h2>{folder.name}<span>{folder.title}</span></h2><p>{folder.text}</p></div></section>)}
+<section id="role-test" class="backend-role" style="--role:#f38ec7"><span class="role-icon"><BackendIcon name="test" size={25}/></span><div><h2>test<span>Kiểm thử</span></h2><p>unit: từng phần riêng lẻ.<br/>integration: các phần phối hợp với nhau.</p></div></section>
+</div>
+</div>
+</section>
+<section id="tep-goc" class="backend-root-files"><div class="backend-section-heading"><BackendIcon name="file" size={21}/><h2>Các tệp ở thư mục gốc</h2></div><div class="root-file-grid">{files.map(file=><div id={`file-${file.name.replaceAll('.','-')}`} class="root-file"><BackendIcon name={file.icon} size={20}/><div><h3>{file.name}</h3><p>{file.text}</p></div></div>)}</div><p class="backend-note"><span>node_modules/</span> chứa các package được npm cài đặt.</p></section>
+</article>
+</LessonLayout>

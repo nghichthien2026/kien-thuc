@@ -1,0 +1,20 @@
+---
+interface Props { name: string; size?: number; }
+const { name, size = 22 } = Astro.props;
+const paths: Record<string,string> = {
+ folder:'M3 7V5h6l2 2h10v13H3V7Zm0 3h18',
+ config:'M4 6h16M4 12h16M4 18h16M8 3v6M16 9v6M10 15v6',
+ controllers:'M3 6h6v5H3V6Zm12 7h6v5h-6v-5M9 8h6l3 5M6 11v5h9',
+ middlewares:'M12 2 3 6v6c0 5 9 10 9 10s9-5 9-10V6l-9-4Zm-4 10 3 3 5-6',
+ models:'M3 6c0-5 18-5 18 0s-18 5-18 0Zm0 0v12c0 5 18 5 18 0V6M3 12c0 5 18 5 18 0',
+ routes:'M5 3v13a4 4 0 0 0 4 4h10M5 12h10a4 4 0 0 0 4-4V3M2 6l3-3 3 3M16 6l3-3 3 3m-6 11 3 3-3 3',
+ services:'m12 2 2 4 4-1 1 4 3 3-3 3-1 4-4-1-2 4-2-4-4 1-1-4-3-3 3-3 1-4 4 1 2-4Zm4 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z',
+ utils:'m14 5 4 4 4-4c1 6-3 9-8 7L5 21l-3-3 9-9C9 4 12 0 18 1l-4 4Z',
+ test:'M8 2h8M9 2v7L3 20c-1 2 19 2 18 0L15 9V2M7 14h10',
+ file:'M14 2H5v20h14V7l-5-5Zm0 0v6h5M8 12h8M8 16h6',
+ lock:'M7 11V7a5 5 0 0 1 10 0v4M5 11h14v11H5V11Zm7 4v3',
+ code:'m8 6-6 6 6 6m8-12 6 6-6 6m-3-14-2 16',
+ book:'M12 5c-3-3-7-3-10-2v16c3-1 7-1 10 2m0-16c3-3 7-3 10-2v16c-3-1-7-1-10 2V5Z'
+};
+---
+<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={paths[name] || paths.file}/></svg>
