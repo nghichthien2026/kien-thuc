@@ -14,6 +14,8 @@ async function load(path,mobile=false){const html=await readFile(`dist/${path}in
 const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/', 'tieng-anh/cum-tu-voi-time/', 'lap-trinh/cau-truc-backend/'];
 for(const path of paths){
 const dom=await load(path);const d=dom.window.document;
+assert.equal(d.querySelectorAll('h1.lesson-title').length,1,'Each lesson has one responsive hero title');
+assert.equal(d.querySelectorAll('h1 br').length,0,'Article titles have no forced line breaks');
 const header=d.querySelector(".mobile-header");assert.equal(header.firstElementChild.id,"menu-toggle");assert.equal(header.querySelector(".header-slogan").textContent,"Học - Học nữa - Học mãi");
 assert.equal(d.querySelectorAll('.brand,.sidebar-caption,.sidebar-bottom,.next-lesson,.page-footer,.demo-badge').length,0,'Removed decorative blocks must not return on either lesson');
 assert.equal(d.querySelectorAll('nav[aria-label="Danh mục bài học"] a').length,paths.length,'All lessons remain available in navigation');

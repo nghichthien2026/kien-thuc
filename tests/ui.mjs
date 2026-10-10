@@ -30,6 +30,10 @@ for(const width of [320,375,390,520,760,761,768,1024,1440]){
  await page.setViewportSize({width,height:900});
  for(const path of paths){
   await page.goto(base+path);
+  const title=await page.locator('h1.lesson-title').evaluate(el=>{const style=getComputedStyle(el);const range=document.createRange();range.selectNodeContents(el);return {height:el.getBoundingClientRect().height,lineHeight:parseFloat(style.lineHeight),fontSize:parseFloat(style.fontSize),textWidth:range.getBoundingClientRect().width,width:el.clientWidth};});
+  assert.ok(title.height<=title.lineHeight+1,`Hero title stays on one line at ${width}: ${path}`);
+  assert.ok(title.textWidth<=title.width+1,`Complete hero title fits at ${width}: ${path}`);
+  assert.ok(title.fontSize>=20,`Hero title remains readable at ${width}: ${path}`);
   assert.equal(await page.locator('.brand,.sidebar-caption,.sidebar-bottom,.next-lesson,.page-footer,.demo-badge').count(),0,'Removed decorative blocks must stay absent');
   if(width<=760){
    const menu=await page.locator('#menu-toggle').boundingBox();

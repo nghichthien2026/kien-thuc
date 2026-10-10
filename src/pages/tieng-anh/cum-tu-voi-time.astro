@@ -40,7 +40,7 @@ const keywords=groups.flatMap(group=>group.cards.map(card=>({english:card[0],mea
 <article class="time-lesson">
 <header class="time-hero time-hero-compact">
  <div class="time-eyebrow">TIẾNG ANH MỖI NGÀY <span>13 CỤM TỪ</span></div>
- <h1>Nhớ ngay 13 cụm với <em lang="en">time</em></h1>
+ <h1 class="lesson-title">Nhớ ngay 13 cụm với <em lang="en">time</em></h1>
 </header>
 <nav id="tu-khoa" class="time-keywords" aria-label="13 cụm từ quan trọng và nghĩa tiếng Việt">
  <div>{keywords.map(keyword=><a href={`#${expressionId(keyword.english)}`}><TimeIcon name={keyword.english}/><span><strong lang="en">{keyword.english}</strong><small>{keyword.meaning}</small></span></a>)}</div>
