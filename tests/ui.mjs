@@ -24,7 +24,7 @@ await page.locator('input[value="column"]').check();assert.equal(await page.loca
 await page.locator('#gap').fill('32');await page.locator('#padding').fill('40');assert.match(await page.locator('#css-output').textContent(),/gap: 32px; padding: 40px/);
 await page.locator('#reset-layout').click();assert.equal(await page.locator('#gap').inputValue(),'16');assert.equal(await page.locator('#padding').inputValue(),'24');assert.equal(await page.locator('input[value="row"]').isChecked(),true);
 await page.goBack();assert.match(await page.title(),/Dev, Staging/);await page.goForward();await page.locator('#demo-frame').waitFor();
-for(const width of [320,375,390,768,1024,1440]){
+for(const width of [320,375,390,520,760,761,768,1024,1440]){
  await page.setViewportSize({width,height:900});
  for(const path of ['', 'thiet-ke/auto-layout/']){
   await page.goto(base+path);
@@ -35,6 +35,17 @@ for(const width of [320,375,390,768,1024,1440]){
    assert.equal(await page.locator('.header-slogan').textContent(),'Học - Học nữa - Học mãi');
    assert.ok(menu.x<=24 && menu.width>=44 && menu.height>=44,'Menu sits left with a touch-sized target');
    assert.ok(slogan.x>=menu.x+menu.width && slogan.x+slogan.width<=width-16,'Slogan fits beside the menu');
+   for(let cycle=0;cycle<3;cycle++){
+    await page.locator('#menu-toggle').click();
+    let box=await page.locator('#menu-toggle').boundingBox();
+    assert.equal(box.x,menu.x,'Menu stays left when opened');assert.equal(box.y,menu.y);
+    await page.keyboard.press('Escape');
+    box=await page.locator('#menu-toggle').boundingBox();assert.equal(box.x,menu.x,'Menu stays left when closed');
+   }
+   await page.evaluate(()=>window.scrollTo(0,500));
+   const scrolled=await page.locator('#menu-toggle').boundingBox();assert.equal(scrolled.x,menu.x);assert.equal(scrolled.y,menu.y,'Header stays fixed while scrolling');
+   await page.evaluate(()=>window.scrollTo(0,0));
+
   }else{assert.equal(await page.locator('.mobile-header').isVisible(),false);}
 
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,`overflow at ${width}: ${path}`);

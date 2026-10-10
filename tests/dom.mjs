@@ -3,6 +3,11 @@ import { readFile, access } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import assert from 'node:assert/strict';
 const base=process.env.TEST_BASE || '/kien-thuc/';
+const css=await readFile('src/styles/global.css','utf8');
+assert.match(css,/\.mobile-header\{[^}]*position:fixed;inset:0 0 auto 0/,'Mobile header is anchored to the viewport');
+assert.match(css,/\.mobile-header #menu-toggle\{position:absolute;left:20px;right:auto;top:14px;margin:0;transform:none;transition:none/,'Menu has a stable left anchor independent of flex alignment');
+assert.equal((css.match(/left:20px;right:auto;top:14px/g)||[]).length,1,'One authoritative menu anchor');
+
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 async function load(path,mobile=false){const html=await readFile(`dist/${path}index.html`,'utf8');const dom=new JSDOM(html,{runScripts:'outside-only',url:`https://example.invalid${base}${path}`,pretendToBeVisual:true});const w=dom.window;w.matchMedia=()=>({matches:mobile,addEventListener(){}});w.IntersectionObserver=class{observe(){}};const original=w.setTimeout.bind(w);w.setTimeout=(fn)=>original(fn,1);for(const script of w.document.querySelectorAll('script')){assert.equal(script.hasAttribute('src'),false,'Update test to resolve external JS assets');w.eval(`(()=>{${script.textContent}\n})()`);}return dom;}
 for(const path of ['', 'thiet-ke/auto-layout/']){
