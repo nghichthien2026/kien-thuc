@@ -35,7 +35,9 @@ for(const width of [320,375,390,768,1024,1440]){
 }
 await page.setViewportSize({width:390,height:844});await page.goto(base);
 assert.equal(await page.locator('#sidebar').evaluate(el=>el.inert),true);
-await page.locator('#menu-toggle').click();assert.equal(await page.locator('#lesson-search').evaluate(el=>el===document.activeElement),true);
+await page.locator('#menu-toggle').click();assert.equal(await page.locator('#menu-toggle').evaluate(el=>el===document.activeElement),true,'Opening the mobile menu must not focus the search input');
+await page.locator('#lesson-search').click();await page.locator('#lesson-search').fill('thiet ke');assert.equal(await page.locator('[data-search]:visible').count(),1,'Mobile search still filters while typing');
+await page.locator('#lesson-search').fill('');assert.equal(await page.locator('[data-search]:visible').count(),2);
 await page.keyboard.press('Escape');assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'false');assert.equal(await page.locator('#menu-toggle').evaluate(el=>el===document.activeElement),true);
 await page.locator('#menu-toggle').click();await page.locator('#sidebar a[href*="auto-layout"]').click();await page.locator('#demo-frame').waitFor();assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'false');
 await page.locator('#menu-toggle').click();await page.locator('#nav-backdrop').click({position:{x:350,y:400}});assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'false');
