@@ -100,3 +100,7 @@ Inspected the supplied visual reference before implementing: pale-blue backgroun
 ## Content-only color-scope correction (2026-10-10)
 
 The previous redesign used a route-specific body class plus sidebar, header, breadcrumb and TOC overrides. Although other routes stayed unchanged, that incorrectly recolored the shared shell on the English route. The user's clarification requires the history article's pattern: custom colors only inside the article. Removed the optional layout body-class API and every time-page shell selector. The light canvas, padding, color scheme and shadow now belong to article.time-lesson only, like history-poster. Existing global site colors remain in force around it. Regression assertions reject body/sidebar/header/TOC/page-shell overrides in the article stylesheet. Icons, keyword-first navigation, content, no-ordinal presentation and quiz behavior remain intact.
+
+## Three-column keyword summary (2026-10-10)
+
+Inspected the new screenshot: it shows the wide first-row keyword summary cards, not the full explanation cards. Changed only the keyword summary to three columns when the article content container is at least 740px wide; retained two columns below that width. Container sizing respects the existing sidebar, TOC and content-panel padding. Detailed explanations keep their previous responsive grid. The surrounding dark shell and content-only light panel remain unchanged. Added regression assertions for the container threshold and fallback.

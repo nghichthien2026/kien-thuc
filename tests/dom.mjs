@@ -202,3 +202,8 @@ const timeCss=await readFile('src/styles/time-expressions.css','utf8');
 assert.match(timeCss,/\.time-lesson\{[^}]*background:#eef5fc/);
 assert.doesNotMatch(timeCss,/(?:body|\.sidebar|\.mobile-header|\.breadcrumb|\.toc|\.page-shell|\.time-page)\s*[.{:#]/,'Article stylesheet cannot recolor the shared shell');
 console.log('PASS content-only theme: light background inside article; no body/sidebar/header/TOC/shell overrides; other lessons unchanged.');
+
+assert.match(timeCss,/\.time-lesson\{[^}]*container-type:inline-size/);
+assert.match(timeCss,/@container\(min-width:740px\)\{\.time-keywords>div\{grid-template-columns:repeat\(3,minmax\(0,1fr\)\)\}\}/);
+assert.match(timeCss,/\.time-keywords>div\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+console.log('PASS keyword grid rules: three columns when article content is at least 740px, two columns below; detail grid unchanged.');
