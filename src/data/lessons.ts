@@ -10,6 +10,7 @@ export const lessons = [
   { title: 'HTTP Status Codes', topic: 'Lập trình', path: 'lap-trinh/http-status-codes/', keywords: 'API HTTP status code mã trạng thái 200 201 204 301 302 304 400 401 403 404 409 422 429 500 502 503 504 debug' },
   { title: 'Cổng mạng DevOps', topic: 'DevOps', path: 'devops/cong-mang/', keywords: 'network ports cổng mạng HTTP HTTPS SSH FTP MySQL Kubernetes Docker MongoDB NGINX Grafana Prometheus Tomcat Kafka Redis RDP Elasticsearch Jenkins SMTP' },
   { title: 'Các loại mạng', topic: 'DevOps', path: 'devops/cac-loai-mang/', keywords: 'types networks PAN LAN MAN WAN mạng cá nhân cục bộ đô thị diện rộng internet' },
+  { title: 'Cấu trúc URL', topic: 'Lập trình', path: 'lap-trinh/cau-truc-url/', keywords: 'URL structure địa chỉ giao thức protocol scheme subdomain domain hostname port path query string fragment điểm neo đường dẫn tên miền cổng HTTPS HTTP' },
 ];
 export const href = (path = '') => `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${path}`;
 

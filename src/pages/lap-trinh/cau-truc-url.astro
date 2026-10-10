@@ -1,0 +1,26 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import UrlIcon from '../../components/UrlIcon.astro';
+import data from '../../data/url-structure.json';
+import '../../styles/url-structure.css';
+const sections=[{id:'doc-url',label:'Đọc một URL'},...data.parts.map(p=>({id:p.id,label:p.name})),{id:'vi-du-url',label:'Ví dụ & ghi nhớ'}];
+---
+<LessonLayout title="Cấu trúc URL" topic="Lập trình" subtitle="Địa chỉ tài nguyên" current="lap-trinh/cau-truc-url/" sections={sections}>
+<article class="url-poster">
+ <header class="url-hero"><p class="url-eyebrow">URL STRUCTURE · GIẢI THÍCH TRỰC QUAN</p><h1 class="lesson-title">Cấu trúc URL</h1><p><strong>URL</strong> (Uniform Resource Locator) là địa chỉ của một tài nguyên trên Internet.</p></header>
+ <section id="doc-url" class="url-overview" aria-label="Các phần của URL">
+  <div class="url-segments">{data.parts.map(p=><a class={`url-segment url-${p.id}`} href={`#${p.id}`}><code>{p.segment}</code><span>{p.name}</span></a>)}</div>
+  <p class="url-caption">Tách thành 7 phần để dễ đọc; tên miền phụ và tên miền cùng thuộc hostname.</p>
+ </section>
+ <div class="url-parts">{data.parts.map(p=><section id={p.id} class={`url-part url-${p.id}`}>
+  <div class="url-icon"><UrlIcon name={p.icon}/></div>
+  <div class="url-explanation"><h2>{p.name}<span>{p.label}</span></h2><p>{p.role}</p></div>
+  <div class="url-part-example"><span class="url-example-label">VÍ DỤ</span><code>{p.example}</code><p>{p.hint}</p></div>
+ </section>)}</div>
+ <section id="vi-du-url" class="url-bottom">
+  <div class="url-examples"><h2>Thêm ví dụ</h2>{data.examples.map(example=><div class="url-example"><h3>{example.label}</h3><code class="url-example-code">{example.segments.map(([id,value])=><span class={`url-${id}`}>{value}</span>)}</code><p>{example.note}</p></div>)}</div>
+  <aside class="url-tips"><h2>Ghi nhớ nhanh</h2><ul><li><strong>HTTPS</strong> bảo vệ kết nối, không bảo đảm website đáng tin.</li><li><strong>Hostname</strong> cho biết đang truy cập địa chỉ nào.</li><li><strong>Query</strong> thường dùng để tìm kiếm, lọc hoặc phân trang.</li><li><strong>Fragment</strong> được xử lý phía trình duyệt khi mở mục trên trang.</li></ul></aside>
+ </section>
+ <footer class="url-sources">Đối chiếu MDN: <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL">Cấu trúc URL</a> · <a href="https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Query">Query</a> · <a href="https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Fragment">Fragment</a> · <a href="https://developer.mozilla.org/en-US/docs/Glossary/HTTPS">HTTPS</a></footer>
+</article>
+</LessonLayout>

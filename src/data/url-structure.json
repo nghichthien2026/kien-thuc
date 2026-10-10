@@ -1,0 +1,15 @@
+{
+  "parts": [
+    {"id":"protocol","name":"Protocol","label":"Giao thức","segment":"https://","icon":"lock","role":"Cho biết cách trình duyệt lấy tài nguyên. Trong ví dụ này, scheme là https.","example":"https:// · http://","hint":"HTTPS mã hóa kết nối bằng TLS."},
+    {"id":"subdomain","name":"Subdomain","label":"Tên miền phụ","segment":"www.","icon":"window","role":"Phần đứng trước tên miền chính, thường dùng để chia các khu vực hoặc dịch vụ.","example":"www. · blog. · mail. · shop.","hint":"Không phải URL nào cũng có www."},
+    {"id":"domain","name":"Domain name","label":"Tên miền","segment":"example.com","icon":"globe","role":"Tên miền chính của website. Cùng tên miền phụ tạo thành hostname: www.example.com.","example":"example.com","hint":"Giúp nhận diện địa chỉ website."},
+    {"id":"port","name":"Port","label":"Cổng","segment":":8080","icon":"server","role":"Cổng kết nối đến dịch vụ. Có thể bỏ qua nếu dùng cổng mặc định của giao thức.","example":":80 HTTP · :443 HTTPS · :8080","hint":"Cổng khác mặc định phải ghi rõ."},
+    {"id":"path","name":"Path","label":"Đường dẫn","segment":"/blog/article","icon":"folder","role":"Xác định tài nguyên hoặc trang cần truy cập; không nhất thiết là tệp thật trên máy chủ.","example":"/blog/article · /images/photo.jpg","hint":"Bắt đầu sau hostname và cổng."},
+    {"id":"query","name":"Query string","label":"Chuỗi truy vấn","segment":"?id=123","icon":"query","role":"Truyền thêm dữ liệu cho máy chủ, thường có dạng key=value và nối bằng &.","example":"?id=123&name=ram","hint":"Dấu ? mở đầu chuỗi truy vấn."},
+    {"id":"fragment","name":"Fragment","label":"Điểm neo","segment":"#section","icon":"anchor","role":"Chỉ đến một phần của tài nguyên, thường là một mục trên trang.","example":"#section · #top · #contact","hint":"Không gửi trong yêu cầu HTTP lấy tài nguyên."}
+  ],
+  "examples": [
+    {"label":"Tài liệu trực tuyến","note":"Địa chỉ minh họa; không phải liên kết đến tài liệu thật.","segments":[["protocol","https://"],["subdomain","docs."],["domain","google.com"],["path","/document/d/1ABCdefGHIJ/edit"],["query","?usp=sharing"]]},
+    {"label":"Danh sách sản phẩm","note":"Cổng 3000 · trang 2 · điểm neo top.","segments":[["protocol","http://"],["subdomain","store."],["domain","example.com"],["port",":3000"],["path","/products/list"],["query","?page=2"],["fragment","#top"]]}
+  ]
+}
