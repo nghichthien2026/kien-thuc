@@ -10,7 +10,7 @@ assert.equal((css.match(/left:20px;right:auto;top:14px/g)||[]).length,1,'One aut
 
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 async function load(path,mobile=false){const html=await readFile(`dist/${path}index.html`,'utf8');const dom=new JSDOM(html,{runScripts:'outside-only',url:`https://example.invalid${base}${path}`,pretendToBeVisual:true});const w=dom.window;w.matchMedia=()=>({matches:mobile,addEventListener(){}});w.IntersectionObserver=class{observe(){}};const original=w.setTimeout.bind(w);w.setTimeout=(fn)=>original(fn,1);for(const script of w.document.querySelectorAll('script')){assert.equal(script.hasAttribute('src'),false,'Update test to resolve external JS assets');w.eval(`(()=>{${script.textContent}\n})()`);}return dom;}
-const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/'];
+const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/', 'tieng-anh/cum-tu-voi-time/'];
 for(const path of paths){
 const dom=await load(path);const d=dom.window.document;
 const header=d.querySelector(".mobile-header");assert.equal(header.firstElementChild.id,"menu-toggle");assert.equal(header.querySelector(".header-slogan").textContent,"Học - Học nữa - Học mãi");
@@ -158,3 +158,27 @@ ds.querySelector('#menu-toggle').click();assert.equal(ds.activeElement.id,'menu-
 for(const query of ['dsa','dynamic programming','cau truc du lieu','quy hoach dong']){input.value=query;input.dispatchEvent(new dsaLive.window.Event('input'));assert.equal(ds.querySelectorAll('[data-search]:not([hidden])').length,1);assert.match(ds.querySelector('[data-search]:not([hidden])').textContent,/Lộ trình DSA/);}
 dsaLive.window.close();
 console.log('PASS DSA: 11 original accessible diagrams, Vietnamese article language, 22 exercises, all curriculum/source/code text, unique IDs, reversible native disclosures without JS, mobile menu and search regression.');
+
+// Time expressions: quiz state, repeated attempts, native reveal and no-JS reading.
+const timeDom=await load('tieng-anh/cum-tu-voi-time/');
+const td=timeDom.window.document;
+assert.equal(td.querySelectorAll('.time-card').length,13);
+assert.deepEqual([...td.querySelectorAll('.time-number')].map(el=>el.textContent),Array.from({length:13},(_,i)=>String(i+1).padStart(2,'0')));
+assert.equal(td.querySelectorAll('.time-group').length,3);
+assert.match(td.querySelector('#de-nham').textContent,/lần gần nhất/);
+const quiz=td.querySelector('#time-quiz');
+const answers=[...quiz.querySelectorAll('input')];
+const submit=()=>quiz.dispatchEvent(new timeDom.window.Event('submit',{bubbles:true,cancelable:true}));
+submit();assert.match(td.querySelector('#time-score').textContent,/0\/5/);
+answers.forEach(field=>field.value=field.dataset.answer.toUpperCase()+'!');
+submit();submit();assert.match(td.querySelector('#time-score').textContent,/5\/5/);
+answers[3].value="Time’s up";submit();assert.match(td.querySelector('#time-score').textContent,/5\/5/);
+answers[0].value='wrong';answers[0].dispatchEvent(new timeDom.window.Event('input'));assert.equal(td.querySelector('#time-score').textContent,'');submit();assert.match(td.querySelector('#time-score').textContent,/4\/5/);
+for(const detail of quiz.querySelectorAll('details')){detail.querySelector('summary').click();assert.equal(detail.open,true);}
+quiz.reset();assert.equal(answers.every(el=>el.value===''&&!el.hasAttribute('aria-invalid')),true);assert.equal(quiz.querySelectorAll('details[open]').length,0);assert.equal([...quiz.querySelectorAll('[data-feedback]')].every(el=>!el.textContent),true);
+answers.forEach(field=>field.value=field.dataset.answer);submit();assert.match(td.querySelector('#time-score').textContent,/5\/5/);quiz.reset();
+const timeSearch=td.querySelector('#lesson-search');timeSearch.value='tieng anh';timeSearch.dispatchEvent(new timeDom.window.Event('input'));assert.equal(td.querySelectorAll('[data-search]:not([hidden])').length,1);
+timeDom.window.close();
+const plainTime=new JSDOM(await readFile('dist/tieng-anh/cum-tu-voi-time/index.html','utf8'));
+assert.equal(plainTime.window.document.querySelectorAll('.time-card').length,13);assert.equal(plainTime.window.document.querySelectorAll('.time-question details').length,5);assert.equal(plainTime.window.document.querySelector('#time-quiz-actions').hidden,true);plainTime.window.close();
+console.log('PASS time expressions: 13 cards, 3 groups, 5 quiz answers, case/punctuation variants, empty/wrong/repeated submits, edit/recheck, reveal/reset, accent-insensitive search, no-JS reading.');

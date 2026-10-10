@@ -78,3 +78,11 @@ GitHub Pages deployment is enabled in `.github/workflows/pages.yml`, triggered b
 - Replaced the English article at the same route with Vietnamese prose, article language, navigation title, diagrams and accessible descriptions. Kept technical identifiers and Python code intact.
 - Preserved all 11 stages, 35 concept modules, 22 exercises, 15 sources and two code examples. Removed duplicate module numbers; the ordered list owns numbering. The previous four page sources are unchanged.
 - Revision checks passed: Astro zero diagnostics, root and subpath builds, all five lesson DOM regressions, translated labels/language and numbering checks, source/code/anchor preservation, and Python example tests.
+
+## English time expressions (2026-10-10)
+
+Added a sixth lesson with 13 numbered cards in three semantic groups, original clock/timeline graphics, Vietnamese explanations and examples, five local-only quiz questions, native answer disclosures, repeatable check/reset and no-JavaScript reading. Clarified that “the last time” can mean the most recent occasion rather than an irrevocable final occasion. Added source attribution, navigation keywords and a home lesson catalog.
+
+Passed Astro/TypeScript checks with zero diagnostics, production builds for `/` and `/kien-thuc/`, and both base-path DOM suites including the five previous lessons. New regression coverage checks empty/wrong/correct and repeated submissions, punctuation/case variants, Time’s up, changed answers, reveal/reset/retry, numbered cards, search and no-JS content.
+
+Shell-based Playwright launch was attempted but failed because this execution environment disallows Chromium's process-singleton socket. This is an infrastructure restriction, not a passing browser test. Live cloud-browser verification is performed separately after publication; narrow layout and browser appearance must not be inferred from DOM tests.

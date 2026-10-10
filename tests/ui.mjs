@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 const base = process.env.BASE_URL || 'http://localhost:4321/kien-thuc/';
-const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/'];
+const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/', 'tieng-anh/cum-tu-voi-time/'];
 const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH || '/usr/bin/chromium',headless:true,args:['--no-sandbox']});
 const page=await browser.newPage({viewport:{width:1440,height:1100},deviceScaleFactor:1});
 const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`)});
@@ -53,9 +53,14 @@ for(const width of [320,375,390,520,760,761,768,1024,1440]){
   if(path==='lap-trinh/lo-trinh/'){assert.equal(await page.locator('.roadmap-phase').count(),8);assert.equal(await page.locator('.roadmap-course').count(),8);const detail=page.locator('.roadmap-module').first();assert.equal(await detail.evaluate(el=>el.open),true);await detail.locator('summary').click();assert.equal(await detail.evaluate(el=>el.open),false);await detail.locator('summary').press('Enter');assert.equal(await detail.evaluate(el=>el.open),true);await page.locator('.roadmap-study-link[href="#hoc-02"]').click();assert.ok(page.url().endsWith('#hoc-02'));const second=page.locator('#hoc-02 .roadmap-module').first();await second.locator('summary').click();assert.equal(await second.evaluate(el=>el.open),true);if(width===320)assert.equal(await page.locator('.roadmap-phase-grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length),1);}
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,`overflow at ${width}: ${path}`);
   if(path==='thiet-ke/auto-layout/' && width<=390){await page.locator('#gap').fill('32');await page.locator('#padding').fill('40');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,`max controls overflow ${width}`);await page.locator('#reset-layout').click();}
-  if(width===390)await page.screenshot({path:`qa/${path.startsWith('lich-su')?'history':path.startsWith('lap-trinh')?'roadmap':path?'auto-layout':'dev'}-mobile.png`,fullPage:true});
+  if(width===390)await page.screenshot({path:`qa/${path.startsWith('tieng-anh')?'time':path.startsWith('lich-su')?'history':path.startsWith('lap-trinh')?'roadmap':path?'auto-layout':'dev'}-mobile.png`,fullPage:true});
  }
 }
+await page.goto(base+'tieng-anh/cum-tu-voi-time/');
+assert.equal(await page.locator('.time-card').count(),13);
+for(let i=0;i<5;i++)await page.locator(`#time-answer-${i}`).fill(['one more time','free time','on time','Time is up','Take your time'][i]);
+await page.locator('#time-quiz button[type=submit]').click();await page.locator('#time-quiz button[type=submit]').click();assert.match(await page.locator('#time-score').textContent(),/5\/5/);
+await page.locator('.time-question summary').first().click();await page.locator('#time-quiz button[type=reset]').click();assert.equal(await page.locator('#time-answer-0').inputValue(),'');assert.equal(await page.locator('.time-question details[open]').count(),0);
 await page.setViewportSize({width:390,height:844});await page.goto(base);
 assert.equal(await page.locator('#sidebar').evaluate(el=>el.inert),true);
 await page.locator('#menu-toggle').click();assert.equal(await page.locator('#menu-toggle').evaluate(el=>el===document.activeElement),true,'Opening the mobile menu must not focus the search input');

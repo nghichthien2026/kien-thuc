@@ -38,6 +38,7 @@ In a restricted environment with an unwritable home directory, set `ASTRO_TELEME
 - `/kien-thuc/lich-su/viet-nam/`: ten-period Vietnam history timeline, ten era pictograms, three original symbolic SVG illustrations, era navigation/reading position, expandable details, tap-to-reveal milestone recap and linked references
 - `/kien-thuc/lap-trinh/lo-trinh/`: eight-stage developer roadmap with original vector icons, core/specialization distinction, 42 ordered learning modules, a first-session starter, direct official reading links, exercises/output/self-checks, phase completion criteria, optional-tool guidance and a staged learning-notes capstone
 - `/kien-thuc/lap-trinh/dsa-roadmap/`: Vietnamese DSA learning path with 11 original SVG diagrams, separate programming/Big-O/sorting/hashing foundations, 35 concept modules, 22 exercises, per-stage checks and linked sources, plus tested Python examples
+- `/kien-thuc/tieng-anh/cum-tu-voi-time/`: 13 everyday English time expressions in three groups, Vietnamese explanations, the last-time distinction, accessible five-question practice, native answer reveals and reset, source links
 - Accent-insensitive title/topic/keyword search, responsive mobile menu, `/` search shortcut, Escape to close, skip link and reduced-motion styles
 - Self-contained visual assets and system fonts; no external font requests
 
