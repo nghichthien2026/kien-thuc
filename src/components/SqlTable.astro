@@ -1,5 +1,0 @@
----
-interface Props { caption: string; columns: string[]; rows: (string | number | null)[][]; }
-const { caption, columns, rows } = Astro.props;
----
-<table class="sql-data-table"><caption>{caption}</caption><thead><tr>{columns.map(column=><th scope="col">{column}</th>)}</tr></thead><tbody>{rows.map(row=><tr class:list={{'sql-null-row':row.includes(null)}}>{row.map(value=><td>{value===null?<em class="sql-null">NULL</em>:value}</td>)}</tr>)}</tbody></table>

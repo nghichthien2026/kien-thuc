@@ -1,7 +1,7 @@
 ---
 interface Props { code: string; }
 const { code } = Astro.props;
-const tokens = code.split(/('[^']*'|\b(?:INNER JOIN|LEFT JOIN|ON|AS|SELECT|FROM|WHERE|ORDER BY|GROUP BY|HAVING|LIMIT|ASC|DESC|AND|OR|NOT|IN|LIKE|BETWEEN|IS NULL|IS NOT NULL|INSERT INTO|VALUES|UPDATE|SET|DELETE FROM|CREATE TABLE|ALTER TABLE|ADD|DROP TABLE|PRIMARY KEY|INT|VARCHAR|COUNT|SUM|AVG|MIN|MAX)\b|\b\d+\b)/g);
+const tokens = code.split(/('[^']*'|\b(?:SELECT|FROM|WHERE|ORDER BY|GROUP BY|HAVING|LIMIT|ASC|DESC|AND|OR|NOT|IN|LIKE|BETWEEN|IS NULL|IS NOT NULL|INSERT INTO|VALUES|UPDATE|SET|DELETE FROM|CREATE TABLE|ALTER TABLE|ADD|DROP TABLE|PRIMARY KEY|INT|VARCHAR|COUNT|SUM|AVG|MIN|MAX)\b|\b\d+\b)/g);
 const kind = (token: string) => /^'/.test(token) ? 'sql-string' : /^\d+$/.test(token) ? 'sql-number' : /^[A-Z][A-Z ]*$/.test(token) ? 'sql-keyword' : '';
 ---
 <pre><code>{tokens.map(token => <span class={kind(token)}>{token}</span>)}</code></pre>
