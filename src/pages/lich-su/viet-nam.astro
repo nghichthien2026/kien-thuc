@@ -1,0 +1,51 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import '../../styles/history.css';
+import history from '../../data/vietnam-history.json';
+const sections = [{id:'tong-quan',label:'Nhìn toàn cảnh'},{id:'dong-thoi-gian',label:'10 thời kỳ'},{id:'nho-nhanh',label:'Nhớ nhanh'},{id:'nguon-tham-khao',label:'Nguồn tham khảo'}];
+const sourceNumber = (id: string) => history.sources.findIndex(source => source.id === id) + 1;
+---
+<LessonLayout title={history.title} topic="Lịch sử" subtitle="Dòng thời gian" current="lich-su/viet-nam/" sections={sections}>
+<header class="history-hero" id="tong-quan">
+  <p class="history-kicker">TỪNG THỜI KỲ · MỘT CÂU CHUYỆN</p>
+  <h1>Lịch sử Việt Nam<br/><span style="color:var(--blue)">qua các thời kỳ.</span></h1>
+  <p class="lead">{history.intro}</p>
+</header>
+<aside class="history-note"><strong>Trước khi bắt đầu.</strong> {history.chronologyNote}</aside>
+<nav class="history-overview" aria-label="Đi nhanh theo chặng lịch sử">
+  <a href="#van-lang-au-lac"><span>CHẶNG 01</span><strong>Dựng nước & tự chủ</strong></a>
+  <a href="#xay-dung-doc-lap"><span>CHẶNG 02</span><strong>Các vương triều</strong></a>
+  <a href="#thuoc-dia"><span>CHẶNG 03</span><strong>Độc lập & hội nhập</strong></a>
+</nav>
+<section id="dong-thoi-gian" aria-labelledby="timeline-title">
+  <h2 id="timeline-title" class="history-section-title">10 thời kỳ, từ xưa đến nay</h2>
+  <p class="history-subtitle">Đọc phần tóm tắt để nắm mạch chính. Mở từng thời kỳ để xem các mốc và câu chuyện phía sau. Các giai đoạn có thể chồng lấn; khoảng cách trên dòng thời gian không theo tỷ lệ số năm.</p>
+  <ol class="history-timeline">
+    {history.periods.map((period,index) => <li class="history-period" id={period.id}>
+      <p class="history-date">{period.range}<span class="history-index">{String(index+1).padStart(2,'0')} / 10</span></p>
+      <article class="history-card" aria-labelledby={`title-${period.id}`}>
+        <h3 id={`title-${period.id}`}>{period.title}</h3>
+        <p class="history-summary">{period.summary}</p>
+        <details>
+          <summary>Tìm hiểu thêm<span class="sr-only">: {period.title}</span></summary>
+          <div class="history-detail-text">{period.paragraphs.map(paragraph => <p>{paragraph}</p>)}</div>
+          <dl class="history-milestones">{period.milestones.map(milestone => <div><dt>{milestone.date}</dt><dd>{milestone.event}</dd></div>)}</dl>
+          <p class="history-caveat"><strong>Điều cần nhớ:</strong> {period.takeaway}</p>
+        </details>
+        <p class="history-sources-inline">Đọc thêm: {period.sources.map((id,index) => <><a href={`#nguon-${id}`} aria-label={`Nguồn ${sourceNumber(id)}: ${history.sources.find(source=>source.id===id)?.title}`}>[{sourceNumber(id)}]</a>{index < period.sources.length-1 ? ' · ' : ''}</>)}</p>
+      </article>
+    </li>)}
+  </ol>
+</section>
+<section class="history-recap" id="nho-nhanh" aria-labelledby="recap-title">
+  <h2 class="history-section-title" id="recap-title">Nhớ nhanh các bước ngoặt</h2>
+  <ol>{history.quickTimeline.map(item => {const [year,...description] = item.split(':');return <li><strong>{year}</strong>{description.join(':').trim()}</li>;})}</ol>
+  <p class="history-contrast"><strong>Đừng nhầm hai mốc:</strong> năm 1975 là kết thúc chiến tranh; năm 1976 là thống nhất về mặt nhà nước.</p>
+</section>
+<section class="history-references" id="nguon-tham-khao" aria-labelledby="sources-title">
+  <h2 class="history-section-title" id="sources-title">Nguồn tham khảo</h2>
+  <p class="history-subtitle">Bài tổng quan dùng cách chia thời kỳ để dễ học, không thay thế một bộ sử đầy đủ. Các nguồn dưới đây giúp bạn đối chiếu và đọc sâu hơn.</p>
+  <ol>{history.sources.map(source => <li id={`nguon-${source.id}`}><a href={source.url}>{source.title}</a></li>)}</ol>
+  <p class="history-closing">{history.conclusion}</p>
+</section>
+</LessonLayout>

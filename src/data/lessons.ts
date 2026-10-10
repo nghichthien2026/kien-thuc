@@ -1,5 +1,6 @@
 export const lessons = [
   { title: 'Dev, Staging, Production', topic: 'DevOps', path: '', keywords: 'môi trường triển khai development CI CD' },
   { title: 'Auto Layout', topic: 'Thiết kế', path: 'thiet-ke/auto-layout/', keywords: 'figma khoảng cách padding gap bố cục' },
+  { title: 'Lịch sử Việt Nam', topic: 'Lịch sử', path: 'lich-su/viet-nam/', keywords: 'vietnam dòng thời gian timeline thời kỳ Văn Lang Âu Lạc Bắc thuộc Ngô Quyền Bạch Đằng Lý Trần Lê Nguyễn Tây Sơn độc lập đổi mới 938 1945 1975 1976 1986' },
 ];
 export const href = (path = '') => `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${path}`;

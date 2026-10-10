@@ -1,0 +1,421 @@
+{
+  "title": "Lịch sử Việt Nam qua các thời kỳ",
+  "subtitle": "Một hành trình dễ hiểu, từ thời dựng nước đến Đổi mới và hội nhập",
+  "intro": "Hãy hình dung lịch sử Việt Nam như một hành trình: hình thành cộng đồng và nhà nước, giành quyền tự chủ, xây dựng các vương triều, trải qua chia cắt và chiến tranh, rồi tái thiết và hội nhập. Mỗi thời kỳ dưới đây có vài mốc chính để bạn nhớ được câu chuyện trước khi học kỹ từng sự kiện.",
+  "chronologyNote": "TCN nghĩa là trước Công nguyên. Lãnh thổ và tên nước thay đổi qua thời gian; không nên hình dung mọi vương triều đều cai quản toàn bộ Việt Nam ngày nay. Lịch sử trên lãnh thổ hiện nay còn có Champa, Phù Nam, các cộng đồng Khmer và nhiều dân tộc khác.",
+  "periods": [
+    {
+      "id": "van-lang-au-lac",
+      "range": "Thiên niên kỷ I TCN",
+      "title": "Văn Lang và Âu Lạc: những nền tảng ban đầu",
+      "summary": "Cư dân trồng lúa nước hình thành các cộng đồng và tổ chức quyền lực sớm ở Bắc Bộ, Bắc Trung Bộ.",
+      "paragraphs": [
+        "Văn Lang gắn với ký ức về các vua Hùng; Âu Lạc gắn với An Dương Vương và thành Cổ Loa. Đồ đồng Đông Sơn, trống đồng và di tích thành lũy giúp chúng ta hiểu đời sống, kỹ thuật và tổ chức xã hội thời ấy.",
+        "Truyền thuyết như Lạc Long Quân – Âu Cơ hay nỏ thần phản ánh ký ức văn hóa, không phải ghi chép có thể dùng nguyên vẹn để xác định niên đại. Thời điểm thành lập Văn Lang, Âu Lạc còn được bàn luận; mốc 2879 TCN trong truyền thống không phải niên đại đã được khảo cổ xác nhận."
+      ],
+      "milestones": [
+        {
+          "date": "Thiên niên kỷ I TCN",
+          "event": "Khung thời gian để tìm hiểu Văn Lang, Âu Lạc và văn hóa Đông Sơn"
+        }
+      ],
+      "takeaway": "Nhớ nền tảng lúa nước, trống đồng và Cổ Loa; đừng học truyền thuyết như niên đại chắc chắn.",
+      "sources": [
+        "vanlang",
+        "aulac"
+      ]
+    },
+    {
+      "id": "bac-thuoc",
+      "range": "179/111 TCN – 938",
+      "title": "Bắc thuộc và những cuộc đấu tranh tự chủ",
+      "summary": "Nhiều triều đại phương Bắc đặt ách cai trị, nhưng quyền tự chủ nhiều lần được khôi phục.",
+      "paragraphs": [
+        "Có hai cách đặt mốc mở đầu: 179 TCN, khi Âu Lạc bị sáp nhập vào Nam Việt theo niên đại thường dùng; hoặc 111 TCN, khi nhà Hán thôn tính Nam Việt. Vì vậy, bạn có thể thấy sách ghi khác nhau.",
+        "Đây không phải một nghìn năm bị cai trị liên tục, không gián đoạn. Khởi nghĩa Hai Bà Trưng, nhà nước Vạn Xuân và chính quyền họ Khúc là những dấu mốc quan trọng. Cư dân vừa tiếp nhận ảnh hưởng văn hóa bên ngoài, vừa duy trì và biến đổi truyền thống riêng."
+      ],
+      "milestones": [
+        {
+          "date": "40",
+          "event": "Hai Bà Trưng khởi nghĩa"
+        },
+        {
+          "date": "544",
+          "event": "Lý Bí xưng đế, lập nước Vạn Xuân"
+        },
+        {
+          "date": "938",
+          "event": "Ngô Quyền đánh bại quân Nam Hán trên sông Bạch Đằng"
+        }
+      ],
+      "takeaway": "938 là bước ngoặt mở ra thời kỳ độc lập lâu dài.",
+      "sources": [
+        "bacthuoc",
+        "bach-dang"
+      ]
+    },
+    {
+      "id": "xay-dung-doc-lap",
+      "range": "938 – 1400",
+      "title": "Ngô, Đinh, Tiền Lê, Lý, Trần: xây dựng nền độc lập",
+      "summary": "Từ củng cố chính quyền đến phát triển nhà nước Đại Việt.",
+      "paragraphs": [
+        "Sau chiến thắng Bạch Đằng, Ngô Quyền xưng vương năm 939. Đinh Bộ Lĩnh dẹp các thế lực cát cứ, lập nhà Đinh năm 968, đặt quốc hiệu Đại Cồ Việt. Lê Hoàn lập nhà Tiền Lê năm 980.",
+        "Nhà Lý bắt đầu năm 1009; năm sau, Lý Công Uẩn dời đô ra Thăng Long. Nhà Trần tiếp nối từ năm 1225 theo cách ghi niên đại quen dùng. Hai triều đại phát triển nông nghiệp, đê điều, giáo dục và văn hóa, đồng thời chống các cuộc xâm lược Tống, Mông – Nguyên."
+      ],
+      "milestones": [
+        {
+          "date": "968 / 980",
+          "event": "Mở đầu nhà Đinh / nhà Tiền Lê"
+        },
+        {
+          "date": "1009 / 1010",
+          "event": "Nhà Lý thành lập / dời đô ra Thăng Long"
+        },
+        {
+          "date": "1225",
+          "event": "Nhà Trần thay nhà Lý"
+        },
+        {
+          "date": "1288",
+          "event": "Chiến thắng Bạch Đằng dưới thời Trần"
+        }
+      ],
+      "takeaway": "Nhớ chuỗi Ngô → Đinh → Tiền Lê → Lý → Trần.",
+      "sources": [
+        "ngo-dinh",
+        "tien-le",
+        "ly",
+        "tran"
+      ]
+    },
+    {
+      "id": "ho-le-so",
+      "range": "1400 – 1527",
+      "title": "Nhà Hồ, thời thuộc Minh và nhà Lê sơ",
+      "summary": "Một cuộc mất nước ngắn hơn thời Bắc thuộc, rồi nền độc lập được khôi phục.",
+      "paragraphs": [
+        "Năm 1400, Hồ Quý Ly lập nhà Hồ và tiến hành cải cách. Năm 1407, nhà Minh đánh bại nhà Hồ, đặt ách đô hộ.",
+        "Cuộc khởi nghĩa Lam Sơn do Lê Lợi lãnh đạo giành thắng lợi. Năm 1428, ông lên ngôi, mở đầu nhà Lê sơ. Nhà nước được củng cố, đặc biệt dưới thời Lê Thánh Tông, với những bước phát triển về quản lý, pháp luật và giáo dục."
+      ],
+      "milestones": [
+        {
+          "date": "1400",
+          "event": "Nhà Hồ thành lập"
+        },
+        {
+          "date": "1407",
+          "event": "Bắt đầu thời thuộc Minh"
+        },
+        {
+          "date": "1428",
+          "event": "Lê Lợi lên ngôi, mở đầu nhà Lê sơ"
+        }
+      ],
+      "takeaway": "1407 mất quyền độc lập; 1428 mở ra thời Lê sơ.",
+      "sources": [
+        "thanglong"
+      ]
+    },
+    {
+      "id": "chia-cat",
+      "range": "1527 – cuối thế kỷ XVIII",
+      "title": "Lê – Mạc và Trịnh – Nguyễn: nhiều trung tâm quyền lực",
+      "summary": "Xung đột kéo dài làm quyền lực phân chia giữa các triều đình và dòng họ.",
+      "paragraphs": [
+        "Năm 1527, Mạc Đăng Dung lập nhà Mạc. Sau đó, lực lượng khôi phục nhà Lê đối đầu với nhà Mạc. Từ thế kỷ XVII, sự phân chia Đàng Ngoài và Đàng Trong trở nên rõ nét: phía bắc do chúa Trịnh nắm thực quyền dưới danh nghĩa vua Lê; phía nam do chúa Nguyễn cai quản.",
+        "Trong thời kỳ này, giao thương và đô thị vẫn phát triển. Lãnh thổ do các chính quyền người Việt kiểm soát mở rộng về phía nam qua di dân, ngoại giao và chiến tranh, gắn với những biến động lớn trong đời sống cộng đồng Chăm, Khmer."
+      ],
+      "milestones": [
+        {
+          "date": "1527",
+          "event": "Nhà Mạc thành lập"
+        },
+        {
+          "date": "Thế kỷ XVII–XVIII",
+          "event": "Cục diện Đàng Ngoài – Đàng Trong"
+        }
+      ],
+      "takeaway": "Chia cắt chính trị không có nghĩa mọi hoạt động kinh tế, văn hóa đều ngừng lại.",
+      "sources": [
+        "thanglong",
+        "tay-son"
+      ]
+    },
+    {
+      "id": "tay-son-nguyen",
+      "range": "1771 – 1858",
+      "title": "Tây Sơn và sự ra đời của nhà Nguyễn",
+      "summary": "Chiến tranh cuối thế kỷ XVIII dẫn đến một vương triều mới.",
+      "paragraphs": [
+        "Phong trào Tây Sơn bùng nổ năm 1771, lần lượt đánh đổ các chính quyền chúa Nguyễn và chúa Trịnh. Năm 1789, Quang Trung đánh bại quân Thanh trong chiến dịch Ngọc Hồi – Đống Đa.",
+        "Tây Sơn và Nguyễn Ánh tiếp tục tranh giành quyền lực. Năm 1802, Nguyễn Ánh thắng thế, lên ngôi Gia Long, lập nhà Nguyễn, đặt kinh đô ở Huế. Nhà Nguyễn cai quản một lãnh thổ trải dài từ Bắc vào Nam và tồn tại đến năm 1945; từ cuối thế kỷ XIX, quyền lực bị chế độ thuộc địa Pháp hạn chế sâu sắc."
+      ],
+      "milestones": [
+        {
+          "date": "1771",
+          "event": "Khởi nghĩa Tây Sơn"
+        },
+        {
+          "date": "1789",
+          "event": "Quang Trung đánh bại quân Thanh"
+        },
+        {
+          "date": "1802",
+          "event": "Gia Long lập nhà Nguyễn"
+        }
+      ],
+      "takeaway": "1771 là khởi đầu phong trào Tây Sơn; 1802 là khởi đầu nhà Nguyễn.",
+      "sources": [
+        "tay-son",
+        "noi-chien"
+      ]
+    },
+    {
+      "id": "thuoc-dia",
+      "range": "1858 – 1945",
+      "title": "Thời thuộc địa và các phong trào giành độc lập",
+      "summary": "Pháp từng bước xâm chiếm; nhiều con đường đấu tranh và cải cách xuất hiện.",
+      "paragraphs": [
+        "Năm 1858, liên quân Pháp – Tây Ban Nha tấn công Đà Nẵng. Hiệp ước năm 1884 củng cố chế độ bảo hộ của Pháp ở Bắc Kỳ, Trung Kỳ; Nam Kỳ đã trở thành thuộc địa. Nhà Nguyễn vẫn tồn tại nhưng không còn đầy đủ chủ quyền.",
+        "Các phong trào Cần Vương, Đông Du, Duy Tân và những tổ chức chính trị mới phản ánh nhiều cách tìm đường giành độc lập. Trong Thế chiến II, sự hiện diện của quân Nhật làm tình hình thêm phức tạp. Sau khi Nhật đầu hàng, Cách mạng tháng Tám diễn ra; ngày 2/9/1945, Hồ Chí Minh tuyên bố thành lập nước Việt Nam Dân chủ Cộng hòa."
+      ],
+      "milestones": [
+        {
+          "date": "1858",
+          "event": "Pháp bắt đầu cuộc xâm lược"
+        },
+        {
+          "date": "1884",
+          "event": "Hiệp ước Patenôtre"
+        },
+        {
+          "date": "2/9/1945",
+          "event": "Tuyên ngôn Độc lập tại Hà Nội"
+        }
+      ],
+      "takeaway": "1858 mở đầu cuộc xâm lược; 1945 đánh dấu sự ra đời của nhà nước mới.",
+      "sources": [
+        "gov-history",
+        "hiep-uoc",
+        "1945-1946"
+      ]
+    },
+    {
+      "id": "chien-tranh-phap",
+      "range": "1945 – 1954",
+      "title": "Chiến tranh Đông Dương và Hiệp định Genève",
+      "summary": "Độc lập được tuyên bố năm 1945, nhưng chiến tranh vẫn tiếp diễn.",
+      "paragraphs": [
+        "Pháp tìm cách khôi phục quyền kiểm soát; giao tranh bùng nổ ở Nam Bộ năm 1945 và mở rộng trên toàn quốc từ tháng 12/1946. Việt Minh và chính quyền Việt Nam Dân chủ Cộng hòa tổ chức kháng chiến.",
+        "Ngày 7/5/1954, quân Pháp thất bại tại Điện Biên Phủ. Tháng 7, các văn kiện Genève đặt ra việc đình chiến và tập kết lực lượng hai bên giới tuyến quân sự tạm thời gần vĩ tuyến 17. Tính chất tạm thời rất quan trọng: đây không phải sự xác lập một biên giới quốc gia vĩnh viễn."
+      ],
+      "milestones": [
+        {
+          "date": "19/12/1946",
+          "event": "Toàn quốc kháng chiến"
+        },
+        {
+          "date": "7/5/1954",
+          "event": "Chiến thắng Điện Biên Phủ"
+        },
+        {
+          "date": "7/1954",
+          "event": "Các văn kiện Genève về Đông Dương"
+        }
+      ],
+      "takeaway": "1954 chấm dứt cuộc chiến với Pháp, nhưng chưa đem lại hòa bình lâu dài.",
+      "sources": [
+        "1945-1946",
+        "dien-bien",
+        "geneva"
+      ]
+    },
+    {
+      "id": "hai-mien",
+      "range": "1954 – 1975",
+      "title": "Hai miền và Chiến tranh Việt Nam",
+      "summary": "Chia cắt kéo dài trong bối cảnh xung đột trong nước và Chiến tranh Lạnh.",
+      "paragraphs": [
+        "Miền Bắc do Việt Nam Dân chủ Cộng hòa quản lý. Ở miền Nam, Quốc gia Việt Nam được thay bằng Việt Nam Cộng hòa năm 1955. Cuộc tổng tuyển cử dự kiến cho năm 1956 không diễn ra.",
+        "Chiến tranh diễn ra giữa nhiều lực lượng Việt Nam, với Mỹ trực tiếp tham chiến và hỗ trợ Việt Nam Cộng hòa; Liên Xô, Trung Quốc hỗ trợ miền Bắc. Mặt trận Dân tộc Giải phóng miền Nam là một lực lượng quan trọng. Cuộc chiến gây tổn thất sâu rộng cho quân nhân, dân thường và các gia đình.",
+        "Hiệp định Paris năm 1973 dẫn đến việc quân Mỹ rút đi, nhưng giao tranh tiếp tục. Ngày 30/4/1975, chính quyền Việt Nam Cộng hòa đầu hàng, chiến tranh kết thúc. Người Việt có những trải nghiệm và ký ức khác nhau về biến cố này."
+      ],
+      "milestones": [
+        {
+          "date": "1955",
+          "event": "Việt Nam Cộng hòa ra đời"
+        },
+        {
+          "date": "1973",
+          "event": "Hiệp định Paris"
+        },
+        {
+          "date": "30/4/1975",
+          "event": "Chiến tranh kết thúc"
+        }
+      ],
+      "takeaway": "Phân biệt kết thúc chiến tranh năm 1975 với thống nhất nhà nước năm 1976.",
+      "sources": [
+        "geneva",
+        "us-history",
+        "gov-history"
+      ]
+    },
+    {
+      "id": "doi-moi-hoi-nhap",
+      "range": "1976 – nay",
+      "title": "Thống nhất nhà nước, Đổi mới và hội nhập",
+      "summary": "Từ khắc phục hậu quả chiến tranh đến cải cách kinh tế và mở rộng quan hệ quốc tế.",
+      "paragraphs": [
+        "Ngày 2/7/1976, Quốc hội quyết định tên nước Cộng hòa xã hội chủ nghĩa Việt Nam, đánh dấu thống nhất về mặt nhà nước. Những năm sau chiến tranh là thời kỳ khó khăn về đời sống, kinh tế và an ninh biên giới.",
+        "Năm 1986, Đại hội VI khởi xướng đường lối Đổi mới. Quá trình cải cách từng bước mở rộng vai trò của thị trường, các thành phần kinh tế và giao thương quốc tế. Việt Nam gia nhập ASEAN năm 1995, WTO năm 2007. Đó là những mốc giúp hiểu bước chuyển từ tái thiết sau chiến tranh sang hội nhập khu vực và thế giới."
+      ],
+      "milestones": [
+        {
+          "date": "2/7/1976",
+          "event": "Thống nhất về mặt nhà nước"
+        },
+        {
+          "date": "1986",
+          "event": "Đổi mới"
+        },
+        {
+          "date": "28/7/1995",
+          "event": "Gia nhập ASEAN"
+        },
+        {
+          "date": "11/1/2007",
+          "event": "Gia nhập WTO"
+        }
+      ],
+      "takeaway": "Nhớ chuỗi 1976 thống nhất nhà nước → 1986 Đổi mới → 1995 ASEAN → 2007 WTO.",
+      "sources": [
+        "quoc-hoi",
+        "doi-moi",
+        "asean",
+        "wto"
+      ]
+    }
+  ],
+  "quickTimeline": [
+    "938: Bạch Đằng, bước ngoặt độc lập",
+    "1010: Dời đô ra Thăng Long",
+    "1428: Mở đầu nhà Lê sơ",
+    "1802: Mở đầu nhà Nguyễn",
+    "1858: Pháp bắt đầu xâm lược",
+    "1945: Tuyên ngôn Độc lập",
+    "1954: Điện Biên Phủ và Genève",
+    "1975: Kết thúc chiến tranh",
+    "1976: Thống nhất nhà nước",
+    "1986: Đổi mới"
+  ],
+  "conclusion": "Cách học dễ nhất là nhớ các bước ngoặt trước, rồi đặt nhân vật và triều đại vào đúng giai đoạn. Với mỗi mốc, hãy tự hỏi: điều gì thay đổi, vì sao thay đổi, và đời sống con người chịu tác động thế nào?",
+  "sources": [
+    {
+      "id": "vanlang",
+      "title": "Bảo tàng Lịch sử quốc gia: Từ Văn Lang đến Thăng Long",
+      "url": "https://baotanglichsuquocgia.vn/vi/Articles/2001/65409/tu-van-lang-djen-thang-long-qua-trinh-tim-chon-kinh-djo-muon-djoi-cua-djat-nuoc.html"
+    },
+    {
+      "id": "aulac",
+      "title": "Bảo tàng Lịch sử quốc gia: Âu Lạc, Giao Chỉ và vấn đề sử liệu",
+      "url": "https://baotanglichsu.vn/vi/Articles/3096/7150/au-lac-giao-chi-mot-so-van-dje-tu-ngu-am-hoc-lich-su.html"
+    },
+    {
+      "id": "bacthuoc",
+      "title": "Lịch sử Việt Nam, tập 1 (Thư viện tỉnh Quảng Ngãi)",
+      "url": "https://thuvientinh.quangngai.gov.vn/wp-content/uploads/2020/12/Lich-su-Viet-Nam-tap-1.pdf"
+    },
+    {
+      "id": "bach-dang",
+      "title": "Bảo tàng Lịch sử quốc gia: Ngô Quyền và Bạch Đằng năm 938",
+      "url": "https://baotanglichsu.vn/vi/Articles/3098/13934/ngo-quyen-va-chien-thang-bach-djang-nam-938.html"
+    },
+    {
+      "id": "ngo-dinh",
+      "title": "Bảo tàng Lịch sử TP.HCM: Thời Ngô – Đinh – Tiền Lê",
+      "url": "https://www.baotanglichsutphcm.com.vn/phong-3-thoi-ngo-dinh-tien-le-939-1009"
+    },
+    {
+      "id": "tien-le",
+      "title": "Bảo tàng Lịch sử quốc gia: Lê Hoàn và cuộc kháng chiến năm 981",
+      "url": "https://baotanglichsu.vn/VI/Articles/3097/15910/mua-xuan-nam-981-khang-chien-chong-quan-tong-lan-thu-nhat-thang-loi.html"
+    },
+    {
+      "id": "ly",
+      "title": "Bảo tàng Lịch sử TP.HCM: Thời Lý",
+      "url": "https://www.baotanglichsutphcm.com.vn/phong-4-thoi-ly-1009-1225"
+    },
+    {
+      "id": "tran",
+      "title": "Bảo tàng Lịch sử quốc gia: Trần Thái Tông",
+      "url": "https://baotanglichsuquocgia.vn/vi/Articles/3098/14320/tran-thai-tong-vi-vua-djau-tien-trong-trieu-tran-1225-1400.html"
+    },
+    {
+      "id": "thanglong",
+      "title": "Bảo tàng Lịch sử quốc gia: Các triều đại tại Thăng Long",
+      "url": "https://baotanglichsu.vn/vi/Articles/2001/65298/cam-thanh-thang-long-gia-tri-dan-toc-y-nghia-toan-cau.html"
+    },
+    {
+      "id": "tay-son",
+      "title": "Bảo tàng Lịch sử TP.HCM: Thời Tây Sơn",
+      "url": "https://www.baotanglichsutphcm.com.vn/phong-10-thoi-tay-son-1771-1802"
+    },
+    {
+      "id": "noi-chien",
+      "title": "Thư viện Quốc hội: Việt Nam thời Tây Sơn, lịch sử nội chiến 1771–1802",
+      "url": "https://thuvienso.quochoi.vn/handle/11742/97899?mode=full"
+    },
+    {
+      "id": "gov-history",
+      "title": "Cổng Thông tin điện tử Chính phủ: Sơ lược lịch sử Việt Nam",
+      "url": "https://vanban.chinhphu.vn/lich-su-68386"
+    },
+    {
+      "id": "hiep-uoc",
+      "title": "Văn bản Hiệp ước Giáp Thân 1884 (Thư viện tỉnh Quảng Ngãi)",
+      "url": "https://thuvientinh.quangngai.gov.vn/wp-content/uploads/2020/12/224-472-da-nen.pdf"
+    },
+    {
+      "id": "1945-1946",
+      "title": "Bảo tàng Lịch sử quốc gia: Cuộc tản cư và Toàn quốc kháng chiến",
+      "url": "https://baotanglichsu.vn/vi/Articles/3096/69467/cuoc-tan-cu-o-bac-bonhung-nam-djau-toan-quoc-khang-chien.html"
+    },
+    {
+      "id": "dien-bien",
+      "title": "U.S. Naval History and Heritage Command: Vietnam War chronology",
+      "url": "https://www.history.navy.mil/browse-by-topic/wars-conflicts-and-operations/vietnam-war/chronology.html"
+    },
+    {
+      "id": "geneva",
+      "title": "Liên Hợp Quốc: Các văn kiện Genève, 20–21/7/1954",
+      "url": "https://peacemaker.un.org/sites/default/files/document/files/2024/05/final20declaration20of20the20geneva20conference20on20the20problem20of20restoring20peace20in20indo.pdf"
+    },
+    {
+      "id": "us-history",
+      "title": "Office of the Historian: Quan hệ ngoại giao Hoa Kỳ – Việt Nam",
+      "url": "https://history.state.gov/countries/vietnam"
+    },
+    {
+      "id": "quoc-hoi",
+      "title": "Báo Chính phủ: Quốc hội và quyết định ngày 2/7/1976",
+      "url": "https://baochinhphu.vn/vai-net-ve-quoc-hoi-nuoc-chxhcn-viet-nam-10271664.htm"
+    },
+    {
+      "id": "doi-moi",
+      "title": "OECD: Những mốc cải cách và hội nhập của Việt Nam (ASEAN lưu trữ)",
+      "url": "https://asean.org/wp-content/uploads/2020/12/Viet-Nam.pdf"
+    },
+    {
+      "id": "asean",
+      "title": "ASEAN: Việt Nam gia nhập ngày 28/7/1995",
+      "url": "https://asean.org/asean-milestone/"
+    },
+    {
+      "id": "wto",
+      "title": "WTO: Việt Nam trở thành thành viên ngày 11/1/2007",
+      "url": "https://www.wto.org/english/thewto_e/acc_e/a1_vietnam_e.htm"
+    }
+  ]
+}

@@ -1,16 +1,17 @@
 # Validation report
 
-Date: 2026-10-09
+Date: 2026-10-10
 
 ## Passed
 
 - Node.js 24.19.0; locked dependencies installed successfully
 - Astro 7.3.8: `npm run check` — 0 errors, 0 warnings, 0 hints
 - Root-path static build and DOM tests using `--base /` and `TEST_BASE=/`
-- Selected release build: `site: https://nghichthien2026.github.io`, `base: /kien-thuc/`; two static pages generated
+- Selected release build: `site: https://nghichthien2026.github.io`, `base: /kien-thuc/`; three static pages generated
 - DOM tests on release output: generated asset/link/anchor existence; page language/title structure; Vietnamese accent-insensitive search, no-match and reset states; simulation and replay; direction/gap/padding/reset controls; mobile menu open/Escape/backdrop logic
 - Public-source review: bundle contains only project source, lockfile, tests, public assets and documentation; no credentials, personal email, environment files, dependency folders or unrelated artifacts
-- Source archive integrity checked
+- History page: ten periods, expandable native details, historical source anchors, recap, subject navigation, and accent-insensitive history search verified
+- Prior source archive integrity checked
 
 ## Not verified
 

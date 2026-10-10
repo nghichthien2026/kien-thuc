@@ -7,7 +7,7 @@ A Vietnamese personal learning website, built with Astro, TypeScript and plain C
 - Public source repository: https://github.com/nghichthien2026/kien-thuc
 - Configured GitHub Pages address: https://nghichthien2026.github.io/kien-thuc/
 - Static output; no backend, database, admin, authentication, analytics or SEO package
-- All article text is demonstration educational content
+- Educational articles with authored explanations; the Vietnam history lesson includes linked references
 
 The address above is the configured deployment target, not proof of a successful deployment. Check the repository's latest **Publish Astro to GitHub Pages** workflow run to confirm publication.
 
@@ -35,6 +35,7 @@ In a restricted environment with an unwritable home directory, set `ASTRO_TELEME
 
 - `/kien-thuc/`: Dev/Staging/Production, with three original SVG diagrams, a sequential CI/CD simulation and a practical example
 - `/kien-thuc/thiet-ke/auto-layout/`: a distinct lesson layout with a flexbox playground for direction, gap and padding
+- `/kien-thuc/lich-su/viet-nam/`: ten-period Vietnam history timeline, expandable details, milestone recap and linked references
 - Accent-insensitive title/topic/keyword search, responsive mobile menu, `/` search shortcut, Escape to close, skip link and reduced-motion styles
 - Self-contained visual assets and system fonts; no external font requests
 

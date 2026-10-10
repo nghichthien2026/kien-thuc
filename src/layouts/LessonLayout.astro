@@ -2,8 +2,8 @@
 import '../styles/global.css';
 import Icon from '../components/Icon.astro';
 import { lessons, href } from '../data/lessons';
-interface Props { title: string; topic: string; current: string; sections: {id:string;label:string}[]; }
-const { title, topic, current, sections } = Astro.props;
+interface Props { title: string; topic: string; current: string; sections: {id:string;label:string}[]; subtitle?: string; }
+const { title, topic, current, sections, subtitle = topic==='DevOps'?'Môi trường':'Bố cục' } = Astro.props;
 ---
 <!doctype html>
 <html lang="vi">
@@ -15,12 +15,12 @@ const { title, topic, current, sections } = Astro.props;
 <aside class="sidebar" id="sidebar">
 <label class="search"><Icon name="search" size={18}/><input id="lesson-search" type="search" placeholder="Tìm bài học…" aria-label="Tìm bài học" autocomplete="off"/><kbd>/</kbd></label>
 <nav aria-label="Danh mục bài học">
-{[...new Set(lessons.map(lesson => lesson.topic))].map((category, i)=><section class="nav-group" data-category><h2><span>{category}</span><span class="nav-count">{String(lessons.filter(lesson => lesson.topic === category).length).padStart(2, '0')}</span></h2><ul>{lessons.filter(l=>l.topic===category).map(l=><li data-search={`${l.title} ${l.topic} ${l.keywords}`}><a href={href(l.path)} aria-current={current===l.path?'page':undefined}><Icon name={i===0?'file':'layers'} size={19}/><span>{l.title}</span></a></li>)}</ul></section>)}
-<p id="search-empty" hidden>Chưa có bài học phù hợp.<br/>Thử “Dev” hoặc “Auto Layout”.</p>
+{[...new Set(lessons.map(lesson => lesson.topic))].map((category)=><section class="nav-group" data-category><h2><span>{category}</span><span class="nav-count">{String(lessons.filter(lesson => lesson.topic === category).length).padStart(2, '0')}</span></h2><ul>{lessons.filter(l=>l.topic===category).map(l=><li data-search={`${l.title} ${l.topic} ${l.keywords}`}><a href={href(l.path)} aria-current={current===l.path?'page':undefined}><Icon name={category==='DevOps'?'file':category==='Lịch sử'?'clock':'layers'} size={19}/><span>{l.title}</span></a></li>)}</ul></section>)}
+<p id="search-empty" hidden>Chưa có bài học phù hợp.<br/>Thử “Dev”, “Auto Layout” hoặc “lịch sử”.</p>
 <p id="search-status" class="sr-only" aria-live="polite"></p>
 </nav>
 </aside>
-<div class="page-shell"><div class="topline"><div class="breadcrumb"><span>{topic}</span><span>/</span><span>{topic==='DevOps'?'Môi trường':'Bố cục'}</span></div></div>
+<div class="page-shell"><div class="topline"><div class="breadcrumb"><span>{topic}</span><span>/</span><span>{subtitle}</span></div></div>
 <div class="reading-grid"><main id="noi-dung" tabindex="-1"><slot/></main><nav class="toc" aria-label="Trong bài này"><span class="small-label">TRONG BÀI NÀY</span>{sections.map((s,i)=><a href={`#${s.id}`} class={i===0?'is-active':''}>{s.label}</a>)}</nav></div>
 </div>
 <script>
