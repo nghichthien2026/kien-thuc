@@ -1,0 +1,39 @@
+---
+interface Props { kind: 'again' | 'waiting' | 'arrival'; }
+const { kind } = Astro.props;
+const titles={again:'Hai người hẹn gặp lại vào lần sau',waiting:'Chơi một trò chơi để lấp khoảng chờ xe buýt',arrival:'Đến cuộc hẹn đúng thời gian đã định'};
+---
+<svg class="time-scene-art" viewBox="0 0 280 168" fill="none" stroke="#34516a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby={`scene-${kind}-title`}>
+<title id={`scene-${kind}-title`}>{titles[kind]}</title>
+{kind==='again' ? <>
+ <ellipse cx="139" cy="146" rx="104" ry="10" fill="#b7a9e3" opacity=".25" stroke="none"/>
+ <rect x="89" y="15" width="101" height="76" rx="11" fill="#fff" stroke="#9b88ce"/><path d="M89 36h101M110 10v13m59-13v13" stroke="#927bc6"/>
+ <path d="M112 59h52m0 0-10-10m10 10-10 10" stroke="#9077cf" stroke-width="4"/>
+ <path d="M111 96c17 12 39 12 56 0" stroke="#baa5e2" stroke-dasharray="4 5"/>
+ <circle cx="53" cy="66" r="17" fill="#f7c7a4"/><path d="M37 62c-4-24 37-23 34 0l-13-8-21 8Z" fill="#46516d"/>
+ <path d="M32 108c0-28 42-28 42 0v34H32Z" fill="#8da6ed"/><path d="m72 105 19-13 11-21m-70 38-9 19" stroke-width="8" stroke="#f0b996"/>
+ <path d="m44 142-1 10m20-10 1 10" stroke-width="7"/><circle cx="58" cy="68" r="1.4" fill="#34516a" stroke="none"/><path d="m55 76 5 1"/>
+ <circle cx="228" cy="66" r="17" fill="#efb693"/><path d="M211 64c-6-27 40-30 34 2l-12-12-22 10Z" fill="#705845"/>
+ <path d="M208 110c0-30 42-30 42 0v32h-42Z" fill="#edaa9c"/><path d="m209 105-20-14-11-20m71 38 10 18" stroke-width="8" stroke="#efb693"/>
+ <path d="m219 142-2 10m21-10 2 10" stroke-width="7"/><circle cx="224" cy="68" r="1.4" fill="#34516a" stroke="none"/><path d="m222 76 5 1"/>
+ <path d="m98 71 0-7m83 7 0-7" stroke="#efb693" stroke-width="7"/>
+ </> : kind==='waiting' ? <>
+ <ellipse cx="140" cy="147" rx="113" ry="10" fill="#91b7a1" opacity=".22" stroke="none"/>
+ <path d="M13 51h122l-13-14H26Z" fill="#83bd9b"/><path d="M24 52v90m99-90v90" stroke="#648f79" stroke-width="4"/>
+ <path d="M33 124h79m-71 0v18m63-18v18" stroke="#678b77" stroke-width="5"/>
+ <circle cx="60" cy="77" r="14" fill="#f1c5a1"/><path d="M47 74c-3-22 31-19 27 0L60 68Z" fill="#4c6354"/>
+ <path d="M45 106c1-18 28-18 33 0l8 17H42Z" fill="#eabd71"/><path d="m47 123 3 20m23-20 7 20" stroke-width="7"/>
+ <path d="m48 106 18 5 16-6" stroke="#efb891" stroke-width="7"/>
+ <path d="M75 96h16l5 15-7-1-6-4-5 5-7 1Z" fill="#b4b2ec"/><path d="M77 102h6m-3-3v6" stroke-width="1.7"/><circle cx="88" cy="102" r="1.5" fill="#34516a" stroke="none"/>
+ <rect x="151" y="76" width="109" height="60" rx="11" fill="#b6d8d1"/><path d="M160 85h70v25h-70Z" fill="#e9f5f3"/><path d="M235 85h17v41h-17Z" fill="#d8eae6"/><path d="M183 85v25m24-25v25" stroke="#82a69b"/><circle cx="174" cy="138" r="8" fill="#4c6670"/><circle cx="240" cy="138" r="8" fill="#4c6670"/>
+ <circle cx="189" cy="39" r="23" fill="#fff" stroke="#6ca68b"/><path d="M189 24v16l10 7" stroke="#6ca68b" stroke-width="3"/><path d="m222 52 8 6m-89-5 7-6" stroke="#9bc8b2"/>
+ </> : <>
+ <ellipse cx="142" cy="148" rx="108" ry="10" fill="#ccb06e" opacity=".22" stroke="none"/>
+ <rect x="136" y="35" width="116" height="111" rx="8" fill="#f5d99a" stroke="#b89753"/><rect x="172" y="74" width="51" height="72" rx="3" fill="#fff4d8" stroke="#b89753"/><circle cx="212" cy="112" r="2" fill="#b89753" stroke="none"/>
+ <circle cx="193" cy="42" r="24" fill="#fff" stroke="#b89753"/><path d="M193 25v17h-14" stroke="#926c31" stroke-width="3"/>
+ <circle cx="75" cy="66" r="16" fill="#efc19d"/><path d="M59 64c-6-25 36-26 33-1L75 55Z" fill="#625242"/>
+ <path d="M57 109c0-28 36-29 40-1l5 22H55Z" fill="#88b7d9"/><path d="m65 132-8 15m32-15 13 12" stroke-width="8"/><path d="m93 101 24 12 13-6m-72 0-10 17" stroke="#efc19d" stroke-width="8"/>
+ <path d="M26 132h14m-8-10h9" stroke="#c5a76d"/>
+ <circle cx="131" cy="84" r="17" fill="#c3e6bd" stroke="#67946a"/><path d="m123 84 6 6 11-12" stroke="#4c8259" stroke-width="3"/>
+ </>}
+</svg>

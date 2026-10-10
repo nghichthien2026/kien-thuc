@@ -108,3 +108,7 @@ Inspected the new screenshot: it shows the wide first-row keyword summary cards,
 ## Remove redundant interaction hint (2026-10-10)
 
 Inspected the supplied crop and removed its exact text, “Chạm vào cụm từ để xem cách dùng và ví dụ ↓”, from above the keyword tiles. Removed its unused styles and added a regression assertion. The tile anchors remain active; educational explanations and exercise help remain.
+
+## Context-led visual teaching (2026-10-10)
+
+Inspected the user’s screenshot of the middle introduction, abstract meaning boxes and plain last/this/next strip. Replaced that specific area with three original accessible SVG situations: making another appointment, passing a bus wait with a game, and arriving on schedule. Each scene pairs a highlighted English expression with a Vietnamese translation and its precise sense of time. Removed the general introductory advice/statistics and abstract navigation boxes. Reworked the occurrence strip into a small past/present/next story using existing example sentences and translations. Preserved the top 13-keyword grid, meanings/detail cards, quiz, content-only colors and original shell. DOM checks assert scene titles, bilingual examples, group anchors and all three story moments.

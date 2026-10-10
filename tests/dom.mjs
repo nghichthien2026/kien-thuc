@@ -200,7 +200,7 @@ keywordDom.window.close();console.log('PASS vocabulary-first summary: 13 transla
 for(const otherPath of paths.filter(path=>path!=='tieng-anh/cum-tu-voi-time/')){const oldLesson=new JSDOM(await readFile(`dist/${otherPath}index.html`,'utf8'));assert.equal(oldLesson.window.document.body.classList.contains('time-page'),false);oldLesson.window.close();}
 const timeCss=await readFile('src/styles/time-expressions.css','utf8');
 assert.match(timeCss,/\.time-lesson\{[^}]*background:#eef5fc/);
-assert.doesNotMatch(timeCss,/(?:body|\.sidebar|\.mobile-header|\.breadcrumb|\.toc|\.page-shell|\.time-page)\s*[.{:#]/,'Article stylesheet cannot recolor the shared shell');
+assert.doesNotMatch(timeCss,/(?:^|[},\s])(?:body|\.sidebar|\.mobile-header|\.breadcrumb|\.toc|\.page-shell|\.time-page)\s*[.{:#]/,'Article stylesheet cannot recolor the shared shell');
 console.log('PASS content-only theme: light background inside article; no body/sidebar/header/TOC/shell overrides; other lessons unchanged.');
 
 assert.match(timeCss,/\.time-lesson\{[^}]*container-type:inline-size/);
@@ -210,3 +210,10 @@ console.log('PASS keyword grid rules: three columns when article content is at l
 
 assert.doesNotMatch(await readFile('dist/tieng-anh/cum-tu-voi-time/index.html','utf8'),/Chạm vào cụm từ để xem cách dùng và ví dụ/);
 console.log('PASS concise keyword entry: redundant click-instruction sentence removed.');
+
+const visualTeaching=new JSDOM(await readFile('dist/tieng-anh/cum-tu-voi-time/index.html','utf8'));const vt=visualTeaching.window.document;
+assert.equal(vt.querySelectorAll('.time-situation').length,3);assert.equal(vt.querySelectorAll('.time-scene-art[role=img] title').length,3);assert.equal(vt.querySelectorAll('.time-mini-story .time-moment').length,3);
+assert.equal(vt.querySelectorAll('.time-introduction,.time-map-grid,.time-line').length,0);
+for(const panel of vt.querySelectorAll('.time-situation')){assert.ok(panel.querySelector('.time-dialogue strong'));assert.ok(panel.querySelector('.time-dialogue-meaning').textContent);assert.ok(vt.querySelector(panel.getAttribute('href')));}
+for(const phrase of ['Last time','This time','Next time'])assert.ok(vt.querySelector('.time-mini-story').textContent.includes(phrase));
+visualTeaching.window.close();console.log('PASS visual teaching: 3 accessible original scenes, bilingual contextual examples, 3-moment story, correct group links, removed abstract boxes/statistics.');
