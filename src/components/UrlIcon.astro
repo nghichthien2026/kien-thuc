@@ -1,14 +1,75 @@
 ---
 interface Props { name: string; }
 const {name}=Astro.props;
-const paths: Record<string,string> = {
- lock:'M7 11V7a5 5 0 0 1 10 0v4M5 11h14v11H5V11Zm7 4v3',
- window:'M3 4h18v17H3V4Zm0 5h18M6 6.5h.1M9 6.5h.1M6 12l1.5 5L10 12l2 5 2-5 2 5 2-5',
- globe:'M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0ZM2 12h20M12 2c6 5 6 15 0 20-6-5-6-15 0-20ZM4 6h16M4 18h16',
- server:'M3 3h18v7H3V3Zm0 11h18v7H3v-7ZM6 6.5h.1M6 17.5h.1M14 6.5h4M14 17.5h4',
- folder:'M3 7V4h6l3 3h9v14H3V7Zm0 3h18',
- query:'M3 3h18v19H3V3Zm0 5h18M6 5.5h.1M9 12a3 3 0 1 1 4 3c-1 .5-1 1-1 2M12 19h.1',
- anchor:'M12 8v14M5 11h14M3 15c0 4 4 7 9 7s9-3 9-7M3 15l-1 4M21 15l1 4M15 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z'
-};
 ---
-<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={paths[name]}/></svg>
+<svg class="url-illustration" width="72" height="72" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+{name==='lock' && <>
+ <ellipse cx="40" cy="72" rx="25" ry="4" fill="#166d2630"/>
+ <path d="M23 35V24a17 17 0 0 1 34 0v11h-7V24a10 10 0 0 0-20 0v11Z" fill="#5cc96b" stroke="#164725" stroke-width="2.6"/>
+ <rect x="16" y="32" width="48" height="37" rx="5" fill="#30b84d" stroke="#164725" stroke-width="2.6"/>
+ <path d="M20 38h40v5H20Z" fill="#72dd82"/><path d="M20 38h40" stroke="#9bf1a5" stroke-width="3"/>
+ <path d="M45 49a5 5 0 1 0-8 4v8h6v-8a5 5 0 0 0 2-4Z" fill="#123b20"/>
+ </>}
+{name==='window' && <>
+ <path d="m15 10 51 4-2 54-52-4Z" fill="#426cda" stroke="#203568" stroke-width="2.5"/>
+ <path d="m17 25 44 3-2 34-44-3Z" fill="#dceaff" stroke="#203568" stroke-width="2"/>
+ <circle cx="22" cy="19" r="2" fill="white"/><circle cx="29" cy="19.5" r="2" fill="white"/><circle cx="36" cy="20" r="2" fill="white"/>
+ <text x="38" y="48" fill="#1e3f8d" font-family="Arial,sans-serif" font-size="17" font-weight="900" text-anchor="middle" transform="rotate(4 38 48)">WWW</text>
+ <path d="m18 65 42 3" stroke="#91b3ee" stroke-width="3"/>
+ </>}
+{name==='globe' && <>
+ <ellipse cx="40" cy="73" rx="25" ry="3" fill="#69378125"/>
+ <circle cx="39" cy="37" r="28" fill="#ecd9fc" stroke="#53266d" stroke-width="2.8"/>
+ <path d="M39 9c-17 13-17 43 0 56 17-13 17-43 0-56ZM11 37h56M39 9v56M16 22c13 7 33 7 46 0M16 52c13-7 33-7 46 0" stroke="#663083" stroke-width="2.3"/>
+ <path d="M27 14c-7 4-12 11-13 18" stroke="white" stroke-width="3" stroke-linecap="round"/>
+ </>}
+{name==='server' && <>
+ <path d="M20 12 59 7l7 6v16H18V15Z" fill="#313844" stroke="#272b32" stroke-width="2"/>
+ <rect x="15" y="14" width="48" height="15" rx="2" fill="#4b5260" stroke="#202832" stroke-width="2.4"/>
+ <rect x="15" y="34" width="48" height="15" rx="2" fill="#414a58" stroke="#202832" stroke-width="2.4"/>
+ <rect x="15" y="54" width="48" height="15" rx="2" fill="#414a58" stroke="#202832" stroke-width="2.4"/>
+ <path d="M22 21h6M22 41h6M22 61h6" stroke="#aada54" stroke-width="3" stroke-linecap="round"/>
+ <path d="M43 21h12M43 41h12M43 61h12" stroke="#9babb8" stroke-width="2"/>
+ <path d="M19 16h40M19 36h40M19 56h40" stroke="#83909d" stroke-width="1.4"/>
+ </>}
+{name==='folder' && <>
+ <ellipse cx="39" cy="71" rx="27" ry="3" fill="#b92b6725"/>
+ <path d="M12 65V18h22l7 8h26v39Z" fill="#f99ac9" stroke="#8d265c" stroke-width="2.8" stroke-linejoin="round"/>
+ <path d="M12 65 21 34h51L62 65Z" fill="#f0579f" stroke="#8d265c" stroke-width="2.8" stroke-linejoin="round"/>
+ <path d="m24 38 42 .1" stroke="#ffc7e3" stroke-width="3" stroke-linecap="round"/>
+ </>}
+{name==='query' && <>
+ <path d="m16 9 48 2-3 58-48-3Z" fill="#9ce4e6" stroke="#147180" stroke-width="2.7" stroke-linejoin="round"/>
+ <path d="m16 9 48 2-.5 12-48-2Z" fill="#189daa" stroke="#147180" stroke-width="2.2"/>
+ <circle cx="22" cy="15.5" r="1.8" fill="white"/><circle cx="28" cy="16" r="1.8" fill="white"/>
+ <path d="M29 35c1-11 21-10 20 2-.5 7-11 8-11 15" stroke="#08707f" stroke-width="5" stroke-linecap="round"/>
+ <circle cx="37" cy="60" r="2.6" fill="#08707f"/>
+ <path d="m17 26-1 32" stroke="#d4ffff" stroke-width="2.7"/>
+ </>}
+{name==='anchor' && <>
+ <ellipse cx="40" cy="73" rx="25" ry="3" fill="#80352820"/>
+ <path d="M40 23v43M25 32h30" stroke="#493032" stroke-width="7" stroke-linecap="round"/>
+ <circle cx="40" cy="14" r="8" fill="#e3d4ce" stroke="#493032" stroke-width="4"/>
+ <path d="M14 43c0 15 12 25 26 25s26-10 26-25" stroke="#493032" stroke-width="7" stroke-linecap="round"/>
+ <path d="m6 48 9-14 9 15m32 0 9-15 9 14" fill="#493032"/>
+ <path d="M37 27v32M20 53l5 6" stroke="#b98778" stroke-width="2" stroke-linecap="round"/>
+ </>}
+{name==='web' && <>
+ <circle cx="34" cy="34" r="27" fill="#e2f0fb" stroke="#658cb7" stroke-width="2.2"/>
+ <path d="M7 34h54M34 7v54M34 7c-17 13-17 41 0 54 17-13 17-41 0-54ZM12 20c13 6 30 6 44 0M12 48c13-6 30-6 44 0" stroke="#729abd" stroke-width="2"/>
+ <path d="m44 40 24 15-12 2 6 12-7 3-6-13-8 8Z" fill="#183d6b" stroke="#f3f7fc" stroke-width="2" stroke-linejoin="round"/>
+ </>}
+{name==='search' && <>
+ <path d="m51 50 21 20-7 7-21-22" fill="#5971ce" stroke="#192c67" stroke-width="2.8"/>
+ <circle cx="34" cy="33" r="26" fill="#526bba" stroke="#192c67" stroke-width="2.8"/>
+ <circle cx="34" cy="33" r="19" fill="#f5f8fe" stroke="#192c67" stroke-width="2.8"/>
+ <path d="M25 21c-5 3-8 9-8 15" stroke="#91a3d0" stroke-width="3" stroke-linecap="round"/>
+ </>}
+{name==='bulb' && <>
+ <path d="M24 31a17 17 0 1 1 32 8c-3 4-7 9-7 14H31c0-5-3-10-6-14Z" fill="#ffe566" stroke="#b48b14" stroke-width="2"/>
+ <path d="m34 52-3-19 9 5 9-5-4 19" stroke="#987a10" stroke-width="2"/>
+ <path d="M31 53h18v10H31Z" fill="#647caf" stroke="#183567" stroke-width="2"/>
+ <path d="M34 65h12l-3 5h-6Z" fill="#183567"/><path d="M32 57h16M33 61h14" stroke="#d0e0ff" stroke-width="2"/>
+ <path d="M40 3V9M17 12l5 5M7 31h7M65 31h7M59 16l5-5M10 49l6-3M64 46l6 3" stroke="#d9ae26" stroke-width="3" stroke-linecap="round"/>
+ </>}
+</svg>
