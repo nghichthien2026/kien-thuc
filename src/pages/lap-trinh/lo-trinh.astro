@@ -60,7 +60,7 @@ const projects=[
 <header class="roadmap-course-header"><span class="roadmap-number">{phase.id}</span><div><p class="phase-label">{phase.track==='core'?'NỀN TẢNG CỐT LÕI':'NHÁNH ĐÀO SÂU TÙY CHỌN'}</p><h3 id={`course-title-${phase.id}`}>{phase.title}</h3></div></header>
 <p class="roadmap-prerequisite"><strong>Trước khi bắt đầu:</strong> {phase.prerequisite}</p>
 <p class="roadmap-default"><strong>Đường học mặc định:</strong> {phase.defaultPath}</p>
-<ol class="roadmap-modules">{phase.modules.map((module,j)=><li><details class="roadmap-module" id={`bai-${phase.id}-${module.id}`} open={i===0&&j===0}><summary><span class="module-number">{module.id}</span><span>{module.title}</span></summary>
+<ol class="roadmap-modules">{phase.modules.map((module,j)=><li><details class="roadmap-module" id={`bai-${phase.id}-${module.id}`} open={i===0&&j===0}><summary><span class="module-number">{module.id}</span>{' '}<span>{module.title}</span></summary>
 <div class="roadmap-module-body"><h4>1. Học những gì?</h4><ul>{module.concepts.map(concept=><li>{concept}</li>)}</ul>
 <h4>2. Tự thực hành</h4><p>{module.exercise}</p>
 <div class="roadmap-module-result"><p><strong>Sản phẩm cần có:</strong> {module.output}</p><p><strong>Tự kiểm tra:</strong> {module.selfCheck}</p></div>
