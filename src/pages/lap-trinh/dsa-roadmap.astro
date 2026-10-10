@@ -4,26 +4,26 @@ import DsaArt from '../../components/DsaArt.astro';
 import data from '../../data/dsa-roadmap.json';
 import '../../styles/dsa-roadmap.css';
 const colors=['#85b93c','#35a99b','#369fbd','#9064cb','#d95195','#df873c','#dfb129','#65aa50','#478fcf','#9362d0','#d95b91'];
-const sections=[{id:'start-here',label:'Before you start'},{id:'the-roadmap',label:'11-stage roadmap'},{id:'first-session',label:'Your first session'},{id:'dsa-sources',label:'Sources & reading'}];
+const sections=[{id:'start-here',label:'Trước khi bắt đầu'},{id:'the-roadmap',label:'Lộ trình 11 chặng'},{id:'first-session',label:'Buổi học đầu tiên'},{id:'dsa-sources',label:'Nguồn và tài liệu'}];
 const sources=(ids:string[])=>data.sources.filter(source=>ids.includes(source.id));
 ---
-<LessonLayout title={data.title} topic="Lập trình" subtitle="DSA Roadmap" current="lap-trinh/dsa-roadmap/" sections={sections}>
-<article class="dsa" lang="en">
-<header class="dsa-hero"><p class="dsa-eyebrow">A PRACTICAL LEARNING PATH</p><h1>DSA <span>ROADMAP</span></h1><p class="dsa-subtitle">{data.subtitle}</p><p class="dsa-intro">{data.intro}</p><div class="dsa-badges"><span>11 connected stages</span><span>Learn → implement → explain</span></div></header>
-<section id="start-here" class="dsa-foundations"><span class="dsa-label">BEFORE STAGE 01</span><h2>{data.foundations.title}</h2><p>{data.foundations.intro}</p><ul>{data.foundations.tasks.map(task=><li>{task}</li>)}</ul><details><summary>Check your starting point</summary><ul>{data.foundations.checks.map(check=><li>{check}</li>)}</ul><div class="dsa-source-links">{sources(data.foundations.sourceIds).map(source=><a href={source.url}>{source.title}</a>)}</div></details></section>
-<section id="the-roadmap" aria-labelledby="dsa-path-title"><div class="dsa-section-heading"><span class="dsa-label">THE CORE PATH</span><h2 id="dsa-path-title">Build one idea on the next</h2><p>Follow the path in order. Open a stage to study the concepts, try the exercises and check your understanding.</p></div>
-<div class="dsa-map"><aside class="dsa-tips" aria-labelledby="dsa-tips-title"><h3 id="dsa-tips-title">Tips for progress</h3><ol>{data.studyTips.map(tip=><li>{tip}</li>)}</ol><p>Focus on concepts.<br/><strong>Then prove them in code.</strong></p></aside>
+<LessonLayout title={data.title} topic="Lập trình" subtitle="Lộ trình DSA" current="lap-trinh/dsa-roadmap/" sections={sections}>
+<article class="dsa" lang="vi">
+<header class="dsa-hero"><p class="dsa-eyebrow">HỌC TỪ KHÁI NIỆM ĐẾN THỰC HÀNH</p><h1>LỘ TRÌNH <span>DSA</span></h1><p class="dsa-subtitle">{data.subtitle}</p><p class="dsa-intro">{data.intro}</p><div class="dsa-badges"><span>11 chặng học liên kết</span><span>Học → tự làm → giải thích</span></div></header>
+<section id="start-here" class="dsa-foundations"><span class="dsa-label">TRƯỚC CHẶNG 01</span><h2>{data.foundations.title}</h2><p>{data.foundations.intro}</p><ul>{data.foundations.tasks.map(task=><li>{task}</li>)}</ul><details><summary>Tự kiểm tra nền tảng</summary><ul>{data.foundations.checks.map(check=><li>{check}</li>)}</ul><div class="dsa-source-links">{sources(data.foundations.sourceIds).map(source=><a href={source.url}>{source.title}</a>)}</div></details></section>
+<section id="the-roadmap" aria-labelledby="dsa-path-title"><div class="dsa-section-heading"><span class="dsa-label">LỘ TRÌNH CỐT LÕI</span><h2 id="dsa-path-title">Vững từng bước, học tiếp từng chặng</h2><p>Học lần lượt theo lộ trình. Mở từng chặng để đọc khái niệm, làm bài tập và tự kiểm tra mức độ hiểu bài.</p></div>
+<div class="dsa-map"><aside class="dsa-tips" aria-labelledby="dsa-tips-title"><h3 id="dsa-tips-title">Cách học hiệu quả</h3><ol>{data.studyTips.map(tip=><li>{tip}</li>)}</ol><p>Hiểu bản chất trước.<br/><strong>Sau đó tự viết mã để kiểm chứng.</strong></p></aside>
 <ol class="dsa-path">{data.stages.map((stage,i)=><li class="dsa-stage" id={`stage-${stage.id}`} style={`--accent:${colors[i]}`}>
 <section aria-labelledby={`stage-title-${stage.id}`}><header class="dsa-strip"><span class="dsa-number">{String(i+1).padStart(2,'0')}</span><h3 id={`stage-title-${stage.id}`}>{stage.title}</h3><DsaArt step={i+1}/></header><p class="dsa-stage-summary">{stage.summary}</p>
-<details class="dsa-study"><summary>Study stage {String(i+1).padStart(2,'0')} <span>Concepts · practice · checks</span></summary><div class="dsa-study-body">
-<h4>What to learn</h4><ol class="dsa-modules">{stage.modules.map(module=><li><h5>{module.title}</h5><p>{module.text}</p></li>)}</ol>
-<p class="dsa-complexity"><strong>Complexity to understand:</strong> {stage.complexity}</p>
-<h4>Put it into practice</h4>{stage.exercises.map((exercise,j)=><section class="dsa-exercise"><h5>{j+1}. {exercise.title}</h5><p>{exercise.prompt}</p><p class="dsa-example"><strong>Example:</strong> {exercise.example}</p><details class="dsa-hint"><summary>Show a hint</summary><p>{exercise.hint}</p></details></section>)}
-{'code' in stage&&stage.code&&<div class="dsa-code"><h5>{stage.code.title}</h5><p>{stage.code.language}</p><pre tabindex="0" aria-label={`${stage.title} code example`}><code>{stage.code.text}</code></pre><p>{stage.code.explanation}</p></div>}
-<div class="dsa-checks"><h4>Ready to move on?</h4><ul>{stage.checks.map(check=><li>{check}</li>)}</ul></div><h4>Common mistakes</h4><ul>{stage.pitfalls.map(pitfall=><li>{pitfall}</li>)}</ul><h4>Read next</h4><div class="dsa-source-links">{sources(stage.sourceIds).map(source=><a href={source.url}>{source.title}</a>)}</div>
+<details class="dsa-study"><summary>Học chặng {String(i+1).padStart(2,'0')} <span>Khái niệm · bài tập · tự kiểm tra</span></summary><div class="dsa-study-body">
+<h4>Cần học những gì?</h4><ol class="dsa-modules">{stage.modules.map(module=><li><h5>{module.title}</h5><p>{module.text}</p></li>)}</ol>
+<p class="dsa-complexity"><strong>Độ phức tạp cần hiểu:</strong> {stage.complexity}</p>
+<h4>Tự thực hành</h4>{stage.exercises.map((exercise,j)=><section class="dsa-exercise"><h5>{j+1}. {exercise.title}</h5><p>{exercise.prompt}</p><p class="dsa-example"><strong>Ví dụ:</strong> {exercise.example}</p><details class="dsa-hint"><summary>Xem gợi ý</summary><p>{exercise.hint}</p></details></section>)}
+{'code' in stage&&stage.code&&<div class="dsa-code"><h5>{stage.code.title}</h5><p>{stage.code.language}</p><pre tabindex="0" aria-label={`Ví dụ mã: ${stage.title}`}><code>{stage.code.text}</code></pre><p>{stage.code.explanation}</p></div>}
+<div class="dsa-checks"><h4>Khi nào có thể học chặng tiếp theo?</h4><ul>{stage.checks.map(check=><li>{check}</li>)}</ul></div><h4>Lỗi thường gặp</h4><ul>{stage.pitfalls.map(pitfall=><li>{pitfall}</li>)}</ul><h4>Đọc thêm</h4><div class="dsa-source-links">{sources(stage.sourceIds).map(source=><a href={source.url}>{source.title}</a>)}</div>
 </div></details></section>{i<10&&<span class="dsa-arrow" aria-hidden="true">↓</span>}</li>)}</ol></div></section>
-<section id="first-session" class="dsa-first"><span class="dsa-label">TURN THE MAP INTO ACTION</span><h2>Your first session</h2><ol>{data.firstSession.map(step=><li>{step}</li>)}</ol><a href={`#stage-${data.stages[0].id}`}>Start with arrays ↑</a></section>
-<section id="dsa-sources" class="dsa-references"><h2>Sources & further reading</h2><p>This is a suggested learning sequence, not a fixed timetable. Exercises and illustrations are original; the resources below support the underlying concepts.</p><ul>{data.sources.map(source=><li><a href={source.url}>{source.title}</a></li>)}</ul></section>
-<footer class="dsa-end"><strong>CONSISTENCY + PRACTICE + PATIENCE</strong><p>Understand the idea. Test the edge cases. Explain the trade-offs.</p></footer>
+<section id="first-session" class="dsa-first"><span class="dsa-label">BẮT ĐẦU BẰNG MỘT BÀI NHỎ</span><h2>Buổi học đầu tiên</h2><ol>{data.firstSession.map(step=><li>{step}</li>)}</ol><a href={`#stage-${data.stages[0].id}`}>Bắt đầu với mảng ↑</a></section>
+<section id="dsa-sources" class="dsa-references"><h2>Nguồn và tài liệu đọc thêm</h2><p>Đây là thứ tự học gợi ý, không phải lịch học cố định. Bài tập và hình minh họa được biên soạn riêng; các tài liệu dưới đây giúp bạn tìm hiểu sâu hơn về từng khái niệm.</p><ul>{data.sources.map(source=><li><a href={source.url}>{source.title}</a></li>)}</ul></section>
+<footer class="dsa-end"><strong>ĐỀU ĐẶN + THỰC HÀNH + KIÊN NHẪN</strong><p>Hiểu ý tưởng. Thử các trường hợp biên. Giải thích được ưu và nhược điểm.</p></footer>
 </article>
 </LessonLayout>

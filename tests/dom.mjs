@@ -118,15 +118,21 @@ const roadmapLive=await load('lap-trinh/lo-trinh/');const rs=roadmapLive.window.
 console.log('PASS developer roadmap: 8 phases and detailed curricula, module content/source links/checkpoints, repeatable native details, first-session starter, 4 projects, layered stack, unique IDs, no-JS content, search.');
 
 
-// DSA: English semantics, real original illustrations, and concrete no-JS curriculum.
+// DSA: Vietnamese semantics, real original illustrations, and concrete no-JS curriculum.
 const dsaData=JSON.parse(await readFile('src/data/dsa-roadmap.json','utf8'));
 const dsaDom=new JSDOM(await readFile('dist/lap-trinh/dsa-roadmap/index.html','utf8'));
 const da=dsaDom.window.document;
-assert.equal(da.querySelector('article.dsa').lang,'en');
+assert.equal(da.querySelector('article.dsa').lang,'vi');
 assert.equal(da.querySelectorAll('.dsa-stage').length,11);
 assert.equal(da.querySelectorAll('.dsa-art[role="img"]').length,11);
 assert.equal(da.querySelectorAll('.dsa-arrow').length,10);
 assert.equal(da.querySelectorAll('.dsa-study').length,11);
+assert.match(da.querySelector('.dsa h1').textContent,/LỘ TRÌNH DSA/);
+assert.equal(da.querySelectorAll('.dsa-modules h5').length,35);
+for(const heading of da.querySelectorAll('.dsa-modules h5'))assert.doesNotMatch(heading.textContent,/^\d+\./,'Only the ordered list owns module numbering');
+assert.ok(da.querySelector('.dsa-art desc').textContent.includes('chỉ số'));
+assert.match(da.querySelector('.dsa-study summary').textContent,/Học chặng/);
+assert.doesNotMatch(da.querySelector('.dsa').textContent,/What to learn|Your first session|Study stage|Common mistakes|Sources & further reading/);
 assert.equal(da.querySelectorAll('.dsa-study[open]').length,0);
 assert.equal(da.querySelectorAll('.dsa-exercise').length,22);
 assert.equal(da.querySelectorAll('.dsa img').length,0);
@@ -149,6 +155,6 @@ assert.match(await readFile('src/styles/dsa-roadmap.css','utf8'),/@media\(prefer
 dsaDom.window.close();
 const dsaLive=await load('lap-trinh/dsa-roadmap/',true);const ds=dsaLive.window.document;const input=ds.querySelector('#lesson-search');
 ds.querySelector('#menu-toggle').click();assert.equal(ds.activeElement.id,'menu-toggle');
-for(const query of ['dsa','dynamic programming','cau truc du lieu']){input.value=query;input.dispatchEvent(new dsaLive.window.Event('input'));assert.equal(ds.querySelectorAll('[data-search]:not([hidden])').length,1);assert.match(ds.querySelector('[data-search]:not([hidden])').textContent,/DSA Roadmap/);}
+for(const query of ['dsa','dynamic programming','cau truc du lieu','quy hoach dong']){input.value=query;input.dispatchEvent(new dsaLive.window.Event('input'));assert.equal(ds.querySelectorAll('[data-search]:not([hidden])').length,1);assert.match(ds.querySelector('[data-search]:not([hidden])').textContent,/Lộ trình DSA/);}
 dsaLive.window.close();
-console.log('PASS DSA: 11 original accessible diagrams, English article language, 22 exercises, all curriculum/source/code text, unique IDs, reversible native disclosures without JS, mobile menu and search regression.');
+console.log('PASS DSA: 11 original accessible diagrams, Vietnamese article language, 22 exercises, all curriculum/source/code text, unique IDs, reversible native disclosures without JS, mobile menu and search regression.');

@@ -1,21 +1,21 @@
 {
-  "title": "Your practical DSA roadmap",
-  "subtitle": "11 connected stages. One clear next step.",
-  "intro": "Data structures organize information; algorithms turn it into answers. This guide expands the eleven stages in your roadmap into an actual learning path. Use Python 3 for the examples, or translate the ideas into a language you already know. Progress by what you can explain and build, rather than a calendar deadline. The advanced stage is an optional menu, not a condition for being good at DSA.",
+  "title": "Lộ trình học cấu trúc dữ liệu và giải thuật",
+  "subtitle": "11 chặng học liền mạch. Luôn biết bước tiếp theo.",
+  "intro": "Cấu trúc dữ liệu giúp tổ chức thông tin; giải thuật giúp xử lý thông tin để tìm ra câu trả lời. Hướng dẫn này biến 11 chặng trong sơ đồ của bạn thành một lộ trình học cụ thể. Bạn có thể dùng Python 3 để chạy các ví dụ, hoặc triển khai ý tưởng bằng ngôn ngữ mình đã biết. Hãy đánh giá tiến độ bằng những gì bạn có thể giải thích và tự xây dựng, thay vì chạy theo thời hạn. Chặng nâng cao gồm các chủ đề để bạn lựa chọn, không phải điều kiện bắt buộc để giỏi cấu trúc dữ liệu và giải thuật (DSA).",
   "foundations": {
-    "title": "Before stage 1: build your toolkit",
-    "intro": "The picture begins with arrays, but these foundations make every later topic easier. If you already know them, use the checks to skip ahead.",
+    "title": "Trước chặng 1: chuẩn bị kiến thức nền",
+    "intro": "Sơ đồ bắt đầu từ mảng, nhưng những kiến thức nền này sẽ giúp bạn học mọi chủ đề phía sau dễ dàng hơn. Nếu đã nắm vững, hãy dùng các câu hỏi tự kiểm tra để quyết định bỏ qua phần này.",
     "tasks": [
-      "Programming: write functions, loops and conditionals; use variables, lists, dictionaries and sets; understand return values, references and mutation. Run a small program and read an error message without guessing.",
-      "Complexity: define the input size n and count how work grows. Compare O(1), O(log n), O(n), O(n log n), O(n²) and exponential work. Big-O is an asymptotic upper bound, not a stopwatch. Distinguish worst-case, expected and amortized costs; include extra memory.",
-      "Sorting: trace insertion sort and understand why its worst case is quadratic. Use sorted() for a new Python list and list.sort() to change an existing one. After recursion, implement merge sort and explain its O(n log n) work and usual O(n) auxiliary space.",
-      "Hashing: use a set for membership and a dictionary for key–value lookup or counting. Understand collisions and hashable keys. Lookup is typically expected O(1), not a universal worst-case guarantee; hashing a long fresh string also takes work.",
-      "Reasoning: practice tiny hand-worked examples, simple invariants and a short correctness argument. An invariant is a fact that remains true as your loop runs, such as “everything before this index has already been counted.”"
+      "Lập trình: viết hàm, vòng lặp và câu lệnh điều kiện; sử dụng biến, danh sách, từ điển và tập hợp; hiểu giá trị trả về, tham chiếu và việc thay đổi dữ liệu tại chỗ. Bạn cần chạy được một chương trình nhỏ và đọc thông báo lỗi để tìm nguyên nhân, thay vì chỉ đoán.",
+      "Độ phức tạp: xác định kích thước đầu vào n và xem lượng công việc tăng như thế nào. So sánh O(1), O(log n), O(n), O(n log n), O(n²) và độ phức tạp hàm mũ. Big-O là cận trên tiệm cận, không phải phép đo thời gian chạy thực tế. Phân biệt chi phí trong trường hợp xấu nhất, chi phí kỳ vọng và chi phí khấu hao; tính cả bộ nhớ phụ.",
+      "Sắp xếp: mô phỏng từng bước sắp xếp chèn (insertion sort) và hiểu vì sao trường hợp xấu nhất có độ phức tạp bậc hai. Dùng sorted() để tạo danh sách Python mới và list.sort() để sắp xếp trực tiếp danh sách hiện có. Sau khi học đệ quy, hãy tự cài đặt sắp xếp trộn (merge sort), giải thích thời gian O(n log n) và bộ nhớ phụ thường là O(n).",
+      "Băm (hashing): dùng tập hợp để kiểm tra một phần tử có tồn tại, dùng từ điển để tra cứu theo khóa hoặc đếm tần suất. Hiểu xung đột băm và điều kiện để một giá trị có thể làm khóa. Tra cứu thường có thời gian kỳ vọng O(1), không phải bảo đảm cho mọi trường hợp xấu nhất; tính mã băm lần đầu cho một chuỗi dài cũng cần thời gian.",
+      "Lập luận: luyện các ví dụ nhỏ bằng tay, xác định bất biến đơn giản và viết một lập luận ngắn về tính đúng đắn. Bất biến là một điều luôn đúng trong quá trình vòng lặp chạy, chẳng hạn: “mọi phần tử trước chỉ số này đều đã được đếm”."
     ],
     "checks": [
-      "Can you write a frequency counter and explain when a set loses information?",
-      "Can you explain why a nested loop is sometimes quadratic, but two consecutive loops are linear?",
-      "Can you test empty, singleton, duplicate and negative-value inputs?"
+      "Bạn có viết được chương trình đếm tần suất và giải thích khi nào dùng tập hợp sẽ làm mất thông tin không?",
+      "Bạn có giải thích được vì sao vòng lặp lồng nhau có thể có độ phức tạp bậc hai, còn hai vòng lặp chạy nối tiếp có thể chỉ là tuyến tính không?",
+      "Bạn có biết kiểm thử với đầu vào rỗng, một phần tử, giá trị trùng lặp và số âm không?"
     ],
     "sourceIds": [
       "python-data",
@@ -24,60 +24,60 @@
     ]
   },
   "firstSession": [
-    "Write a function that returns the largest number in a nonempty list, without max(). Decide what your function should do for an empty list.",
-    "Trace it on [4, -2, 9, 9]. Write down what your “best so far” variable means after each step.",
-    "Add tests for one item, all-negative values and repeated maxima. Then explain its O(n) time and O(1) extra space."
+    "Viết hàm trả về số lớn nhất trong một danh sách không rỗng, không dùng max(). Quyết định hàm sẽ xử lý thế nào nếu nhận danh sách rỗng.",
+    "Mô phỏng hàm với [4, -2, 9, 9]. Sau mỗi bước, ghi rõ biến “lớn nhất tính đến lúc này” đang biểu thị điều gì.",
+    "Thêm kiểm thử cho danh sách một phần tử, toàn số âm và có nhiều phần tử cùng đạt giá trị lớn nhất. Sau đó giải thích thời gian O(n) và bộ nhớ phụ O(1) của hàm."
   ],
   "studyTips": [
-    "For each exercise: clarify the contract, make a tiny example, write a simple correct solution, then improve it.",
-    "Try independently before reading a hint. If you use a solution, close it and rebuild the idea later from a blank file.",
-    "Keep a short mistake log: the failing case, the broken assumption and the corrected invariant.",
-    "Mix a new problem with an older one. Being able to recognize and explain a pattern matters more than a solved-problem count.",
-    "Move on when you can explain the approach, implement it without copying and test edge cases. Revisit a topic whenever a later stage exposes a gap."
+    "Với mỗi bài tập: làm rõ đầu vào và đầu ra, tạo một ví dụ nhỏ, viết lời giải đơn giản nhưng đúng, rồi mới tối ưu.",
+    "Hãy tự thử trước khi đọc gợi ý. Nếu xem lời giải, hãy đóng lại và tự viết lại từ một tệp trống vào một lúc khác.",
+    "Ghi ngắn gọn những lỗi đã gặp: ca kiểm thử bị sai, giả định không đúng và bất biến sau khi sửa.",
+    "Học xen kẽ bài mới với bài đã học. Nhận ra và giải thích được một dạng bài quan trọng hơn số lượng bài đã giải.",
+    "Chuyển sang phần tiếp theo khi bạn có thể giải thích cách làm, tự cài đặt mà không sao chép và kiểm thử các trường hợp biên. Quay lại ôn bất cứ khi nào một chặng sau cho thấy bạn còn hổng kiến thức."
   ],
   "stages": [
     {
       "number": 1,
       "id": "arrays",
-      "title": "Arrays",
-      "summary": "Learn to turn positions, ranges and a single pass into useful answers.",
+      "title": "Mảng (Array)",
+      "summary": "Học cách dùng vị trí, đoạn liên tiếp và một lượt duyệt để tìm câu trả lời.",
       "modules": [
         {
-          "title": "1. Read and change a sequence",
-          "text": "Practice zero-based indices, traversal, updating an element and slicing. Distinguish an index from the value stored there. Draw a five-cell array before touching code."
+          "title": "Đọc và thay đổi một dãy",
+          "text": "Luyện dùng chỉ số bắt đầu từ 0, duyệt dãy, cập nhật phần tử và cắt lát (slicing). Phân biệt chỉ số với giá trị được lưu tại chỉ số đó. Hãy vẽ một mảng gồm năm ô trước khi viết mã."
         },
         {
-          "title": "2. Keep useful information while scanning",
-          "text": "Track a minimum, maximum, running sum or frequency map. State exactly what your variables summarize after processing the first i elements."
+          "title": "Ghi nhớ thông tin hữu ích khi duyệt",
+          "text": "Theo dõi giá trị nhỏ nhất, lớn nhất, tổng tích lũy hoặc bảng tần suất. Nêu chính xác mỗi biến đang tóm tắt điều gì sau khi xử lý i phần tử đầu tiên."
         },
         {
-          "title": "3. Introduce range patterns",
-          "text": "Build prefix sums for repeated range totals. Then use two pointers on sorted data and a fixed-size sliding window. Variable-size windows need a condition that can be maintained correctly; revisit them with strings."
+          "title": "Làm quen với các kỹ thuật xử lý đoạn",
+          "text": "Xây dựng tổng tiền tố (prefix sum) để trả lời nhiều truy vấn tổng trên đoạn. Sau đó học kỹ thuật hai con trỏ trên dữ liệu đã sắp xếp và cửa sổ trượt có kích thước cố định. Cửa sổ có kích thước thay đổi cần một điều kiện có thể duy trì đúng; bạn sẽ gặp lại kỹ thuật này khi học chuỗi."
         }
       ],
       "exercises": [
         {
-          "title": "Move zeroes",
-          "prompt": "Move all zeroes to the end while preserving the order of nonzero values. Try an in-place write pointer.",
+          "title": "Đưa số 0 về cuối",
+          "prompt": "Chuyển tất cả số 0 về cuối, giữ nguyên thứ tự tương đối của các giá trị khác 0. Thử dùng một con trỏ ghi để xử lý ngay trên mảng ban đầu.",
           "example": "[0, 3, 0, 2] → [3, 2, 0, 0]",
-          "hint": "Where should the next nonzero value be written?"
+          "hint": "Giá trị khác 0 tiếp theo cần được ghi vào vị trí nào?"
         },
         {
-          "title": "Range totals",
-          "prompt": "Build prefix sums, then answer inclusive index-range sum queries.",
-          "example": "[2, 4, -1, 3], query [1, 3] → 6",
-          "hint": "Use a prefix array starting with zero; subtract two prefix entries."
+          "title": "Tính tổng trên đoạn",
+          "prompt": "Xây dựng tổng tiền tố, rồi trả lời các truy vấn tổng theo đoạn chỉ số, tính cả hai đầu mút.",
+          "example": "[2, 4, -1, 3], truy vấn [1, 3] → 6",
+          "hint": "Tạo mảng tổng tiền tố bắt đầu bằng 0, rồi lấy hiệu của hai giá trị trong mảng đó."
         }
       ],
       "checks": [
-        "Explain why one forward scan is sufficient for moving zeroes.",
-        "Answer a range query without scanning its range again."
+        "Giải thích vì sao chỉ cần một lượt duyệt từ trái sang phải để đưa số 0 về cuối.",
+        "Trả lời một truy vấn tổng mà không duyệt lại đoạn được hỏi."
       ],
       "pitfalls": [
-        "Slicing copies data; it can quietly add time and memory.",
-        "Do not assume a positive-number sliding-window proof still works when negatives are allowed."
+        "Cắt lát danh sách tạo bản sao dữ liệu, nên có thể âm thầm làm tăng thời gian chạy và bộ nhớ.",
+        "Đừng mặc định rằng lập luận về cửa sổ trượt dành cho số dương vẫn đúng khi đầu vào có số âm."
       ],
-      "complexity": "A Python list is a dynamic array: indexed access is O(1); append is amortized O(1), although a resizing append can be O(n). Middle insertion/deletion and linear search are O(n). Prefix preprocessing is O(n); each range query is O(1).",
+      "complexity": "Danh sách Python là mảng động: truy cập theo chỉ số là O(1); thêm vào cuối có chi phí khấu hao O(1), dù một lần thêm cần cấp phát lại có thể tốn O(n). Chèn hoặc xóa ở giữa và tìm kiếm tuyến tính đều là O(n). Xây dựng tổng tiền tố tốn O(n); mỗi truy vấn tổng trên đoạn tốn O(1).",
       "sourceIds": [
         "mit-structures",
         "python-data"
@@ -86,45 +86,45 @@
     {
       "number": 2,
       "id": "strings",
-      "title": "Strings",
-      "summary": "Treat text as a sequence, while being explicit about what counts as a character.",
+      "title": "Chuỗi (String)",
+      "summary": "Xử lý văn bản như một dãy, đồng thời xác định rõ thế nào là một ký tự.",
       "modules": [
         {
-          "title": "1. Establish the text rules",
-          "text": "Practice indexing, splitting, joining and parsing. Decide whether case, spaces and punctuation matter before solving a text problem."
+          "title": "Xác định quy tắc xử lý văn bản",
+          "text": "Luyện truy cập theo chỉ số, tách chuỗi, ghép chuỗi và phân tích dữ liệu từ văn bản. Trước khi giải bài, xác định có phân biệt chữ hoa, chữ thường, khoảng trắng và dấu câu hay không."
         },
         {
-          "title": "2. Count and compare",
-          "text": "Use character frequencies to test anagrams. Use two pointers for palindromes, and compare this with reversing the entire string."
+          "title": "Đếm và so sánh",
+          "text": "Dùng tần suất ký tự để kiểm tra hai chuỗi có phải là hoán vị của nhau (anagram). Dùng hai con trỏ để kiểm tra chuỗi đối xứng (palindrome), rồi so sánh với cách đảo ngược toàn bộ chuỗi."
         },
         {
-          "title": "3. Grow and shrink a window",
-          "text": "Find the longest substring without repeated characters using a set or last-seen dictionary. Explain why the left boundary never moves backward. Save rolling hashes and advanced pattern matching for later."
+          "title": "Mở rộng và thu hẹp cửa sổ",
+          "text": "Tìm chuỗi con liên tiếp dài nhất không có ký tự lặp bằng tập hợp hoặc từ điển lưu vị trí xuất hiện gần nhất. Giải thích vì sao biên trái không bao giờ lùi lại. Để kỹ thuật băm cuộn (rolling hash) và tìm mẫu nâng cao cho phần học sau."
         }
       ],
       "exercises": [
         {
-          "title": "Anagram test",
-          "prompt": "For lowercase English letters, decide whether two strings have the same character counts.",
+          "title": "Kiểm tra chuỗi hoán vị",
+          "prompt": "Với các chữ cái tiếng Anh viết thường, xác định hai chuỗi có cùng tần suất của từng ký tự hay không.",
           "example": "\"listen\", \"silent\" → True; \"aab\", \"abb\" → False",
-          "hint": "Compare frequencies, not just sets."
+          "hint": "So sánh tần suất, không chỉ so sánh tập hợp ký tự."
         },
         {
-          "title": "Longest unique substring",
-          "prompt": "Return the length of the longest substring containing no repeated code point.",
+          "title": "Chuỗi con không lặp dài nhất",
+          "prompt": "Trả về độ dài chuỗi con liên tiếp dài nhất không có điểm mã Unicode nào lặp lại.",
           "example": "\"abba\" → 2",
-          "hint": "When a repeat arrives, move the left boundary only as far forward as necessary."
+          "hint": "Khi gặp ký tự lặp, chỉ đẩy biên trái về phía trước đến mức cần thiết."
         }
       ],
       "checks": [
-        "Distinguish substring from subsequence.",
-        "Explain why both boundaries together move at most O(n) times."
+        "Phân biệt chuỗi con liên tiếp (substring) với dãy con không nhất thiết liên tiếp (subsequence).",
+        "Giải thích vì sao tổng số lần dịch chuyển của hai biên là O(n)."
       ],
       "pitfalls": [
-        "Python strings are immutable. Repeatedly building longer strings by concatenation can be quadratic; collect pieces and join.",
-        "Python str indexes Unicode code points, which are not always user-perceived characters. Normalization and grapheme-aware processing are separate requirements; do not silently assume ASCII."
+        "Chuỗi Python là bất biến. Liên tục nối để tạo chuỗi ngày càng dài có thể tốn thời gian bậc hai; hãy thu thập các phần rồi dùng join.",
+        "Chỉ số của Python str truy cập điểm mã Unicode, không phải lúc nào cũng tương ứng với một ký tự mà người dùng nhìn thấy. Chuẩn hóa Unicode và xử lý theo cụm ký tự (grapheme) là các yêu cầu riêng; đừng ngầm giả định dữ liệu chỉ gồm ASCII."
       ],
-      "complexity": "A linear scan is O(n) in the number of code points. Frequency-map space depends on the number of distinct symbols. Comparing or copying a length-k substring can cost O(k).",
+      "complexity": "Một lượt duyệt tuyến tính tốn O(n), với n là số điểm mã. Bộ nhớ của bảng tần suất phụ thuộc vào số ký hiệu khác nhau. So sánh hoặc sao chép một chuỗi con độ dài k có thể tốn O(k).",
       "sourceIds": [
         "python-unicode",
         "mit-hashing"
@@ -133,45 +133,45 @@
     {
       "number": 3,
       "id": "linked-lists",
-      "title": "Linked lists",
-      "summary": "Practice changing connections without losing the rest of the structure.",
+      "title": "Danh sách liên kết (Linked List)",
+      "summary": "Luyện thay đổi các liên kết mà không làm mất phần còn lại của cấu trúc.",
       "modules": [
         {
-          "title": "1. Draw nodes and references",
-          "text": "Build a small Node class with value and next fields. Traverse from the head until None. A Python list is not a linked list."
+          "title": "Vẽ nút và tham chiếu",
+          "text": "Tạo một lớp Node nhỏ với hai thuộc tính value và next. Duyệt từ nút đầu cho đến None. Danh sách Python không phải là danh sách liên kết."
         },
         {
-          "title": "2. Rewire carefully",
-          "text": "Insert at the head, remove after a known predecessor and reverse a singly linked list. Save the next reference before overwriting it; use a dummy head when it simplifies boundary cases."
+          "title": "Nối lại các liên kết cẩn thận",
+          "text": "Thêm nút vào đầu, xóa nút sau một nút đã biết và đảo ngược danh sách liên kết đơn. Lưu tham chiếu next trước khi ghi đè; dùng nút đầu giả (dummy head) khi cách này giúp đơn giản hóa các trường hợp biên."
         },
         {
-          "title": "3. Compare list variants",
-          "text": "Understand previous links in a doubly linked list and the stopping rule in a circular list. Then try slow/fast pointers for finding the middle or detecting a cycle."
+          "title": "So sánh các dạng danh sách",
+          "text": "Hiểu liên kết về nút trước trong danh sách liên kết đôi và điều kiện dừng khi duyệt danh sách vòng. Sau đó thử hai con trỏ chậm và nhanh để tìm nút giữa hoặc phát hiện chu trình."
         }
       ],
       "exercises": [
         {
-          "title": "Reverse a list",
-          "prompt": "Return the new head after reversing every next link.",
-          "example": "1 → 2 → 3 → None becomes 3 → 2 → 1 → None",
-          "hint": "Maintain previous, current and saved-next references."
+          "title": "Đảo ngược danh sách",
+          "prompt": "Đảo chiều mọi liên kết next rồi trả về nút đầu mới.",
+          "example": "1 → 2 → 3 → None trở thành 3 → 2 → 1 → None",
+          "hint": "Duy trì tham chiếu đến nút trước, nút hiện tại và nút tiếp theo đã lưu."
         },
         {
-          "title": "Detect a cycle",
-          "prompt": "Return whether repeatedly following next can revisit a node.",
-          "example": "A → B → C → B gives True; A → B → None gives False",
-          "hint": "Compare node identity, not equal values."
+          "title": "Phát hiện chu trình",
+          "prompt": "Xác định xem việc liên tục đi theo next có thể đưa bạn trở lại một nút đã đi qua hay không.",
+          "example": "A → B → C → B cho True; A → B → None cho False",
+          "hint": "Kiểm tra hai tham chiếu có trỏ đến cùng một nút, không chỉ so sánh giá trị của nút."
         }
       ],
       "checks": [
-        "Reverse an empty list and a single-node list safely.",
-        "Explain why two nodes with the same value need not be the same node."
+        "Đảo ngược an toàn một danh sách rỗng và một danh sách chỉ có một nút.",
+        "Giải thích vì sao hai nút có cùng giá trị vẫn có thể là hai nút khác nhau."
       ],
       "pitfalls": [
-        "Finding the node still takes time. “Linked-list insertion is O(1)” only applies when the necessary node/reference is already known.",
-        "Deleting a singly linked node normally requires its predecessor; do not generalize a special trick to all cases."
+        "Tìm đến nút vẫn cần thời gian. “Chèn vào danh sách liên kết là O(1)” chỉ đúng khi đã biết nút hoặc tham chiếu cần thiết.",
+        "Xóa một nút trong danh sách liên kết đơn thường cần biết nút đứng trước nó; đừng áp dụng một mẹo đặc biệt cho mọi trường hợp."
       ],
-      "complexity": "Search and access by index are O(n). Head insertion is O(1). Iterative reversal is O(n) time with O(1) extra space. Doubly linked lists spend additional space on previous references.",
+      "complexity": "Tìm kiếm và truy cập theo chỉ số tốn O(n). Thêm vào đầu tốn O(1). Đảo ngược bằng vòng lặp tốn O(n) thời gian và O(1) bộ nhớ phụ. Danh sách liên kết đôi cần thêm bộ nhớ cho các tham chiếu về nút trước.",
       "sourceIds": [
         "mit-structures"
       ]
@@ -179,45 +179,45 @@
     {
       "number": 4,
       "id": "stack-queue",
-      "title": "Stack & queue",
-      "summary": "Choose the next item by arrival order or by most recent use.",
+      "title": "Ngăn xếp và hàng đợi (Stack & Queue)",
+      "summary": "Chọn phần tử tiếp theo theo thứ tự đến hoặc theo phần tử được thêm gần nhất.",
       "modules": [
         {
-          "title": "1. Use the two interfaces",
-          "text": "A stack is last-in, first-out; a queue is first-in, first-out. Trace push/pop and enqueue/dequeue by hand before implementing either."
+          "title": "Nắm hai cách lấy phần tử",
+          "text": "Ngăn xếp hoạt động theo nguyên tắc vào sau, ra trước (LIFO); hàng đợi hoạt động theo nguyên tắc vào trước, ra trước (FIFO). Mô phỏng bằng tay các thao tác push/pop và enqueue/dequeue trước khi tự cài đặt."
         },
         {
-          "title": "2. Pick Python containers",
-          "text": "Use list.append/pop for a stack and collections.deque with append/popleft for a queue. Handle removal from an empty container deliberately."
+          "title": "Chọn cấu trúc phù hợp trong Python",
+          "text": "Dùng list.append/pop cho ngăn xếp và collections.deque với append/popleft cho hàng đợi. Xác định rõ cách xử lý khi lấy phần tử từ cấu trúc đang rỗng."
         },
         {
-          "title": "3. Apply and revisit",
-          "text": "Use stacks for matching brackets and queues for ordered processing. After the basics, revisit monotonic stacks with next-greater-element problems and deques with sliding-window maxima; they are extensions, not entry requirements."
+          "title": "Áp dụng rồi mở rộng",
+          "text": "Dùng ngăn xếp để ghép cặp dấu ngoặc và hàng đợi để xử lý theo thứ tự. Khi vững kiến thức cơ bản, quay lại học ngăn xếp đơn điệu qua bài tìm phần tử lớn hơn tiếp theo, và deque qua bài tìm giá trị lớn nhất trong cửa sổ trượt. Đây là các phần mở rộng, không phải yêu cầu để bắt đầu."
         }
       ],
       "exercises": [
         {
-          "title": "Balanced brackets",
-          "prompt": "Accept (), [] and {} only; return whether nesting is valid.",
+          "title": "Dấu ngoặc hợp lệ",
+          "prompt": "Đầu vào chỉ gồm các dấu ngoặc (), [] và {}; xác định cách lồng ngoặc có hợp lệ không.",
           "example": "\"{[()]}\" → True; \"([)]\" → False",
-          "hint": "Each closing bracket must match the most recent unmatched opener."
+          "hint": "Mỗi dấu đóng phải khớp với dấu mở gần nhất chưa được ghép cặp."
         },
         {
-          "title": "Queue with two stacks",
-          "prompt": "Implement enqueue and dequeue using an input and an output stack.",
-          "example": "enqueue 4, enqueue 7, dequeue → 4",
-          "hint": "Move items only when the output stack is empty."
+          "title": "Hàng đợi bằng hai ngăn xếp",
+          "prompt": "Cài đặt enqueue và dequeue bằng một ngăn xếp đầu vào và một ngăn xếp đầu ra.",
+          "example": "Thêm 4, thêm 7, lấy phần tử đầu → 4",
+          "hint": "Chỉ chuyển các phần tử khi ngăn xếp đầu ra đang rỗng."
         }
       ],
       "checks": [
-        "Explain why a queue is needed for level-by-level processing.",
-        "Show why each item in a two-stack queue is transferred at most once."
+        "Giải thích vì sao cần hàng đợi khi xử lý lần lượt theo từng mức.",
+        "Chỉ ra vì sao mỗi phần tử trong hàng đợi hai ngăn xếp được chuyển ngăn xếp tối đa một lần."
       ],
       "pitfalls": [
-        "Python list.pop(0) shifts remaining elements and is O(n).",
-        "A monotonic stack may contain a nested while loop yet still do O(n) total pushes and pops."
+        "Python list.pop(0) phải dịch chuyển các phần tử còn lại nên tốn O(n).",
+        "Ngăn xếp đơn điệu có thể dùng vòng while lồng trong vòng lặp, nhưng tổng số thao tác thêm và lấy phần tử vẫn chỉ là O(n)."
       ],
-      "complexity": "List stack operations at the end are amortized O(1); deque endpoint operations are O(1). A two-stack queue has amortized O(1) operations, although one dequeue can trigger O(n) work.",
+      "complexity": "Các thao tác ngăn xếp ở cuối list có chi phí khấu hao O(1); thao tác ở hai đầu deque là O(1). Hàng đợi bằng hai ngăn xếp có chi phí khấu hao O(1) cho mỗi thao tác, dù một lần dequeue có thể khiến hệ thống phải xử lý O(n) công việc.",
       "sourceIds": [
         "python-data"
       ]
@@ -225,45 +225,45 @@
     {
       "number": 5,
       "id": "recursion",
-      "title": "Recursion",
-      "summary": "Solve a smaller version of the same problem, then combine the result.",
+      "title": "Đệ quy (Recursion)",
+      "summary": "Giải một phiên bản nhỏ hơn của cùng bài toán, rồi kết hợp kết quả.",
       "modules": [
         {
-          "title": "1. Name the contract and base case",
-          "text": "Say what one function call returns. Choose a base case and a measure that gets smaller on every recursive step. Trace calls and returns separately."
+          "title": "Làm rõ chức năng và trường hợp cơ sở",
+          "text": "Nêu rõ một lần gọi hàm trả về điều gì. Chọn trường hợp cơ sở và một đại lượng giảm sau mỗi bước đệ quy. Mô phỏng riêng quá trình gọi hàm và quá trình trả về."
         },
         {
-          "title": "2. Understand the call stack",
-          "text": "Record each call’s parameters and local variables. Rewrite a simple recursive traversal iteratively to see what an explicit stack replaces."
+          "title": "Hiểu ngăn xếp lời gọi",
+          "text": "Ghi lại tham số và biến cục bộ của mỗi lần gọi. Viết lại một phép duyệt đệ quy đơn giản bằng vòng lặp để thấy ngăn xếp do bạn tự quản lý thay thế điều gì."
         },
         {
-          "title": "3. Add divide-and-conquer, then choices",
-          "text": "Implement merge sort after understanding its merge step. Introduce backtracking with subsets: choose, explore, undo. Revisit harder backtracking after tree traversals rather than blocking progress here."
+          "title": "Học chia để trị, rồi đến quay lui",
+          "text": "Tự cài đặt sắp xếp trộn sau khi đã hiểu bước trộn. Làm quen với quay lui (backtracking) qua bài liệt kê tập con: chọn, khám phá, hoàn tác. Để các bài quay lui khó hơn sau phần duyệt cây, thay vì để chúng cản tiến độ ở đây."
         }
       ],
       "exercises": [
         {
-          "title": "Recursive sum",
-          "prompt": "Sum a list by advancing an index rather than slicing the remainder.",
+          "title": "Tính tổng bằng đệ quy",
+          "prompt": "Tính tổng danh sách bằng cách tăng chỉ số, thay vì cắt lấy phần còn lại của danh sách.",
           "example": "[2, 5, -1] → 6; [] → 0",
-          "hint": "The index reaching len(values) is the base case."
+          "hint": "Trường hợp cơ sở là khi chỉ số đạt len(values)."
         },
         {
-          "title": "All subsets",
-          "prompt": "Produce each subset of distinct input values exactly once.",
-          "example": "[1, 2] → [], [1], [2], [1, 2] in any order",
-          "hint": "For each value, decide whether to include it."
+          "title": "Liệt kê mọi tập con",
+          "prompt": "Với đầu vào gồm các giá trị phân biệt, tạo mỗi tập con đúng một lần.",
+          "example": "[1, 2] → [], [1], [2], [1, 2], theo thứ tự bất kỳ",
+          "hint": "Với mỗi giá trị, quyết định chọn hoặc không chọn nó."
         }
       ],
       "checks": [
-        "Explain both why your recursion terminates and why it returns the right result.",
-        "Identify the maximum call depth and count the number of generated results."
+        "Giải thích cả vì sao đệ quy dừng và vì sao nó trả về kết quả đúng.",
+        "Xác định độ sâu lời gọi tối đa và đếm số kết quả được tạo ra."
       ],
       "pitfalls": [
-        "Recursion is not automatically efficient: repeated subproblems can multiply work.",
-        "Python has a recursion-depth limit; prefer iterative traversal for potentially very deep inputs."
+        "Đệ quy không tự động làm thuật toán hiệu quả: các bài toán con lặp lại có thể khiến lượng công việc tăng rất nhanh.",
+        "Python giới hạn độ sâu đệ quy; nên dùng cách duyệt bằng vòng lặp nếu đầu vào có thể rất sâu."
       ],
-      "complexity": "Recursive indexed summation uses O(n) time and O(n) call-stack space. Materializing all subsets needs Θ(n·2ⁿ) total output space/time in the usual list representation; recursion depth alone is only O(n).",
+      "complexity": "Tính tổng đệ quy bằng chỉ số tốn O(n) thời gian và O(n) bộ nhớ ngăn xếp lời gọi. Tạo đầy đủ mọi tập con dưới dạng danh sách thông thường cần tổng thời gian và bộ nhớ đầu ra Θ(n·2ⁿ); riêng độ sâu đệ quy chỉ là O(n).",
       "sourceIds": [
         "mit-recursion"
       ]
@@ -271,97 +271,97 @@
     {
       "number": 6,
       "id": "binary-search",
-      "title": "Binary search",
-      "summary": "Discard half the possibilities using a condition that changes in one direction.",
+      "title": "Tìm kiếm nhị phân (Binary Search)",
+      "summary": "Loại bỏ một nửa số khả năng nhờ một điều kiện chỉ đổi trạng thái theo một chiều.",
       "modules": [
         {
-          "title": "1. Search sorted data",
-          "text": "Start with ascending arrays and an explicit interval convention. Trace empty, one-item and missing-target cases. Never mix inclusive and half-open bounds."
+          "title": "Tìm trong dữ liệu đã sắp xếp",
+          "text": "Bắt đầu với mảng tăng dần và quy ước rõ khoảng tìm kiếm. Mô phỏng các trường hợp mảng rỗng, mảng một phần tử và không có giá trị cần tìm. Không trộn lẫn khoảng đóng với khoảng nửa mở."
         },
         {
-          "title": "2. Find boundaries, not just equality",
-          "text": "Implement the first index with value ≥ target, then the first with value > target. Use these boundaries to count duplicates."
+          "title": "Tìm ranh giới thay vì chỉ tìm giá trị bằng nhau",
+          "text": "Cài đặt hàm tìm chỉ số đầu tiên có giá trị ≥ target, rồi chỉ số đầu tiên có giá trị > target. Dùng hai ranh giới này để đếm số lần xuất hiện của một giá trị."
         },
         {
-          "title": "3. Search an answer space",
-          "text": "Try integer square root, then a feasibility problem. Prove that the predicate is monotonic: once true, it remains true, or vice versa. A large search space alone does not justify binary search."
+          "title": "Tìm kiếm trên miền đáp án",
+          "text": "Thử bài căn bậc hai nguyên, rồi đến bài kiểm tra tính khả thi. Chứng minh điều kiện kiểm tra có tính đơn điệu: một khi đúng thì luôn đúng về sau, hoặc ngược lại. Miền đáp án lớn chưa đủ để áp dụng tìm kiếm nhị phân."
         }
       ],
       "exercises": [
         {
-          "title": "First occurrence",
-          "prompt": "Return the leftmost index of a target, or -1 if absent.",
-          "example": "[1, 2, 2, 4], target 2 → 1",
-          "hint": "Find the lower bound, then verify equality."
+          "title": "Vị trí xuất hiện đầu tiên",
+          "prompt": "Trả về chỉ số ngoài cùng bên trái của giá trị cần tìm, hoặc -1 nếu không có.",
+          "example": "[1, 2, 2, 4], tìm 2 → 1",
+          "hint": "Tìm cận dưới (lower bound), rồi kiểm tra phần tử tại đó có bằng giá trị cần tìm không."
         },
         {
-          "title": "Integer square root",
-          "prompt": "For a nonnegative integer x, return the largest integer r with r*r ≤ x.",
+          "title": "Căn bậc hai nguyên",
+          "prompt": "Với số nguyên không âm x, trả về số nguyên r lớn nhất sao cho r*r ≤ x.",
           "example": "x = 17 → 4",
-          "hint": "Keep track of which side contains feasible candidates."
+          "hint": "Theo dõi phía nào của khoảng tìm kiếm chứa các ứng viên thỏa điều kiện."
         }
       ],
       "checks": [
-        "State what your search interval still contains after each iteration.",
-        "Prove that every iteration makes the interval smaller."
+        "Nêu rõ khoảng tìm kiếm còn chứa những ứng viên nào sau mỗi vòng lặp.",
+        "Chứng minh rằng mỗi vòng lặp đều làm khoảng tìm kiếm thu hẹp."
       ],
       "pitfalls": [
-        "Searching unsorted data with ordinary binary search is invalid.",
-        "bisect returns an insertion position, which does not prove the value exists."
+        "Tìm kiếm nhị phân thông thường không áp dụng được cho dữ liệu chưa sắp xếp.",
+        "bisect trả về một vị trí chèn, không bảo đảm giá trị cần tìm có tồn tại."
       ],
-      "complexity": "Binary search uses O(log n) comparisons on a random-access array. If a feasibility check costs C, answer-space search costs O(C log R) for R candidate values. Inserting into a Python list after bisect still costs O(n).",
+      "complexity": "Tìm kiếm nhị phân cần O(log n) phép so sánh trên mảng có thể truy cập trực tiếp theo chỉ số. Nếu mỗi lần kiểm tra tính khả thi tốn C, tìm kiếm trên R giá trị ứng viên tốn O(C log R). Chèn vào danh sách Python sau khi dùng bisect vẫn tốn O(n).",
       "sourceIds": [
         "python-bisect"
       ],
       "code": {
-        "title": "A reusable lower-bound search",
+        "title": "Hàm tìm cận dưới có thể dùng lại",
         "language": "python",
         "text": "def lower_bound(values, target):\n    lo, hi = 0, len(values)\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if values[mid] < target:\n            lo = mid + 1\n        else:\n            hi = mid\n    return lo\n\nassert lower_bound([1, 2, 2, 4], 2) == 1\nassert lower_bound([], 2) == 0",
-        "explanation": "Precondition: values is sorted in ascending order. All positions before lo are too small; positions at or after hi are valid lower-bound candidates. The result may equal len(values)."
+        "explanation": "Điều kiện đầu vào: values đã được sắp xếp tăng dần. Mọi phần tử trước lo đều nhỏ hơn target; mọi phần tử từ hi trở đi đều lớn hơn hoặc bằng target. Kết quả có thể bằng len(values)."
       }
     },
     {
       "number": 7,
       "id": "trees",
-      "title": "Trees",
-      "summary": "Use recursive structure to organize hierarchical information.",
+      "title": "Cây (Tree)",
+      "summary": "Dùng cấu trúc đệ quy để tổ chức thông tin có phân cấp.",
       "modules": [
         {
-          "title": "1. Learn the shape",
-          "text": "Define root, child, leaf, depth and height. Distinguish a general tree, a binary tree and a binary search tree (BST); they are different promises."
+          "title": "Hiểu hình dạng của cây",
+          "text": "Nắm các khái niệm gốc, nút con, lá, độ sâu và chiều cao. Phân biệt cây tổng quát, cây nhị phân và cây tìm kiếm nhị phân (BST); mỗi loại có những ràng buộc khác nhau."
         },
         {
-          "title": "2. Traverse systematically",
-          "text": "Implement preorder, inorder and postorder DFS, then level-order BFS with a queue. Choose the order based on when the parent needs its children’s results."
+          "title": "Duyệt cây có hệ thống",
+          "text": "Cài đặt duyệt theo chiều sâu (DFS) với thứ tự trước, giữa và sau; sau đó duyệt theo từng mức bằng tìm kiếm theo chiều rộng (BFS) và hàng đợi. Chọn thứ tự dựa trên thời điểm nút cha cần kết quả từ các nút con."
         },
         {
-          "title": "3. Maintain search order",
-          "text": "Search and insert in a BST with an explicit duplicate policy. Validate using inherited lower/upper bounds, then learn why balanced trees maintain short paths. Rotations can be a later study."
+          "title": "Duy trì thứ tự tìm kiếm",
+          "text": "Tìm kiếm và chèn vào BST, đồng thời quy định rõ cách xử lý khóa trùng lặp. Kiểm tra tính hợp lệ bằng cận dưới và cận trên kế thừa từ tổ tiên, rồi tìm hiểu vì sao cây cân bằng giữ được đường đi ngắn. Có thể học phép xoay cây ở phần sau."
         }
       ],
       "exercises": [
         {
-          "title": "Maximum depth",
-          "prompt": "Return the number of nodes on the longest root-to-leaf path; an empty tree has depth zero.",
-          "example": "Root 1 with children 2 and 3 → 2",
-          "hint": "Combine child depths after recursive calls return."
+          "title": "Độ sâu lớn nhất",
+          "prompt": "Trả về số nút trên đường đi dài nhất từ gốc đến lá; cây rỗng có độ sâu bằng 0.",
+          "example": "Gốc 1 có hai nút con 2 và 3 → 2",
+          "hint": "Kết hợp độ sâu của các cây con sau khi lời gọi đệ quy trả về."
         },
         {
-          "title": "Validate a BST",
-          "prompt": "Assume distinct keys. Check that every node satisfies all ancestor bounds.",
-          "example": "Root 10, right child 15, and 15’s left child 6 → False",
-          "hint": "Checking only immediate parent–child pairs misses this violation."
+          "title": "Kiểm tra BST hợp lệ",
+          "prompt": "Giả sử các khóa phân biệt. Kiểm tra mỗi nút có thỏa tất cả giới hạn do các nút tổ tiên đặt ra không.",
+          "example": "Gốc 10, nút con phải 15, nút con trái của 15 là 6 → False",
+          "hint": "Chỉ kiểm tra từng cặp cha–con trực tiếp sẽ bỏ sót vi phạm này."
         }
       ],
       "checks": [
-        "Explain why inorder traversal of a valid BST produces sorted keys.",
-        "Choose DFS or BFS and account for its memory on a narrow versus wide tree."
+        "Giải thích vì sao duyệt theo thứ tự giữa trên một BST hợp lệ cho ra các khóa đã sắp xếp.",
+        "Chọn DFS hoặc BFS và phân tích bộ nhớ khi cây hẹp so với khi cây rộng."
       ],
       "pitfalls": [
-        "A binary tree is not necessarily a BST.",
-        "BST operations are O(height), not unconditionally O(log n); sorted insertion can create a chain."
+        "Một cây nhị phân không nhất thiết là BST.",
+        "Thao tác trên BST tốn O(chiều cao), không phải lúc nào cũng là O(log n); chèn dữ liệu theo thứ tự tăng dần có thể tạo thành một chuỗi nút."
       ],
-      "complexity": "A full traversal visits n nodes in O(n) time. Recursive DFS uses O(h) stack space. BFS uses O(w) queue space for maximum width w. A balanced BST has O(log n) height; an unbalanced one may have O(n).",
+      "complexity": "Duyệt toàn bộ n nút tốn O(n) thời gian. DFS đệ quy dùng O(h) bộ nhớ ngăn xếp, với h là chiều cao. BFS dùng O(w) bộ nhớ hàng đợi, với w là độ rộng lớn nhất. BST cân bằng có chiều cao O(log n); BST không cân bằng có thể cao O(n).",
       "sourceIds": [
         "mit-trees"
       ]
@@ -369,45 +369,45 @@
     {
       "number": 8,
       "id": "heap",
-      "title": "Heap",
-      "summary": "Keep the next highest-priority item easy to retrieve.",
+      "title": "Cấu trúc đống (Heap)",
+      "summary": "Giữ cho phần tử có độ ưu tiên cao nhất luôn dễ lấy ra.",
       "modules": [
         {
-          "title": "1. Separate heap order from sorted order",
-          "text": "A min-heap puts the smallest value at the root; it does not sort siblings or the entire array. Learn the array positions of parents and children."
+          "title": "Phân biệt thứ tự của heap với thứ tự đã sắp xếp",
+          "text": "Heap nhỏ nhất (min-heap) đặt giá trị nhỏ nhất ở gốc; các nút cùng cha hoặc toàn bộ mảng không nhất thiết được sắp xếp. Học cách xác định vị trí của nút cha và nút con trong mảng."
         },
         {
-          "title": "2. Maintain the invariant",
-          "text": "Trace sift-up after insertion and sift-down after removal. Use heapq.heapify, heappush and heappop in Python. For broadly compatible max-priority numeric examples, store negative priorities."
+          "title": "Duy trì bất biến của heap",
+          "text": "Mô phỏng thao tác đẩy lên (sift-up) sau khi chèn và đẩy xuống (sift-down) sau khi lấy phần tử. Dùng heapq.heapify, heappush và heappop trong Python. Với ví dụ ưu tiên số lớn nhất, lưu giá trị ưu tiên dưới dạng số đối để tương thích với nhiều phiên bản Python."
         },
         {
-          "title": "3. Keep only what matters",
-          "text": "Maintain a heap of size k for the k largest values. Add a tie-break counter when priority entries contain tasks that cannot be compared directly."
+          "title": "Chỉ giữ những phần tử cần thiết",
+          "text": "Duy trì heap kích thước k để lưu k giá trị lớn nhất. Thêm một bộ đếm để phân xử khi bằng độ ưu tiên nếu các mục trong hàng đợi chứa tác vụ không thể so sánh trực tiếp với nhau."
         }
       ],
       "exercises": [
         {
-          "title": "Kth largest",
-          "prompt": "Return the kth largest value, counting duplicates, for 1 ≤ k ≤ n.",
+          "title": "Giá trị lớn thứ k",
+          "prompt": "Trả về giá trị lớn thứ k, có tính các phần tử trùng lặp, với 1 ≤ k ≤ n.",
           "example": "[3, 1, 5, 5, 2], k = 2 → 5",
-          "hint": "Keep a min-heap containing only the largest k values seen."
+          "hint": "Giữ một min-heap chỉ chứa k giá trị lớn nhất đã gặp."
         },
         {
-          "title": "Merge sorted streams",
-          "prompt": "Merge several already-sorted lists into one sorted result.",
+          "title": "Trộn các dãy đã sắp xếp",
+          "prompt": "Trộn nhiều danh sách đã sắp xếp thành một danh sách kết quả đã sắp xếp.",
           "example": "[1, 4], [2, 3], [] → [1, 2, 3, 4]",
-          "hint": "The heap needs only the next available item from each stream."
+          "hint": "Heap chỉ cần giữ phần tử tiếp theo chưa xử lý của mỗi dãy."
         }
       ],
       "checks": [
-        "Explain why the root of a size-k min-heap is the kth largest retained value.",
-        "Distinguish a priority queue’s behavior from its heap implementation."
+        "Giải thích vì sao gốc của min-heap kích thước k là giá trị lớn thứ k trong các giá trị đang giữ.",
+        "Phân biệt chức năng của hàng đợi ưu tiên với cách cài đặt chức năng đó bằng heap."
       ],
       "pitfalls": [
-        "The heap’s internal list is not globally sorted.",
-        "Validate k; decide how empty input and priority ties should behave."
+        "Danh sách bên trong heap không được sắp xếp toàn bộ.",
+        "Kiểm tra tính hợp lệ của k; xác định cách xử lý đầu vào rỗng và các phần tử cùng độ ưu tiên."
       ],
-      "complexity": "Peek is O(1); push/pop are O(log n); bottom-up heapify is O(n). Keeping the top k uses O(n log k) time for k ≥ 2 and O(k) space; k = 1 is a linear scan.",
+      "complexity": "Xem phần tử ở gốc tốn O(1); thêm hoặc lấy phần tử tốn O(log n); dựng heap từ dưới lên bằng heapify tốn O(n). Giữ k giá trị lớn nhất tốn O(n log k) thời gian với k ≥ 2 và O(k) bộ nhớ; k = 1 chỉ cần một lượt duyệt tuyến tính.",
       "sourceIds": [
         "python-heap"
       ]
@@ -415,49 +415,49 @@
     {
       "number": 9,
       "id": "graphs",
-      "title": "Graphs",
-      "summary": "Model connections first, then choose a traversal or path algorithm.",
+      "title": "Đồ thị (Graph)",
+      "summary": "Mô hình hóa các mối liên kết trước, rồi chọn thuật toán duyệt hoặc tìm đường.",
       "modules": [
         {
-          "title": "1. Represent the problem",
-          "text": "Identify vertices, edges, direction and weights. Build an adjacency list; contrast its storage with an adjacency matrix. Include disconnected vertices."
+          "title": "Biểu diễn bài toán",
+          "text": "Xác định đỉnh, cạnh, hướng và trọng số. Xây dựng danh sách kề; so sánh bộ nhớ của nó với ma trận kề. Đừng bỏ sót các đỉnh không có liên kết."
         },
         {
-          "title": "2. Traverse and remember",
-          "text": "Use BFS for minimum edge-count paths in an unweighted graph, and DFS for exploration and components. Mark visited vertices at discovery so cycles do not create repeated work."
+          "title": "Duyệt và đánh dấu",
+          "text": "Dùng BFS để tìm đường đi có ít cạnh nhất trong đồ thị không trọng số, và DFS để khám phá đồ thị, tìm thành phần liên thông. Đánh dấu đỉnh ngay khi phát hiện để chu trình không gây xử lý lặp lại."
         },
         {
-          "title": "3. Respect algorithm conditions",
-          "text": "Learn topological sorting for directed acyclic graphs. Then use a heap-based Dijkstra implementation for nonnegative edge weights. Negative edges need another method, such as Bellman–Ford."
+          "title": "Tôn trọng điều kiện áp dụng thuật toán",
+          "text": "Học sắp xếp tô-pô (topological sort) cho đồ thị có hướng không chu trình. Sau đó dùng Dijkstra với heap cho đồ thị có trọng số cạnh không âm. Nếu có cạnh âm, cần phương pháp khác, chẳng hạn Bellman–Ford."
         },
         {
-          "title": "4. Revisit spanning trees",
-          "text": "After union–find in the optional stage, try Kruskal; after heaps, try Prim. A minimum spanning tree connects an undirected weighted graph cheaply and solves a different problem from shortest paths."
+          "title": "Quay lại bài toán cây khung",
+          "text": "Sau khi học union–find ở chặng tự chọn, thử thuật toán Kruskal; sau khi học heap, thử Prim. Cây khung nhỏ nhất kết nối các đỉnh của đồ thị vô hướng có trọng số với tổng chi phí nhỏ nhất. Đây là một bài toán khác với tìm đường đi ngắn nhất."
         }
       ],
       "exercises": [
         {
-          "title": "Fewest hops",
-          "prompt": "Find the minimum number of edges from A to D, or report unreachable.",
-          "example": "Edges A–B, A–C, C–D → 2",
-          "hint": "BFS discovers vertices in increasing distance layers."
+          "title": "Đường đi ít cạnh nhất",
+          "prompt": "Tìm số cạnh ít nhất cần đi từ A đến D, hoặc báo rằng không thể tới được.",
+          "example": "Các cạnh A–B, A–C, C–D → 2",
+          "hint": "BFS phát hiện các đỉnh theo từng lớp có khoảng cách tăng dần."
         },
         {
-          "title": "Course dependencies",
-          "prompt": "Return a valid order of courses from prerequisite edges, or report a cycle.",
-          "example": "A → C, B → C → either A,B,C or B,A,C",
-          "hint": "Repeatedly remove a vertex whose remaining indegree is zero."
+          "title": "Thứ tự học các môn",
+          "prompt": "Từ các cạnh biểu thị quan hệ môn tiên quyết, trả về một thứ tự học hợp lệ hoặc báo có chu trình.",
+          "example": "A → C, B → C → có thể học A,B,C hoặc B,A,C",
+          "hint": "Liên tục lấy ra một đỉnh có bậc vào còn lại bằng 0."
         }
       ],
       "checks": [
-        "Explain why ordinary BFS fails for arbitrary unequal edge weights.",
-        "Test a disconnected graph, a cycle and a single isolated vertex."
+        "Giải thích vì sao BFS thông thường không tìm đúng đường đi ngắn nhất khi trọng số các cạnh khác nhau tùy ý.",
+        "Kiểm thử với đồ thị không liên thông, đồ thị có chu trình và đồ thị chỉ có một đỉnh cô lập."
       ],
       "pitfalls": [
-        "An undirected edge normally belongs in both adjacency lists.",
-        "Dijkstra requires nonnegative weights; a visited-set shortcut copied from BFS is not a substitute for understanding relaxation."
+        "Một cạnh vô hướng thường phải được lưu trong danh sách kề của cả hai đầu mút.",
+        "Dijkstra yêu cầu trọng số không âm; sao chép cách dùng tập đỉnh đã thăm của BFS không thay thế được việc hiểu phép cập nhật khoảng cách (relaxation)."
       ],
-      "complexity": "With adjacency lists, BFS/DFS run in O(V + E) time and use O(V) auxiliary state beyond graph storage. Binary-heap Dijkstra is commonly O((V + E) log V) on simple graphs; duplicate heap entries and graph representation affect the precise bound.",
+      "complexity": "Với danh sách kề, BFS/DFS chạy trong O(V + E) thời gian và dùng O(V) bộ nhớ phụ ngoài phần lưu đồ thị, với V là số đỉnh và E là số cạnh. Dijkstra dùng heap nhị phân thường có độ phức tạp O((V + E) log V) trên đồ thị đơn; các mục lặp trong heap và cách biểu diễn đồ thị có thể ảnh hưởng đến cận chính xác.",
       "sourceIds": [
         "mit-bfs",
         "mit-dijkstra"
@@ -466,102 +466,102 @@
     {
       "number": 10,
       "id": "dynamic-programming",
-      "title": "Dynamic programming",
-      "summary": "Reuse solutions to precisely defined subproblems.",
+      "title": "Quy hoạch động (Dynamic Programming)",
+      "summary": "Tái sử dụng lời giải của các bài toán con được định nghĩa rõ ràng.",
       "modules": [
         {
-          "title": "1. Define the state in a sentence",
-          "text": "Before writing a table, say what dp[i] or dp[i][j] means. Identify which information must be remembered so the next decision is valid."
+          "title": "Diễn đạt trạng thái bằng một câu",
+          "text": "Trước khi viết bảng, hãy nói rõ dp[i] hoặc dp[i][j] có nghĩa gì. Xác định những thông tin cần ghi nhớ để quyết định tiếp theo là hợp lệ."
         },
         {
-          "title": "2. Write transitions and base cases",
-          "text": "List the choices that produce each state, then specify starting and impossible states. Write a small recursive version to expose repeated work."
+          "title": "Viết công thức chuyển và trường hợp cơ sở",
+          "text": "Liệt kê các lựa chọn dẫn đến mỗi trạng thái, rồi xác định trạng thái khởi đầu và trạng thái không thể đạt được. Viết một phiên bản đệ quy nhỏ để thấy những công việc bị lặp lại."
         },
         {
-          "title": "3. Cache, order, then optimize",
-          "text": "Add memoization, or compute bottom-up in dependency order. Explain where the final answer lives. Only compress space after the full table is correct and you understand which old states are still needed."
+          "title": "Lưu kết quả, chọn thứ tự, rồi tối ưu",
+          "text": "Thêm cơ chế ghi nhớ kết quả (memoization), hoặc tính từ dưới lên theo thứ tự phụ thuộc. Giải thích đáp án cuối cùng nằm ở đâu. Chỉ tối ưu bộ nhớ sau khi bảng đầy đủ đã đúng và bạn hiểu những trạng thái cũ nào vẫn còn cần dùng."
         }
       ],
       "exercises": [
         {
-          "title": "Climbing stairs",
-          "prompt": "Count ways to reach step n using moves of one or two steps. Define one way to reach step zero: take no steps.",
+          "title": "Leo cầu thang",
+          "prompt": "Đếm số cách đến bậc n khi mỗi lần đi một hoặc hai bậc. Quy ước có một cách đến bậc 0: không bước nào.",
           "example": "n = 4 → 5",
           "hint": "ways[i] = ways[i-1] + ways[i-2]."
         },
         {
-          "title": "Minimum coins",
-          "prompt": "Given positive coin denominations usable repeatedly, find the fewest coins for an amount, or -1 if impossible.",
-          "example": "coins [1, 3, 4], amount 6 → 2",
-          "hint": "Greedily taking the largest coin first gives the wrong answer here."
+          "title": "Đổi tiền ít đồng nhất",
+          "prompt": "Cho các mệnh giá nguyên dương, mỗi loại được dùng không giới hạn. Tìm số đồng ít nhất để tạo thành số tiền cần đổi, hoặc trả về -1 nếu không thể.",
+          "example": "Các mệnh giá [1, 3, 4], số tiền 6 → 2",
+          "hint": "Chọn tham lam đồng có mệnh giá lớn nhất trước sẽ cho đáp án sai trong ví dụ này."
         }
       ],
       "checks": [
-        "State the meaning, transition, base cases, evaluation order and final answer without looking at code.",
-        "Explain the number of states multiplied by work per state."
+        "Nêu được ý nghĩa trạng thái, công thức chuyển, trường hợp cơ sở, thứ tự tính và vị trí đáp án mà không nhìn mã.",
+        "Giải thích cách tính độ phức tạp bằng số trạng thái nhân với lượng công việc cho mỗi trạng thái."
       ],
       "pitfalls": [
-        "Memoization only helps when identical states recur; include every relevant variable in the cache key.",
-        "Coin-change O(amount × coin types) depends on the numeric amount, not merely its bit length; it is pseudopolynomial."
+        "Ghi nhớ kết quả chỉ hữu ích khi cùng một trạng thái xuất hiện lại; khóa lưu kết quả phải bao gồm mọi biến liên quan.",
+        "Độ phức tạp O(số tiền × số loại mệnh giá) của bài đổi tiền phụ thuộc vào giá trị số tiền, không chỉ vào số bit biểu diễn nó; đây là độ phức tạp giả đa thức."
       ],
-      "complexity": "Stairs uses O(n) arithmetic operations and can use O(1) stored states. Exact counts grow, so big-integer arithmetic is not truly constant-cost for arbitrarily large n. A full coin table uses O(amount) space.",
+      "complexity": "Bài cầu thang dùng O(n) phép toán số học và có thể chỉ lưu O(1) trạng thái. Số cách chính xác tăng dần, nên phép toán trên số nguyên lớn không thực sự có chi phí hằng số khi n lớn tùy ý. Bảng quy hoạch động đầy đủ cho bài đổi tiền dùng O(số tiền) bộ nhớ.",
       "sourceIds": [
         "mit-recursion",
         "mit-dp"
       ],
       "code": {
-        "title": "Start with an explicit DP table",
+        "title": "Bắt đầu bằng bảng quy hoạch động rõ ràng",
         "language": "python",
         "text": "def stair_ways(n):\n    if n < 0:\n        raise ValueError(\"n must be nonnegative\")\n    ways = [0] * (n + 1)\n    ways[0] = 1\n    for step in range(1, n + 1):\n        ways[step] = ways[step - 1]\n        if step >= 2:\n            ways[step] += ways[step - 2]\n    return ways[n]\n\nassert stair_ways(0) == 1\nassert stair_ways(4) == 5",
-        "explanation": "Contract: n is a nonnegative integer. ways[step] counts all valid move sequences ending at that step. The final move was either one or two steps, so the two cases are disjoint."
+        "explanation": "Điều kiện đầu vào: n là số nguyên không âm. ways[step] đếm mọi dãy bước đi hợp lệ kết thúc tại bậc đó. Bước cuối cùng đi một hoặc hai bậc, nên hai trường hợp này không trùng nhau."
       }
     },
     {
       "number": 11,
       "id": "advanced",
-      "title": "Advanced topics",
-      "summary": "Choose a branch that supports the problems you actually want to solve.",
+      "title": "Chủ đề nâng cao",
+      "summary": "Chọn hướng học phù hợp với những bài toán bạn thực sự muốn giải.",
       "modules": [
         {
-          "title": "1. Tries for prefixes",
-          "text": "After strings and trees, implement insert, whole-word lookup and prefix lookup. Mark word endings separately so “car” and “cart” can coexist."
+          "title": "Cây tiền tố (Trie)",
+          "text": "Sau phần chuỗi và cây, cài đặt thao tác thêm từ, tra cứu cả từ và tra cứu tiền tố. Đánh dấu kết thúc từ riêng để “car” và “cart” cùng tồn tại trong cấu trúc."
         },
         {
-          "title": "2. Union–find for connectivity",
-          "text": "After graphs, learn find and union with path compression and union by size/rank. Apply it to incremental connectivity and Kruskal’s minimum spanning tree algorithm."
+          "title": "Union–find cho tính liên thông",
+          "text": "Sau phần đồ thị, học find và union với nén đường đi và gộp theo kích thước hoặc hạng. Áp dụng vào việc cập nhật các nhóm liên thông khi thêm cạnh và thuật toán cây khung nhỏ nhất Kruskal."
         },
         {
-          "title": "3. Range-query structures",
-          "text": "After prefix sums and trees, learn a Fenwick tree for prefix sums with updates, or a segment tree for range aggregates. Define the combine operation and identity before implementation."
+          "title": "Cấu trúc truy vấn trên đoạn",
+          "text": "Sau tổng tiền tố và cây, học cây Fenwick để vừa tính tổng tiền tố vừa cập nhật dữ liệu, hoặc cây đoạn (segment tree) để tổng hợp giá trị trên đoạn. Xác định phép kết hợp và phần tử đơn vị trước khi cài đặt."
         },
         {
-          "title": "4. Bitmasks and specialized algorithms",
-          "text": "After subsets and DP, represent small sets with bits and try subset DP. Pick advanced string algorithms, greedy proofs or further graph algorithms only when a concrete problem motivates them."
+          "title": "Mặt nạ bit và thuật toán chuyên biệt",
+          "text": "Sau tập con và quy hoạch động, biểu diễn tập hợp nhỏ bằng các bit và thử quy hoạch động trên tập con. Chỉ chọn học thuật toán chuỗi nâng cao, chứng minh thuật toán tham lam hoặc các thuật toán đồ thị khác khi có bài toán cụ thể cần đến chúng."
         }
       ],
       "exercises": [
         {
-          "title": "Prefix dictionary",
-          "prompt": "Insert car, cart and dog; distinguish a whole word from a prefix.",
+          "title": "Từ điển tiền tố",
+          "prompt": "Thêm car, cart và dog; phân biệt một từ hoàn chỉnh với một tiền tố.",
           "example": "lookup(\"ca\") → False; starts_with(\"ca\") → True",
-          "hint": "A path existing is not the same as an end-of-word marker."
+          "hint": "Có đường đi tương ứng với chuỗi chưa có nghĩa là tại đó đã có dấu kết thúc từ."
         },
         {
-          "title": "Online connectivity",
-          "prompt": "Start with vertices 0–3, then union(0,1) and union(2,3). Query, merge, and query again.",
+          "title": "Cập nhật tính liên thông",
+          "prompt": "Bắt đầu với các đỉnh 0–3, thực hiện union(0,1) và union(2,3). Kiểm tra liên thông, gộp thêm, rồi kiểm tra lại.",
           "example": "connected(0,3) → False; union(1,2); connected(0,3) → True",
-          "hint": "Compare representatives rather than direct parent pointers."
+          "hint": "So sánh phần tử đại diện của hai tập, thay vì chỉ so sánh con trỏ cha trực tiếp."
         }
       ],
       "checks": [
-        "Explain why the specialized structure is preferable to a simpler baseline.",
-        "Complete one chosen branch thoroughly before collecting several unfamiliar templates."
+        "Giải thích vì sao cấu trúc chuyên biệt phù hợp hơn một cách làm cơ bản đơn giản.",
+        "Học kỹ một hướng đã chọn trước khi thu thập nhiều mẫu mã mà bạn chưa hiểu."
       ],
       "pitfalls": [
-        "Advanced does not mean universally better: implementation complexity and memory can outweigh benefits.",
-        "Bitmask enumeration is exponential in the number of represented elements; keep that universe small."
+        "Nâng cao không có nghĩa là luôn tốt hơn: độ phức tạp khi cài đặt và chi phí bộ nhớ có thể lớn hơn lợi ích mang lại.",
+        "Liệt kê mọi mặt nạ bit có độ phức tạp hàm mũ theo số phần tử được biểu diễn; hãy giới hạn số phần tử này ở mức nhỏ."
       ],
-      "complexity": "Trie lookup is O(L) with constant-time child access assumptions. Union–find with both optimizations has near-constant amortized cost O(α(n)). Standard segment-tree point updates and range queries are O(log n); build is O(n).",
+      "complexity": "Tra cứu trie tốn O(L), với L là độ dài chuỗi, nếu truy cập nút con có chi phí hằng số. Union–find dùng cả hai kỹ thuật tối ưu có chi phí khấu hao gần hằng số O(α(n)). Với cây đoạn thông thường, cập nhật một vị trí và truy vấn một đoạn đều tốn O(log n); xây dựng cây tốn O(n).",
       "sourceIds": [
         "opendsa",
         "princeton-trie",
@@ -572,79 +572,79 @@
   "sources": [
     {
       "id": "python-data",
-      "title": "Python tutorial: lists, stacks, queues, sets and dictionaries",
+      "title": "Hướng dẫn Python: danh sách, ngăn xếp, hàng đợi, tập hợp và từ điển",
       "url": "https://docs.python.org/3/tutorial/datastructures.html"
     },
     {
       "id": "python-unicode",
-      "title": "Python Unicode HOWTO",
+      "title": "Hướng dẫn xử lý Unicode trong Python",
       "url": "https://docs.python.org/3/howto/unicode.html"
     },
     {
       "id": "python-bisect",
-      "title": "Python bisect: sorted-array boundaries",
+      "title": "Python bisect: tìm ranh giới trong mảng đã sắp xếp",
       "url": "https://docs.python.org/3/library/bisect.html"
     },
     {
       "id": "python-heap",
-      "title": "Python heapq: heap operations and priority queues",
+      "title": "Python heapq: thao tác trên heap và hàng đợi ưu tiên",
       "url": "https://docs.python.org/3/library/heapq.html"
     },
     {
       "id": "mit-structures",
-      "title": "MIT 6.006: data structures and dynamic arrays",
+      "title": "MIT 6.006: cấu trúc dữ liệu và mảng động",
       "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec2/"
     },
     {
       "id": "mit-sorting",
-      "title": "MIT 6.006: sorting",
+      "title": "MIT 6.006: sắp xếp",
       "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec3/"
     },
     {
       "id": "mit-hashing",
-      "title": "MIT 6.006: hashing",
+      "title": "MIT 6.006: kỹ thuật băm",
       "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec4/"
     },
     {
       "id": "mit-trees",
-      "title": "MIT 6.006: binary trees",
+      "title": "MIT 6.006: cây nhị phân",
       "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec6/"
     },
     {
       "id": "mit-bfs",
-      "title": "MIT 6.006: breadth-first search",
+      "title": "MIT 6.006: tìm kiếm theo chiều rộng",
       "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec9/"
     },
     {
       "id": "mit-dijkstra",
-      "title": "MIT 6.006: Dijkstra’s algorithm",
+      "title": "MIT 6.006: thuật toán Dijkstra",
       "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec13/"
     },
     {
       "id": "mit-recursion",
-      "title": "MIT 6.006: recursive algorithms and DP foundations",
+      "title": "MIT 6.006: giải thuật đệ quy và nền tảng quy hoạch động",
       "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec15/"
     },
     {
       "id": "mit-dp",
-      "title": "MIT 6.006: dynamic programming subproblems",
+      "title": "MIT 6.006: bài toán con trong quy hoạch động",
       "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec16/"
     },
     {
       "id": "opendsa",
-      "title": "Virginia Tech OpenDSA: union–find and path compression",
+      "title": "Virginia Tech OpenDSA: union–find và nén đường đi",
       "url": "https://opendsa-server.cs.vt.edu/OpenDSA/Books/CS3/html/UnionFind.html"
     },
     {
       "id": "princeton-trie",
-      "title": "Princeton Algorithms: trie operations and complexity",
+      "title": "Princeton Algorithms: thao tác trên trie và độ phức tạp",
       "url": "https://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/TrieST.html"
     },
     {
       "id": "cornell-segment",
-      "title": "Cornell CS 5199: segment trees",
+      "title": "Cornell CS 5199: cây đoạn",
       "url": "https://www.cs.cornell.edu/courses/cs5199/2019fa/resource/SegmentTrees.pdf"
     }
   ],
-  "sourceNote": "Further reading from official Python documentation and university teaching materials. The study sequence, explanations and exercises here are an original learning guide; these links support and deepen the underlying concepts."
+  "sourceNote": "Đọc thêm từ tài liệu Python chính thức và học liệu đại học. Thứ tự học, cách giải thích và bài tập ở đây được biên soạn riêng thành một hướng dẫn học tập; các liên kết giúp bạn kiểm chứng và tìm hiểu sâu hơn về những khái niệm nền tảng."
 }

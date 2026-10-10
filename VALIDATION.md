@@ -68,3 +68,13 @@ GitHub Pages deployment is enabled in `.github/workflows/pages.yml`, triggered b
 - Astro check: zero errors, warnings or hints. Root-base and `/kien-thuc/` production builds and five-lesson DOM suites passed. Existing four lesson source pages retained byte-for-byte.
 - Exhaustive small-array lower-bound cases agree with Python `bisect_left`; DP example assertions, recurrence and negative-input behavior checked.
 - Local preview could not be reached from the supported cloud browser (connection refused). Live browser QA is performed after deployment; DOM checks alone are not visual or screen-reader certification.
+
+- Live Pages build/deploy for `e4f383ce40928c5255836f78c098821cee00ea98` succeeded. Supported cloud-browser checks at 1180 CSS px and browser-zoom narrow widths 472/393/295 CSS px found no horizontal article overflow; native disclosure and keyboard Enter toggle, live search and mobile menu focus/Escape passed. This is browser-zoom responsive QA, not a physical-device test.
+- Visual QA found duplicated module numbering; removed numeric prefixes from module headings so the ordered list owns numbering.
+
+
+## Vietnamese DSA revision (10 October 2026)
+
+- Replaced the English article at the same route with Vietnamese prose, article language, navigation title, diagrams and accessible descriptions. Kept technical identifiers and Python code intact.
+- Preserved all 11 stages, 35 concept modules, 22 exercises, 15 sources and two code examples. Removed duplicate module numbers; the ordered list owns numbering. The previous four page sources are unchanged.
+- Revision checks passed: Astro zero diagnostics, root and subpath builds, all five lesson DOM regressions, translated labels/language and numbering checks, source/code/anchor preservation, and Python example tests.
