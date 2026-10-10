@@ -207,3 +207,6 @@ assert.match(timeCss,/\.time-lesson\{[^}]*container-type:inline-size/);
 assert.match(timeCss,/@container\(min-width:740px\)\{\.time-keywords>div\{grid-template-columns:repeat\(3,minmax\(0,1fr\)\)\}\}/);
 assert.match(timeCss,/\.time-keywords>div\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
 console.log('PASS keyword grid rules: three columns when article content is at least 740px, two columns below; detail grid unchanged.');
+
+assert.doesNotMatch(await readFile('dist/tieng-anh/cum-tu-voi-time/index.html','utf8'),/Chạm vào cụm từ để xem cách dùng và ví dụ/);
+console.log('PASS concise keyword entry: redundant click-instruction sentence removed.');

@@ -104,3 +104,7 @@ The previous redesign used a route-specific body class plus sidebar, header, bre
 ## Three-column keyword summary (2026-10-10)
 
 Inspected the new screenshot: it shows the wide first-row keyword summary cards, not the full explanation cards. Changed only the keyword summary to three columns when the article content container is at least 740px wide; retained two columns below that width. Container sizing respects the existing sidebar, TOC and content-panel padding. Detailed explanations keep their previous responsive grid. The surrounding dark shell and content-only light panel remain unchanged. Added regression assertions for the container threshold and fallback.
+
+## Remove redundant interaction hint (2026-10-10)
+
+Inspected the supplied crop and removed its exact text, “Chạm vào cụm từ để xem cách dùng và ví dụ ↓”, from above the keyword tiles. Removed its unused styles and added a regression assertion. The tile anchors remain active; educational explanations and exercise help remain.
