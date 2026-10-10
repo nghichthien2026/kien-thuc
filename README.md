@@ -36,6 +36,7 @@ In a restricted environment with an unwritable home directory, set `ASTRO_TELEME
 - `/kien-thuc/`: Dev/Staging/Production, with three original SVG diagrams, a sequential CI/CD simulation and a practical example
 - `/kien-thuc/thiet-ke/auto-layout/`: a distinct lesson layout with a flexbox playground for direction, gap and padding
 - `/kien-thuc/lich-su/viet-nam/`: ten-period Vietnam history timeline, ten era pictograms, three original symbolic SVG illustrations, era navigation/reading position, expandable details, tap-to-reveal milestone recap and linked references
+- `/kien-thuc/lap-trinh/lo-trinh/`: eight-stage developer roadmap with original vector icons, core/specialization distinction, expandable practice tasks, connected-system diagram, staged capstone and official sources
 - Accent-insensitive title/topic/keyword search, responsive mobile menu, `/` search shortcut, Escape to close, skip link and reduced-motion styles
 - Self-contained visual assets and system fonts; no external font requests
 

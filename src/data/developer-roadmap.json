@@ -1,0 +1,256 @@
+{
+  "language": "vi",
+  "eyebrow": "BẢN ĐỒ HỌC TẬP • 8 CHẶNG",
+  "title": "Từ nền tảng web đến sản phẩm thực tế",
+  "subtitle": "Học có thứ tự. Xây có mục tiêu. Tiến bộ bằng sản phẩm bạn tự làm được.",
+  "intro": "Hoàn thành 5 chặng cốt lõi rồi chọn hướng chuyên sâu. Không cần học mọi framework. Đây là định hướng học tập, không phải lịch bắt buộc hay cam kết nghề nghiệp.",
+  "pathNote": "01 → 02 → 03 + 04 → 05, rồi chọn AI hoặc Cloud. Đào sâu kiến trúc khi có trải nghiệm vận hành.",
+  "principles": [
+    {
+      "title": "Nền tảng trước công cụ",
+      "text": "JavaScript trước framework, HTTP trước backend framework, SQL trước ORM."
+    },
+    {
+      "title": "Một lựa chọn là đủ",
+      "text": "Chọn một bộ công nghệ và hoàn thành dự án trước khi mở rộng."
+    },
+    {
+      "title": "Chất lượng từ đầu",
+      "text": "Git, kiểm thử, khả năng tiếp cận và bảo mật xuyên suốt."
+    }
+  ],
+  "phases": [
+    {
+      "id": "01",
+      "title": "Nền tảng Web",
+      "english": "Web Foundations",
+      "track": "core",
+      "tag": "BẮT ĐẦU TẠI ĐÂY",
+      "goal": "Hiểu trình duyệt và tự dựng một trang web dễ sử dụng.",
+      "topics": [
+        "HTML ngữ nghĩa",
+        "CSS • Flexbox • Grid",
+        "JavaScript • DOM • async",
+        "HTTP • Git • DevTools"
+      ],
+      "practice": "Làm trang thư viện sách với tìm kiếm và bộ lọc, dùng dữ liệu giả lập.",
+      "done": "Trang dùng được trên điện thoại, thao tác bằng bàn phím; bạn tự giải thích và sửa được mã.",
+      "note": "Kiểm tra lỗi, tương phản và nhãn biểu mẫu từ đầu.",
+      "sourceIds": [
+        "mdn-core",
+        "mdn-http"
+      ]
+    },
+    {
+      "id": "02",
+      "title": "Frontend hiện đại",
+      "english": "Modern Frontend",
+      "track": "core",
+      "tag": "GIAO DIỆN CÓ TƯƠNG TÁC",
+      "goal": "Tổ chức giao diện thành các thành phần có thể tái sử dụng.",
+      "topics": [
+        "TypeScript cơ bản",
+        "Một framework giao diện",
+        "Component • state • routing",
+        "Kiểm thử giao diện"
+      ],
+      "practice": "Nâng thư viện sách thành ứng dụng có danh sách yêu thích và gọi API thử nghiệm.",
+      "done": "Có trạng thái tải, rỗng, lỗi; luồng tìm kiếm và thêm yêu thích được kiểm thử.",
+      "note": "Chọn một framework; hiểu luồng dữ liệu trước khi thêm thư viện.",
+      "sourceIds": [
+        "mdn-core"
+      ]
+    },
+    {
+      "id": "03",
+      "title": "Kỹ thuật Backend",
+      "english": "Backend Engineering",
+      "track": "core",
+      "tag": "LOGIC & API",
+      "goal": "Xây API có quy tắc rõ ràng và kiểm soát truy cập.",
+      "topics": [
+        "Một ngôn ngữ và framework",
+        "HTTP • REST • validation",
+        "Xác thực • phân quyền",
+        "Test • log • xử lý lỗi"
+      ],
+      "practice": "Viết API quản lý đầu sách; học chặng 04 để lưu dữ liệu bền vững.",
+      "done": "Test chứng minh dữ liệu sai bị từ chối và người không có quyền không sửa được sách.",
+      "note": "Giữ secret ở server; dùng thư viện xác thực uy tín.",
+      "sourceIds": [
+        "mdn-http",
+        "owasp-rest"
+      ]
+    },
+    {
+      "id": "04",
+      "title": "Cơ sở dữ liệu",
+      "english": "Databases",
+      "track": "core",
+      "tag": "DỮ LIỆU ĐÁNG TIN CẬY",
+      "goal": "Mô hình hóa dữ liệu và truy vấn đúng trước khi tối ưu.",
+      "topics": [
+        "SQL • JOIN • tổng hợp",
+        "Khóa • ràng buộc • quan hệ",
+        "Transaction • index",
+        "Migration • backup"
+      ],
+      "practice": "Thiết kế bảng sách, tác giả và lượt mượn giả lập; viết SQL rồi mới thử ORM.",
+      "done": "Ngăn dữ liệu không hợp lệ, giải thích một truy vấn JOIN và khôi phục được bản sao lưu.",
+      "note": "Bắt đầu với PostgreSQL; thêm NoSQL khi cần.",
+      "sourceIds": [
+        "postgres"
+      ]
+    },
+    {
+      "id": "05",
+      "title": "Đưa sản phẩm lên mạng",
+      "english": "Deployment",
+      "track": "core",
+      "tag": "CỘT MỐC SẢN PHẨM",
+      "goal": "Biến dự án chạy trên máy thành ứng dụng có thể vận hành.",
+      "topics": [
+        "Build • cấu hình môi trường",
+        "Hosting • DNS • HTTPS",
+        "CI/CD cơ bản",
+        "Log • giám sát • rollback"
+      ],
+      "practice": "Triển khai thư viện sách demo, tự động chạy test trước khi phát hành.",
+      "done": "Có URL hoạt động, README cài đặt, cảnh báo lỗi và cách quay về bản ổn định.",
+      "note": "Ưu tiên hosting đơn giản; giới hạn chi phí, không lưu secret vào Git.",
+      "sourceIds": [
+        "github-actions",
+        "owasp-rest"
+      ]
+    },
+    {
+      "id": "06",
+      "title": "Kỹ thuật AI ứng dụng",
+      "english": "AI Engineering",
+      "track": "specialization",
+      "tag": "NHÁNH TÙY CHỌN",
+      "goal": "Tạo tính năng AI có thể đo chất lượng và kiểm soát rủi ro.",
+      "topics": [
+        "LLM API • đầu ra có cấu trúc",
+        "Embeddings • RAG",
+        "Evals • chi phí • độ trễ",
+        "Quyền riêng tư • prompt injection"
+      ],
+      "practice": "Làm trợ lý tra cứu tài liệu công khai, trả lời kèm nguồn và biết báo thiếu thông tin.",
+      "done": "Có bộ câu hỏi kiểm thử, đánh giá câu sai và thử tài liệu chứa chỉ dẫn độc hại.",
+      "note": "Dùng dữ liệu giả; giới hạn quyền công cụ, duyệt hành động quan trọng.",
+      "sourceIds": [
+        "openai-evals",
+        "openai-safety",
+        "openai-injection"
+      ]
+    },
+    {
+      "id": "07",
+      "title": "Cloud & DevOps",
+      "english": "Cloud & DevOps",
+      "track": "specialization",
+      "tag": "NHÁNH TÙY CHỌN",
+      "goal": "Triển khai lặp lại được và xử lý sự cố có phương pháp.",
+      "topics": [
+        "Linux • mạng • container",
+        "Một nền tảng cloud • IAM",
+        "Infrastructure as Code",
+        "Metrics • cảnh báo • phục hồi"
+      ],
+      "practice": "Đóng gói ứng dụng, tạo môi trường thử nghiệm và diễn tập khôi phục sau lỗi.",
+      "done": "Dựng lại môi trường từ cấu hình, đọc được log sự cố và kiểm soát ngân sách.",
+      "note": "Kubernetes là lựa chọn nâng cao, không bắt buộc cho ứng dụng nhỏ.",
+      "sourceIds": [
+        "github-actions",
+        "kubernetes"
+      ]
+    },
+    {
+      "id": "08",
+      "title": "Kiến trúc phần mềm",
+      "english": "Software Architecture",
+      "track": "specialization",
+      "tag": "ĐÀO SÂU QUA TRẢI NGHIỆM",
+      "goal": "Chọn thiết kế phù hợp yêu cầu, quy mô và khả năng của đội.",
+      "topics": [
+        "Ranh giới module • thiết kế API",
+        "Cache • queue • tính nhất quán",
+        "Độ tin cậy • đo hiệu năng",
+        "Tài liệu quyết định kiến trúc"
+      ],
+      "practice": "Thiết kế lại một điểm nghẽn của dự án, so sánh hai phương án bằng số đo.",
+      "done": "Giải thích đánh đổi về chi phí, độ phức tạp và vận hành trong một bản quyết định ngắn.",
+      "note": "Bắt đầu với monolith chia module; chỉ chọn microservices khi cần.",
+      "sourceIds": [
+        "azure-architecture"
+      ]
+    }
+  ],
+  "capstone": {
+    "title": "Một dự án xuyên suốt, nhiều lần nâng cấp",
+    "text": "Thư viện sách demo: trang tĩnh → giao diện tương tác → API + SQL → triển khai → chọn thêm AI hoặc vận hành cloud.",
+    "deliverables": [
+      "Demo chạy được",
+      "Mã nguồn có README",
+      "Test cho luồng quan trọng",
+      "Một bài ghi lại quyết định và bài học"
+    ],
+    "privacy": "Chỉ dùng dữ liệu giả lập hoặc tài liệu công khai phù hợp; không thu thập hồ sơ học sinh hay thông tin cá nhân thật."
+  },
+  "closing": "Hoàn thành, giải thích, rồi mở rộng. Đo tiến độ bằng sản phẩm thực hành, không phải số logo công nghệ.",
+  "sourcesTitle": "Đọc tiếp từ tài liệu chính thức",
+  "editorialNote": "Thứ tự học và tiêu chí hoàn thành là đề xuất biên soạn.",
+  "sources": [
+    {
+      "id": "mdn-core",
+      "title": "MDN · Nền tảng web",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core"
+    },
+    {
+      "id": "mdn-http",
+      "title": "MDN · HTTP",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
+    },
+    {
+      "id": "owasp-rest",
+      "title": "OWASP · Bảo mật REST API",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html"
+    },
+    {
+      "id": "postgres",
+      "title": "PostgreSQL · SQL & dữ liệu",
+      "url": "https://www.postgresql.org/docs/current/tutorial.html"
+    },
+    {
+      "id": "github-actions",
+      "title": "GitHub · CI/CD",
+      "url": "https://docs.github.com/en/actions/get-started/understand-github-actions"
+    },
+    {
+      "id": "openai-evals",
+      "title": "OpenAI · Đánh giá ứng dụng AI",
+      "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices"
+    },
+    {
+      "id": "openai-safety",
+      "title": "OpenAI · An toàn ứng dụng AI",
+      "url": "https://developers.openai.com/api/docs/guides/safety-best-practices"
+    },
+    {
+      "id": "openai-injection",
+      "title": "OpenAI · Prompt injection",
+      "url": "https://openai.com/safety/prompt-injections/"
+    },
+    {
+      "id": "kubernetes",
+      "title": "Kubernetes · Yêu cầu vận hành",
+      "url": "https://kubernetes.io/docs/setup/production-environment/"
+    },
+    {
+      "id": "azure-architecture",
+      "title": "Microsoft · Kiểu kiến trúc",
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/"
+    }
+  ]
+}

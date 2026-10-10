@@ -10,7 +10,7 @@ assert.equal((css.match(/left:20px;right:auto;top:14px/g)||[]).length,1,'One aut
 
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 async function load(path,mobile=false){const html=await readFile(`dist/${path}index.html`,'utf8');const dom=new JSDOM(html,{runScripts:'outside-only',url:`https://example.invalid${base}${path}`,pretendToBeVisual:true});const w=dom.window;w.matchMedia=()=>({matches:mobile,addEventListener(){}});w.IntersectionObserver=class{observe(){}};const original=w.setTimeout.bind(w);w.setTimeout=(fn)=>original(fn,1);for(const script of w.document.querySelectorAll('script')){assert.equal(script.hasAttribute('src'),false,'Update test to resolve external JS assets');w.eval(`(()=>{${script.textContent}\n})()`);}return dom;}
-const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/'];
+const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/'];
 for(const path of paths){
 const dom=await load(path);const d=dom.window.document;
 const header=d.querySelector(".mobile-header");assert.equal(header.firstElementChild.id,"menu-toggle");assert.equal(header.querySelector(".header-slogan").textContent,"Học - Học nữa - Học mãi");
@@ -79,3 +79,22 @@ assert.match(poster.querySelector('[data-era="1"] .history-date').textContent,/1
 assert.match(poster.querySelector('[data-era="9"] .history-date').textContent,/1976/);
 posterDom.window.close();
 console.log('PASS editorial poster: 10 separate illustrations, qualified ancient dates, all ranges, summaries, milestones and takeaways preserved.');
+
+// Developer roadmap is semantic, linked and fully readable without JavaScript.
+const roadmapHtml=await readFile('dist/lap-trinh/lo-trinh/index.html','utf8');
+const roadmapDom=new JSDOM(roadmapHtml);const roadmap=roadmapDom.window.document;
+assert.equal(roadmap.querySelectorAll('.roadmap-phase').length,8);
+assert.equal(roadmap.querySelectorAll('.roadmap-phase details').length,8);
+assert.equal(roadmap.querySelectorAll('.roadmap-phase .roadmap-art').length,8);
+assert.equal(roadmap.querySelectorAll('.roadmap-project').length,4);
+assert.equal(roadmap.querySelectorAll('.roadmap-request li').length,3);
+assert.equal(roadmap.querySelectorAll('.roadmap-support>div').length,3);
+assert.equal(roadmap.querySelectorAll('.roadmap-references a').length,10);
+const roadmapIds=[...roadmap.querySelectorAll('[id]')].map(e=>e.id);assert.equal(roadmapIds.length,new Set(roadmapIds).size);
+for(const detail of roadmap.querySelectorAll('.roadmap-phase details')){assert.equal(detail.open,false);detail.querySelector('summary').click();assert.equal(detail.open,true);detail.querySelector('summary').click();assert.equal(detail.open,false);}
+assert.match(roadmap.body.textContent,/Kubernetes.*không bắt buộc/);
+assert.match(roadmap.body.textContent,/SQL trước ORM/);
+assert.equal(roadmap.querySelectorAll('img').length,0,'Roadmap visuals are original vectors, not a raster poster');
+roadmapDom.window.close();
+const roadmapLive=await load('lap-trinh/lo-trinh/');const rs=roadmapLive.window.document.querySelector('#lesson-search');rs.value='lap trinh';rs.dispatchEvent(new roadmapLive.window.Event('input'));assert.equal(roadmapLive.window.document.querySelectorAll('[data-search]:not([hidden])').length,1);roadmapLive.window.close();
+console.log('PASS developer roadmap: 8 phases, native details, 4 projects, layered stack, 10 sources, unique IDs, no-JS content, search.');

@@ -38,3 +38,14 @@ GitHub Pages deployment is enabled in `.github/workflows/pages.yml`, triggered b
 - Full original historical data and sources retained, including uncertain ancient chronology and the 1975/1976 distinction; engravings are explicitly labeled conceptual illustrations
 - Navigation shell, mobile header/slogan, search focus behavior, other lessons and historical JSON untouched
 - Local Playwright launch remains blocked by the runtime's Chromium socket restriction; cloud-browser visual QA is performed after the exact Pages deployment and reported separately
+
+## Developer roadmap (2026-10-10)
+
+- Added fourth lesson at `/lap-trinh/lo-trinh/` and derived Lập trình navigation group
+- Eight phase cards, original SVG technology illustrations, request-flow and supporting-service diagrams, four project milestones, ten official documentation references
+- Core stages 01–05 distinguished from optional specialization; no time-to-mastery promises
+- Scope-local CSS uses container queries: four cards when article width is at least 900px, two at intermediate widths, one on narrow phones
+- All text and native disclosure controls available without JavaScript
+- Astro check: zero errors/warnings/hints. Root and `/kien-thuc/` production builds and DOM suites pass
+- Existing history source and all unrelated lesson styles/markup preserved; tests retain mobile fixed-menu and no-autofocus regression assertions
+- Local Playwright launch remains blocked by Chromium socket restrictions. Live cloud-browser verification follows deployment and is reported separately
