@@ -1,0 +1,208 @@
+---
+/** Original symbolic engravings, composed for this lesson, not archival reconstructions. */
+interface Props { index: number; }
+const { index = 0 } = Astro.props;
+const scene = Math.max(0, Math.min(9, Math.trunc(index)));
+const id = `history-engraving-${scene}`;
+const titles = [
+  'Trống đồng và mùa lúa', 'Tre xanh và dòng ký ức', 'Thuyền trên sông và những hàng cọc',
+  'Mái học và trang sách', 'Những trung tâm quyền lực và cánh buồm giao thương',
+  'Thành lũy và một triều đại mới', 'Đường sắt, máy in và biến chuyển thuộc địa',
+  'Lời tuyên bố và con đường kháng chiến', 'Nhịp cầu chia cắt và khát vọng hòa bình',
+  'Nhịp cầu, đồng lúa và đô thị',
+];
+const meanings = [
+  'Trống đồng cách điệu, bông lúa và nhà sàn gợi nền tảng văn hóa Đông Sơn và đời sống nông nghiệp.',
+  'Những thân tre, cuộn thư và đường núi tượng trưng cho sức sống cộng đồng, giao lưu văn hóa và nỗ lực tự chủ.',
+  'Cánh buồm, mặt nước và cọc gỗ gợi ký ức Bạch Đằng cùng quá trình củng cố nền độc lập.',
+  'Mái cổng học, sách mở và bút lông gợi giáo dục, thiết chế nhà nước và văn hóa Đại Việt.',
+  'Hai cụm kiến trúc bên dòng nước và thuyền buồm gợi nhiều trung tâm quyền lực, chia cắt và giao thương.',
+  'Cổng thành, mái điện và cờ không mang huy hiệu gợi sự thay đổi quyền lực từ Tây Sơn tới triều Nguyễn.',
+  'Đầu máy hơi nước, đường ray và máy in gợi biến chuyển kinh tế, xã hội và sự lan truyền tư tưởng trong thời thuộc địa.',
+  'Trang giấy không chép văn kiện cụ thể, bút và lối đi qua núi gợi tuyên bố độc lập cùng những năm kháng chiến.',
+  'Hai đầu cầu, một dòng sông và chim mang cành lá gợi chia cắt, chiến tranh và khát vọng hòa bình.',
+  'Cầu dây văng, ruộng lúa và đường chân trời đô thị gợi tái thiết, Đổi mới và hội nhập.',
+];
+const paper = 'var(--engraving-paper, #f4ead5)';
+const hatch = `url(#${id}-hatch)`;
+const dark = `url(#${id}-cross)`;
+const p = (d: string, fill = 'none', width = 1.35, extra = '') => `<path d="${d}" fill="${fill}" stroke-width="${width}" ${extra}/>`;
+const l = (x1: number, y1: number, x2: number, y2: number, width = .75, extra = '') => `<path d="M${x1} ${y1}L${x2} ${y2}" fill="none" stroke-width="${width}" ${extra}/>`;
+const circle = (x: number, y: number, r: number, fill='none', width=.8) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${fill}" stroke-width="${width}"/>`;
+const ellipse = (x: number,y: number,rx: number,ry: number,fill='none',width=.8,extra='') => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${fill}" stroke-width="${width}" ${extra}/>`;
+const rect = (x:number,y:number,w:number,h:number,fill='none',width=.8) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${fill}" stroke-width="${width}"/>`;
+const group = (content:string, transform='',extra='') => `<g${transform ? ` transform="${transform}"` : ''} ${extra}>${content}</g>`;
+const seq = (n:number, f:(i:number)=>string) => Array.from({length:n},(_,i)=>f(i)).join('');
+const ground = (y=307) => p(`M24 ${y}Q115 ${y-4} 206 ${y+1}T448 ${y-2}`, 'none', .8) + seq(10,i=>l(39+i*39,y+5+(i%3)*4,64+i*38,y+5+(i%3)*4,.55));
+const clouds = () => group(p('M49 78h70m-56 5h29M313 49h75m-54 6h31M359 88h66m-44 5h24', 'none',.55),'','opacity=".45"');
+const mountains = (y=194) => group(p(`M27 ${y}l28-13 24 5 46-35 28 17 40-44 53 46 23-10 43 22 42-14 29 10 33-12 41 28`, 'none',.9)+p(`M98 ${y-25}l26 13m27-23 23 18m18-44 15 45 12-12 31 28M324 ${y-22}l15 20m24-24 26 18`,'none',.55),'','opacity=".35"');
+const water = (y=236, rows=10) => group(seq(rows,r=>seq(4,k=>p(`M${24+k*112+(r%2)*11} ${y+r*8}q${12+r%4} -3 ${27+r%3} 0t${34-r%3} 0`,'none',.55))),'','opacity=".55"');
+const roof = (x:number,y:number,w:number) => group(
+  p(`M0 26Q${w*.16} 29 ${w*.5} 0Q${w*.84} 29 ${w} 26L${w-13} 38H13Z`,paper,1.6)+
+  p(`M0 26Q${w*.2} 37 ${w*.5} 10Q${w*.8} 37 ${w} 26`,'none',.65)+
+  seq(17,i=>{const xx=14+i*(w-28)/16;const yy=31-Math.sin((i/16)*Math.PI)*15;return l(xx,yy,xx+(xx-w/2)*.09,36,.55)})+
+  l(w/2,0,w/2,-6,1.3)+p(`M${w/2-8} -3q8 6 16 0`,'none',1.1),`translate(${x} ${y})`);
+const rice = (x:number,y:number,scale=1,angle=0) => group(
+  p('M0 112Q-5 50 17 0M0 94Q-28 61-34 41M0 108Q26 75 31 61','none',1.2)+
+  p('M-1 94Q-38 69-34 41Q-12 53-1 94M0 108Q35 84 31 61Q15 77 0 108',hatch,.7)+
+  seq(7,i=>group(ellipse(-5,0,3,7,paper,.7,'transform="rotate(-35)"')+ellipse(5,6,3,7,hatch,.6,'transform="rotate(32 5 6)"'),`translate(${15-i*1.7} ${5+i*9})`)),`translate(${x} ${y}) rotate(${angle}) scale(${scale})`);
+const boat = (x:number,y:number,s=1) => group(
+  p('M0 132Q31 152 120 144l39-20-18 31q-77 28-123 0Z',dark,1.5)+p('M15 142q70 22 130-2M23 151q69 17 111-2','none',.7)+
+  l(77,6,77,145,2)+l(124,56,124,143,1.4)+
+  p('M70 15Q20 48 14 125l56 6Z',paper,1.3)+p('M84 19q39 40 34 107l-34 4Z',hatch,1.2)+
+  seq(6,i=>p(`M${56-i*6} ${35+i*15}Q${47-i*4} ${36+i*15} 69 ${38+i*15}`,'none',.7))+
+  seq(5,i=>l(85,43+i*16,102+i*3,46+i*16,.6))+
+  p('M130 65q25 23 29 59l-29 3Z',paper,.9)+seq(3,i=>l(132,82+i*12,143+i*5,83+i*12,.55))+
+  l(77,9,8,139,.55)+l(80,9,150,137,.55)+p('M77 7l24 5-12 8-12-2Z',dark,.7)+
+  seq(4,i=>l(32+i*23,146,17+i*23,175,1)),`translate(${x} ${y}) scale(${s})`);
+const book = (x:number,y:number,s=1) => group(
+  p('M0 24q52-22 111 6 50-28 108-7v88q-55-14-108 8Q55 98 0 111Z',hatch,1.5)+
+  p('M4 16q48-14 107 12 51-29 104-17v89q-55-11-104 13Q56 90 4 103Z',paper,1.4)+
+  p('M111 28v85M9 107q53-11 102 10 51-24 100-11','none',1)+
+  seq(9,i=>p(`M17 ${31+i*7}q41-5 78 11M126 ${41+i*7}q40-22 75-18`,'none',.55))+
+  p('M100 25l1 82 10 6M118 24l-1 80','none',.7),`translate(${x} ${y}) scale(${s})`);
+const stem = (x:number,y:number,h:number,angle=0) => group(
+  p(`M0 0q-7 ${h/2} 0 ${h}h8Q1 ${h/2} 8 0Z`,hatch,1)+seq(6,i=>p(`M-1 ${i*h/6+6}q5 3 11 0`,'none',1.4))+
+  seq(4,i=>group(p('M3 0q-16-11-33-9M5 0q11-25 27-29','none',.8)+p('M-8-6q-18-20-28-13 8 15 28 13M-19-8q-12 3-22-2 12-7 22 2M17-18q5-22 15-22 1 14-15 22M23-23q17-14 25-8-9 12-25 8','currentColor',.4),`translate(3 ${20+i*h/5})`)),`translate(${x} ${y}) rotate(${angle})`);
+
+const scenes:string[] = [];
+// 01 — drumhead: concentric engraved ornament, not a tracing of an artifact.
+scenes[0] = clouds()+mountains(222)+
+  group(p('M51 228v40m77-42v48M40 224l53-42 61 41Z',hatch,.8)+p('M54 225h79v30H54Z',paper,.8)+seq(8,i=>l(59+i*9,225,59+i*9,252,.5))+l(41,268,152,271,.6),'','opacity=".6"')+
+  group(ellipse(0,13,119,114,hatch,1.5)+ellipse(0,0,124,116,paper,2)+
+    [108,102,85,80,58,52,30].map(r=>ellipse(0,0,r,r*.94,'none',r===85?1.5:.7)).join('')+
+    seq(56,i=>group(l(0,-103,0,-107,.8),`rotate(${i*360/56})`))+
+    seq(28,i=>group(p('M-5-94l5-6 5 6-5 5Z','none',.6),`rotate(${i*360/28})`))+
+    seq(12,i=>group(p('M-10-66l12 4 11-10-4 11-7 5-8-5-9 1Z',hatch,.9)+l(2,-62,-7,-73,.7),`rotate(${i*30})`))+
+    seq(12,i=>group(p('M-5-13L0-45 5-13Z',dark,.7),`rotate(${i*30})`))+circle(0,0,17,hatch,.9)+circle(0,0,11,'none',.7)+circle(0,0,3,'currentColor'),
+  'translate(217 182) rotate(-12)')+
+  rice(356,168,1.1,14)+rice(394,178,.9,28)+rice(332,187,.93,-7)+ground(317);
+// 02 — bamboo and an unfurling memory scroll.
+scenes[1] = clouds()+mountains(223)+stem(74,35,251,-7)+stem(109,54,218,4)+stem(45,99,184,11)+
+  group(p('M143 130q18-23 44-6h191q-22 11-20 32v112q-1 21-26 22H133q21-5 21-27V145q-2-15-11-15Z',paper,1.6)+
+    p('M187 124q-9 12-7 28v116q0 16-18 22M359 152H180M336 289q25 0 26-22h-17q1 12-9 12H151','none',1)+
+    p('M142 130q21-5 18 15-2 13-17 10-10-4-8-13 4-7 10-1','none',1)+
+    seq(7,i=>p(`M${199+i*20} 171v${67-i%3*8}m-4-${41-i%3*8}h9m-8 11 6-3m-5 15h7m-5 10 5-2`,'none',.8))+
+    p('M193 258h127M204 265h91','none',.6))+
+  p('M207 307q68-18 159 0M228 313h89','none',.65)+rice(393,199,.72,18)+ground(319);
+// 03 — broad sail and a river's diagonal palisades.
+scenes[2] = clouds()+circle(346,77,31,hatch,.5)+mountains(192)+water(233,12)+boat(121,38,1.45)+
+  seq(7,i=>{const x=49+i*60;const y=291+(i%2)*19;return group(p(`M${x} ${y}l-9-59 3-23 11 18 7 60Z`,hatch,1.3)+l(x-3,y-10,x-10,y-62,.7)+p(`M${x-19} ${y+4}q21 5 39-2M${x-13} ${y+9}h23`,'none',.7))});
+// 04 — a scholar's courtyard above the open book.
+scenes[3] = clouds()+
+  group(p('M65 252v-70h349v70',hatch,1)+p('M81 249v-51h317v51',paper,.8)+seq(16,i=>l(88+i*20,198,88+i*20,247,.45))+
+    p('M162 241V126h155v115',paper,1.3)+rect(177,152,28,85,hatch,.9)+rect(275,152,28,85,hatch,.9)+
+    p('M224 239v-63q15-21 31 0v63Z',dark,1)+rect(181,123,116,27,hatch,.8)+rect(204,129,72,14,paper,.7)+
+    seq(4,i=>l(215+i*16,132,215+i*16,140,.9)))+
+  roof(143,80,193)+roof(57,150,116)+roof(309,150,113)+
+  seq(3,i=>p(`M${141-i*12} ${244+i*7}H${339+i*12}`,'none',1))+
+  book(74,238,1.26)+p('M370 294l33-115 7-21 1 23-29 116Z',hatch,1)+
+  p('M403 179q8-29 8-40 12 22 0 43Z','currentColor',.8)+ellipse(380,303,22,8,paper,1)+rect(363,284,35,18,hatch,1)+ellipse(380,284,17,6,paper,1)+ground(328);
+// 05 — separate architectural centers, the river as a trading route.
+scenes[4] = clouds()+circle(239,69,29,hatch,.55)+mountains(177)+
+  group(rect(38,159,100,85,paper,1)+rect(57,181,25,63,hatch,.8)+rect(97,181,25,63,hatch,.8)+roof(19,125,140)+roof(33,91,113)+
+    p('M28 245h133l14 13H14Z',hatch,.8))+
+  group(rect(316,162,104,82,paper,1)+rect(331,183,28,61,hatch,.8)+rect(380,183,27,61,hatch,.8)+roof(299,128,141)+roof(317,94,108)+
+    p('M306 245h130l18 13H293Z',hatch,.8))+
+  p('M178 177q24 38 0 70t30 75M285 179q-30 40-4 73t-15 70','none',.7)+
+  water(270,7)+boat(168,119,1.1)+
+  p('M43 284l45-13 45 14-22 8H64Z',hatch,1)+l(87,273,94,237,1)+p('M94 239l23 28H90Z',paper,.8)+
+  seq(5,i=>l(309+i*21,286+i%2*10,323+i*21,286+i%2*10,.6));
+// 06 — fortified masonry, layered roofs and an unmarked ceremonial banner.
+scenes[5] = clouds()+mountains(219)+
+  p('M24 262v-59h102v-22h229v22h100v59Z',hatch,1.3)+
+  seq(6,r=>seq(11,c=>l(29+c*39+(r%2)*15,216+r*8,52+c*39+(r%2)*15,216+r*8,.4)))+
+  p('M144 264V163h193v101Z',paper,1.5)+
+  p('M162 264v-47q14-24 28 0v47M219 264v-57q21-34 42 0v57M290 264v-47q14-24 28 0v47',dark,1.2)+
+  rect(163,139,155,41,paper,1)+seq(10,i=>rect(169+i*15,148,7,23,hatch,.5))+
+  roof(134,105,212)+rect(183,92,115,26,hatch,1)+roof(166,63,146)+
+  l(241,60,241,17,1.3)+p('M242 18q21-12 45 0l-9 11q-19-12-36-1Z',hatch,.9)+
+  seq(5,i=>p(`M${134-i*13} ${265+i*9}H${345+i*13}`,'none',1))+
+  p('M28 290q47-15 90 0M362 293q46-18 88 0','none',.65)+
+  group(p('M0 0q-18-10-15-25Q-1-22 0 0q-3-23 13-31Q20-13 0 0q20-14 28-5Q19 5 0 0',hatch,.7)+l(0,0,0,21,.8),'translate(62 306)')+ground(322);
+// 07 — steam, rails and the hand press: contrasting technologies and voices.
+scenes[6] = clouds()+
+  group(p('M26 173v-41h20v-17h23v17h23v41m10 0v-54l33-21 34 21v54m7 0v-69h16v-20h13v20h19v69','none',.7)+
+    seq(12,i=>rect(33+i*17,144-i%3*8,6,12,'none',.5)),'','opacity=".45"')+
+  p('M38 321l91-110M83 331l82-120M170 216l54 112M191 218l84 105','none',1.4)+
+  seq(10,i=>l(117-i*8,225+i*10,200+i*6,225+i*10,.9))+
+  group(p('M69 231v-46h15v-19h92v19h35v44Z',hatch,1.5)+rect(131,149,56,69,paper,1.3)+rect(139,155,34,31,dark,1)+
+    p('M126 147h69l-7-8h-57Z',dark,1)+rect(83,161,13,28,hatch,1)+p('M78 159h24l-4-9H81Z',dark,1)+
+    p('M70 227h143l8 17H56Z',dark,1)+circle(86,232,16,paper,1.5)+circle(149,232,21,paper,1.5)+circle(192,233,13,paper,1.5)+
+    [86,149,192].map((x,i)=>seq(8,j=>l(x,232,x+Math.cos(j*Math.PI/4)*(i===1?17:10),232+Math.sin(j*Math.PI/4)*(i===1?17:10),.7))).join('')+
+    l(84,232,192,233,2)+seq(7,i=>l(103+i*4,180,103+i*4,210,.55))+
+    p('M90 144q-22-5-12-19-28 3-24-15-28 5-25-15 20-18 34 1 24-9 26 13 20 1 18 15 16 13-17 20',hatch,.65))+
+  group(rect(273,132,15,160,hatch,1.2)+rect(403,132,15,160,hatch,1.2)+rect(264,122,163,15,dark,1)+
+    rect(294,173,98,11,hatch,1)+rect(280,230,131,17,hatch,1.1)+rect(302,185,83,42,paper,1)+
+    p('M315 223h60v-23h-60Z',dark,.7)+rect(338,138,14,39,hatch,1)+seq(7,i=>l(337,141+i*5,353,136+i*5,.6))+
+    l(304,151,384,151,1.6)+circle(300,151,4,paper,1)+circle(389,151,4,paper,1)+
+    p('M266 293h32m96 0h33M286 246l16 42m98-42-17 42','none',1.6)+
+    p('M294 250l87 12-5 61-95-14Z',paper,1.1)+p('M301 261l69 10m-72-4 70 10M296 280l29 4-2 13-28-4Z',hatch,.6)+
+    seq(4,i=>l(332,285+i*5,364,289+i*5,.5)))+ground(332);
+// 08 — document and mountain trail, avoiding a fabricated historic scene.
+scenes[7] = clouds()+circle(325,74,32,hatch,.6)+
+  mountains(187)+p('M22 233l51-24 32 12 64-69 32 25 54-62 48 43 36-18 37 34 54-17 28 42','none',1)+
+  p('M456 288q-50-65-119-81t-79-40q-17-10-21 4 2 21 48 36t58 84','none',1.3)+
+  seq(4,i=>{const x=280+i*26,y=210+i*10;return circle(x,y-15,3.5,'currentColor',.5)+p(`M${x-3} ${y-10}l-4 14m8-14 4 12m-7-11v18l-7 12m7-12 9 9`,'none',1.5)+rect(x-7,y-10,6,10,hatch,.5)})+
+  group(p('M91 79l151 16-14 211-163-18Z',hatch,1.3)+p('M76 69l166 17-23 210-165-19Z',paper,1.6)+
+    p('M89 95l124 12m-122-5 117 12M85 128l120 12','none',1.2)+
+    seq(14,i=>p(`M${84-i*.8} ${146+i*8}l${111-i%4*8} ${11-i%4}`,'none',.55))+
+    circle(107,249,16,hatch,.8)+circle(107,249,12,'none',.6)+p('M128 258q8-12 9-2t10-3q3 6 9 0t12 1','none',1))+
+  p('M188 324l94-97m-82 91 91-89q25-43 59-55-12 37-59 55m-1 0 31-48-3 26 25-27M217 294l72-64','none',1.2)+
+  ellipse(350,299,23,8,paper,1)+rect(332,280,36,20,hatch,1)+ellipse(350,279,18,6,paper,1)+ground(328);
+// 09 — a river and two bridge ends, with a deliberately symbolic peace bird.
+scenes[8] = clouds()+mountains(209)+water(252,10)+
+  p('M22 245l163-33 2 17L23 265Zm286-18 149 20v18l-150-22Z',hatch,1.4)+
+  p('M20 219l165-29v17L20 238Zm289-9 149 20v15l-149-19Z',paper,1.3)+
+  p('M27 220l35 27 5-33 35 25 6-34 35 26 8-32 32 24M315 211l28 33 10-27 30 32 8-26 36 30 9-24','none',.9)+
+  p('M72 255v51h15v-54m73-16v53h17v-58M327 246v42h17v-39m64 11v46h15v-45',hatch,1)+
+  p('M146 94q40-35 74 8 16-45 70-61-21 43-58 65 45-17 86 3-34 17-72 6l-16 15q-13 13-38 4l-30 9 12-26-33-13Z',paper,1.4)+
+  p('M163 96q34-7 59 18m-37-16 20 22m28-20 43-40m-34 35 30-18M244 113q29-3 53-3','none',.6)+
+  circle(194,113,1.8,'currentColor',.4)+p('M178 117l-17 5 15 5','none',.8)+
+  p('M162 122q-19 22-27 42m11-17q-16-15-27-9 11 13 27 9m-8 14q-16-4-22 8 15 1 22-8m11-20q-6-17 4-26 9 12-4 26','none',1)+
+  p('M193 279q32-13 68 1m-57 7h48M186 302h20m68-4h33','none',.7);
+// 10 — modern infrastructure layered with the living agricultural landscape.
+scenes[9] = clouds()+circle(102,74,34,hatch,.6)+
+  group(p('M282 209v-75h24v75m6 0V98h29v111m7 0v-92h17v92m7 0v-121h28v121m6 0v-63h21v63m7 0v-98h22v98',hatch,.9)+
+    seq(8,r=>seq(6,c=>rect(288+c*28,145+r*7,3,3,paper,.4)))+l(386,88,386,62,1),'','opacity=".68"')+
+  p('M26 226q191-24 429-12v14q-239-9-429 12Z',hatch,1.2)+
+  p('M141 257l12-179h9l16 176h-10L157 109l-6 148Z',paper,1.6)+
+  seq(9,i=>l(158,85,31+i*13,224-i*.9,.7))+seq(14,i=>l(158,85,178+i*18,213+i*.13,.65))+
+  p('M57 265q152-42 310 7t88 46M24 283q150-36 265 1t163 44M24 303q135-29 227 9t190 22M33 326q100-24 189 6','none',1)+
+  seq(5,i=>p(`M${80+i*32} ${275-i*3}q-25 21-27 45`,'none',.5))+
+  rice(370,221,.91,13)+rice(411,244,.69,32)+rice(336,252,.64,-8)+
+  p('M24 248h52m-37 7h27M216 243h61m-46 7h31','none',.55);
+---
+
+<svg
+  class="history-engraving"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 480 360"
+  role="img"
+  aria-labelledby={`${id}-title ${id}-description`}
+  focusable="false"
+>
+  <title id={`${id}-title`}>{titles[scene]}</title>
+  <desc id={`${id}-description`}>{meanings[scene]} Minh họa biểu tượng nguyên bản, không phải ảnh tư liệu, bản đồ hay phục dựng chính xác hiện vật, công trình hoặc sự kiện lịch sử.</desc>
+  <defs>
+    <pattern id={`${id}-hatch`} width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(24)">
+      <rect width="5" height="5" fill={paper} />
+      <path d="M0 0V5" stroke="currentColor" stroke-width=".55" opacity=".6" />
+    </pattern>
+    <pattern id={`${id}-cross`} width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(24)">
+      <rect width="4" height="4" fill={paper} />
+      <path d="M0 0V4M0 0H4" stroke="currentColor" stroke-width=".65" opacity=".85" />
+    </pattern>
+  </defs>
+  <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" set:html={scenes[scene]} />
+</svg>
+
+<style>
+  .history-engraving {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    color: var(--engraving-ink, #713c31);
+  }
+</style>

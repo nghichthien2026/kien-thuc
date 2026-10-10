@@ -30,3 +30,11 @@ DOM tests exercise logic only. Run the included browser suite and inspect deskto
 ## Release configuration
 
 GitHub Pages deployment is enabled in `.github/workflows/pages.yml`, triggered by pushes to `main` or manual dispatch. It builds and checks the selected `/kien-thuc/` output before publication. The public repository and Pages address are configured in the README. Successful local checks do not prove that files have been uploaded or that the remote deployment has succeeded; check the exact GitHub Actions run and live website separately.
+
+## Editorial history poster redesign (2026-10-10)
+
+- History article only: off-white paper, oxblood timeline spine, large gold dates, alternating torn-paper text panels and ten original conceptual SVG engravings
+- Mobile layout follows the article's available width via container queries; narrow views move the spine left rather than scaling down the desktop poster
+- Full original historical data and sources retained, including uncertain ancient chronology and the 1975/1976 distinction; engravings are explicitly labeled conceptual illustrations
+- Navigation shell, mobile header/slogan, search focus behavior, other lessons and historical JSON untouched
+- Local Playwright launch remains blocked by the runtime's Chromium socket restriction; cloud-browser visual QA is performed after the exact Pages deployment and reported separately

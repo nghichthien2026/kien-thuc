@@ -37,7 +37,7 @@ for(const reduced of [false,true]){
  w.IntersectionObserver=class{constructor(callback){this.callback=callback;observers.push(this);}observe(){}};
  for(const script of d.querySelectorAll('script'))w.eval(`(()=>{${script.textContent}\n})()`);
  assert.equal(d.querySelectorAll('.history-card-glyph svg[aria-hidden="true"]').length,10);
- assert.equal(d.querySelectorAll('.history-scene svg[role="img"]').length,3);
+ assert.equal(d.querySelectorAll('.history-scene svg[role="img"]').length,10);
  assert.equal(d.querySelectorAll('[data-era-link]').length,10);
  for(const svg of d.querySelectorAll('.history-scene svg')){assert.ok(svg.querySelector('title')?.textContent);assert.ok(svg.querySelector('desc')?.textContent);}
  const ids=[...d.querySelectorAll('[id]')].map(el=>el.id);assert.equal(ids.length,new Set(ids).size,'All IDs unique');
@@ -57,4 +57,25 @@ for(const reduced of [false,true]){
 }
 const noJs=new JSDOM(historyHtml);assert.equal(noJs.window.document.querySelector('.history-reading').hidden,true);assert.equal(noJs.window.document.querySelectorAll('.history-period').length,10);assert.equal(noJs.window.document.querySelectorAll('.history-memory').length,historyData.quickTimeline.length);noJs.window.close();
 assert.match(await readFile('src/styles/history.css','utf8'),/@media\(prefers-reduced-motion:reduce\)/);
-console.log('PASS history visual DOM: 10 icons, 3 accessible diagrams, unique IDs, anchors, forward/back reading position, reduced-motion/no-JS fallbacks, intact source paragraphs, repeatable native recap controls.');
+console.log('PASS history visual DOM: 10 icons, 10 accessible engravings, unique IDs, anchors, forward/back reading position, reduced-motion/no-JS fallbacks, intact source paragraphs, repeatable native recap controls.');
+
+// Editorial poster preserves source meaning and works without script execution.
+const posterDom=new JSDOM(historyHtml);
+const poster=posterDom.window.document;
+assert.equal(poster.querySelectorAll('.history-poster').length,1);
+assert.equal(poster.querySelectorAll('.history-period > .history-date').length,10);
+assert.equal(poster.querySelectorAll('.history-period > .history-scene').length,10);
+assert.equal(poster.querySelectorAll('.history-key-event').length,10);
+for(const [index,period] of historyData.periods.entries()){
+ const row=poster.querySelector(`[data-era="${index}"]`);
+ assert.equal(row.querySelector('.history-range').textContent,period.range);
+ assert.equal(row.querySelector('.history-summary').textContent,period.summary);
+ assert.equal(row.querySelector('h3').textContent,period.title);
+ for(const item of period.milestones){assert.ok(row.textContent.includes(item.date));assert.ok(row.textContent.includes(item.event));}
+ assert.ok(row.textContent.includes(period.takeaway));
+}
+assert.match(poster.querySelector('[data-era="0"] .history-date').textContent,/thiên niên kỷ TCN/);
+assert.match(poster.querySelector('[data-era="1"] .history-date').textContent,/179\/111TCN/);
+assert.match(poster.querySelector('[data-era="9"] .history-date').textContent,/1976/);
+posterDom.window.close();
+console.log('PASS editorial poster: 10 separate illustrations, qualified ancient dates, all ranges, summaries, milestones and takeaways preserved.');
