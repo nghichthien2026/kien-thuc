@@ -11,7 +11,7 @@ assert.equal((css.match(/left:20px;right:auto;top:14px/g)||[]).length,1,'One aut
 assert.match(css,/\.sidebar\{[^}]*overflow-y:auto/,'Desktop sidebar remains scrollable in short viewports');
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 async function load(path,mobile=false){const html=await readFile(`dist/${path}index.html`,'utf8');const dom=new JSDOM(html,{runScripts:'outside-only',url:`https://example.invalid${base}${path}`,pretendToBeVisual:true});const w=dom.window;w.matchMedia=()=>({matches:mobile,addEventListener(){}});w.IntersectionObserver=class{observe(){}};const original=w.setTimeout.bind(w);w.setTimeout=(fn)=>original(fn,1);for(const script of w.document.querySelectorAll('script')){assert.equal(script.hasAttribute('src'),false,'Update test to resolve external JS assets');w.eval(`(()=>{${script.textContent}\n})()`);}return dom;}
-const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/', 'tieng-anh/cum-tu-voi-time/', 'lap-trinh/cau-truc-backend/'];
+const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/', 'tieng-anh/cum-tu-voi-time/', 'lap-trinh/cau-truc-backend/', 'lap-trinh/sql-co-ban/'];
 for(const path of paths){
 const dom=await load(path);const d=dom.window.document;
 assert.equal(d.querySelectorAll('h1.lesson-title').length,1,'Each lesson has one responsive hero title');
@@ -117,7 +117,7 @@ assert.match(roadmap.body.textContent,/Kubernetes.*không bắt buộc/);
 assert.match(roadmap.body.textContent,/SQL/);assert.match(roadmap.body.textContent,/ORM/);
 assert.equal(roadmap.querySelectorAll('img').length,0,'Roadmap visuals are original vectors, not a raster poster');
 roadmapDom.window.close();
-const roadmapLive=await load('lap-trinh/lo-trinh/');const rs=roadmapLive.window.document.querySelector('#lesson-search');rs.value='lap trinh';rs.dispatchEvent(new roadmapLive.window.Event('input'));assert.equal(roadmapLive.window.document.querySelectorAll('[data-search]:not([hidden])').length,3);roadmapLive.window.close();
+const roadmapLive=await load('lap-trinh/lo-trinh/');const rs=roadmapLive.window.document.querySelector('#lesson-search');rs.value='lap trinh';rs.dispatchEvent(new roadmapLive.window.Event('input'));assert.equal(roadmapLive.window.document.querySelectorAll('[data-search]:not([hidden])').length,4);roadmapLive.window.close();
 console.log('PASS developer roadmap: 8 phases and detailed curricula, module content/source links/checkpoints, repeatable native details, first-session starter, 4 projects, layered stack, unique IDs, no-JS content, search.');
 
 
@@ -229,3 +229,24 @@ assert.match(backendDoc.querySelector('#role-routes').textContent,/endpoint/);
 assert.match(backendDoc.querySelector('#role-services').textContent,/logic/);
 assert.equal(backendDoc.querySelectorAll('img').length,0);
 console.log('PASS backend structure: complete tree, eight correctly linked roles, six root-file explanations, no framework/database assumptions or image dependencies.');
+
+// SQL reference: nine semantic cards, accurate copyable code, scoped palette and readable no-JS content.
+const sqlDom = new JSDOM(await readFile('dist/lap-trinh/sql-co-ban/index.html','utf8'));
+const sq = sqlDom.window.document;
+assert.equal(sq.querySelectorAll('.sql-card').length,9);
+assert.equal(sq.querySelector('h1').textContent,'SQL cơ bản');
+assert.equal(sq.querySelectorAll('.sql-card > h2 > svg').length,9);
+assert.equal(sq.querySelectorAll('.sql-commands dt').length,7);
+assert.equal(sq.querySelectorAll('.sql-operators dt').length,11);
+assert.equal(sq.querySelectorAll('.sql-card pre code').length,18);
+assert.equal(sq.querySelectorAll('.sql-result tbody tr').length,4);
+assert.match(sq.querySelector('.sql-result caption').textContent,/minh họa.*giả định/);
+for(const code of sq.querySelectorAll('pre code')){assert.doesNotMatch(code.textContent,/\\n/);assert.ok(code.textContent.endsWith(';'));}
+for(const fragment of ['COUNT(*)','COUNT(cột)','gồm cả hai đầu','toàn bộ dòng','DROP xóa cả bảng','PostgreSQL','Không hoặc nhiều ký tự','Đúng một ký tự'])assert.ok(sq.querySelector('.sql-poster').textContent.includes(fragment));
+assert.equal(sq.querySelectorAll('.sql-poster img,.sql-poster button').length,0,'Static reference has no raster text or executable destructive controls');
+const sqlIds=[...sq.querySelectorAll('[id]')].map(el=>el.id);assert.equal(sqlIds.length,new Set(sqlIds).size);
+const sqlCss=await readFile('src/styles/sql-basics.css','utf8');assert.doesNotMatch(sqlCss,/(?:^|[},\s])(?:body|\.sidebar|\.mobile-header|\.breadcrumb|\.toc|\.page-shell)\s*[.{:#]/);
+assert.match(sqlCss,/@container\(max-width:580px\)/);
+sqlDom.window.close();
+const sqlLive=await load('lap-trinh/sql-co-ban/',true);const sl=sqlLive.window.document;sl.querySelector('#menu-toggle').click();assert.equal(sl.activeElement.id,'menu-toggle');const si=sl.querySelector('#lesson-search');si.value='sql co ban';si.dispatchEvent(new sqlLive.window.Event('input'));assert.equal(sl.querySelectorAll('[data-search]:not([hidden])').length,1);assert.match(sl.querySelector('[data-search]:not([hidden]) a').getAttribute('href'),/sql-co-ban/);sqlLive.window.close();
+console.log('PASS SQL: 9 semantic cards, 7 commands, 11 operators, 18 selectable code blocks, qualified sample table, safety/dialect notes, scoped theme, no-JS reading and mobile search.');

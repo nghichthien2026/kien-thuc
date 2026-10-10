@@ -1,0 +1,53 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import SqlCode from '../../components/SqlCode.astro';
+import SqlIcon from '../../components/SqlIcon.astro';
+import '../../styles/sql-basics.css';
+const sections = [{id:'sql-la-gi',label:'SQL là gì?'},{id:'select',label:'Đọc dữ liệu'},{id:'where',label:'Lọc dữ liệu'},{id:'tong-hop',label:'Tổng hợp & nhóm'},{id:'thay-doi',label:'Thay đổi dữ liệu'},{id:'tao-bang',label:'Làm việc với bảng'}];
+const commands = [['SELECT','Đọc dữ liệu'],['INSERT','Thêm dữ liệu'],['UPDATE','Cập nhật dữ liệu'],['DELETE','Xóa dữ liệu'],['CREATE','Tạo bảng / cơ sở dữ liệu'],['ALTER','Đổi cấu trúc bảng'],['DROP','Xóa bảng / cơ sở dữ liệu']];
+const operators = [['=','Bằng'],['!= hoặc <>','Khác'],['>','Lớn hơn'],['<','Nhỏ hơn'],['>=','Lớn hơn hoặc bằng'],['<=','Nhỏ hơn hoặc bằng'],['BETWEEN','Trong khoảng, gồm cả hai đầu'],['IN','Thuộc một danh sách'],['LIKE','Khớp một mẫu chuỗi'],['IS NULL','Là NULL (thiếu giá trị)'],['IS NOT NULL','Không phải NULL']];
+const aggregates = [['COUNT(*)','Đếm số dòng'],['SUM(cột)','Tính tổng'],['AVG(cột)','Tính trung bình'],['MIN(cột)','Giá trị nhỏ nhất'],['MAX(cột)','Giá trị lớn nhất']];
+---
+<LessonLayout title="SQL cơ bản" topic="Lập trình" subtitle="SQL cơ bản" current="lap-trinh/sql-co-ban/" sections={sections}>
+<article class="sql-poster" lang="vi">
+ <header class="sql-hero">
+  <div class="sql-hero-icon"><SqlIcon name="database"/><span>SQL</span></div>
+  <div class="sql-hero-title"><p class="sql-eyebrow">SỔ TAY TRA CỨU NHANH</p><h1 class="lesson-title">SQL <span>cơ bản</span></h1><p class="sql-tagline">Nhìn cú pháp · Hiểu cách dùng</p></div>
+  <p class="sql-sticky"><strong>SQL</strong>Structured<br/>Query<br/>Language</p>
+ </header>
+ <div class="sql-grid">
+  <section id="sql-la-gi" class="sql-card sql-purple sql-intro"><h2><SqlIcon name="bulb"/>SQL là gì?</h2><div class="sql-card-body"><p><strong>SQL</strong> là ngôn ngữ để làm việc với cơ sở dữ liệu: lưu trữ, truy vấn, cập nhật và quản lý dữ liệu.</p></div></section>
+  <section id="lenh-pho-bien" class="sql-card sql-green sql-commands"><h2><SqlIcon name="list"/>Các lệnh thường gặp</h2><div class="sql-card-body"><dl class="sql-definitions">{commands.map(([term,meaning])=><div><dt><code>{term}</code></dt><dd>{meaning}</dd></div>)}</dl></div></section>
+  <section id="select" class="sql-card sql-blue sql-select"><h2><SqlIcon name="code"/>SELECT · Đọc dữ liệu</h2><div class="sql-card-body sql-examples">
+   <div><h3>Lấy tất cả các cột</h3><SqlCode code={"SELECT * FROM table_name;"}/></div>
+   <div><h3>Chọn một vài cột</h3><SqlCode code={"SELECT column1, column2\nFROM table_name;"}/></div>
+   <div><h3>WHERE · Lọc các dòng</h3><SqlCode code={"SELECT * FROM table_name\nWHERE age >= 18;"}/></div>
+   <div><h3>ORDER BY · Sắp xếp kết quả</h3><SqlCode code={"SELECT * FROM table_name\nORDER BY age ASC;"}/><p class="sql-note"><code>ASC</code> tăng dần · <code>DESC</code> giảm dần</p></div>
+   <div><h3>LIMIT · Lấy tối đa 10 dòng</h3><SqlCode code={"SELECT * FROM table_name\nORDER BY id LIMIT 10;"}/></div>
+  </div></section>
+  <section id="where" class="sql-card sql-pink sql-where"><h2><SqlIcon name="filter"/>Toán tử trong WHERE</h2><div class="sql-card-body"><dl class="sql-definitions sql-operators">{operators.map(([term,meaning])=><div><dt><code>{term}</code></dt><dd>{meaning}</dd></div>)}</dl></div></section>
+  <section id="dieu-kien" class="sql-card sql-yellow sql-conditions"><h2><SqlIcon name="settings"/>Kết hợp điều kiện</h2><div class="sql-card-body"><div class="sql-examples">
+   <div><h3>AND, OR, NOT</h3><p class="sql-note">Và · Hoặc · Phủ định</p><SqlCode code={"SELECT * FROM table_name\nWHERE age >= 18 AND age <= 30;"}/></div>
+   <div><h3>IN · Khớp giá trị trong danh sách</h3><SqlCode code={"SELECT * FROM table_name\nWHERE department IN ('HR', 'IT', 'Sales');"}/></div>
+   <div><h3>LIKE · Tìm theo mẫu</h3><SqlCode code={"SELECT * FROM table_name\nWHERE name LIKE 'A%';"}/></div>
+   <div><h3>BETWEEN · Nằm trong một khoảng</h3><SqlCode code={"SELECT * FROM table_name\nWHERE age BETWEEN 18 AND 30;"}/></div>
+  </div><aside class="sql-wildcards" aria-label="Ký tự đại diện trong LIKE"><h3>Ký tự đại diện trong LIKE</h3><div class="sql-wildcard-key"><p><code>%</code><span>Không hoặc nhiều ký tự</span></p><p><code>_</code><span>Đúng một ký tự</span></p></div><div class="sql-patterns"><span><code>'A%'</code> Bắt đầu bằng A</span><span><code>'%A'</code> Kết thúc bằng A</span><span><code>'%A%'</code> Có A ở bất kỳ đâu</span></div></aside></div></section>
+  <section id="tong-hop" class="sql-card sql-blue sql-aggregates"><h2><SqlIcon name="chart"/>Hàm tổng hợp</h2><div class="sql-card-body"><dl class="sql-definitions">{aggregates.map(([term,meaning])=><div><dt><code>{term}</code></dt><dd>{meaning}</dd></div>)}</dl><SqlCode code={"SELECT COUNT(*) FROM table_name;\nSELECT AVG(age) FROM table_name;"}/><p class="sql-note"><code>COUNT(*)</code> đếm mọi dòng; <code>COUNT(cột)</code> chỉ đếm giá trị khác NULL. SUM, AVG, MIN, MAX cũng bỏ qua NULL.</p></div></section>
+  <section id="nhom-du-lieu" class="sql-card sql-purple sql-group"><h2><SqlIcon name="group"/>GROUP BY & HAVING</h2><div class="sql-card-body"><div class="sql-examples"><div><h3>GROUP BY · Gom các dòng cùng giá trị</h3><SqlCode code={"SELECT department, COUNT(*)\nFROM table_name\nGROUP BY department;"}/></div><div><h3>HAVING · Lọc sau khi gom nhóm</h3><SqlCode code={"SELECT department, COUNT(*)\nFROM table_name\nGROUP BY department\nHAVING COUNT(*) > 5;"}/></div></div><table class="sql-result"><caption>Kết quả minh họa · số liệu giả định</caption><thead><tr><th scope="col">Department</th><th scope="col">Count</th></tr></thead><tbody>{[['HR',8],['IT',12],['Sales',6],['Marketing',7]].map(([department,count])=><tr><td>{department}</td><td>{count}</td></tr>)}</tbody></table></div></section>
+  <section id="thay-doi" class="sql-card sql-teal sql-mutations"><h2><SqlIcon name="edit"/>INSERT, UPDATE, DELETE</h2><div class="sql-card-body sql-examples">
+   <div><h3>INSERT · Thêm dữ liệu</h3><SqlCode code={"INSERT INTO table_name (name, age)\nVALUES ('An', 20);"}/></div>
+   <div><h3>UPDATE · Sửa dữ liệu</h3><SqlCode code={"UPDATE table_name SET age = 21\nWHERE id = 1;"}/></div>
+   <div><h3>DELETE · Xóa dữ liệu</h3><SqlCode code={"DELETE FROM table_name\nWHERE id = 1;"}/></div>
+   <p class="sql-warning"><strong>Nhớ WHERE:</strong> bỏ điều kiện này có thể cập nhật hoặc xóa toàn bộ dòng trong bảng.</p>
+  </div></section>
+  <section id="tao-bang" class="sql-card sql-orange sql-schema"><h2><SqlIcon name="database"/>CREATE, ALTER, DROP</h2><div class="sql-card-body sql-examples">
+   <div><h3>CREATE TABLE · Tạo bảng</h3><SqlCode code={"CREATE TABLE table_name (\n  id INT PRIMARY KEY,\n  name VARCHAR(50),\n  age INT\n);"}/></div>
+   <div><h3>ALTER TABLE · Thay đổi cấu trúc</h3><SqlCode code={"ALTER TABLE table_name\nADD column_name VARCHAR(50);"}/></div>
+   <div><h3>DROP TABLE · Xóa bảng</h3><SqlCode code={"DROP TABLE table_name;"}/></div>
+   <p class="sql-warning"><strong>Cẩn thận:</strong> DROP xóa cả bảng và dữ liệu trong bảng.</p>
+  </div></section>
+ </div>
+ <aside class="sql-tips"><SqlIcon name="bulb"/><div><h2>Mẹo ghi nhớ</h2><ul><li>Từ khóa SQL không phân biệt chữ hoa / thường</li><li>Kết thúc mỗi câu lệnh bằng dấu <code>;</code></li><li>Luyện tập trên dữ liệu mẫu trước khi dùng dữ liệu thật</li></ul></div></aside>
+ <footer class="sql-sources"><p>Ví dụ dùng cú pháp tương thích PostgreSQL. <code>table_name</code> và các tên cột cần đổi theo bảng của bạn; các ví dụ độc lập, không phải một chương trình chạy liền mạch. Cú pháp giới hạn dòng như <code>LIMIT</code> có thể khác giữa các hệ quản trị.</p><p>Đối chiếu: <a href="https://www.postgresql.org/docs/current/sql-select.html">SELECT</a> · <a href="https://www.postgresql.org/docs/current/functions-comparison.html">Toán tử</a> · <a href="https://www.postgresql.org/docs/current/functions-matching.html">LIKE</a> · <a href="https://www.postgresql.org/docs/current/functions-aggregate.html">Hàm tổng hợp</a> · <a href="https://www.postgresql.org/docs/current/sql-commands.html">Các lệnh SQL</a></p></footer>
+</article>
+</LessonLayout>
