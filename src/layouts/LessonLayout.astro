@@ -10,7 +10,7 @@ const { title, topic, current, sections } = Astro.props;
 <head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="color-scheme" content="dark"/><title>{title} · Kiến thức</title><link rel="icon" href={href('favicon.svg')} type="image/svg+xml"/></head>
 <body>
 <a class="skip" href="#noi-dung">Đến nội dung</a>
-<header class="mobile-header"><button id="menu-toggle" aria-label="Mở danh mục bài học" aria-expanded="false" aria-controls="sidebar"><Icon name="menu"/></button></header>
+<header class="mobile-header"><button id="menu-toggle" aria-label="Mở danh mục bài học" aria-expanded="false" aria-controls="sidebar"><Icon name="menu"/></button><p class="header-slogan">Học - Học nữa - Học mãi</p></header>
 <div id="nav-backdrop" hidden></div>
 <aside class="sidebar" id="sidebar">
 <label class="search"><Icon name="search" size={18}/><input id="lesson-search" type="search" placeholder="Tìm bài học…" aria-label="Tìm bài học" autocomplete="off"/><kbd>/</kbd></label>

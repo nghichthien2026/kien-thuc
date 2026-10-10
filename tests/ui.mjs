@@ -29,6 +29,14 @@ for(const width of [320,375,390,768,1024,1440]){
  for(const path of ['', 'thiet-ke/auto-layout/']){
   await page.goto(base+path);
   assert.equal(await page.locator('.brand,.sidebar-caption,.sidebar-bottom,.next-lesson,.page-footer,.demo-badge').count(),0,'Removed decorative blocks must stay absent');
+  if(width<=760){
+   const menu=await page.locator('#menu-toggle').boundingBox();
+   const slogan=await page.locator('.header-slogan').boundingBox();
+   assert.equal(await page.locator('.header-slogan').textContent(),'Học - Học nữa - Học mãi');
+   assert.ok(menu.x<=24 && menu.width>=44 && menu.height>=44,'Menu sits left with a touch-sized target');
+   assert.ok(slogan.x>=menu.x+menu.width && slogan.x+slogan.width<=width-16,'Slogan fits beside the menu');
+  }else{assert.equal(await page.locator('.mobile-header').isVisible(),false);}
+
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,`overflow at ${width}: ${path}`);
   if(path && width<=390){await page.locator('#gap').fill('32');await page.locator('#padding').fill('40');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,`max controls overflow ${width}`);await page.locator('#reset-layout').click();}
   if(width===390)await page.screenshot({path:`qa/${path?'auto-layout':'dev'}-mobile.png`,fullPage:true});

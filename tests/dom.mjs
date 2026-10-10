@@ -7,6 +7,7 @@ const wait=ms=>new Promise(r=>setTimeout(r,ms));
 async function load(path,mobile=false){const html=await readFile(`dist/${path}index.html`,'utf8');const dom=new JSDOM(html,{runScripts:'outside-only',url:`https://example.invalid${base}${path}`,pretendToBeVisual:true});const w=dom.window;w.matchMedia=()=>({matches:mobile,addEventListener(){}});w.IntersectionObserver=class{observe(){}};const original=w.setTimeout.bind(w);w.setTimeout=(fn)=>original(fn,1);for(const script of w.document.querySelectorAll('script')){assert.equal(script.hasAttribute('src'),false,'Update test to resolve external JS assets');w.eval(`(()=>{${script.textContent}\n})()`);}return dom;}
 for(const path of ['', 'thiet-ke/auto-layout/']){
 const dom=await load(path);const d=dom.window.document;
+const header=d.querySelector(".mobile-header");assert.equal(header.firstElementChild.id,"menu-toggle");assert.equal(header.querySelector(".header-slogan").textContent,"Học - Học nữa - Học mãi");
 assert.equal(d.querySelectorAll('.brand,.sidebar-caption,.sidebar-bottom,.next-lesson,.page-footer,.demo-badge').length,0,'Removed decorative blocks must not return on either lesson');
 assert.equal(d.querySelectorAll('nav[aria-label="Danh mục bài học"] a').length,2,'Both lessons remain available in navigation');
 assert.equal(d.documentElement.lang,'vi');assert.equal(d.querySelectorAll('h1').length,1);
