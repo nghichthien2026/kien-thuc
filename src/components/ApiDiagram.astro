@@ -4,9 +4,9 @@ const {id,mobile=false,description}=Astro.props;
 const pre=`api-${id}-${mobile?'m':'d'}`;
 const W=mobile?400:620, H=mobile?190:128;
 const esc=(s:string)=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
-const text=(x:number,y:number,s:string,size=18,anchor='middle')=>`<text x="${x}" y="${y}" font-size="${size}" text-anchor="${anchor}">${esc(s)}</text>`;
-const label=(x:number,y:number,s:string,size=18)=>s.split('|').map((v,i)=>text(x,y+i*(size+1),v,size)).join('');
-const pill=(x:number,y:number,w:number,s:string)=>`<rect x="${x}" y="${y}" width="${w}" height="${s.includes('|')?47:31}" rx="5" fill="var(--ink)"/>${s.split('|').map((v,i)=>`<text x="${x+w/2}" y="${y+22+i*19}" font-size="18" fill="white" text-anchor="middle">${v}</text>`).join('')}`;
+const text=(x:number,y:number,s:string,size=18,anchor='middle')=>`<text x="${x}" y="${y}" font-size="${mobile?Math.max(size,20):size}" text-anchor="${anchor}">${esc(s)}</text>`;
+const label=(x:number,y:number,s:string,size=18)=>s.split('|').map((v,i)=>text(x,y+i*((mobile?Math.max(size,20):size)+1),v,size)).join('');
+const pill=(x:number,y:number,w:number,s:string)=>`<rect x="${x}" y="${y}" width="${w}" height="${s.includes('|')?47:31}" rx="5" fill="var(--ink)"/>${s.split('|').map((v,i)=>`<text x="${x+w/2}" y="${y+22+i*(mobile?21:19)}" font-size="${mobile?20:18}" fill="white" text-anchor="middle">${v}</text>`).join('')}`;
 const question=(x:number,y:number,w:number,s:string)=>`<g class="api-arrival"><rect x="${x}" y="${y}" width="${w}" height="${s.includes('|')?49:34}" fill="#ffeb38" stroke="#6d5d12" stroke-width="1.5" stroke-dasharray="5 3"/>${label(x+w/2,y+23,s,18)}</g>`;
 const app=(x:number,y:number,scale=1)=>`<g class="api-app" transform="translate(${x} ${y}) scale(${scale})"><rect x="-22" y="-19" width="44" height="34" rx="3" fill="#ffffe5" stroke="#283b4b" stroke-width="1.8"/><path d="M-22 10h44M0 15v6m-17 4 17-4 17 4" fill="none" stroke="#283b4b" stroke-width="1.8"/>${[-13,0,13].map(cx=>[-10,1].map(cy=>`<rect x="${cx-3}" y="${cy-3}" width="6" height="6" fill="#b3faff" stroke="#169bae"/>`).join('')).join('')}</g>`;
 const gear=`<g transform="translate(37 34)"><path d="m-6-15 5-3 4 4 5-1 3 5 6 2-1 6 3 5-4 4-1 6-6 1-4 4-5-3-6 1-2-6-4-4 3-5-1-6 5-2Z" fill="#974ce0" stroke="#573981"/><circle r="9" fill="#ffc73d" stroke="#95592c"/></g>`;
@@ -18,7 +18,7 @@ const jmeter=(x:number,y:number)=>`<g transform="translate(${x} ${y})"><path d="
 const oldApp=(x:number,y:number,color:string)=>`<g transform="translate(${x} ${y})" fill="none" stroke="${color}" stroke-width="3"><circle r="12" fill="#fffbe9"/><path d="M-3 9V-7h4c10 0 7 14-1 11V-2"/></g>`;
 const paths:string[]=[];let nodes='';
 const line=(d:string,arrows=true,compare=false)=>{paths.push(`<path class="api-wire${compare?' api-compare':''}" d="${d}" fill="none" stroke="var(--ink)" stroke-width="3.5" stroke-dasharray="10 9" ${arrows?`marker-end="url(#${pre}-arrow)"`:''} ${compare?`marker-start="url(#${pre}-start)"`:''}/>`);};
-const packet=(d:string,delay=0,duration=5.4)=>{paths.push(`<circle class="api-packet" r="4.5" fill="var(--ink)" stroke="white" stroke-width="1.3" style="offset-path:path('${d}');--delay:${delay}s;--duration:${duration}s"/>`);};
+const packet=(d:string,delay=0,duration=5.4,compare=false)=>{paths.push(`<circle class="api-packet${compare?' api-compare-packet':''}" r="4.5" fill="var(--ink)" stroke="white" stroke-width="1.3" style="offset-path:path('${d}');--delay:${delay}s;--duration:${duration}s"/>`);};
 const flow=(d:string,count=1,arrows=true)=>{line(d,arrows);for(let i=0;i<count;i++)packet(d,-i*5.4/count);};
 if(id==='smoke'||id==='security'||id==='fuzz'||id==='ui'){
  const sy=mobile?85:60, ax=mobile?238:365;
@@ -38,13 +38,13 @@ if(id==='smoke'||id==='security'||id==='fuzz'||id==='ui'){
  const isInt=id==='integration', sy=mobile?39:39, ax=mobile?215:364, ay=mobile?116:76, rx=mobile?295:532;
  if(isInt){nodes+=plan(22,sy-13)+text(42,mobile?104:107,'Test Plan',17);nodes+=pill(mobile?109:147,mobile?13:9,118,'Input Data')+pill(mobile?109:147,mobile?52:48,118,'Input Data');
  for(const [y,delay] of [[mobile?29:25,0],[mobile?68:64,-.4]]){const d=`M67 ${sy+12} L${mobile?100:137} ${y} L${mobile?230:270} ${y} L${ax} ${ay} L${rx-8} ${mobile?71:26}`;line(d);packet(d,delay);}
- }else{nodes+=spec(18,sy-18)+label(48,mobile?105:98,'Functional|Specification',16);nodes+=pill(mobile?108:151,mobile?24:22,118,'Input Data');flow(`M65 ${sy+6} L${mobile?105:146} ${sy+6} L${mobile?229:274} ${sy+6} L${ax} ${ay} L${rx-8} ${mobile?71:26}`);}
+ }else{nodes+=spec(mobile?32:18,sy-18)+label(mobile?64:48,mobile?105:98,'Functional|Specification',16);nodes+=pill(mobile?108:151,mobile?24:22,118,'Input Data');flow(`M65 ${sy+6} L${mobile?105:146} ${sy+6} L${mobile?229:274} ${sy+6} L${ax} ${ay} L${rx-8} ${mobile?71:26}`);}
  nodes+=app(ax,ay)+text(ax,ay+46,'Application',18);
  nodes+=pill(rx,mobile?43:5,mobile?98:80,'Result')+pill(rx,mobile?131:83,mobile?98:80,'Expected|Result');
- line(`M${rx+45} ${mobile?80:40} L${rx+45} ${mobile?126:78}`,true,true);packet(`M${rx+45} ${mobile?83:43} L${rx+45} ${mobile?123:75}`,-3.6);
+ line(`M${rx+45} ${mobile?80:40} L${rx+45} ${mobile?126:78}`,true,true);packet(`M${rx+45} ${mobile?83:43} L${rx+45} ${mobile?123:75}`,0,5.4,true);
  nodes+=mobile?`<rect x="${rx}" y="94" width="98" height="24" fill="var(--wash)"/>${text(rx+49,112,'Compare',16)}`:text(rx-7,68,'Compare',16,'end');
 } else if(id==='regression'){
- nodes+=spec(18,mobile?43:27)+label(48,mobile?133:101,'Functional|Specification',16);
+ nodes+=spec(mobile?32:18,mobile?43:27)+label(mobile?64:48,mobile?133:101,'Functional|Specification',16);
  nodes+=pill(mobile?100:185,mobile?12:6,118,'Input Data');
  const ax=mobile?248:391,oy=mobile?66:44,ny=mobile?111:84;
  flow(`M67 ${mobile?68:47} L${ax-17} ${oy}`);flow(`M67 ${mobile?68:47} L${ax-17} ${ny}`);
@@ -53,7 +53,7 @@ if(id==='smoke'||id==='security'||id==='fuzz'||id==='ui'){
 } else {
  const stress=id==='stress',sy=mobile?57:66,ex=mobile?217:333,ax=mobile?346:546,ay=mobile?143:67;
  nodes+=person(20,mobile?14:24)+jmeter(mobile?93:139,mobile?47:58);
- if(stress)nodes+=text(45,mobile?12:16,'high loads',17);
+ if(stress)nodes+=text(55,mobile?17:16,'high loads',17);
  const ey1=mobile?26:31,ey2=mobile?83:75,ew=mobile?130:117;
  nodes+=pill(ex,ey1,ew,'Test Engine')+pill(ex,ey2,ew,'Test Engine')+app(ax,ay)+text(ax,mobile?187:113,'Application',18);
  flow(`M74 ${sy} L${mobile?95:130} ${sy}`,stress?6:2,false);
