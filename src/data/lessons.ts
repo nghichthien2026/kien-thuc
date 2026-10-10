@@ -12,6 +12,7 @@ export const lessons = [
   { title: 'Các loại mạng', topic: 'DevOps', path: 'devops/cac-loai-mang/', keywords: 'types networks PAN LAN MAN WAN mạng cá nhân cục bộ đô thị diện rộng internet' },
   { title: 'Cấu trúc URL', topic: 'Lập trình', path: 'lap-trinh/cau-truc-url/', keywords: 'URL structure địa chỉ giao thức protocol scheme subdomain domain hostname port path query string fragment điểm neo đường dẫn tên miền cổng HTTPS HTTP' },
   { title: 'API Testing', topic: 'Lập trình', path: 'lap-trinh/api-testing/', keywords: 'API testing smoke functional integration regression load stress security UI fuzz JMeter kiểm thử kiểm tra' },
+  { title: 'Git Workflow', topic: 'Lập trình', path: 'lap-trinh/git-workflow/', keywords: 'git workflow version control add commit staging index HEAD push fetch pull merge diff quản lý phiên bản luồng dữ liệu' },
 ];
 export const href = (path = '') => `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${path}`;
 

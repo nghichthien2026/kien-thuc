@@ -1,0 +1,24 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import GitIcon from '../../components/GitIcon.astro';
+import {lanes,flows} from '../../data/git-workflow';
+import '../../styles/git-workflow.css';
+const placements = [55,55,113,85,345,345,420,495,605,700,785,875];
+---
+<LessonLayout title="Git Workflow" topic="Lập trình" subtitle="Git Workflow" current="lap-trinh/git-workflow/" sections={[{id:'workflow',label:'The workflow'},{id:'commands',label:'Command notes'},{id:'sources',label:'Sources'}]}>
+<article class="git-poster" lang="en" data-paused="true">
+<header class="git-hero"><h1 class="lesson-title"><span>Git</span> Workflow</h1><div class="git-controls"><button type="button" id="git-motion" aria-pressed="false" hidden>Play animation</button><p id="git-motion-note">Follow the paths between Git’s four areas</p></div></header>
+<section id="workflow" aria-label="Animated Git workflow"><p class="git-scroll-hint">Scroll the diagram horizontally to follow all four areas →</p>
+<div class="git-scroll" tabindex="0" role="region" aria-label="Four-column Git workflow diagram, horizontally scrollable on narrow screens">
+<div class="git-board">
+{lanes.map((lane,i)=><div class="git-lane" style={`--lane-color:${lane.color};--lane-x:${8+i*28}%`}><span class="git-lane-tag">{lane.sub}</span><div class="git-rail"></div><div class="git-area"><GitIcon kind={lane.id}/><h2>{lane.name}</h2></div></div>)}
+{flows.map((flow,i)=>{const left=8+Math.min(flow.from,flow.to)*28; const span=Math.abs(flow.to-flow.from)*28;const color=flow.kind==='compare'?'#35423b':lanes[flow.from].color;return <div class={`git-flow ${flow.to<flow.from?'git-reverse':''}`} data-kind={flow.kind} style={`--flow-left:${left}%;--flow-width:${span}%;--flow-y:${placements[i]}px;--flow-color:${color};--delay:${-i*.41}s`}><span class="git-wire" aria-hidden="true"></span>{flow.kind==='compare'?<span class="git-scan" aria-hidden="true"></span>:<span class="git-packet" aria-hidden="true"><svg viewBox="0 0 16 20"><path d="M1 1h9l5 5v13H1Z" fill="currentColor" stroke="#fff"/><path d="M4 9h7M4 13h7" stroke="#fff"/></svg></span>}<a class="git-command" href={`#${flow.id}`}><code>{flow.command}</code><span class="sr-only">: {lanes[flow.from].name} {flow.kind==='compare'?'compared with':flow.kind==='integrate'?'integration toward':'to'} {lanes[flow.to].name}</span></a></div>})}
+</div></div>
+<p class="git-legend"><span><i class="git-legend-write"></i> Colored paths: changes, snapshots &amp; history</span><span><i class="git-legend-compare"></i> Dark paths: read-only comparisons</span></p>
+<p class="git-caption">A conceptual map, not a literal storage-copy diagram. Merge and pull also affect the current branch and index. Each command is an independent example.</p>
+</section>
+<section id="commands" class="git-notes"><h2>What each command does</h2><p class="git-syntax">Replace &lt;placeholders&gt; with real values. [Square brackets] mean optional arguments; do not type the brackets.</p><div>{flows.map(flow=><section id={flow.id} class="git-note"><h3><code>{flow.command}</code></h3><p>{flow.note}</p></section>)}</div><p class="git-syntax">Ordinary git diff commands do not show untracked files. HEAD usually points to the current branch’s latest commit; a local repository also contains other commits and refs.</p></section>
+<footer id="sources" class="git-sources"><h2>Sources</h2><p>Visual reference: <a href="https://www.linkedin.com/posts/nextash_git-gitcommands-webdevelopment-activity-7366420899534639104-ib69">NexTash’s public animated Git Workflow</a>, a matching public post for the <a href="https://www.pinterest.com/pin/1101411652628142950/">supplied Pinterest link</a>. Pinterest’s video was covered by a sign-in prompt, so an exact frame-for-frame match could not be verified. Illustrations and motion are recreated for this article.</p><p>Command semantics: <a href="https://git-scm.com/docs/git-add">add</a> · <a href="https://git-scm.com/docs/git-commit">commit</a> · <a href="https://git-scm.com/docs/git-push">push</a> · <a href="https://git-scm.com/docs/git-merge">merge</a> · <a href="https://git-scm.com/docs/git-fetch">fetch</a> · <a href="https://git-scm.com/docs/git-pull">pull</a> · <a href="https://git-scm.com/docs/git-diff">diff</a></p></footer>
+</article>
+</LessonLayout>
+<script>import '../../scripts/git-motion';</script>

@@ -1,0 +1,18 @@
+---
+interface Props { kind:string }
+const {kind}=Astro.props;
+---
+<svg class="git-icon" viewBox="0 0 120 100" aria-hidden="true" fill="none" stroke="#25332c" stroke-width="2" stroke-linejoin="round">
+{kind==='working'&&<>
+<path d="M25 24V13h26l10 7h38v60H25Z" fill="#398ade"/><path d="M20 29V18h25l10 7h38v60H20Z" fill="#ed716b"/><path d="M14 33V23h25l10 7h39v60H14Z" fill="#96c9f1"/><path d="M8 38V29h26l10 7h38v58H8Z" fill="#f6d25a"/><path d="M8 48h75l-4 44H8Z" fill="#f4c63e"/><path d="M17 42h31" stroke="#fff4b0" stroke-width="5"/>
+</>}
+{kind==='staging'&&<>
+<path d="M12 22V12h37l9 9h48v67H12Z" fill="#78b923"/><path d="M17 27h86v12H17Z" fill="#efe6c9"/><path d="M12 39h97l-4 52H12Z" fill="#8dc719"/><path d="M48 51v27m0-18c0 10 26-2 26 10v8" stroke="#175121" stroke-width="5"/><circle cx="48" cy="51" r="5" fill="#175121"/><circle cx="48" cy="79" r="5" fill="#175121"/><circle cx="74" cy="78" r="5" fill="#175121"/>
+</>}
+{kind==='local'&&<>
+<path d="M20 25v55c0 12 43 12 43 0V25" fill="#fbd74a"/><ellipse cx="41.5" cy="25" rx="21.5" ry="10" fill="#ffea74"/><path d="M20 42c0 12 43 12 43 0m-43 18c0 12 43 12 43 0m-43 18c0 12 43 12 43 0"/><path d="M68 22h10M70 51h8M68 81h10M70 22v60" stroke-dasharray="3 3"/>{[10,40,70].map(y=><g transform={`translate(78 ${y})`}><path d="M0 0h12l4 5h17l-5 18H0Z" fill="#c4ded2"/><path d="M0 7h31l-5 16H0Z" fill="#e0ede6"/></g>)}
+</>}
+{kind==='remote'&&<>
+<circle cx="60" cy="48" r="45" fill="#f7d653" stroke="none"/><path d="M60 64v21m-20 0h40" stroke="#8550b5" stroke-width="5"/>{[12,32,52].map(y=><g transform={`translate(36 ${y})`}><rect width="49" height="18" rx="3" fill="#a77bde" stroke="#895bbf"/><circle cx="8" cy="9" r="2" fill="#fff4ad" stroke="none"/><path d="M17 9h9m7 0h9" stroke="#e9dcfa" stroke-width="3"/></g>)}
+</>}
+</svg>
