@@ -183,3 +183,11 @@ timeDom.window.close();
 const plainTime=new JSDOM(await readFile('dist/tieng-anh/cum-tu-voi-time/index.html','utf8'));
 assert.equal(plainTime.window.document.querySelectorAll('.time-card').length,13);assert.equal(plainTime.window.document.querySelectorAll('.time-question details').length,5);assert.equal(plainTime.window.document.querySelector('#time-quiz-actions').hidden,true);plainTime.window.close();
 console.log('PASS time expressions: 13 cards, 3 groups, 5 quiz answers, case/punctuation variants, empty/wrong/repeated submits, edit/recheck, reveal/reset, accent-insensitive search, no-JS reading.');
+
+// Vocabulary-first entry: all keywords are native links before the introduction.
+const keywordDom=new JSDOM(await readFile('dist/tieng-anh/cum-tu-voi-time/index.html','utf8'));const kd=keywordDom.window.document;
+assert.equal(kd.querySelectorAll('.time-keywords a').length,13);
+assert.equal(kd.querySelector('.time-lesson').children[1].id,'tu-khoa');
+for(const link of kd.querySelectorAll('.time-keywords a')){const target=kd.querySelector(link.getAttribute('href'));assert.ok(target?.matches('.time-card'));assert.equal(link.querySelector('strong').textContent,target.querySelector('h3').textContent);assert.ok(link.querySelector('small').textContent);assert.equal(target.getAttribute('tabindex'),'-1');}
+assert.equal(new Set([...kd.querySelectorAll('[id]')].map(el=>el.id)).size,kd.querySelectorAll('[id]').length);
+keywordDom.window.close();console.log('PASS vocabulary-first summary: 13 translated keyword links before intro, unique native targets and keyboard-focusable detail cards.');
