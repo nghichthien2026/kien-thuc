@@ -92,3 +92,7 @@ Live cloud-browser review confirmed 13 cards, wrong-answer feedback, 0/5 then 5/
 ## Vocabulary-first revision (2026-10-10)
 
 Replaced the tall introductory hero with a short title followed immediately by thirteen high-contrast phrase/meaning links. The grid uses two columns on narrow screens and three on larger screens. Introductory prose and statistics follow the keywords. Each link targets its own focusable detail card, with a visible target border and the existing fixed-header scroll offset. Added DOM assertions for all thirteen translations/links, correct matching targets, unique IDs and summary placement before introductory prose. No new animations or dependencies.
+
+## Bright card-and-icon redesign (2026-10-10)
+
+Inspected the supplied visual reference before implementing: pale-blue background, rounded white shadowed cards, colorful outlined icons beside bold dark words and brief meanings. Applied those cues to this article only via an optional layout body class; all other lesson pages keep their original theme. Added thirteen distinct inline SVG illustrations used in both the keyword summary and detail cards. Removed ordinal badges from keywords, details, group labels, exercises and practice prompts, while retaining meaningful quantities such as 13 expressions and 5 questions. Preserved all examples, meanings, source clarification, native anchors and quiz behavior. New assertions verify 26 SVG instances, absence of ordinal elements and theme isolation across all previous pages.

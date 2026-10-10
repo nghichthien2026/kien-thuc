@@ -2,13 +2,13 @@
 import '../styles/global.css';
 import Icon from '../components/Icon.astro';
 import { lessons, href } from '../data/lessons';
-interface Props { title: string; topic: string; current: string; sections: {id:string;label:string}[]; subtitle?: string; }
-const { title, topic, current, sections, subtitle = topic==='DevOps'?'Môi trường':'Bố cục' } = Astro.props;
+interface Props { title: string; topic: string; current: string; sections: {id:string;label:string}[]; subtitle?: string; pageClass?: string; }
+const { title, topic, current, sections, pageClass = '', subtitle = topic==='DevOps'?'Môi trường':'Bố cục' } = Astro.props;
 ---
 <!doctype html>
 <html lang="vi">
 <head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="color-scheme" content="dark"/><title>{title} · Kiến thức</title><link rel="icon" href={href('favicon.svg')} type="image/svg+xml"/></head>
-<body>
+<body class={pageClass}>
 <a class="skip" href="#noi-dung">Đến nội dung</a>
 <header class="mobile-header"><button id="menu-toggle" aria-label="Mở danh mục bài học" aria-expanded="false" aria-controls="sidebar"><Icon name="menu"/></button><p class="header-slogan">Học - Học nữa - Học mãi</p></header>
 <div id="nav-backdrop" hidden></div>
@@ -39,3 +39,4 @@ const links=[...document.querySelectorAll<HTMLAnchorElement>('.toc a')];
 const observer=new IntersectionObserver(entries=>{const active=entries.find(e=>e.isIntersecting);if(active)links.forEach(link=>link.classList.toggle('is-active',link.hash===`#${active.target.id}`));},{rootMargin:'-10% 0px -65% 0px'});links.forEach(link=>{const section=document.querySelector(link.hash);if(section)observer.observe(section);});
 </script>
 </body></html>
+

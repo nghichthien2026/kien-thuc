@@ -1,0 +1,18 @@
+---
+interface Props { name: string; }
+const { name } = Astro.props;
+---
+<svg class="time-illustration" viewBox="0 0 64 64" fill="none" stroke="#24374b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+{ name==='One more time' ? <><circle cx="31" cy="32" r="25" fill="#e4edff" stroke="none"/><path d="M46 20a19 19 0 1 0 3 25" stroke="#6974dc" stroke-width="6"/><path d="M47 10v14H33" fill="#bfc7ff"/><path d="M23 33h17m-8-8v16" stroke="#384c9a" stroke-width="4"/></> :
+name==='Last time' || name==='Next time' ? <><rect x="10" y="12" width="42" height="43" rx="7" fill={name==='Last time'?'#ffe1b1':'#c8efe9'}/><path d="M10 25h42M21 7v11M41 7v11"/><path d={name==='Last time'?'M40 39H22m0 0 8-8m-8 8 8 8':'M23 39h18m0 0-8-8m8 8-8 8'} stroke={name==='Last time'?'#bd6c2c':'#22826b'} stroke-width="4"/></> :
+name==='This time' ? <><circle cx="32" cy="32" r="25" fill="#ffe0e8"/><circle cx="32" cy="32" r="15" fill="#fff"/><circle cx="32" cy="32" r="5" fill="#ed7b95"/><path d="m35 28 17-17M43 12h9v9" stroke="#b94f72" stroke-width="4"/></> :
+name==='First time' ? <><path d="M18 56V9" stroke-width="4"/><path d="M20 11c13-9 20 8 33-1v25c-13 9-20-8-33 1Z" fill="#b9ddff"/><path d="m34 16 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z" fill="#ffd574" stroke-width="1.7"/><path d="M9 57h20"/></> :
+name==='The last time' ? <><rect x="14" y="8" width="36" height="47" rx="5" fill="#e3d5ff"/><path d="M25 8v21l7-5 7 5V8" fill="#ae92e7"/><path d="M24 39h16m-16 7h12" stroke="#705ba1" stroke-width="3"/><path d="m46 46 4 4 8-9" stroke="#41967f" stroke-width="4"/></> :
+name==='Waste time' ? <><path d="M18 9h28M18 55h28M21 10c0 13 3 17 11 22-8 5-11 10-11 22h22c0-12-3-17-11-22 8-5 11-9 11-22Z" fill="#ffe1b2"/><path d="m23 18 9 10 9-10m-17 31 8-10 8 10" fill="#efb54f" stroke="none"/><path d="M12 51 52 13" stroke="#e5756c" stroke-width="5"/></> :
+name==='Kill time' ? <><path d="M48 25h5a8 8 0 0 1 0 16h-6" stroke-width="4"/><path d="M12 24h36v18a13 13 0 0 1-13 13H25a13 13 0 0 1-13-13Z" fill="#ffd4b4"/><path d="M10 56h42M21 7c-6 5 5 7 0 12m13-12c-6 5 5 7 0 12"/><path d="m25 36 4 5 8-8" stroke="#b56836" stroke-width="3"/></> :
+name==='Free time' ? <><circle cx="48" cy="15" r="8" fill="#ffcf66"/><path d="M48 3v-1m0 26v-1M36 15h-2m28 0h-2" stroke="#cc9634"/><path d="M7 25c9-4 17-1 25 4 8-5 16-8 25-4v29c-9-4-17-1-25 3-8-4-16-7-25-3Z" fill="#c7e8bb"/><path d="M32 29v28M13 34l12 3m-12 6 12 3m14-9 11-3m-11 12 11-3" stroke="#547d50"/></> :
+name==='Take your time' ? <><path d="M14 45h34v8H14Z" fill="#a7d6b8"/><path d="M9 43a21 21 0 0 1 42 0Z" fill="#bce7bf"/><path d="m24 24 8 11-5 8m5-8 13-4M18 30l6 13" stroke="#54876b"/><path d="M50 34c10-4 13 6 9 10-2 2-5 2-9 0" fill="#d0efc1"/><circle cx="56" cy="37" r="1" fill="#24374b"/><path d="M7 43H3M21 53v4m18-4v4"/></> :
+name==='Time is up' ? <><circle cx="32" cy="34" r="21" fill="#ffd1d6"/><path d="M32 20v15l8 6M18 52l-4 7m32-7 4 7"/><path d="M9 19 20 8m24 0 11 11" stroke="#e7868f" stroke-width="8"/><path d="M32 3v5M4 29H1m62 0h-3" stroke="#c86771"/></> :
+name==='On time' ? <><circle cx="30" cy="29" r="23" fill="#c7ecee"/><path d="M30 13v17l10 5" stroke-width="3"/><circle cx="47" cy="46" r="14" fill="#abe3bd"/><path d="m40 46 5 5 9-10" stroke="#326d4b" stroke-width="3"/></> :
+<><circle cx="30" cy="32" r="24" fill="#cce5ff"/><path d="M30 15v17H18" stroke="#507da5" stroke-width="3"/><circle cx="48" cy="45" r="13" fill="#ffdc88"/><path d="M44 41a4 4 0 0 1 8 0c0 3-4 3-4 6"/><circle cx="48" cy="52" r="1" fill="#24374b"/></>}
+</svg>

@@ -164,7 +164,10 @@ console.log('PASS DSA: 11 original accessible diagrams, Vietnamese article langu
 const timeDom=await load('tieng-anh/cum-tu-voi-time/');
 const td=timeDom.window.document;
 assert.equal(td.querySelectorAll('.time-card').length,13);
-assert.deepEqual([...td.querySelectorAll('.time-number')].map(el=>el.textContent),Array.from({length:13},(_,i)=>String(i+1).padStart(2,'0')));
+assert.equal(td.querySelectorAll('.time-number,.time-keyword-index,.time-question-number').length,0);
+assert.equal(td.querySelectorAll('.time-card .time-illustration').length,13);
+assert.equal(td.querySelectorAll('.time-keywords .time-illustration').length,13);
+assert.equal(td.body.classList.contains('time-page'),true);
 assert.equal(td.querySelectorAll('.time-group').length,3);
 assert.match(td.querySelector('#de-nham').textContent,/lần gần nhất/);
 const quiz=td.querySelector('#time-quiz');
@@ -191,3 +194,8 @@ assert.equal(kd.querySelector('.time-lesson').children[1].id,'tu-khoa');
 for(const link of kd.querySelectorAll('.time-keywords a')){const target=kd.querySelector(link.getAttribute('href'));assert.ok(target?.matches('.time-card'));assert.equal(link.querySelector('strong').textContent,target.querySelector('h3').textContent);assert.ok(link.querySelector('small').textContent);assert.equal(target.getAttribute('tabindex'),'-1');}
 assert.equal(new Set([...kd.querySelectorAll('[id]')].map(el=>el.id)).size,kd.querySelectorAll('[id]').length);
 keywordDom.window.close();console.log('PASS vocabulary-first summary: 13 translated keyword links before intro, unique native targets and keyboard-focusable detail cards.');
+
+// Light visual treatment stays local to the English article.
+for(const otherPath of paths.filter(path=>path!=='tieng-anh/cum-tu-voi-time/')){const oldLesson=new JSDOM(await readFile(`dist/${otherPath}index.html`,'utf8'));assert.equal(oldLesson.window.document.body.classList.contains('time-page'),false);oldLesson.window.close();}
+assert.match(await readFile('src/styles/time-expressions.css','utf8'),/body\.time-page\{/);
+console.log('PASS light lesson isolation: other lessons retain their existing theme; semantic SVG card icons replace ordinals.');
