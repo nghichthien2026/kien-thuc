@@ -1,0 +1,13 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import '../../styles/reference-posters.css';
+const ports=[['HTTP','80','WWW','#b27612'],['HTTPS','443','TLS','#37882c'],['SSH','22','>_','#1d739b'],['FTP','21','FTP','#c18a1b'],['MySQL','3306','SQL','#257f9d'],['Kubernetes API','6443','K8s','#3668c0'],['Docker Daemon API','2375 / 2376','DK','#178cc1'],['MongoDB','27017','M','#38863e'],['NGINX','80 / 443','N','#278c3a'],['Grafana','3000','G','#c97516'],['Prometheus','9090','P','#b84d35'],['Tomcat','8080','T','#977029'],['Apache Kafka','9092','K','#484954'],['Redis','6379','R','#b52c3d'],['RDP','3389','PC','#307fa6'],['Elasticsearch API','9200','ES','#138e9b'],['Jenkins','8080','J','#a94742'],['SMTP','25','@','#9e7620']];
+---
+<LessonLayout title="Cổng mạng DevOps" topic="DevOps" subtitle="Cổng mạng" current="devops/cong-mang/" sections={[{id:'bang-cong',label:'Dịch vụ & cổng'},{id:'luu-y',label:'Lưu ý sử dụng'}]}>
+<article class="reference-poster ports-poster">
+<header class="reference-hero"><p class="reference-eyebrow">DEVOPS · TRA CỨU NHANH</p><h1 class="lesson-title">Cổng mạng DevOps</h1><p class="reference-subtitle">18 dịch vụ và cổng thường gặp</p></header>
+<section class="ports-board" id="bang-cong" aria-label="Bảng cổng mạng"><table><thead><tr><th scope="col">DỊCH VỤ</th><th scope="col">CỔNG</th></tr></thead><tbody>{ports.map(([name,port,icon,color])=><tr><td><span class="port-service"><span class="port-icon" style={`--icon-color:${color}`} aria-hidden="true">{icon}</span><span>{name}</span></span></td><td>{port}</td></tr>)}</tbody></table>
+<aside id="luu-y" class="ports-notes"><p><strong>Cổng thông dụng có thể đổi trong cấu hình.</strong> FTP 21 dành cho kênh điều khiển. RDP dùng 3389; 9200 là cổng HTTP thường gặp của Elasticsearch (dải mặc định 9200–9300).</p><p><strong>Docker:</strong> 2375 không mã hóa; 2376 dùng TLS. Không mở 2375 trực tiếp ra Internet.</p></aside></section>
+<footer class="reference-sources">Đối chiếu: <a href="https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml">IANA</a> · <a href="https://kubernetes.io/docs/reference/networking/ports-and-protocols/">Kubernetes</a> · <a href="https://docs.docker.com/engine/security/protect-access/">Docker</a> · <a href="https://www.elastic.co/docs/reference/elasticsearch/configuration-reference/networking-settings">Elasticsearch</a></footer>
+</article>
+</LessonLayout>

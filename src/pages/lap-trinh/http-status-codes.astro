@@ -1,0 +1,19 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import '../../styles/reference-posters.css';
+const groups = [
+ {id:'thanh-cong',range:'2xx',label:'Thành công',color:'green',rows:[['200','OK','Yêu cầu đã được xử lý thành công.'],['201','Created','Đã tạo tài nguyên mới.'],['204','No Content','Thành công, không có nội dung phản hồi.']]},
+ {id:'chuyen-huong',range:'3xx',label:'Chuyển hướng & bộ nhớ đệm',color:'cyan',rows:[['301','Moved Permanently','Tài nguyên đã chuyển vĩnh viễn sang URL mới.'],['302','Found','Chuyển hướng tạm thời sang URL khác.'],['304','Not Modified','Chưa thay đổi: dùng lại bản đã lưu trong bộ nhớ đệm.']]},
+ {id:'loi-yeu-cau',range:'4xx',label:'Lỗi phía yêu cầu',color:'yellow',rows:[['400','Bad Request','Yêu cầu không hợp lệ hoặc sai cú pháp.'],['401','Unauthorized','Thiếu hoặc sai thông tin xác thực.'],['403','Forbidden','Máy chủ hiểu yêu cầu nhưng từ chối thực hiện.'],['404','Not Found','Không tìm thấy tài nguyên hoặc endpoint.'],['409','Conflict','Yêu cầu xung đột với trạng thái hiện tại của tài nguyên.'],['422','Unprocessable Content','Đúng cú pháp nhưng nội dung không xử lý được, thường do kiểm tra dữ liệu.'],['429','Too Many Requests','Gửi quá nhiều yêu cầu trong một khoảng thời gian.']]},
+ {id:'loi-may-chu',range:'5xx',label:'Lỗi phía máy chủ',color:'pink',rows:[['500','Internal Server Error','Máy chủ gặp lỗi ngoài dự kiến.'],['502','Bad Gateway','Gateway nhận phản hồi không hợp lệ từ máy chủ phía sau.'],['503','Service Unavailable','Dịch vụ tạm không sẵn sàng, thường do quá tải hoặc bảo trì.'],['504','Gateway Timeout','Gateway chờ máy chủ phía sau quá thời gian cho phép.']]},
+];
+const sections=groups.map(g=>({id:g.id,label:g.range+' · '+g.label}));
+---
+<LessonLayout title="HTTP Status Codes" topic="Lập trình" subtitle="Mã trạng thái HTTP" current="lap-trinh/http-status-codes/" sections={sections}>
+<article class="reference-poster status-poster">
+ <header class="reference-hero"><p class="reference-eyebrow">API · TRA CỨU NHANH</p><h1 class="lesson-title">HTTP Status Codes</h1><p class="reference-subtitle">Nhìn mã phản hồi · Hiểu ý nghĩa · Biết nơi cần kiểm tra</p></header>
+ <div class="status-board"><div class="status-groups">{groups.map(group=><section id={group.id} class={`status-group ${group.color}`}><h2><b>{group.range}</b>{group.label}</h2><table aria-label={group.range+' '+group.label}><tbody>{group.rows.map(([code,name,meaning])=><tr><th scope="row">{code}</th><td><strong lang="en">{name}</strong><span>{meaning}</span></td></tr>)}</tbody></table></section>)}</div>
+ <aside class="debug-clues"><h2>Khoanh vùng lỗi trong 3 giây</h2><ul><li><b>2xx</b>Yêu cầu thành công; vẫn kiểm tra dữ liệu trả về</li><li><b>3xx</b>Kiểm tra URL và bộ nhớ đệm</li><li><b>4xx</b>Kiểm tra dữ liệu, xác thực và quyền truy cập</li><li><b>5xx</b>Kiểm tra log máy chủ và dịch vụ phía sau</li></ul></aside></div>
+ <footer class="reference-sources">Đối chiếu: <a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-15">RFC 9110 · HTTP status codes</a> · <a href="https://www.rfc-editor.org/rfc/rfc6585.html#section-4">RFC 6585 · 429</a></footer>
+</article>
+</LessonLayout>

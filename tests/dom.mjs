@@ -11,7 +11,7 @@ assert.equal((css.match(/left:20px;right:auto;top:14px/g)||[]).length,1,'One aut
 assert.match(css,/\.sidebar\{[^}]*overflow-y:auto/,'Desktop sidebar remains scrollable in short viewports');
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 async function load(path,mobile=false){const html=await readFile(`dist/${path}index.html`,'utf8');const dom=new JSDOM(html,{runScripts:'outside-only',url:`https://example.invalid${base}${path}`,pretendToBeVisual:true});const w=dom.window;w.matchMedia=()=>({matches:mobile,addEventListener(){}});w.IntersectionObserver=class{observe(){}};const original=w.setTimeout.bind(w);w.setTimeout=(fn)=>original(fn,1);for(const script of w.document.querySelectorAll('script')){assert.equal(script.hasAttribute('src'),false,'Update test to resolve external JS assets');w.eval(`(()=>{${script.textContent}\n})()`);}return dom;}
-const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/', 'tieng-anh/cum-tu-voi-time/', 'lap-trinh/cau-truc-backend/', 'lap-trinh/sql-co-ban/'];
+const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/', 'tieng-anh/cum-tu-voi-time/', 'lap-trinh/cau-truc-backend/', 'lap-trinh/sql-co-ban/', 'lap-trinh/http-status-codes/', 'devops/cong-mang/', 'devops/cac-loai-mang/'];
 for(const path of paths){
 const dom=await load(path);const d=dom.window.document;
 assert.equal(d.querySelectorAll('h1.lesson-title').length,1,'Each lesson has one responsive hero title');
@@ -117,7 +117,7 @@ assert.match(roadmap.body.textContent,/Kubernetes.*không bắt buộc/);
 assert.match(roadmap.body.textContent,/SQL/);assert.match(roadmap.body.textContent,/ORM/);
 assert.equal(roadmap.querySelectorAll('img').length,0,'Roadmap visuals are original vectors, not a raster poster');
 roadmapDom.window.close();
-const roadmapLive=await load('lap-trinh/lo-trinh/');const rs=roadmapLive.window.document.querySelector('#lesson-search');rs.value='lap trinh';rs.dispatchEvent(new roadmapLive.window.Event('input'));assert.equal(roadmapLive.window.document.querySelectorAll('[data-search]:not([hidden])').length,4);roadmapLive.window.close();
+const roadmapLive=await load('lap-trinh/lo-trinh/');const rs=roadmapLive.window.document.querySelector('#lesson-search');rs.value='lap trinh';rs.dispatchEvent(new roadmapLive.window.Event('input'));assert.equal(roadmapLive.window.document.querySelectorAll('[data-search]:not([hidden])').length,5);roadmapLive.window.close();
 console.log('PASS developer roadmap: 8 phases and detailed curricula, module content/source links/checkpoints, repeatable native details, first-session starter, 4 projects, layered stack, unique IDs, no-JS content, search.');
 
 
@@ -250,3 +250,15 @@ assert.match(sqlCss,/@container\(max-width:580px\)/);
 sqlDom.window.close();
 const sqlLive=await load('lap-trinh/sql-co-ban/',true);const sl=sqlLive.window.document;sl.querySelector('#menu-toggle').click();assert.equal(sl.activeElement.id,'menu-toggle');const si=sl.querySelector('#lesson-search');si.value='sql co ban';si.dispatchEvent(new sqlLive.window.Event('input'));assert.equal(sl.querySelectorAll('[data-search]:not([hidden])').length,1);assert.match(sl.querySelector('[data-search]:not([hidden]) a').getAttribute('href'),/sql-co-ban/);sqlLive.window.close();
 console.log('PASS SQL: 9 semantic cards, 7 commands, 11 operators, 18 selectable code blocks, qualified sample table, safety/dialect notes, scoped theme, no-JS reading and mobile search.');
+
+// Compact reference posters retain semantic, selectable content and accurate mappings.
+const status=new JSDOM(await readFile('dist/lap-trinh/http-status-codes/index.html','utf8')).window.document;
+assert.equal(status.querySelectorAll('.status-group').length,4);assert.equal(status.querySelectorAll('.status-group tbody tr').length,17);assert.equal(status.querySelectorAll('.debug-clues li').length,4);
+assert.match(status.querySelector('.status-poster').textContent,/Unprocessable Content/);assert.match(status.querySelector('.status-poster').textContent,/không hợp lệ từ máy chủ phía sau/);
+const ports=new JSDOM(await readFile('dist/devops/cong-mang/index.html','utf8')).window.document;
+assert.equal(ports.querySelectorAll('.ports-board tbody tr').length,18);const rdp=[...ports.querySelectorAll('tbody tr')].filter(el=>el.textContent.includes('RDP'));assert.equal(rdp.length,1);assert.match(rdp[0].textContent,/3389/);assert.doesNotMatch(rdp[0].textContent,/9200/);assert.match(ports.querySelector('.ports-notes').textContent,/Không mở 2375 trực tiếp ra Internet/);
+const networks=new JSDOM(await readFile('dist/devops/cac-loai-mang/index.html','utf8')).window.document;
+assert.equal(networks.querySelectorAll('.network-card').length,4);assert.equal(networks.querySelectorAll('.network-art').length,4);assert.equal(networks.querySelectorAll('.network-comparison tbody tr').length,4);assert.match(networks.querySelector('.network-qualification').textContent,/Không có mốc khoảng cách cố định/);
+for(const doc of [status,ports,networks]){assert.equal(doc.querySelectorAll('article img').length,0);const ids=[...doc.querySelectorAll('[id]')].map(el=>el.id);assert.equal(ids.length,new Set(ids).size);assert.equal(doc.querySelectorAll('h1.lesson-title').length,1);}
+const referenceCss=await readFile('src/styles/reference-posters.css','utf8');assert.doesNotMatch(referenceCss,/(?:^|[},\s])(?:body|\.sidebar|\.mobile-header|\.breadcrumb|\.toc|\.page-shell)\s*[.{:#]/);
+console.log('PASS references: 17 accurate HTTP codes, 18 ports with correct RDP and Docker caveat, 4 vector network cards, qualified comparison, scoped palettes and selectable no-JS content.');

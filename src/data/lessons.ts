@@ -7,6 +7,9 @@ export const lessons = [
   { title: '13 cụm từ với time', topic: 'Tiếng Anh', path: 'tieng-anh/cum-tu-voi-time/', keywords: 'english từ vựng thời gian lần trước lần sau one more last next first free waste kill on time take your time' },
   { title: 'Cấu trúc source code Backend', topic: 'Lập trình', path: 'lap-trinh/cau-truc-backend/', keywords: 'node javascript npm source code cây thư mục config controllers middlewares models routes services utils test server package backend cấu trúc' },
   { title: 'SQL cơ bản', topic: 'Lập trình', path: 'lap-trinh/sql-co-ban/', keywords: 'SQL database cơ sở dữ liệu SELECT INSERT UPDATE DELETE CREATE ALTER DROP WHERE LIKE COUNT GROUP BY HAVING truy vấn' },
+  { title: 'HTTP Status Codes', topic: 'Lập trình', path: 'lap-trinh/http-status-codes/', keywords: 'API HTTP status code mã trạng thái 200 201 204 301 302 304 400 401 403 404 409 422 429 500 502 503 504 debug' },
+  { title: 'Cổng mạng DevOps', topic: 'DevOps', path: 'devops/cong-mang/', keywords: 'network ports cổng mạng HTTP HTTPS SSH FTP MySQL Kubernetes Docker MongoDB NGINX Grafana Prometheus Tomcat Kafka Redis RDP Elasticsearch Jenkins SMTP' },
+  { title: 'Các loại mạng', topic: 'DevOps', path: 'devops/cac-loai-mang/', keywords: 'types networks PAN LAN MAN WAN mạng cá nhân cục bộ đô thị diện rộng internet' },
 ];
 export const href = (path = '') => `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${path}`;
 

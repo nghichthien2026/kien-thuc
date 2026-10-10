@@ -1,0 +1,19 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import NetworkArt from '../../components/NetworkArt.astro';
+import '../../styles/reference-posters.css';
+const networks=[
+{id:'pan',name:'PAN',full:'Personal Area Network',vi:'Mạng cá nhân',area:'Quanh một người',points:['Kết nối các thiết bị cá nhân ở gần nhau.','Ví dụ: điện thoại, đồng hồ thông minh và tai nghe Bluetooth.'],range:'Thường vài mét',speed:'Tùy công nghệ',cost:'Thường thấp'},
+{id:'lan',name:'LAN',full:'Local Area Network',vi:'Mạng cục bộ',area:'Phòng, tòa nhà, khuôn viên',points:['Kết nối thiết bị trong một khu vực nhỏ.','Ví dụ: mạng gia đình, văn phòng hoặc trường học.'],range:'Trong một khu vực cục bộ',speed:'Thường cao',cost:'Thường thấp'},
+{id:'man',name:'MAN',full:'Metropolitan Area Network',vi:'Mạng đô thị',area:'Thành phố, vùng đô thị',points:['Kết nối nhiều mạng LAN trên phạm vi đô thị.','Ví dụ: mạng liên kết các cơ quan trong thành phố.'],range:'Một thành phố hoặc vùng đô thị',speed:'Tùy hạ tầng',cost:'Thường cao hơn LAN'},
+{id:'wan',name:'WAN',full:'Wide Area Network',vi:'Mạng diện rộng',area:'Nhiều vùng, quốc gia, toàn cầu',points:['Kết nối mạng ở những vị trí địa lý xa nhau.','Ví dụ: mạng doanh nghiệp đa quốc gia; Internet.'],range:'Liên vùng đến toàn cầu',speed:'Tùy kết nối',cost:'Thường cao'},
+];
+---
+<LessonLayout title="Các loại mạng" topic="DevOps" subtitle="PAN · LAN · MAN · WAN" current="devops/cac-loai-mang/" sections={[...networks.map(n=>({id:n.id,label:n.name+' · '+n.vi})),{id:'so-sanh',label:'So sánh nhanh'}]}>
+<article class="reference-poster networks-poster"><header class="reference-hero"><p class="reference-eyebrow">MẠNG MÁY TÍNH · TRA CỨU NHANH</p><h1 class="lesson-title">Các loại mạng</h1><p class="reference-subtitle">PAN · LAN · MAN · WAN</p></header>
+<div class="networks-sheet"><div class="network-cards">{networks.map(network=><section id={network.id} class={`network-card network-${network.id}`}><header><h2>{network.name}</h2><div><p lang="en">{network.full}</p><span>{network.vi}</span></div></header><div class="network-card-body"><ul>{network.points.map(point=><li>{point}</li>)}</ul><NetworkArt kind={network.name}/></div><p class="network-range"><b>Phạm vi:</b> {network.range}</p></section>)}</div>
+<section class="network-comparison" id="so-sanh"><h2>So sánh nhanh</h2><div class="network-table-scroll" role="region" aria-label="Bảng so sánh các loại mạng, cuộn ngang để xem thêm" tabindex="0"><table><thead><tr><th scope="col">Loại</th><th scope="col">Phạm vi</th><th scope="col">Tốc độ</th><th scope="col">Chi phí</th></tr></thead><tbody>{networks.map(n=><tr><th scope="row">{n.name}</th><td>{n.area}</td><td>{n.speed}</td><td>{n.cost}</td></tr>)}</tbody></table></div></section>
+<aside class="network-summary"><strong>PAN → LAN → MAN → WAN:</strong> phạm vi nhìn chung rộng dần; chi phí và độ phức tạp thường tăng theo quy mô.</aside><p class="network-qualification">Không có mốc khoảng cách cố định cho mọi mạng. Tốc độ và chi phí phụ thuộc công nghệ, hạ tầng và cách triển khai.</p></div>
+<footer class="reference-sources">Đối chiếu: <a href="https://www.ibm.com/think/topics/networking">IBM · Computer networking</a> · <a href="https://www.cisco.com/c/en/us/products/switches/what-is-a-lan-local-area-network.html">Cisco · LAN</a> · <a href="https://www.cloudflare.com/learning/network-layer/what-is-a-wan/">Cloudflare · WAN</a></footer>
+</article>
+</LessonLayout>
