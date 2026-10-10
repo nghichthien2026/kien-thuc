@@ -167,7 +167,8 @@ assert.equal(td.querySelectorAll('.time-card').length,13);
 assert.equal(td.querySelectorAll('.time-number,.time-keyword-index,.time-question-number').length,0);
 assert.equal(td.querySelectorAll('.time-card .time-illustration').length,13);
 assert.equal(td.querySelectorAll('.time-keywords .time-illustration').length,13);
-assert.equal(td.body.classList.contains('time-page'),true);
+assert.equal(td.body.classList.contains('time-page'),false);
+assert.ok(td.querySelector('article.time-lesson'));
 assert.equal(td.querySelectorAll('.time-group').length,3);
 assert.match(td.querySelector('#de-nham').textContent,/lần gần nhất/);
 const quiz=td.querySelector('#time-quiz');
@@ -197,5 +198,7 @@ keywordDom.window.close();console.log('PASS vocabulary-first summary: 13 transla
 
 // Light visual treatment stays local to the English article.
 for(const otherPath of paths.filter(path=>path!=='tieng-anh/cum-tu-voi-time/')){const oldLesson=new JSDOM(await readFile(`dist/${otherPath}index.html`,'utf8'));assert.equal(oldLesson.window.document.body.classList.contains('time-page'),false);oldLesson.window.close();}
-assert.match(await readFile('src/styles/time-expressions.css','utf8'),/body\.time-page\{/);
-console.log('PASS light lesson isolation: other lessons retain their existing theme; semantic SVG card icons replace ordinals.');
+const timeCss=await readFile('src/styles/time-expressions.css','utf8');
+assert.match(timeCss,/\.time-lesson\{[^}]*background:#eef5fc/);
+assert.doesNotMatch(timeCss,/(?:body|\.sidebar|\.mobile-header|\.breadcrumb|\.toc|\.page-shell|\.time-page)\s*[.{:#]/,'Article stylesheet cannot recolor the shared shell');
+console.log('PASS content-only theme: light background inside article; no body/sidebar/header/TOC/shell overrides; other lessons unchanged.');
