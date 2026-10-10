@@ -11,6 +11,7 @@ export const lessons = [
   { title: 'Cổng mạng DevOps', topic: 'DevOps', path: 'devops/cong-mang/', keywords: 'network ports cổng mạng HTTP HTTPS SSH FTP MySQL Kubernetes Docker MongoDB NGINX Grafana Prometheus Tomcat Kafka Redis RDP Elasticsearch Jenkins SMTP' },
   { title: 'Các loại mạng', topic: 'DevOps', path: 'devops/cac-loai-mang/', keywords: 'types networks PAN LAN MAN WAN mạng cá nhân cục bộ đô thị diện rộng internet' },
   { title: 'Cấu trúc URL', topic: 'Lập trình', path: 'lap-trinh/cau-truc-url/', keywords: 'URL structure địa chỉ giao thức protocol scheme subdomain domain hostname port path query string fragment điểm neo đường dẫn tên miền cổng HTTPS HTTP' },
+  { title: 'API Testing', topic: 'Lập trình', path: 'lap-trinh/api-testing/', keywords: 'API testing smoke functional integration regression load stress security UI fuzz JMeter kiểm thử kiểm tra' },
 ];
 export const href = (path = '') => `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${path}`;
 

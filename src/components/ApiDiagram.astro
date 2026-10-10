@@ -1,0 +1,64 @@
+---
+interface Props { id: string; mobile?: boolean; description: string; }
+const {id,mobile=false,description}=Astro.props;
+const pre=`api-${id}-${mobile?'m':'d'}`;
+const W=mobile?400:620, H=mobile?190:128;
+const esc=(s:string)=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const text=(x:number,y:number,s:string,size=18,anchor='middle')=>`<text x="${x}" y="${y}" font-size="${size}" text-anchor="${anchor}">${esc(s)}</text>`;
+const label=(x:number,y:number,s:string,size=18)=>s.split('|').map((v,i)=>text(x,y+i*(size+1),v,size)).join('');
+const pill=(x:number,y:number,w:number,s:string)=>`<rect x="${x}" y="${y}" width="${w}" height="${s.includes('|')?47:31}" rx="5" fill="var(--ink)"/>${s.split('|').map((v,i)=>`<text x="${x+w/2}" y="${y+22+i*19}" font-size="18" fill="white" text-anchor="middle">${v}</text>`).join('')}`;
+const question=(x:number,y:number,w:number,s:string)=>`<g class="api-arrival"><rect x="${x}" y="${y}" width="${w}" height="${s.includes('|')?49:34}" fill="#ffeb38" stroke="#6d5d12" stroke-width="1.5" stroke-dasharray="5 3"/>${label(x+w/2,y+23,s,18)}</g>`;
+const app=(x:number,y:number,scale=1)=>`<g class="api-app" transform="translate(${x} ${y}) scale(${scale})"><rect x="-22" y="-19" width="44" height="34" rx="3" fill="#ffffe5" stroke="#283b4b" stroke-width="1.8"/><path d="M-22 10h44M0 15v6m-17 4 17-4 17 4" fill="none" stroke="#283b4b" stroke-width="1.8"/>${[-13,0,13].map(cx=>[-10,1].map(cy=>`<rect x="${cx-3}" y="${cy-3}" width="6" height="6" fill="#b3faff" stroke="#169bae"/>`).join('')).join('')}</g>`;
+const gear=`<g transform="translate(37 34)"><path d="m-6-15 5-3 4 4 5-1 3 5 6 2-1 6 3 5-4 4-1 6-6 1-4 4-5-3-6 1-2-6-4-4 3-5-1-6 5-2Z" fill="#974ce0" stroke="#573981"/><circle r="9" fill="#ffc73d" stroke="#95592c"/></g>`;
+const spec=(x:number,y:number,security=false)=>`<g transform="translate(${x} ${y})"><path d="M0 0h26l10 10v42H0Z" fill="${security?'#96d8ed':'#f3f5eb'}" stroke="#557280" stroke-width="1.4"/><path d="M26 0v10h10" fill="#c2d0db" stroke="#557280"/>${[12,24,36].map(v=>`<rect x="5" y="${v}" width="7" height="7" fill="${security?'#ffe34b':'#9abb56'}"/><path d="m6 ${v+3} 2 2 3-4M17 ${v+2}h11M17 ${v+5}h8" fill="none" stroke="#527536" stroke-width="1.2"/>`).join('')}${security?gear.replace('#974ce0','#ffc636').replace('#ffc73d','#83d5e7'):gear}</g>`;
+const plan=(x:number,y:number)=>`<g transform="translate(${x} ${y})"><rect x="-4" y="5" width="42" height="47" rx="3" fill="#eaffff" stroke="#537588"/><rect width="39" height="49" rx="3" fill="#d0ffff" stroke="#328695"/><rect x="11" y="-4" width="18" height="7" rx="3" fill="#ffd7b6" stroke="#cf7a55"/>${[10,20,30,40].map(v=>`<rect x="5" y="${v}" width="5" height="5" fill="#fb9695" stroke="#df746e"/><path d="M14 ${v+1}h19M14 ${v+4}h14" stroke="#7bafbb"/>`).join('')}</g>`;
+const person=(x:number,y:number)=>`<g transform="translate(${x} ${y})"><path d="M9 31V17C8-5 37-8 38 16v15" fill="#ffc65a" stroke="#133b90" stroke-width="2.4"/><path d="M13 15c8 2 12-7 12-7l8 8v10c0 15-21 15-21 0Z" fill="#ffe1bc" stroke="#15377f" stroke-width="2"/><path d="M18 29q7 6 10-1" fill="none" stroke="#456bbb"/><path d="M17 21h1m11 0h1" stroke="#173578" stroke-width="2"/><rect x="0" y="35" width="47" height="32" rx="3" fill="#bdccff" stroke="#22418c" stroke-width="2.4"/><path d="M-5 69h57" stroke="#22418c" stroke-width="3"/><ellipse cx="24" cy="51" rx="9" ry="5" fill="#91a9ed"/></g>`;
+const browser=(x:number,y:number)=>`<g transform="translate(${x} ${y})"><rect width="46" height="55" fill="#ecffff" stroke="#286087" stroke-width="2"/><path d="M2 2h42v19H2Z" fill="#40a9e0"/><path d="m3 19 10-13 10 13 9-10 11 10Z" fill="#ffe23f"/><rect x="5" y="26" width="35" height="7" fill="#8a56c6"/><path d="M6 42h7m7 0h7m7 0h7" stroke="#40bfd7" stroke-width="7"/></g>`;
+const jmeter=(x:number,y:number)=>`<g transform="translate(${x} ${y})"><path d="M-9 27Q-3 4 9-5Q11 10-9 27" fill="#e58e4b" stroke="#b3373a"/><path d="m-13 35 19-38M-6 20l8-2M-2 12l9-3" stroke="#bd3941" fill="none"/><text x="17" y="3" font-size="10" fill="#994832" letter-spacing="1">APACHE</text><text x="12" y="28" font-size="27" fill="#681b19" font-weight="700">JMeter</text></g>`;
+const oldApp=(x:number,y:number,color:string)=>`<g transform="translate(${x} ${y})" fill="none" stroke="${color}" stroke-width="3"><circle r="12" fill="#fffbe9"/><path d="M-3 9V-7h4c10 0 7 14-1 11V-2"/></g>`;
+const paths:string[]=[];let nodes='';
+const line=(d:string,arrows=true,compare=false)=>{paths.push(`<path class="api-wire${compare?' api-compare':''}" d="${d}" fill="none" stroke="var(--ink)" stroke-width="3.5" stroke-dasharray="10 9" ${arrows?`marker-end="url(#${pre}-arrow)"`:''} ${compare?`marker-start="url(#${pre}-start)"`:''}/>`);};
+const packet=(d:string,delay=0,duration=5.4)=>{paths.push(`<circle class="api-packet" r="4.5" fill="var(--ink)" stroke="white" stroke-width="1.3" style="offset-path:path('${d}');--delay:${delay}s;--duration:${duration}s"/>`);};
+const flow=(d:string,count=1,arrows=true)=>{line(d,arrows);for(let i=0;i<count;i++)packet(d,-i*5.4/count);};
+if(id==='smoke'||id==='security'||id==='fuzz'||id==='ui'){
+ const sy=mobile?85:60, ax=mobile?238:365;
+ const start=id==='ui'?85:id==='security'?92:138;
+ flow(`M${start} ${sy} L${ax-29} ${sy}`,id==='fuzz'?2:1);
+ nodes+=app(ax,sy)+text(ax,sy+46,'Application',18);
+ if(id==='smoke'){nodes+=pill(20,mobile?23:25,117,'Input Data');nodes+=`<g transform="translate(39 ${mobile?66:67}) scale(.58)">${spec(0,0)}<ellipse cx="40" cy="31" rx="13" ry="5" fill="#ffc634" stroke="#635181"/><path d="M27 31v21c0 8 26 8 26 0V31M27 38c0 7 26 7 26 0M27 45c0 7 26 7 26 0" fill="#ffc634" stroke="#635181"/></g>`;}
+ if(id==='security')nodes+=spec(32,mobile?29:15,true)+label(61,mobile?128:92,'Security Test|Specification',17);
+ if(id==='fuzz')nodes+=pill(17,sy-25,121,'Unexpected|Data');
+ if(id==='ui')nodes+=browser(27,sy-30)+text(50,sy+46,'UI');
+ if(id!=='ui'){
+  const qx=mobile?222:434,qy=mobile?137:28,qw=mobile?167:174;
+  if(mobile)line(`M${ax} ${sy+52} L${ax} ${qy-5}`,false); else line(`M${ax+29} ${sy} L${qx-6} ${sy}`,false);
+  nodes+=question(qx,qy,qw,id==='fuzz'?'Anything breaks?':'Nothing breaks?');
+ }
+} else if(id==='functional'||id==='integration'){
+ const isInt=id==='integration', sy=mobile?39:39, ax=mobile?215:364, ay=mobile?116:76, rx=mobile?295:532;
+ if(isInt){nodes+=plan(22,sy-13)+text(42,mobile?104:107,'Test Plan',17);nodes+=pill(mobile?109:147,mobile?13:9,118,'Input Data')+pill(mobile?109:147,mobile?52:48,118,'Input Data');
+ for(const [y,delay] of [[mobile?29:25,0],[mobile?68:64,-.4]]){const d=`M67 ${sy+12} L${mobile?100:137} ${y} L${mobile?230:270} ${y} L${ax} ${ay} L${rx-8} ${mobile?71:26}`;line(d);packet(d,delay);}
+ }else{nodes+=spec(18,sy-18)+label(48,mobile?105:98,'Functional|Specification',16);nodes+=pill(mobile?108:151,mobile?24:22,118,'Input Data');flow(`M65 ${sy+6} L${mobile?105:146} ${sy+6} L${mobile?229:274} ${sy+6} L${ax} ${ay} L${rx-8} ${mobile?71:26}`);}
+ nodes+=app(ax,ay)+text(ax,ay+46,'Application',18);
+ nodes+=pill(rx,mobile?43:5,mobile?98:80,'Result')+pill(rx,mobile?131:83,mobile?98:80,'Expected|Result');
+ line(`M${rx+45} ${mobile?80:40} L${rx+45} ${mobile?126:78}`,true,true);packet(`M${rx+45} ${mobile?83:43} L${rx+45} ${mobile?123:75}`,-3.6);
+ nodes+=mobile?`<rect x="${rx}" y="94" width="98" height="24" fill="var(--wash)"/>${text(rx+49,112,'Compare',16)}`:text(rx-7,68,'Compare',16,'end');
+} else if(id==='regression'){
+ nodes+=spec(18,mobile?43:27)+label(48,mobile?133:101,'Functional|Specification',16);
+ nodes+=pill(mobile?100:185,mobile?12:6,118,'Input Data');
+ const ax=mobile?248:391,oy=mobile?66:44,ny=mobile?111:84;
+ flow(`M67 ${mobile?68:47} L${ax-17} ${oy}`);flow(`M67 ${mobile?68:47} L${ax-17} ${ny}`);
+ nodes+=oldApp(ax,oy,'#81676f')+text(ax+22,oy+6,'Old App',18,'start')+oldApp(ax,ny,'#c3142d')+text(ax+22,ny+6,'New App',18,'start');
+ nodes+=question(mobile?215:514,mobile?143:43,mobile?176:95,mobile?'Compare results':'Compare|results');
+} else {
+ const stress=id==='stress',sy=mobile?57:66,ex=mobile?217:333,ax=mobile?346:546,ay=mobile?143:67;
+ nodes+=person(20,mobile?14:24)+jmeter(mobile?93:139,mobile?47:58);
+ if(stress)nodes+=text(45,mobile?12:16,'high loads',17);
+ const ey1=mobile?26:31,ey2=mobile?83:75,ew=mobile?130:117;
+ nodes+=pill(ex,ey1,ew,'Test Engine')+pill(ex,ey2,ew,'Test Engine')+app(ax,ay)+text(ax,mobile?187:113,'Application',18);
+ flow(`M74 ${sy} L${mobile?95:130} ${sy}`,stress?6:2,false);
+ for(const ey of [ey1+16,ey2+16]){const d=mobile?`M184 ${sy} L${ex-5} ${ey} L${ex+ew+18} ${ey} L${ex+ew+18} ${ay-25} L${ax} ${ay-25}`:`M266 ${sy} L${ex-5} ${ey} L${ex+ew+5} ${ey} L${ax-27} ${ay}`;flow(d,stress?6:2,false);}
+}
+const markup=`<defs><marker id="${pre}-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M1 1 9 5 1 9Z" fill="var(--ink)"/></marker><marker id="${pre}-start" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="3" markerHeight="3" orient="auto-start-reverse"><path d="M1 1 9 5 1 9Z" fill="var(--ink)"/></marker></defs>${paths.join('')}${nodes}`;
+---
+<svg class:list={['api-diagram',mobile?'api-diagram-mobile':'api-diagram-desktop']} viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby={`${pre}-title ${pre}-desc`}><title id={`${pre}-title`}>{id[0].toUpperCase()+id.slice(1)} testing data flow</title><desc id={`${pre}-desc`}>{description}</desc><g set:html={markup}/></svg>

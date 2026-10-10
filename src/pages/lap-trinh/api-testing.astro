@@ -1,0 +1,24 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import ApiDiagram from '../../components/ApiDiagram.astro';
+import {tests} from '../../data/api-testing';
+import '../../styles/api-testing.css';
+---
+<LessonLayout title="API Testing" topic="Lập trình" subtitle="API Testing" current="lap-trinh/api-testing/" sections={tests.map(t=>({id:t.id,label:`${t.name} Testing`}))}>
+<article class="api-poster" lang="en" data-paused="true">
+<header class="api-hero"><div><p class="api-eyebrow">9 Types of</p><h1 class="lesson-title">API Testing</h1></div><div class="api-controls"><button type="button" id="api-motion" aria-pressed="false" hidden>Play animation</button><span id="api-motion-note">Follow the data, from input to outcome</span></div></header>
+<div class="api-table">{tests.map(t=><section id={t.id} class={`api-row api-${t.id}`} style={`--tone:${t.color};--ink:${t.ink};--wash:${t.wash}`}><h2>{t.name}<span>Testing</span></h2><div class="api-schematic"><ApiDiagram id={t.id} description={t.flow}/><ApiDiagram id={t.id} mobile description={t.flow}/></div><p class="api-explanation" set:html={t.description}/></section>)}</div>
+<footer class="api-credit">Adapted from the supplied ByteByteGo infographic. Animated paths illustrate data flow, not live test results.</footer>
+</article>
+</LessonLayout>
+<script>
+const poster=document.querySelector<HTMLElement>('.api-poster')!;
+const control=document.querySelector<HTMLButtonElement>('#api-motion')!;
+const note=document.querySelector<HTMLElement>('#api-motion-note')!;
+const preference=window.matchMedia('(prefers-reduced-motion: reduce)');
+let playing=!preference.matches;
+function sync(){poster.dataset.paused=String(!playing||document.hidden);control.textContent=playing?'Pause animation':'Play animation';control.setAttribute('aria-pressed',String(playing));note.textContent=playing?'Follow the data, from input to outcome':'Animation paused · all diagrams stay readable';}
+control.hidden=false;control.addEventListener('click',()=>{playing=!playing;sync();});
+preference.addEventListener('change',()=>{playing=!preference.matches;sync();});
+document.addEventListener('visibilitychange',sync);sync();
+</script>

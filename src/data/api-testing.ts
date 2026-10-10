@@ -1,0 +1,11 @@
+export const tests = [
+ {id:'smoke',name:'Smoke',color:'#1ea989',ink:'#096b57',wash:'#ddffff',description:'Simply validate if the APIs are working',flow:'Input Data flows into the Application. Check: Nothing breaks?'},
+ {id:'functional',name:'Functional',color:'#cc6454',ink:'#9c2925',wash:'#ffcccc',description:'Test against functional requirements',flow:'Functional Specification supplies Input Data to the Application. Compare the Result with the Expected Result.'},
+ {id:'integration',name:'Integration',color:'#558899',ink:'#285c70',wash:'#ddffff',description:'Test several API calls',flow:'A Test Plan branches into two Input Data streams. They merge at the Application. Compare the Result with the Expected Result.'},
+ {id:'regression',name:'Regression',color:'#888855',ink:'#5d5b32',wash:'#ffffdd',description:'Changes won’t break the <strong>existing behaviors</strong> of APIs',flow:'The same Input Data from the Functional Specification goes to the Old App and New App. Compare results.'},
+ {id:'load',name:'Load',color:'#985454',ink:'#92332e',wash:'#ffbbbb',description:'Test for application’s <strong>capacity</strong> by simulating loads',flow:'A user runs Apache JMeter. Traffic branches into two Test Engines and merges at the Application under expected load.'},
+ {id:'stress',name:'Stress',color:'#664499',ink:'#593285',wash:'#ddccff',description:'Deliberately create <strong>high loads</strong> to see if APIs function normally',flow:'High loads from Apache JMeter pass through two Test Engines to the Application. The denser packets represent traffic beyond normal load.'},
+ {id:'security',name:'Security',color:'#dd7820',ink:'#97501a',wash:'#ffedbb',description:'Test against <strong>external threats</strong>',flow:'Security Test Specification drives checks against the Application. Check: Nothing breaks? Security checks cannot cover every possible threat.'},
+ {id:'ui',name:'UI',color:'#668833',ink:'#48651d',wash:'#eeffcc',description:'Test <strong>interactions</strong> between the UI and the APIs',flow:'The UI sends requests to the Application to test their interactions.'},
+ {id:'fuzz',name:'Fuzz',color:'#882288',ink:'#7a147b',wash:'#ffccff',description:'Identify vulnerabilities by sending <strong>unexpected data</strong> into the APIs',flow:'Unexpected Data is sent to the Application. Check: Anything breaks?'}
+];
