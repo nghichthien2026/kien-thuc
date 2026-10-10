@@ -35,7 +35,7 @@ In a restricted environment with an unwritable home directory, set `ASTRO_TELEME
 
 - `/kien-thuc/`: Dev/Staging/Production, with three original SVG diagrams, a sequential CI/CD simulation and a practical example
 - `/kien-thuc/thiet-ke/auto-layout/`: a distinct lesson layout with a flexbox playground for direction, gap and padding
-- `/kien-thuc/lich-su/viet-nam/`: ten-period Vietnam history timeline, expandable details, milestone recap and linked references
+- `/kien-thuc/lich-su/viet-nam/`: ten-period Vietnam history timeline, ten era pictograms, three original symbolic SVG illustrations, era navigation/reading position, expandable details, tap-to-reveal milestone recap and linked references
 - Accent-insensitive title/topic/keyword search, responsive mobile menu, `/` search shortcut, Escape to close, skip link and reduced-motion styles
 - Self-contained visual assets and system fonts; no external font requests
 
@@ -84,5 +84,7 @@ npm run test:dom
 ```
 
 ## Verification limits
+
+The history visuals use no external images, fonts, tracking or runtime dependencies. The large illustrations are explicitly labeled conceptual rather than documentary reconstructions. Their reading effects respect reduced motion, and all lesson text and native disclosure controls remain available without JavaScript.
 
 Type checks, root-path builds, the selected `/kien-thuc/` release build and DOM-based link/interaction tests pass. Real-browser QA could not run in the preparation environment because Chromium sockets and local preview access were restricted. DOM checks do not establish visual correctness, responsive layout or real-browser accessibility. The included Playwright suite still needs to run in a browser-capable environment. See `VALIDATION.md` for details.

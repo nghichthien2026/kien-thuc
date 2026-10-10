@@ -1,31 +1,41 @@
 ---
+import HistoryGlyph from '../../components/HistoryGlyph.astro';
+import HistoryScene from '../../components/HistoryScene.astro';
 import LessonLayout from '../../layouts/LessonLayout.astro';
 import '../../styles/history.css';
 import history from '../../data/vietnam-history.json';
 const sections = [{id:'tong-quan',label:'Nhìn toàn cảnh'},{id:'dong-thoi-gian',label:'10 thời kỳ'},{id:'nho-nhanh',label:'Nhớ nhanh'},{id:'nguon-tham-khao',label:'Nguồn tham khảo'}];
+const eraLabels = ['Dựng nước','Tự chủ','Độc lập','Lê sơ','Chia cắt','Tây Sơn · Nguyễn','Thuộc địa','1945–1954','1954–1975','Hội nhập'];
+const sceneCaptions = {0:'Trống đồng, dòng sông và cây lúa: ba hình ảnh gợi nhớ cộng đồng cư dân buổi đầu.',2:'Thuyền, dòng nước và bãi cọc: gợi nhớ vai trò của sông Bạch Đằng trong lịch sử giữ nước.',9:'Cây cầu, đồng ruộng và đô thị: gợi nhớ quá trình tái thiết, Đổi mới và hội nhập.'};
 const sourceNumber = (id: string) => history.sources.findIndex(source => source.id === id) + 1;
 ---
 <LessonLayout title={history.title} topic="Lịch sử" subtitle="Dòng thời gian" current="lich-su/viet-nam/" sections={sections}>
 <header class="history-hero" id="tong-quan">
+  <div class="history-hero-mark" aria-hidden="true"><HistoryGlyph index={0}/><span></span><HistoryGlyph index={2}/><span></span><HistoryGlyph index={9}/></div>
   <p class="history-kicker">TỪNG THỜI KỲ · MỘT CÂU CHUYỆN</p>
   <h1>Lịch sử Việt Nam<br/><span style="color:var(--blue)">qua các thời kỳ.</span></h1>
   <p class="lead">{history.intro}</p>
 </header>
 <aside class="history-note"><strong>Trước khi bắt đầu.</strong> {history.chronologyNote}</aside>
 <nav class="history-overview" aria-label="Đi nhanh theo chặng lịch sử">
-  <a href="#van-lang-au-lac"><span>CHẶNG 01</span><strong>Dựng nước & tự chủ</strong></a>
-  <a href="#xay-dung-doc-lap"><span>CHẶNG 02</span><strong>Các vương triều</strong></a>
-  <a href="#thuoc-dia"><span>CHẶNG 03</span><strong>Độc lập & hội nhập</strong></a>
+  <a href="#van-lang-au-lac"><HistoryGlyph index={0}/><span>CHẶNG 01</span><strong>Dựng nước & tự chủ</strong></a>
+  <a href="#xay-dung-doc-lap"><HistoryGlyph index={2}/><span>CHẶNG 02</span><strong>Các vương triều</strong></a>
+  <a href="#thuoc-dia"><HistoryGlyph index={9}/><span>CHẶNG 03</span><strong>Độc lập & hội nhập</strong></a>
 </nav>
 <section id="dong-thoi-gian" aria-labelledby="timeline-title">
   <h2 id="timeline-title" class="history-section-title">10 thời kỳ, từ xưa đến nay</h2>
   <p class="history-subtitle">Đọc phần tóm tắt để nắm mạch chính. Mở từng thời kỳ để xem các mốc và câu chuyện phía sau. Các giai đoạn có thể chồng lấn; khoảng cách trên dòng thời gian không theo tỷ lệ số năm.</p>
+  <nav class="history-journey" aria-label="Chọn một trong 10 thời kỳ">
+    {history.periods.map((period,index) => <a href={`#${period.id}`} data-era-link><span class="journey-glyph"><HistoryGlyph index={index}/></span><span class="journey-number">{String(index+1).padStart(2,'0')}</span><span>{eraLabels[index]}</span></a>)}
+  </nav>
+  <div class="history-reading" hidden><span>Đang đọc <strong id="history-current-era">01 · Dựng nước</strong></span><span class="history-track" aria-hidden="true"><span id="history-progress"></span></span><span class="history-reading-note">10 chặng khám phá</span></div>
   <ol class="history-timeline">
-    {history.periods.map((period,index) => <li class="history-period" id={period.id}>
+    {history.periods.map((period,index) => <li class="history-period" id={period.id} data-era={index} data-era-label={eraLabels[index]} style={`--era-color:${index<2?'#ddb582':index<6?'#7cd4cd':'#8ebcfa'}`}>
       <p class="history-date">{period.range}<span class="history-index">{String(index+1).padStart(2,'0')} / 10</span></p>
       <article class="history-card" aria-labelledby={`title-${period.id}`}>
-        <h3 id={`title-${period.id}`}>{period.title}</h3>
+        <div class="history-card-heading"><span class="history-card-glyph"><HistoryGlyph index={index}/></span><h3 id={`title-${period.id}`}>{period.title}</h3></div>
         <p class="history-summary">{period.summary}</p>
+        {(index===0 || index===2 || index===9) && <figure class="history-scene"><HistoryScene variant={index===0?'origins':index===2?'river':'renewal'}/><figcaption><span>MINH HỌA Ý NIỆM</span>{sceneCaptions[index as keyof typeof sceneCaptions]} Hình vẽ cách điệu, không phải ảnh tư liệu hay phục dựng chính xác.</figcaption></figure>}
         <details>
           <summary>Tìm hiểu thêm<span class="sr-only">: {period.title}</span></summary>
           <div class="history-detail-text">{period.paragraphs.map(paragraph => <p>{paragraph}</p>)}</div>
@@ -39,7 +49,9 @@ const sourceNumber = (id: string) => history.sources.findIndex(source => source.
 </section>
 <section class="history-recap" id="nho-nhanh" aria-labelledby="recap-title">
   <h2 class="history-section-title" id="recap-title">Nhớ nhanh các bước ngoặt</h2>
-  <ol>{history.quickTimeline.map(item => {const [year,...description] = item.split(':');return <li><strong>{year}</strong>{description.join(':').trim()}</li>;})}</ol>
+  <p class="history-subtitle">Thử nhớ ý nghĩa của mỗi mốc, rồi chạm để mở lời nhắc.</p>
+  <ol>{history.quickTimeline.map(item => {const [year,...description] = item.split(':');return <li><details class="history-memory"><summary><strong>{year}</strong><span>Mở lời nhắc <span aria-hidden="true">＋</span></span></summary><p>{description.join(':').trim()}</p></details></li>;})}</ol>
+  <div class="history-two-dates" aria-label="Hai mốc khác nhau"><div><span>1975</span><strong>Kết thúc chiến tranh</strong></div><span class="history-date-arrow" aria-hidden="true">→</span><div><span>1976</span><strong>Thống nhất về mặt nhà nước</strong></div></div>
   <p class="history-contrast"><strong>Đừng nhầm hai mốc:</strong> năm 1975 là kết thúc chiến tranh; năm 1976 là thống nhất về mặt nhà nước.</p>
 </section>
 <section class="history-references" id="nguon-tham-khao" aria-labelledby="sources-title">
@@ -49,3 +61,28 @@ const sourceNumber = (id: string) => history.sources.findIndex(source => source.
   <p class="history-closing">{history.conclusion}</p>
 </section>
 </LessonLayout>
+<script>
+const eraSections=[...document.querySelectorAll<HTMLElement>('[data-era]')];
+const eraLinks=[...document.querySelectorAll<HTMLAnchorElement>('[data-era-link]')];
+const reading=document.querySelector<HTMLElement>('.history-reading');
+const progress=document.querySelector<HTMLElement>('#history-progress');
+const currentEra=document.querySelector<HTMLElement>('#history-current-era');
+const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+function markEra(section:HTMLElement){
+ const index=Number(section.dataset.era);
+ if(currentEra)currentEra.textContent=`${String(index+1).padStart(2,'0')} · ${section.dataset.eraLabel}`;
+ if(progress)progress.style.width=`${(index+1)*10}%`;
+ eraLinks.forEach(link=>{if(link.hash===`#${section.id}`)link.setAttribute('aria-current','step');else link.removeAttribute('aria-current');});
+}
+if('IntersectionObserver' in window && eraSections.length){
+ if(reading)reading.hidden=false;
+ markEra(eraSections[0]);
+ const visible=new Set<HTMLElement>();
+ const eraObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{const section=entry.target as HTMLElement;if(entry.isIntersecting){visible.add(section);if(!motion.matches)section.classList.add('era-arrived');}else visible.delete(section);});
+  const active=eraSections.find(section=>visible.has(section));if(active)markEra(active);
+ },{rootMargin:'-15% 0px -45% 0px',threshold:0});
+ eraSections.forEach(section=>eraObserver.observe(section));
+}
+</script>
+

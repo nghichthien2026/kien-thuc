@@ -1,0 +1,280 @@
+---
+interface Props {
+  variant: 'origins' | 'river' | 'renewal';
+}
+
+const { variant } = Astro.props;
+const id = `history-${variant}`;
+const descriptions = {
+  origins: {
+    title: 'Những nền tảng đầu tiên',
+    description: 'Minh họa biểu tượng: các vòng hoa văn trống đồng kết nối với cộng đồng, dòng sông và bông lúa. Đây là hình ảnh khái niệm, không phải phục dựng hiện vật hay địa điểm lịch sử.',
+  },
+  river: {
+    title: 'Dòng sông và ký ức Bạch Đằng',
+    description: 'Thuyền buồm, các lớp nước và những cọc gỗ tạo nên một minh họa biểu tượng gợi nhắc Bạch Đằng. Hình ảnh không phục dựng một trận đánh, địa hình hoặc loại thuyền cụ thể.',
+  },
+  renewal: {
+    title: 'Những nhịp cầu hướng tới tương lai',
+    description: 'Minh họa khái niệm về đổi mới: cây cầu thanh mảnh trước mặt trời mọc, những cánh đồng hình học và các công trình ven sông. Không mô tả một địa điểm cụ thể.',
+  },
+};
+const description = descriptions[variant];
+const copper = '#d8a676';
+const paleCopper = '#efd0a2';
+const teal = '#398b89';
+---
+
+<svg
+  class="history-illustration"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 900 280"
+  role="img"
+  aria-labelledby={`${id}-title ${id}-description`}
+  focusable="false"
+>
+  <title id={`${id}-title`}>{description.title}</title>
+  <desc id={`${id}-description`}>{description.description}</desc>
+  <defs>
+    <linearGradient id={`${id}-background`} x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#122a39" />
+      <stop offset="1" stop-color="#091a29" />
+    </linearGradient>
+    <linearGradient id={`${id}-bronze`} x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#edc697" />
+      <stop offset="0.46" stop-color="#b67a4d" />
+      <stop offset="1" stop-color="#6b4937" />
+    </linearGradient>
+    <linearGradient id={`${id}-water`} x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#22565f" />
+      <stop offset="1" stop-color="#102c3c" />
+    </linearGradient>
+    <linearGradient id={`${id}-sun`} x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#ebbd86" />
+      <stop offset="1" stop-color="#ac7154" stop-opacity="0.14" />
+    </linearGradient>
+    <radialGradient id={`${id}-halo`}>
+      <stop stop-color="#bc8956" stop-opacity="0.14" />
+      <stop offset="1" stop-color="#bc8956" stop-opacity="0" />
+    </radialGradient>
+    <clipPath id={`${id}-frame`}>
+      <rect width="900" height="280" rx="16" />
+    </clipPath>
+  </defs>
+
+  <g clip-path={`url(#${id}-frame)`}>
+    <rect width="900" height="280" fill={`url(#${id}-background)`} />
+
+    {variant === 'origins' && (
+      <g>
+        <ellipse cx="184" cy="142" rx="181" ry="177" fill={`url(#${id}-halo)`} />
+        <g fill="none" stroke="#41616a" stroke-width="0.8" opacity="0.45">
+          <path d="M34 44h33M34 44v33M34 236h33M34 236v-33" />
+          <path d="M308 44h-24M308 44v24M308 236h-24M308 236v-24" />
+          <circle cx="173" cy="140" r="115" stroke-dasharray="2 8" />
+        </g>
+
+        {/* The drum is an original ornamental diagram, not an artifact tracing. */}
+        <g transform="translate(173 140)">
+          <circle r="103" fill="#493d34" stroke={copper} stroke-width="1.5" />
+          <circle r="98" fill={`url(#${id}-bronze)`} />
+          <circle r="92" fill="#132d36" stroke={paleCopper} stroke-width="0.8" />
+          <circle r="88" fill="none" stroke={copper} stroke-width="5" stroke-dasharray="1 6" />
+          <circle r="80" fill="#493d33" stroke={copper} />
+          <circle r="76" fill="#172f37" stroke="#b08461" />
+          {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+            <g transform={`rotate(${angle})`} stroke={copper} stroke-linejoin="round">
+              <path d="M-15-64l16 6 16-11-6 12-10 6-11-7-10 1Z" fill="#bf9167" stroke-width="0.7" />
+              <path d="M1-58l-9-12M10-57l10 3" fill="none" stroke-width="1.3" />
+            </g>
+          ))}
+          <circle r="47" fill="none" stroke={copper} />
+          <circle r="42" fill="none" stroke={copper} stroke-width="3" stroke-dasharray="1 4" />
+          {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((angle) => (
+            <path transform={`rotate(${angle})`} d="M-6-14L0-37 6-14Z" fill={paleCopper} />
+          ))}
+          <circle r="17" fill="#d7a773" />
+          <circle r="12" fill="#f0cd96" />
+          <circle r="3.5" fill="#9a6849" />
+        </g>
+
+        {/* River ribbons link the social diagram to the agricultural motif. */}
+        <path d="M543-16c-73 56-32 91 59 120s42 65 113 94 139 36 208 38" fill="none" stroke="#193f4c" stroke-width="81" />
+        <path d="M543-16c-73 56-32 91 59 120s42 65 113 94 139 36 208 38" fill="none" stroke="#2e646d" stroke-width="37" />
+        <path d="M547-16c-73 56-32 91 59 120s42 65 113 94 139 36 208 38" fill="none" stroke="#7eb8ba" stroke-width="1.2" opacity="0.7" />
+        <g fill="none" stroke="#4d8287" stroke-width="0.8" opacity="0.65">
+          <path d="M577 12c-15 15-16 28-1 41M602 28c-5 8-3 16 5 22" />
+          <path d="M753 238c39 15 77 22 114 25M785 231c23 9 48 15 80 18" />
+          <path d="M539 159c21 7 43 21 50 41M526 174c13 5 28 15 35 28" />
+        </g>
+        <g fill="none" stroke={copper} stroke-width="1.1">
+          <path d="M284 140h75M427 140h79c17 0 19 18 36 18h91" stroke-dasharray="3 6" />
+          <circle cx="285" cy="140" r="3" fill={copper} />
+          <circle cx="637" cy="158" r="3" fill={copper} />
+        </g>
+
+        <g transform="translate(393 140)">
+          <circle r="36" fill="#102836" stroke="#5c878a" />
+          <circle r="30" fill="none" stroke="#2b535f" />
+          <g fill="#9cc8c3">
+            <circle cx="0" cy="-10" r="5" />
+            <circle cx="-14" cy="-3" r="4" />
+            <circle cx="14" cy="-3" r="4" />
+            <path d="M-8 12V4a8 8 0 0 1 16 0v8Z" />
+            <path d="M-22 14V8a7 7 0 0 1 11-5v11ZM22 14V8a7 7 0 0 0-11-5v11Z" opacity="0.65" />
+          </g>
+        </g>
+
+        <g transform="translate(751 45)">
+          <circle cx="0" cy="72" r="83" fill="none" stroke="#335b61" stroke-width="0.8" />
+          <path d="M-11 155c1-45 0-92-20-136M0 155c12-48 17-96 10-136M11 156c23-43 33-84 32-117" fill="none" stroke={copper} stroke-width="1.8" stroke-linecap="round" />
+          {[-25, -12, 1, 14, 27].map((offset, index) => (
+            <g transform={`translate(${-27 + index * 3} ${46 + offset}) rotate(-17)`} fill={index % 2 ? copper : paleCopper}>
+              <ellipse cx="-6" cy="0" rx="3.6" ry="8" transform="rotate(-40 -6 0)" />
+              <ellipse cx="5" cy="6" rx="3.6" ry="8" transform="rotate(40 5 6)" />
+            </g>
+          ))}
+          {[0, 1, 2, 3, 4].map((index) => (
+            <g transform={`translate(${10 - index * 0.2} ${25 + index * 12}) rotate(6)`} fill={index % 2 ? paleCopper : copper}>
+              <ellipse cx="-6" cy="0" rx="3.6" ry="8" transform="rotate(-40 -6 0)" />
+              <ellipse cx="6" cy="5" rx="3.6" ry="8" transform="rotate(40 6 5)" />
+            </g>
+          ))}
+          {[0, 1, 2, 3].map((index) => (
+            <g transform={`translate(${42 - index * 1.1} ${45 + index * 12}) rotate(16)`} fill={copper}>
+              <ellipse cx="-6" cy="0" rx="3.4" ry="7.5" transform="rotate(-40 -6 0)" />
+              <ellipse cx="6" cy="5" rx="3.4" ry="7.5" transform="rotate(40 6 5)" />
+            </g>
+          ))}
+          <path d="M-7 138c-32-9-44-25-43-43 21 8 32 22 43 43ZM9 135c11-24 23-36 43-40-7 21-22 34-43 40Z" fill="#3c7977" stroke="#64a09a" stroke-width="0.8" />
+        </g>
+        <g stroke="#49666b" stroke-width="0.8" fill="none">
+          <path d="M355 60h73M367 66h43M337 221h65M354 227h32M824 37h40M853 37v27" />
+          <circle cx="444" cy="65" r="2" fill={copper} stroke="none" />
+        </g>
+      </g>
+    )}
+
+    {variant === 'river' && (
+      <g>
+        <circle cx="665" cy="74" r="47" fill={`url(#${id}-sun)`} opacity="0.65" />
+        <circle cx="665" cy="74" r="60" fill="none" stroke="#a17957" stroke-opacity="0.18" />
+        <path d="M0 132l73-26 81 17 93-49 82 41 72-25 119 43 72-21 85 19 120-39 103 39v30H0Z" fill="#1c3946" />
+        <path d="M0 150l108-21 67 15 139-21 83 29 115-14 89 11 95-20 94 17 110-7v41H0Z" fill="#254b55" />
+        <path d="M0 159c136-14 220 14 352 3s255-5 548-9v127H0Z" fill={`url(#${id}-water)`} />
+        <g fill="none" stroke-linecap="round">
+          <path d="M42 65h104M88 71h91M743 53h83M769 59h43" stroke="#4c6970" stroke-width="0.8" />
+          <path d="M602 108h99M621 114h111" stroke="#b89670" stroke-width="0.8" opacity="0.4" />
+          <path d="M0 185c135-14 211 11 330 4s342-20 570-7" stroke="#4c8c91" stroke-width="1" />
+          <path d="M0 220c138-13 249 15 434 5s305-6 466-14" stroke="#39737f" stroke-width="1.1" />
+          <path d="M0 250c173-13 233 7 437 6s333-12 463-6" stroke="#305967" />
+        </g>
+
+        {/* A graphic boat silhouette rather than a reconstruction of a vessel. */}
+        <g stroke-linejoin="round">
+          <path d="M260 166l37 13h256l45-23-23 34-43 11H310l-29-12Z" fill="#071a29" stroke={copper} stroke-width="1.5" />
+          <path d="M291 185h263M322 194h197" fill="none" stroke="#966a4f" stroke-width="1" />
+          <path d="M404 45v132M482 92v84" fill="none" stroke={paleCopper} stroke-width="2.4" />
+          <path d="M396 55c-33 25-52 58-60 105h60Z" fill="#d1a577" stroke={paleCopper} />
+          <path d="M413 59c37 28 57 64 62 101h-62Z" fill="#9c7357" stroke="#c8a480" />
+          <path d="M489 98c30 17 45 35 52 60h-52Z" fill="#446c70" stroke="#8cb4b0" />
+          <path d="M396 81h-30M396 105h-47M396 132h-56M415 89h28M416 115h46M417 141h54" fill="none" stroke="#17313b" stroke-width="1" opacity="0.5" />
+          <path d="M404 48l-3 130M405 56l-90 121M407 58l128 119M483 94l74 83" fill="none" stroke="#bea385" stroke-width="0.8" opacity="0.75" />
+          <path d="M405 45h29l-11 8h-18Z" fill={teal} />
+          <path d="M312 169h46v9h-46ZM495 167h28v11h-28Z" fill="#173340" stroke="#608b8b" stroke-width="0.7" />
+        </g>
+
+        <g fill="#8a674f" stroke="#d8ad7d" stroke-width="1" stroke-linejoin="round">
+          <path d="M100 227l-6-40 4-16 8 14 4 42Z" />
+          <path d="M151 241l5-50 7-12 3 16-5 45Z" />
+          <path d="M205 218l-5-29 3-14 7 12 4 31Z" />
+          <path d="M657 215l-7-39 4-16 8 13 7 41Z" />
+          <path d="M710 237l5-46 7-15 4 16-6 44Z" />
+          <path d="M775 220l-7-36 3-13 8 12 7 36Z" />
+          <path d="M825 248l4-49 6-16 5 17-5 47Z" />
+        </g>
+        <g fill="none" stroke="#6d9d9e" stroke-width="0.9" opacity="0.85">
+          <path d="M82 229q23 7 43-1M135 242q23 8 43 0M191 220q19 7 38-1" />
+          <path d="M637 216q27 8 49 0M692 238q23 7 43 0M756 221q24 8 44-1M805 249q24 7 44-1" />
+          <path d="M55 202h22M227 204h31M332 216h93M473 210h66M587 233h59M748 261h58" />
+          <path d="M321 224h42M443 239h83M258 253h58M555 267h42M57 265h83" opacity="0.5" />
+        </g>
+        <g stroke="#5b7b81" stroke-width="0.8" fill="none">
+          <path d="M36 32h26M36 32v26M864 32h-26M864 32v26" />
+          <circle cx="221" cy="48" r="2" fill={copper} stroke="none" />
+          <path d="M218 62h6" />
+        </g>
+      </g>
+    )}
+
+    {variant === 'renewal' && (
+      <g>
+        <ellipse cx="570" cy="126" rx="172" ry="133" fill={`url(#${id}-halo)`} />
+        <circle cx="569" cy="118" r="65" fill={`url(#${id}-sun)`} />
+        <circle cx="569" cy="118" r="78" fill="none" stroke="#b58c63" stroke-opacity="0.2" />
+        <g stroke="#a58360" stroke-width="0.8" opacity="0.5">
+          <path d="M569 23v-8M636 49l7-7M661 111h11M502 49l-7-7M477 111h-11" />
+        </g>
+        <path d="M0 170l134-23 142 16 115-31 110 33 118-16 130 13 151-24v64H0Z" fill="#203e49" />
+        <g fill="#284d55" stroke="#52777a" stroke-width="0.75">
+          <path d="M65 158v-34h23v34M95 157v-57h27v57M130 158v-44h30v44M171 159v-25h27v25" />
+          <path d="M718 159v-43h25v43M751 156v-66h24v66M786 154v-47h34v47M832 149v-29h23v29" />
+        </g>
+        <g fill={copper} opacity="0.65">
+          {[106, 116].map((x) => [112, 125, 138].map((y) => <rect x={x} y={y} width="3" height="5" />))}
+          {[758, 767].map((x) => [102, 115, 128, 141].map((y) => <rect x={x} y={y} width="3" height="5" />))}
+        </g>
+        <path d="M0 174c163-15 219 1 351 2s263-21 549-4v108H0Z" fill={`url(#${id}-water)`} />
+
+        {/* The span and cable rhythm are intentionally architectural symbols. */}
+        <g fill="none" stroke-linecap="round">
+          <path d="M63 190C211 182 413 170 840 182" stroke="#081b29" stroke-width="12" />
+          <path d="M63 185C211 177 413 165 840 177" stroke={paleCopper} stroke-width="2.2" />
+          <path d="M63 191C211 183 413 171 840 183" stroke="#7ea2a0" stroke-width="1.4" />
+          <path d="M281 75v132M292 75v130M651 65v138M662 65v140" stroke="#0b2430" stroke-width="6" />
+          <path d="M282 76v130M293 76v128M652 66v136M663 66v138" stroke={copper} stroke-width="2.4" />
+          <path d="M283 90h8M653 80h8" stroke={paleCopper} stroke-width="2" />
+          <path d="M66 183C164 174 230 136 287 78C379 203 563 199 657 68C710 131 770 162 839 175" stroke={copper} stroke-width="1.8" />
+          <g stroke="#93aca6" stroke-width="0.85" opacity="0.8">
+            <path d="M114 176v6M150 164v16M186 145v33M222 123v52M256 96v78" />
+            <path d="M325 119v54M361 144v28M397 160v11M433 169v2" />
+            <path d="M508 169v2M544 157v14M580 135v37M616 105v68" />
+            <path d="M689 102v72M725 134v41M761 155v21M797 168v9" />
+          </g>
+        </g>
+        <g fill="none" stroke="#72a1a1" stroke-width="0.8" opacity="0.45">
+          <path d="M253 221h66M271 227h39M624 214h77M639 220h40M394 207h71M422 213h95" />
+          <path d="M76 207h88M164 219h60M733 226h105" />
+        </g>
+
+        <g stroke="#0e2b38" stroke-width="2">
+          <path d="M0 216l87 1 96 63H0Z" fill="#305b59" />
+          <path d="M87 217l104-10 134 73H183Z" fill="#477a6e" />
+          <path d="M191 207l120 15 143 58H325Z" fill="#8c7959" />
+          <path d="M0 258l143-5M36 217l96 63M127 214l125 66M245 214l145 66" fill="none" stroke="#98aa84" stroke-width="0.9" opacity="0.5" />
+          <path d="M653 280l105-39 142-12v51Z" fill="#244e53" />
+          <path d="M758 241l75 39M812 236l77 44" fill="none" stroke="#568f86" stroke-width="0.9" />
+        </g>
+        <g fill="none" stroke="#6c9995" stroke-width="1" opacity="0.6">
+          <path d="M412 251c54 12 118 12 181 2M443 261c38 5 81 5 120 0" />
+          <path d="M690 251h33M589 240h36M532 233h25" />
+        </g>
+        <g stroke="#5b7b81" stroke-width="0.8" fill="none">
+          <path d="M36 32h26M36 32v26M864 32h-26M864 32v26M362 43h53M378 49h54" />
+          <circle cx="202" cy="61" r="2" fill={copper} stroke="none" />
+        </g>
+      </g>
+    )}
+    <rect x="0.5" y="0.5" width="899" height="279" rx="15.5" fill="none" stroke="#658086" stroke-opacity="0.22" />
+  </g>
+</svg>
+
+<style>
+  .history-illustration {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 0;
+  }
+</style>

@@ -13,9 +13,17 @@ Date: 2026-10-10
 - History page: ten periods, expandable native details, historical source anchors, recap, subject navigation, and accent-insensitive history search verified
 - Prior source archive integrity checked
 
+## History visual enhancement checks
+
+- Ten distinct decorative era pictograms and three labeled, accessible symbolic SVG illustrations
+- New DOM tests cover all era links, unique IDs, intact original paragraphs, forward/back reading-position updates, reduced-motion behavior, no-JavaScript content and repeatable native recap disclosures
+- Root and release builds plus the full DOM suite pass; Astro reports zero errors, warnings or hints
+- Generated home and Auto Layout HTML and the historical source JSON are byte-for-byte unchanged
+- Existing live desktop lesson inspected before enhancement; local preview exits before readiness, so pre-publication visual rendering of the enhanced page is not claimed
+
 ## Not verified
 
-Real-browser rendering, responsive overflow, Chromium click/focus behavior, screenshots and visual comparison. The prepared Playwright suite could not run because the execution environment prohibits Chromium sockets. The local preview server also exited before becoming ready. The cloud browser disallows local file URLs. No browser or visual QA pass is claimed.
+Enhanced-page real-browser rendering, responsive overflow, Chromium click/focus behavior, screenshots and visual comparison at the time of this source commit. The prepared Playwright suite could not run because the execution environment prohibits Chromium sockets. The local preview server also exited before becoming ready. The cloud browser disallows local file URLs. No browser or visual QA pass is claimed.
 
 DOM tests exercise logic only. Run the included browser suite and inspect desktop/mobile views before treating visual behavior as verified.
 

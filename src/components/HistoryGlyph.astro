@@ -1,0 +1,100 @@
+---
+interface Props {
+  index: number;
+}
+
+const { index } = Astro.props;
+const motif = Number.isInteger(index) && index >= 0 && index < 10 ? index : 0;
+---
+
+<!-- Conceptual period markers, rather than reconstructions of historical objects. -->
+<svg
+  width="64"
+  height="64"
+  viewBox="0 0 64 64"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.6"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+>
+  {motif === 0 && (
+    <g>
+      <path d="M12 24v20c0 6 40 6 40 0V24" fill="currentColor" fill-opacity=".08" />
+      <ellipse cx="32" cy="23" rx="22" ry="12" fill="currentColor" fill-opacity=".06" />
+      <ellipse cx="32" cy="23" rx="17" ry="8" />
+      <path d="m32 17 2 4 6-1-4 3 4 3-6-1-2 4-2-4-6 1 4-3-4-3 6 1 2-4Z" fill="currentColor" fill-opacity=".12" />
+      <path d="M12 36c8 6 32 6 40 0M12 41c8 6 32 6 40 0M19 33v6m7-4v6m12-6v6m7-8v6M10 27l-3 2v9l5 2m42-13 3 2v9l-5 2" />
+    </g>
+  )}
+  {motif === 1 && (
+    <g>
+      <path d="M32 32C18 32 13 25 14 14c11 0 19 6 18 18ZM33 24c0-11 7-17 18-17 0 11-7 18-18 17Z" fill="currentColor" fill-opacity=".09" />
+      <path d="m20 20 12 12m12-18L33 25M32 25v21M13 38h38M32 43l-9 7-5 1m14-5 8 4 5 5M26 48l-1 7m11-7 1 8m-5-8-3 9" />
+      <path d="M10 44h6m33 0h5M11 33h3m37-2h3" stroke-opacity=".5" />
+    </g>
+  )}
+  {motif === 2 && (
+    <g>
+      <path d="M10 38h44l-8 10H20L10 38Z" fill="currentColor" fill-opacity=".09" />
+      <path d="M31 11v27M28 15 13 32h15V15Zm7-4 15 21H35V11Z" fill="currentColor" fill-opacity=".06" />
+      <path d="M14 42h36M8 52c4-3 8-3 12 0s8 3 12 0 8-3 12 0 8 3 12 0M10 57c3-2 6-2 9 0m26 0c3-2 6-2 9 0" />
+      <path d="M10 19h6m30-5h7" stroke-opacity=".5" />
+    </g>
+  )}
+  {motif === 3 && (
+    <g>
+      <path d="M18 13h28v32a6 6 0 0 1-6 6H18V13Z" fill="currentColor" fill-opacity=".07" />
+      <path d="M18 13a5 5 0 0 0-10 0v5h10M18 13v32M18 45H8v3a6 6 0 0 0 6 6h27a5 5 0 0 0 5-5M46 13h4a6 6 0 0 1 6 6v2H46M25 23h14M25 29h14M25 35h9" />
+      <path d="m36 43 3 2 3-2v8l-3-2-3 2v-8Z" fill="currentColor" fill-opacity=".13" />
+    </g>
+  )}
+  {motif === 4 && (
+    <g>
+      <path d="M27 56V43c0-8-6-10-11-14-4-3-6-8-6-15h9c0 5 2 8 5 10l8 6 8-6c3-2 5-5 5-10h9c0 7-2 12-6 15-5 4-11 6-11 14v13H27Z" fill="currentColor" fill-opacity=".08" />
+      <path d="M32 54v-6m0-5v-5m-4-5-5-4m-5-5-3-5m21 14 5-4m5-5 3-5" stroke-dasharray="2 3" />
+      <path d="m8 17 7-7 7 7m20 0 7-7 7 7M32 24V9m-5 5 5-5 5 5" />
+      <path d="M7 43h9m32 0h9" stroke-opacity=".5" />
+    </g>
+  )}
+  {motif === 5 && (
+    <g>
+      <path d="M17 35h30v18H17V35Z" fill="currentColor" fill-opacity=".08" />
+      <path d="M12 35c8-3 14-6 20-13 6 7 12 10 20 13H12ZM18 21c6-2 10-5 14-10 4 5 8 8 14 10H18Z" fill="currentColor" fill-opacity=".06" />
+      <path d="M32 7v4M24 21v7m16-7v7M12 53h40M9 57h46M25 53V40h14v13M32 40v13M15 35l-3-3m37 3 3-3M21 21l-3-3m25 3 3-3" />
+      <path d="M7 27h4m43-5h3" stroke-opacity=".5" />
+    </g>
+  )}
+  {motif === 6 && (
+    <g>
+      <path d="M11 11h37v37a5 5 0 0 0 5 5H16a5 5 0 0 1-5-5V11Z" fill="currentColor" fill-opacity=".06" />
+      <path d="M48 20h9v28a5 5 0 0 1-10 0M18 19h23M18 24h23M18 43h23M18 47h16M34 31h7m-7 5h7" />
+      <path d="M18 30h10v8H18v-8Z" fill="currentColor" fill-opacity=".12" />
+      <path d="M8 57h44" stroke-opacity=".5" />
+    </g>
+  )}
+  {motif === 7 && (
+    <g>
+      <path d="M14 9h25l10 10v35H14V9Z" fill="currentColor" fill-opacity=".06" />
+      <path d="M39 9v10h10M21 19h9M21 26h20M21 31h16M21 46h10M21 50h7" />
+      <path d="M35 47c7-4 10-10 12-17m-5 9c-6 0-8-3-8-7 5 0 8 3 8 7Zm2 3c6 1 10-1 11-6-5-1-9 1-11 6Z" fill="currentColor" fill-opacity=".08" />
+      <path d="M9 57h43" stroke-opacity=".5" />
+    </g>
+  )}
+  {motif === 8 && (
+    <g>
+      <path d="M8 41c6-9 12-13 20-15v6C20 35 14 40 8 46v-5Zm48 0c-6-9-12-13-20-15v6c8 3 14 8 20 14v-5Z" fill="currentColor" fill-opacity=".08" />
+      <path d="M8 46h20m8 0h20M14 34v16m8-24v20m28-12v16m-8-24v20M8 41h20m8 0h20" />
+      <path d="M8 54c4-2 8-2 12 0s8 2 12 0 8-2 12 0 8 2 12 0M14 16h10m16 0h10M18 12h6m16 0h6" stroke-opacity=".6" />
+    </g>
+  )}
+  {motif === 9 && (
+    <g>
+      <path d="M8 46c10-20 38-20 48 0v5H8v-5Z" fill="currentColor" fill-opacity=".08" />
+      <path d="M8 46h48M8 51h48M16 36v15m8-20v15m8-17v17m8-15v15m8-10v15M24 23a8 8 0 0 1 16 0M32 7v4m-13 1 3 3m23-3-3 3M13 24h5m28 0h5" />
+      <path d="M9 57c4-2 8-2 12 0s8 2 12 0 8-2 12 0 8 2 12 0" />
+    </g>
+  )}
+</svg>
