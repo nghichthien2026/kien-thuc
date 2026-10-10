@@ -250,3 +250,25 @@ assert.match(sqlCss,/@container\(max-width:580px\)/);
 sqlDom.window.close();
 const sqlLive=await load('lap-trinh/sql-co-ban/',true);const sl=sqlLive.window.document;sl.querySelector('#menu-toggle').click();assert.equal(sl.activeElement.id,'menu-toggle');const si=sl.querySelector('#lesson-search');si.value='sql co ban';si.dispatchEvent(new sqlLive.window.Event('input'));assert.equal(sl.querySelectorAll('[data-search]:not([hidden])').length,1);assert.match(sl.querySelector('[data-search]:not([hidden]) a').getAttribute('href'),/sql-co-ban/);sqlLive.window.close();
 console.log('PASS SQL: 9 semantic cards, 7 commands, 11 operators, 18 selectable code blocks, qualified sample table, safety/dialect notes, scoped theme, no-JS reading and mobile search.');
+
+// Practical SQL additions share one fixture; results remain readable without JavaScript.
+const practiceData=JSON.parse(await readFile('src/data/sql-practice.json','utf8'));
+const practiceDom=new JSDOM(await readFile('dist/lap-trinh/sql-co-ban/index.html','utf8'));
+const pd=practiceDom.window.document;
+assert.equal(pd.querySelectorAll('.sql-card').length,9,'Original nine blocks remain');
+assert.equal(pd.querySelectorAll('.sql-extra').length,3);
+assert.equal(pd.querySelectorAll('.sql-pitfalls article').length,4);
+assert.equal(pd.querySelectorAll('.sql-join-map>div').length,4);
+assert.equal(pd.querySelectorAll('.sql-join-map .unmatched').length,1);
+for(const query of practiceData.queries.slice(0,4)){
+ const card=pd.querySelector(`[data-query="${query.id}"]`);assert.ok(card);
+ assert.equal(card.querySelector('pre code').textContent,query.code);
+ assert.deepEqual([...card.querySelectorAll('thead th')].map(el=>el.textContent),query.columns);
+ assert.deepEqual([...card.querySelectorAll('tbody tr')].map(row=>[...row.querySelectorAll('td')].map(el=>el.textContent)),query.rows.map(row=>row.map(value=>value===null?'NULL':String(value))));
+}
+assert.equal(pd.querySelectorAll('[data-query="left"] .sql-null-row').length,1);
+assert.equal(pd.querySelectorAll('[data-query="inner"] .sql-null-row').length,0);
+assert.ok(pd.querySelector('.sql-fixture-note').textContent.includes('minh họa tĩnh'));
+assert.equal(pd.querySelectorAll('.sql-practice button,.sql-practice input').length,0);
+practiceDom.window.close();
+console.log('PASS SQL practice: 3 concise sections, shared synthetic dataset, 4 exact result tables, INNER/LEFT missing match, 4 pitfalls, no-JS readability.');

@@ -1,0 +1,34 @@
+---
+import SqlCode from './SqlCode.astro';
+import SqlIcon from './SqlIcon.astro';
+import SqlTable from './SqlTable.astro';
+import data from '../data/sql-practice.json';
+const queries = data.queries;
+---
+<div class="sql-practice">
+ <section id="thu-voi-du-lieu" class="sql-extra">
+  <header class="sql-extra-heading"><SqlIcon name="database"/><div><span>TỪ CÚ PHÁP ĐẾN KẾT QUẢ</span><h2>Nhìn dữ liệu, hiểu truy vấn</h2></div></header>
+  <p class="sql-extra-intro">Hai bảng mẫu dùng chung bên dưới. Dũng chưa có phòng ban; Sales chưa có nhân viên.</p>
+  <div class="sql-sample-tables"><SqlTable caption="employees · Nhân viên" columns={['id','name','age','dept_id']} rows={data.employees}/><SqlTable caption="departments · Phòng ban" columns={['id','name']} rows={data.departments}/></div>
+  <p class="sql-fixture-note"><code>employees.id</code> và <code>departments.id</code> là khóa chính. Kết quả đã kiểm chứng trên dữ liệu mẫu; đây là minh họa tĩnh, không chạy SQL trực tiếp.</p>
+  <div class="sql-query-grid">{queries.slice(0,2).map(query=><article class="sql-query" data-query={query.id}><h3>{query.title}</h3><SqlCode code={query.code}/><div class="sql-output-arrow" aria-hidden="true">↓</div><SqlTable caption="Kết quả" columns={query.columns} rows={query.rows}/><p>{query.note}</p></article>)}</div>
+ </section>
+ <section id="ghep-bang" class="sql-extra">
+  <header class="sql-extra-heading"><SqlIcon name="group"/><div><span>HAI BẢNG · MỘT KẾT QUẢ</span><h2>JOIN · Ghép dữ liệu</h2></div></header>
+  <p class="sql-extra-intro"><code>e</code> là tên ngắn của employees; <code>d</code> là tên ngắn của departments.</p>
+  <div class="sql-join-map" role="img" aria-label="An và Chi có dept_id 10 ghép với IT; Bình có dept_id 20 ghép với HR; Dũng có dept_id NULL nên không ghép được phòng ban.">
+   {[['An · 10','IT','matched'],['Bình · 20','HR','matched'],['Chi · 10','IT','matched'],['Dũng · NULL','Không ghép được','unmatched']].map(([name,department,state])=><div class={state}><strong>{name}</strong><span aria-hidden="true">{state==='matched'?'→':'⇢'}</span><span>{department}</span></div>)}
+  </div>
+  <div class="sql-query-grid">{queries.slice(2,4).map(query=><article class="sql-query" data-query={query.id}><h3>{query.title}<span class="sql-row-count">{query.rows.length} dòng</span></h3><p class="sql-join-explanation">{query.note}</p><SqlCode code={query.code}/><div class="sql-output-arrow" aria-hidden="true">↓</div><SqlTable caption="Kết quả" columns={query.columns} rows={query.rows}/></article>)}</div>
+  <p class="sql-fixture-note">LEFT giữ bảng bên trái: ở đây là employees. Sales không xuất hiện vì chưa có nhân viên nào ghép tới.</p>
+ </section>
+ <section id="loi-de-gap" class="sql-extra">
+  <header class="sql-extra-heading"><SqlIcon name="bulb"/><div><span>NHỎ NHƯNG DỄ SAI</span><h2>Bốn điều nên nhớ</h2></div></header>
+  <div class="sql-pitfalls">
+   <article><span class="sql-rule-tag">NULL</span><h3>Dùng IS NULL, đừng dùng = NULL</h3><SqlCode code={queries[4].code}/><p>Kết quả: <strong>Dũng</strong>. NULL là thiếu giá trị, không phải chuỗi rỗng hay số 0.</p></article>
+   <article><span class="sql-rule-tag">COUNT</span><h3>Đếm dòng khác đếm giá trị</h3><SqlCode code={queries[5].code}/><p><strong>all_rows = 4 · assigned = 3</strong><br/>Dũng vẫn là một dòng, nhưng dept_id là NULL.</p></article>
+   <article><span class="sql-rule-tag">WHERE / HAVING</span><h3>Lọc dòng trước, lọc nhóm sau</h3><div class="sql-order-strip"><span>WHERE</span><b aria-hidden="true">→</b><span>GROUP BY</span><b aria-hidden="true">→</b><span>HAVING</span></div><p><code>WHERE dept_id IS NOT NULL</code> lọc nhân viên.<br/><code>HAVING COUNT(*) &gt; 1</code> lọc nhóm đã đếm.</p></article>
+   <article><span class="sql-rule-tag">ORDER BY / LIMIT</span><h3>Muốn kết quả ổn định, sắp xếp rõ</h3><div class="sql-order-strip"><span>ORDER BY</span><b aria-hidden="true">→</b><span>LIMIT</span></div><p>Chỉ <code>LIMIT 2</code> không đảm bảo chọn hai dòng nào. Dùng <code>ORDER BY age DESC, id ASC</code> để phân thứ tự cả khi tuổi bằng nhau.</p></article>
+  </div>
+ </section>
+</div>

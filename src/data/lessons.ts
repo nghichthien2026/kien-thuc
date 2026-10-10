@@ -6,7 +6,7 @@ export const lessons = [
   { title: 'Lộ trình DSA', topic: 'Lập trình', path: 'lap-trinh/dsa-roadmap/', keywords: 'data structures algorithms arrays strings linked list stack queue recursion binary search trees heap graphs dynamic programming trie cấu trúc dữ liệu giải thuật thuật toán mảng chuỗi danh sách liên kết ngăn xếp hàng đợi đệ quy tìm kiếm nhị phân cây đồ thị quy hoạch động' },
   { title: '13 cụm từ với time', topic: 'Tiếng Anh', path: 'tieng-anh/cum-tu-voi-time/', keywords: 'english từ vựng thời gian lần trước lần sau one more last next first free waste kill on time take your time' },
   { title: 'Cấu trúc source code Backend', topic: 'Lập trình', path: 'lap-trinh/cau-truc-backend/', keywords: 'node javascript npm source code cây thư mục config controllers middlewares models routes services utils test server package backend cấu trúc' },
-  { title: 'SQL cơ bản', topic: 'Lập trình', path: 'lap-trinh/sql-co-ban/', keywords: 'SQL database cơ sở dữ liệu SELECT INSERT UPDATE DELETE CREATE ALTER DROP WHERE LIKE COUNT GROUP BY HAVING truy vấn' },
+  { title: 'SQL cơ bản', topic: 'Lập trình', path: 'lap-trinh/sql-co-ban/', keywords: 'SQL database cơ sở dữ liệu SELECT INSERT UPDATE DELETE CREATE ALTER DROP WHERE LIKE COUNT GROUP BY HAVING INNER LEFT JOIN NULL truy vấn ghép bảng dữ liệu mẫu' },
 ];
 export const href = (path = '') => `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${path}`;
 

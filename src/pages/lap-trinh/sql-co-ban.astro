@@ -2,8 +2,9 @@
 import LessonLayout from '../../layouts/LessonLayout.astro';
 import SqlCode from '../../components/SqlCode.astro';
 import SqlIcon from '../../components/SqlIcon.astro';
+import SqlPractice from '../../components/SqlPractice.astro';
 import '../../styles/sql-basics.css';
-const sections = [{id:'sql-la-gi',label:'SQL là gì?'},{id:'select',label:'Đọc dữ liệu'},{id:'where',label:'Lọc dữ liệu'},{id:'tong-hop',label:'Tổng hợp & nhóm'},{id:'thay-doi',label:'Thay đổi dữ liệu'},{id:'tao-bang',label:'Làm việc với bảng'}];
+const sections = [{id:'sql-la-gi',label:'SQL là gì?'},{id:'select',label:'Đọc dữ liệu'},{id:'where',label:'Lọc dữ liệu'},{id:'tong-hop',label:'Tổng hợp & nhóm'},{id:'thay-doi',label:'Thay đổi dữ liệu'},{id:'tao-bang',label:'Làm việc với bảng'},{id:'thu-voi-du-lieu',label:'Dữ liệu & kết quả'},{id:'ghep-bang',label:'INNER / LEFT JOIN'},{id:'loi-de-gap',label:'Bốn điều nên nhớ'}];
 const commands = [['SELECT','Đọc dữ liệu'],['INSERT','Thêm dữ liệu'],['UPDATE','Cập nhật dữ liệu'],['DELETE','Xóa dữ liệu'],['CREATE','Tạo bảng / cơ sở dữ liệu'],['ALTER','Đổi cấu trúc bảng'],['DROP','Xóa bảng / cơ sở dữ liệu']];
 const operators = [['=','Bằng'],['!= hoặc <>','Khác'],['>','Lớn hơn'],['<','Nhỏ hơn'],['>=','Lớn hơn hoặc bằng'],['<=','Nhỏ hơn hoặc bằng'],['BETWEEN','Trong khoảng, gồm cả hai đầu'],['IN','Thuộc một danh sách'],['LIKE','Khớp một mẫu chuỗi'],['IS NULL','Là NULL (thiếu giá trị)'],['IS NOT NULL','Không phải NULL']];
 const aggregates = [['COUNT(*)','Đếm số dòng'],['SUM(cột)','Tính tổng'],['AVG(cột)','Tính trung bình'],['MIN(cột)','Giá trị nhỏ nhất'],['MAX(cột)','Giá trị lớn nhất']];
@@ -48,6 +49,7 @@ const aggregates = [['COUNT(*)','Đếm số dòng'],['SUM(cột)','Tính tổng
   </div></section>
  </div>
  <aside class="sql-tips"><SqlIcon name="bulb"/><div><h2>Mẹo ghi nhớ</h2><ul><li>Từ khóa SQL không phân biệt chữ hoa / thường</li><li>Kết thúc mỗi câu lệnh bằng dấu <code>;</code></li><li>Luyện tập trên dữ liệu mẫu trước khi dùng dữ liệu thật</li></ul></div></aside>
- <footer class="sql-sources"><p>Ví dụ dùng cú pháp tương thích PostgreSQL. <code>table_name</code> và các tên cột cần đổi theo bảng của bạn; các ví dụ độc lập, không phải một chương trình chạy liền mạch. Cú pháp giới hạn dòng như <code>LIMIT</code> có thể khác giữa các hệ quản trị.</p><p>Đối chiếu: <a href="https://www.postgresql.org/docs/current/sql-select.html">SELECT</a> · <a href="https://www.postgresql.org/docs/current/functions-comparison.html">Toán tử</a> · <a href="https://www.postgresql.org/docs/current/functions-matching.html">LIKE</a> · <a href="https://www.postgresql.org/docs/current/functions-aggregate.html">Hàm tổng hợp</a> · <a href="https://www.postgresql.org/docs/current/sql-commands.html">Các lệnh SQL</a></p></footer>
+ <SqlPractice/>
+ <footer class="sql-sources"><p>Ví dụ dùng cú pháp tương thích PostgreSQL. <code>table_name</code> và các tên cột cần đổi theo bảng của bạn; các ví dụ độc lập, không phải một chương trình chạy liền mạch. Cú pháp giới hạn dòng như <code>LIMIT</code> có thể khác giữa các hệ quản trị.</p><p>Đối chiếu: <a href="https://www.postgresql.org/docs/current/sql-select.html">SELECT</a> · <a href="https://www.postgresql.org/docs/current/functions-comparison.html">Toán tử</a> · <a href="https://www.postgresql.org/docs/current/functions-matching.html">LIKE</a> · <a href="https://www.postgresql.org/docs/current/functions-aggregate.html">Hàm tổng hợp</a> · <a href="https://www.postgresql.org/docs/current/sql-commands.html">Các lệnh SQL</a> · <a href="https://www.postgresql.org/docs/current/queries-table-expressions.html">JOIN & nhóm</a> · <a href="https://www.postgresql.org/docs/current/queries-limit.html">Thứ tự & LIMIT</a></p></footer>
 </article>
 </LessonLayout>
