@@ -2,9 +2,9 @@
   "language": "vi",
   "eyebrow": "BẢN ĐỒ HỌC TẬP • 8 CHẶNG",
   "title": "Từ nền tảng web đến sản phẩm thực tế",
-  "subtitle": "Học có thứ tự. Xây có mục tiêu. Tiến bộ bằng sản phẩm bạn tự làm được.",
-  "intro": "Hoàn thành 5 chặng cốt lõi rồi chọn hướng chuyên sâu. Không cần học mọi framework. Đây là định hướng học tập, không phải lịch bắt buộc hay cam kết nghề nghiệp.",
-  "pathNote": "01 → 02 → 03 + 04 → 05, rồi chọn AI hoặc Cloud. Đào sâu kiến trúc khi có trải nghiệm vận hành.",
+  "subtitle": "Biết học gì, thực hành thế nào và khi nào đủ vững để đi tiếp.",
+  "intro": "Lộ trình cho người bắt đầu: học từng khái niệm, làm một bài nhỏ, rồi ghép vào ứng dụng ghi chú học tập. Hoàn thành 5 chặng cốt lõi trước; 3 chặng sau là lựa chọn theo nhu cầu, không phải danh sách bắt buộc.",
+  "pathNote": "01 → 02 → 03.1–03.3 → 04.1–04.3 → 03.4–03.6 + phần còn lại của 04 → 05. Sau đó chọn 06, 07 hoặc 08.",
   "principles": [
     {
       "title": "Nền tảng trước công cụ",
@@ -28,17 +28,133 @@
       "tag": "BẮT ĐẦU TẠI ĐÂY",
       "goal": "Hiểu trình duyệt và tự dựng một trang web dễ sử dụng.",
       "topics": [
-        "HTML ngữ nghĩa",
+        "HTML ngữ nghĩa • accessibility",
         "CSS • Flexbox • Grid",
-        "JavaScript • DOM • async",
-        "HTTP • Git • DevTools"
+        "JavaScript • DOM • fetch",
+        "Git • DevTools • test nhỏ"
       ],
-      "practice": "Làm trang thư viện sách với tìm kiếm và bộ lọc, dùng dữ liệu giả lập.",
-      "done": "Trang dùng được trên điện thoại, thao tác bằng bàn phím; bạn tự giải thích và sửa được mã.",
+      "practice": "Xây ứng dụng ghi chú bằng HTML/CSS/JavaScript, dữ liệu giả lưu cục bộ.",
+      "done": "Trang responsive, có form và tìm kiếm; bạn tự sửa được lỗi DOM hoặc CSS.",
       "note": "Kiểm tra lỗi, tương phản và nhãn biểu mẫu từ đầu.",
       "sourceIds": [
+        "git",
         "mdn-core",
+        "mdn-html",
+        "mdn-a11y",
+        "mdn-css",
+        "mdn-js",
         "mdn-http"
+      ],
+      "prerequisite": "Chưa cần biết lập trình; biết tạo tệp, thư mục và mở trình duyệt.",
+      "defaultPath": "HTML + CSS + JavaScript thuần, DevTools và Git. Chưa dùng framework.",
+      "optionalTools": [
+        "Tailwind, Sass và thư viện giao diện: để sau khi tự bố trí được trang bằng CSS."
+      ],
+      "modules": [
+        {
+          "id": "01.1",
+          "title": "Môi trường, trình duyệt và Git",
+          "concepts": [
+            "Tệp, đường dẫn tương đối; terminal: xem thư mục, chuyển thư mục",
+            "HTML/CSS/JS khác nhau thế nào; Console và Elements",
+            "git init, status, add, commit, diff; .gitignore"
+          ],
+          "exercise": "Tạo trang của buổi đầu; commit bản HTML, rồi commit riêng phần CSS. Sửa sai một tiêu đề, xem diff và khôi phục đúng thay đổi đó.",
+          "output": "Một thư mục dự án có lịch sử ít nhất 3 commit và README cách mở.",
+          "selfCheck": "Bạn tìm được tệp gây thay đổi, xem được khác biệt giữa hai bản; không đưa mật khẩu, .env hay node_modules vào Git.",
+          "sourceIds": [
+            "git",
+            "mdn-core"
+          ]
+        },
+        {
+          "id": "01.2",
+          "title": "HTML có nghĩa và biểu mẫu",
+          "concepts": [
+            "head, title, lang; heading theo cấp; header, nav, main, article",
+            "Liên kết, danh sách, ảnh có alt; button khác link",
+            "form, label, input, textarea; required và thông báo lỗi"
+          ],
+          "exercise": "Dựng danh sách 5 ghi chú giả và form thêm ghi chú với tiêu đề, nội dung, chủ đề. Dùng phần tử HTML đúng nghĩa trước khi nghĩ tới màu sắc.",
+          "output": "Trang nội dung hoàn chỉnh và form có nhãn rõ ràng.",
+          "selfCheck": "Tắt CSS vẫn đọc hiểu được; dùng Tab tới mọi điều khiển, Enter kích hoạt được nút; không dùng div làm nút.",
+          "sourceIds": [
+            "mdn-html",
+            "mdn-a11y"
+          ]
+        },
+        {
+          "id": "01.3",
+          "title": "CSS từ hộp tới bố cục responsive",
+          "concepts": [
+            "Selector, cascade, specificity, kế thừa; box model",
+            "Margin/padding; đơn vị rem, %, min/max-width",
+            "Flexbox cho thanh công cụ, Grid cho danh sách; media query"
+          ],
+          "exercise": "Làm một cột trên điện thoại, hai cột khi đủ rộng. Tự sửa một lỗi tràn ngang bằng bảng Computed trong DevTools; thử tiêu đề dài và phóng to chữ.",
+          "output": "Giao diện danh sách thẻ, form và focus có thể nhìn rõ.",
+          "selfCheck": "Ở chiều rộng 320px không mất nội dung; chữ phóng to vẫn dùng được; trạng thái không chỉ phân biệt bằng màu.",
+          "sourceIds": [
+            "mdn-css",
+            "mdn-a11y"
+          ]
+        },
+        {
+          "id": "01.4",
+          "title": "JavaScript căn bản và tư duy kiểm thử",
+          "concepts": [
+            "const/let, kiểu dữ liệu, điều kiện, vòng lặp, hàm",
+            "Array/object; map, filter, find; giá trị rỗng và lỗi",
+            "Hàm thuần, input/output; chia bài toán thành bước nhỏ"
+          ],
+          "exercise": "Viết các hàm tìm ghi chú theo từ khóa, lọc chủ đề và đếm ghi chú. Chuẩn bị ví dụ đầu vào có chữ hoa, khoảng trắng, chuỗi rỗng và danh sách rỗng.",
+          "output": "Một tệp hàm xử lý dữ liệu với ít nhất 6 ca kiểm tra bằng console.assert.",
+          "selfCheck": "Bạn dự đoán kết quả trước khi chạy và giải thích được vì sao ca sai thất bại; không chỉ thử dữ liệu đẹp.",
+          "sourceIds": [
+            "mdn-js"
+          ]
+        },
+        {
+          "id": "01.5",
+          "title": "DOM, sự kiện và dữ liệu trên trình duyệt",
+          "concepts": [
+            "querySelector, createElement, textContent; event listener",
+            "submit, preventDefault; render lại từ mảng dữ liệu",
+            "JSON, localStorage cho ghi chú giả; không dùng làm kho secret"
+          ],
+          "exercise": "Nối form với mảng ghi chú; thêm, tìm, xóa và lưu bản demo trên máy. Hiển thị nội dung người nhập như văn bản, không chèn trực tiếp bằng innerHTML.",
+          "output": "Trang ghi chú tương tác, tải lại vẫn giữ dữ liệu giả.",
+          "selfCheck": "Nhập chuỗi có thẻ script chỉ hiện chữ; tiêu đề trống bị chặn; xóa mục không làm thao tác bàn phím bị mắc kẹt.",
+          "sourceIds": [
+            "mdn-js",
+            "mdn-a11y"
+          ]
+        },
+        {
+          "id": "01.6",
+          "title": "HTTP, bất đồng bộ và sửa lỗi",
+          "concepts": [
+            "URL, request/response, method, status, header, JSON",
+            "Promise, async/await, fetch, try/catch; kiểm tra response.ok",
+            "Network: trạng thái tải, lỗi 404, phản hồi chậm"
+          ],
+          "exercise": "Chạy trang qua máy chủ phát triển cục bộ từ công cụ uy tín; tải notes.json bằng fetch. Đổi tên tệp để tạo lỗi và hiển thị nút thử lại thay vì trang trắng.",
+          "output": "Danh sách có bốn trạng thái: đang tải, có dữ liệu, trống, lỗi.",
+          "selfCheck": "Bạn chỉ đúng request thất bại trong Network, phân biệt lỗi HTTP với mất mạng và khôi phục được trang.",
+          "sourceIds": [
+            "mdn-http",
+            "mdn-js"
+          ]
+        }
+      ],
+      "completionChecks": [
+        "Tự dựng lại một trang ghi chú nhỏ không sao chép nguyên bài mẫu.",
+        "Giải thích đường đi: nhập dữ liệu → sự kiện → cập nhật mảng → hiển thị.",
+        "Kiểm tra bàn phím, màn hình nhỏ, dữ liệu rỗng và nội dung có ký tự đặc biệt."
+      ],
+      "commonMistakes": [
+        "Chuyển sang React khi chưa tự viết được hàm và xử lý sự kiện.",
+        "Chỉ xem video; không làm lại từ tệp trống hoặc kiểm tra trường hợp lỗi."
       ]
     },
     {
@@ -49,16 +165,118 @@
       "tag": "GIAO DIỆN CÓ TƯƠNG TÁC",
       "goal": "Tổ chức giao diện thành các thành phần có thể tái sử dụng.",
       "topics": [
-        "TypeScript cơ bản",
-        "Một framework giao diện",
-        "Component • state • routing",
-        "Kiểm thử giao diện"
+        "TypeScript • kiểu dữ liệu",
+        "React • props • state",
+        "Form • API • trạng thái lỗi",
+        "Playwright • kiểm tra bàn phím"
       ],
-      "practice": "Nâng thư viện sách thành ứng dụng có danh sách yêu thích và gọi API thử nghiệm.",
-      "done": "Có trạng thái tải, rỗng, lỗi; luồng tìm kiếm và thêm yêu thích được kiểm thử.",
+      "practice": "Chuyển ứng dụng ghi chú sang React + TypeScript, giữ chức năng cũ và thêm test.",
+      "done": "Có component rõ trách nhiệm, form dễ dùng và test cho luồng thêm/tìm.",
       "note": "Chọn một framework; hiểu luồng dữ liệu trước khi thêm thư viện.",
       "sourceIds": [
-        "mdn-core"
+        "typescript",
+        "vite",
+        "react",
+        "react-state",
+        "mdn-a11y",
+        "mdn-http",
+        "playwright"
+      ],
+      "prerequisite": "Hoàn thành 01: tự viết hàm JavaScript, thao tác DOM, hiểu fetch và commit.",
+      "defaultPath": "TypeScript trước, sau đó React với Vite; CSS thường; Playwright cho một luồng chính.",
+      "optionalTools": [
+        "Redux, Next.js, thư viện UI: chỉ thêm khi giải thích được nhu cầu.",
+        "Router chuyên dụng: thêm khi có nhiều màn hình; chưa cần trong bản một trang."
+      ],
+      "modules": [
+        {
+          "id": "02.1",
+          "title": "TypeScript đủ dùng",
+          "concepts": [
+            "string, number, boolean; array và object type",
+            "type/interface; thuộc tính tùy chọn; union, narrowing",
+            "Kiểu tham số/kết quả; unknown khác any; strict mode"
+          ],
+          "exercise": "Mô tả kiểu Note gồm id, title, body, topic; chuyển các hàm tìm/lọc của 01 sang TypeScript. Cố truyền sai kiểu để đọc lỗi rồi sửa nguyên nhân.",
+          "output": "Mô hình dữ liệu và hàm tiện ích vượt qua kiểm tra kiểu.",
+          "selfCheck": "Bạn giải thích được vì sao ép kiểu không xác thực JSON nhận từ mạng; không tắt strict hoặc dùng any để dập mọi lỗi.",
+          "sourceIds": [
+            "typescript"
+          ]
+        },
+        {
+          "id": "02.2",
+          "title": "Khởi tạo và chia component",
+          "concepts": [
+            "Node.js bản LTS còn hỗ trợ; npm, package.json, lockfile",
+            "Vite React + TypeScript; JSX, props, key",
+            "Component nhỏ theo trách nhiệm; CSS và HTML ngữ nghĩa"
+          ],
+          "exercise": "Tạo dự án theo hướng dẫn Vite hiện hành. Chuyển trang thành NoteList, NoteCard, SearchBar và NoteForm; truyền dữ liệu qua props trước khi thêm state.",
+          "output": "Bản React hiển thị cùng 5 ghi chú và bố cục của chặng 01.",
+          "selfCheck": "Bạn lần được dữ liệu từ component cha xuống con; key ổn định theo id, không tạo ngẫu nhiên trong mỗi lần render.",
+          "sourceIds": [
+            "vite",
+            "react"
+          ]
+        },
+        {
+          "id": "02.3",
+          "title": "State, sự kiện và biểu mẫu",
+          "concepts": [
+            "useState, controlled input; cập nhật array/object bất biến",
+            "Nâng state lên cha; dữ liệu suy ra từ state",
+            "Validation; không lưu hai bản của cùng một thông tin"
+          ],
+          "exercise": "Làm thêm/sửa/xóa/tìm ghi chú. Số kết quả được tính từ danh sách đã lọc; thông báo lỗi nằm cạnh trường nhập và form không xóa nội dung khi lỗi.",
+          "output": "Ứng dụng một trang hoàn chỉnh với nguồn dữ liệu nhất quán.",
+          "selfCheck": "Sửa ghi chú xong, danh sách và số đếm cùng cập nhật; bạn giải thích được vì sao không sửa trực tiếp mảng state.",
+          "sourceIds": [
+            "react-state",
+            "mdn-a11y"
+          ]
+        },
+        {
+          "id": "02.4",
+          "title": "Gọi API và trạng thái màn hình",
+          "concepts": [
+            "useEffect để đồng bộ với hệ thống bên ngoài",
+            "Loading/empty/error/success; hủy hoặc bỏ qua phản hồi cũ",
+            "Phân tách hàm gọi dữ liệu khỏi component"
+          ],
+          "exercise": "Ban đầu dùng JSON giả; tạo hàm listNotes để sau này đổi sang API ở 03. Giả lập mạng chậm và lỗi, giữ phản hồi cũ không ghi đè kết quả mới.",
+          "output": "Lớp truy cập dữ liệu nhỏ và giao diện có thử lại.",
+          "selfCheck": "Mạng hỏng không khiến form biến mất; không dùng Effect để tính mọi giá trị có thể suy ra khi render.",
+          "sourceIds": [
+            "react",
+            "mdn-http"
+          ]
+        },
+        {
+          "id": "02.5",
+          "title": "Kiểm thử hành vi và rà soát khả năng tiếp cận",
+          "concepts": [
+            "Test theo vai trò/nhãn mà người dùng nhìn thấy",
+            "Luồng thành công và dữ liệu không hợp lệ",
+            "Bàn phím, focus, tên điều khiển; kiểm tra thủ công bổ sung"
+          ],
+          "exercise": "Viết Playwright: mở trang → thêm ghi chú → tìm được ghi chú; thêm test tiêu đề trống. Chạy lại chỉ bằng bàn phím và thử phóng to giao diện.",
+          "output": "Test chạy bằng một lệnh; README ghi cách chạy và giới hạn hiện tại.",
+          "selfCheck": "Test thất bại khi cố ý phá nút Lưu; kiểm tra tự động không được xem là bằng chứng trang đã tiếp cận hoàn toàn.",
+          "sourceIds": [
+            "playwright",
+            "mdn-a11y"
+          ]
+        }
+      ],
+      "completionChecks": [
+        "Thêm một trường “đã ôn” mà không viết lại toàn ứng dụng.",
+        "Chạy kiểm tra kiểu, build và test; xử lý được loading, empty, error.",
+        "Giải thích props, state và lý do đặt state ở một component cụ thể."
+      ],
+      "commonMistakes": [
+        "Học nhiều framework cùng lúc hoặc thêm state manager trước khi có vấn đề.",
+        "Tin TypeScript sẽ tự kiểm tra dữ liệu ở runtime."
       ]
     },
     {
@@ -69,17 +287,148 @@
       "tag": "LOGIC & API",
       "goal": "Xây API có quy tắc rõ ràng và kiểm soát truy cập.",
       "topics": [
-        "Một ngôn ngữ và framework",
-        "HTTP • REST • validation",
-        "Xác thực • phân quyền",
-        "Test • log • xử lý lỗi"
+        "Node.js • Express • REST",
+        "Validation • xử lý lỗi",
+        "SQL có tham số • session",
+        "Phân quyền • API test"
       ],
-      "practice": "Viết API quản lý đầu sách; học chặng 04 để lưu dữ liệu bền vững.",
-      "done": "Test chứng minh dữ liệu sai bị từ chối và người không có quyền không sửa được sách.",
+      "practice": "Xây API ghi chú có validation, lưu SQL, phân quyền theo chủ sở hữu và test.",
+      "done": "API có hợp đồng rõ, dữ liệu bền vững và kiểm thử vượt quyền bị chặn.",
       "note": "Giữ secret ở server; dùng thư viện xác thực uy tín.",
       "sourceIds": [
+        "node",
+        "express",
         "mdn-http",
-        "owasp-rest"
+        "owasp-rest",
+        "node-test",
+        "pg-driver",
+        "postgres",
+        "owasp-session",
+        "owasp-csrf",
+        "playwright",
+        "express-session",
+        "passport",
+        "owasp-password"
+      ],
+      "prerequisite": "Có JavaScript/TypeScript và HTTP từ 01–02. Riêng 03.4 cần hoàn thành 04.1–04.3 trước.",
+      "defaultPath": "Node.js + Express + REST; dữ liệu bộ nhớ trước, SQL qua node-postgres sau. Đăng nhập bài tập dùng Passport Local + express-session; lưu session phía server.",
+      "optionalTools": [
+        "GraphQL, WebSocket, NestJS: để sau khi REST hiện tại thật sự thiếu.",
+        "JWT và nhiều nhà cung cấp đăng nhập: chưa cần cho bài nhập môn."
+      ],
+      "modules": [
+        {
+          "id": "03.1",
+          "title": "JavaScript ở server",
+          "concepts": [
+            "Node runtime khác trình duyệt; module và npm scripts",
+            "Biến môi trường; bất đồng bộ và đọc log",
+            "Request/response; một tiến trình đang lắng nghe cổng"
+          ],
+          "exercise": "Tạo server Express với GET /health trả JSON. Dừng server, đổi cổng, gọi lại từ trình duyệt hoặc curl và quan sát các lỗi khác nhau.",
+          "output": "Server cục bộ và README lệnh chạy, không có secret trong mã.",
+          "selfCheck": "Bạn giải thích vì sao document không có ở server và API key không được gửi trong bundle frontend.",
+          "sourceIds": [
+            "node",
+            "express"
+          ]
+        },
+        {
+          "id": "03.2",
+          "title": "Thiết kế REST và CRUD bộ nhớ",
+          "concepts": [
+            "GET/POST/PATCH/DELETE; resource, params, query, body",
+            "200/201/204, 400, 404, 500; JSON nhất quán",
+            "Tách route, xử lý nghiệp vụ và nơi lưu dữ liệu"
+          ],
+          "exercise": "Viết /notes và /notes/:id để xem, tạo, sửa, xóa ghi chú giả. Ghi bảng endpoint và mẫu request/response; chưa nối cơ sở dữ liệu.",
+          "output": "API CRUD hoạt động với mảng trong bộ nhớ.",
+          "selfCheck": "Khởi động lại sẽ mất dữ liệu và bạn giải thích được lý do; endpoint không tồn tại trả 404 rõ ràng.",
+          "sourceIds": [
+            "express",
+            "mdn-http"
+          ]
+        },
+        {
+          "id": "03.3",
+          "title": "Validation và lỗi có chủ đích",
+          "concepts": [
+            "Kiểm tra kiểu, độ dài, trường cho phép ở server",
+            "Middleware; xử lý lỗi tập trung; giới hạn kích thước request",
+            "Không trả stack trace hoặc thông tin nội bộ cho client"
+          ],
+          "exercise": "Từ chối title trống, body quá dài và trường ownerId tùy ý. Viết test request sai, id thiếu và lỗi bất ngờ; client nhận thông báo hữu ích, log đủ để chẩn đoán.",
+          "output": "Bộ test API cho ca đúng và sai; hợp đồng lỗi nhất quán.",
+          "selfCheck": "Bỏ kiểm tra frontend vẫn không gửi được dữ liệu sai. Sau mô-đun này chuyển sang học 04.1–04.3.",
+          "sourceIds": [
+            "owasp-rest",
+            "node-test"
+          ]
+        },
+        {
+          "id": "03.4",
+          "title": "Nối PostgreSQL an toàn",
+          "concepts": [
+            "Connection pool; query có tham số; tách repository",
+            "Ánh xạ hàng SQL thành dữ liệu API",
+            "Biến môi trường kết nối; test database riêng"
+          ],
+          "exercise": "Sau 04.1–04.3, thay mảng bộ nhớ bằng truy vấn SQL qua node-postgres. Truyền nội dung qua tham số, không ghép chuỗi SQL; giữ nguyên API với frontend.",
+          "output": "Thêm ghi chú rồi khởi động lại server vẫn còn dữ liệu.",
+          "selfCheck": "Chuỗi chứa dấu nháy hoặc cú pháp SQL được lưu như dữ liệu; test không chạy trên database dùng thật.",
+          "sourceIds": [
+            "pg-driver",
+            "postgres"
+          ]
+        },
+        {
+          "id": "03.5",
+          "title": "Đăng nhập khác phân quyền",
+          "concepts": [
+            "Danh tính người dùng và quyền sở hữu từng ghi chú",
+            "Session phía server; cookie HttpOnly, Secure, SameSite phù hợp",
+            "CSRF cho thao tác thay đổi dữ liệu; giới hạn tần suất đăng nhập",
+            "Password hash bằng thư viện Argon2id được duy trì; không lưu mật khẩu thô hoặc tự viết mật mã",
+            "Session id đổi sau đăng nhập; hết hạn, đăng xuất; dùng store phù hợp khi triển khai"
+          ],
+          "exercise": "Trước hết test phân quyền bằng hai danh tính giả chỉ có trong bộ test. Sau đó theo tài liệu Passport Local và express-session để thêm đăng nhập bằng tài khoản bài tập; hash mật khẩu bằng thư viện theo OWASP. Server lấy owner từ session đã xác thực, không từ userId do client gửi.",
+          "output": "Người A không thể đọc/sửa/xóa ghi chú riêng của B, kể cả biết id.",
+          "selfCheck": "Đăng xuất vô hiệu hóa session; đăng nhập tạo lại session id. Cookie có HttpOnly/Secure/SameSite phù hợp; không cất token trong localStorage, không coi CORS là phân quyền, không triển khai MemoryStore mặc định.",
+          "sourceIds": [
+            "owasp-session",
+            "owasp-csrf",
+            "owasp-rest",
+            "express-session",
+            "passport",
+            "owasp-password"
+          ]
+        },
+        {
+          "id": "03.6",
+          "title": "Tích hợp frontend và test chống hồi quy",
+          "concepts": [
+            "Frontend gọi API; cấu hình origin hoặc reverse proxy",
+            "Test nghiệp vụ, integration API và một luồng đầu-cuối",
+            "Request id; log không chứa cookie, token hoặc nội dung riêng tư"
+          ],
+          "exercise": "Nối ứng dụng React với API. Test tạo → tải lại → sửa → xóa; thêm 401/403 hoặc 404 theo chính sách che giấu tài nguyên, dữ liệu sai và lỗi database.",
+          "output": "Ứng dụng full-stack cục bộ; test tái hiện được một lỗi rồi chứng minh bản sửa.",
+          "selfCheck": "Không thể vượt quyền bằng sửa request; UI hiển thị lỗi mà không lộ chi tiết server.",
+          "sourceIds": [
+            "node-test",
+            "playwright",
+            "owasp-rest"
+          ]
+        }
+      ],
+      "completionChecks": [
+        "CRUD qua API vẫn đúng sau restart và không chỉ phụ thuộc validation ở UI.",
+        "Test chứng minh người A không truy cập ghi chú riêng của B.",
+        "README phân biệt cấu hình phát triển, kiểm thử và triển khai."
+      ],
+      "commonMistakes": [
+        "Dùng userId do client gửi làm bằng chứng quyền sở hữu.",
+        "Đưa xác thực giả của bộ test ra ứng dụng công khai."
       ]
     },
     {
@@ -90,16 +439,112 @@
       "tag": "DỮ LIỆU ĐÁNG TIN CẬY",
       "goal": "Mô hình hóa dữ liệu và truy vấn đúng trước khi tối ưu.",
       "topics": [
-        "SQL • JOIN • tổng hợp",
-        "Khóa • ràng buộc • quan hệ",
-        "Transaction • index",
-        "Migration • backup"
+        "SQL CRUD • JOIN • khóa",
+        "Transaction • migration",
+        "EXPLAIN • index • phân trang",
+        "Backup • restore • quyền"
       ],
-      "practice": "Thiết kế bảng sách, tác giả và lượt mượn giả lập; viết SQL rồi mới thử ORM.",
-      "done": "Ngăn dữ liệu không hợp lệ, giải thích một truy vấn JOIN và khôi phục được bản sao lưu.",
+      "practice": "Thiết kế dữ liệu ghi chú, chủ sở hữu và nhãn; nối API sau ba mô-đun SQL đầu.",
+      "done": "Có schema, migration, truy vấn giải thích được và quy trình phục hồi đã thử.",
       "note": "Bắt đầu với PostgreSQL; thêm NoSQL khi cần.",
       "sourceIds": [
-        "postgres"
+        "postgres",
+        "postgres-explain",
+        "postgres-backup",
+        "owasp-rest"
+      ],
+      "prerequisite": "Biết biến, object và khái niệm request. Có thể học 04.1–04.3 ngay sau 03.3; không cần API đã nối database.",
+      "defaultPath": "PostgreSQL + SQL viết tay; node-postgres nối ứng dụng sau khi hiểu câu truy vấn.",
+      "optionalTools": [
+        "Prisma hoặc Drizzle chỉ sau khi tự viết CRUD, JOIN và transaction.",
+        "Redis, MongoDB, vector database: chỉ chọn khi có nhu cầu dữ liệu cụ thể."
+      ],
+      "modules": [
+        {
+          "id": "04.1",
+          "title": "Bảng, khóa và SQL CRUD",
+          "concepts": [
+            "Table/row/column; text, boolean, timestamp",
+            "PRIMARY KEY, NOT NULL, UNIQUE, CHECK",
+            "SELECT, WHERE, ORDER BY, LIMIT; INSERT, UPDATE, DELETE"
+          ],
+          "exercise": "Tạo bảng notes với id, title, body, topic và created_at. Chèn 10 ghi chú giả; viết truy vấn lọc chủ đề, sắp xếp mới nhất, sửa đúng một hàng.",
+          "output": "Tệp schema.sql và queries.sql chạy lại được trên database bài tập.",
+          "selfCheck": "Luôn kiểm tra WHERE trước UPDATE/DELETE; ràng buộc từ chối title không hợp lệ mà không cần frontend.",
+          "sourceIds": [
+            "postgres"
+          ]
+        },
+        {
+          "id": "04.2",
+          "title": "Quan hệ và JOIN",
+          "concepts": [
+            "Một-nhiều: users → notes; nhiều-nhiều: notes ↔ tags",
+            "FOREIGN KEY; bảng nối note_tags; quy tắc khi xóa",
+            "INNER/LEFT JOIN; GROUP BY, COUNT; giá trị NULL"
+          ],
+          "exercise": "Thêm hai người dùng giả và ba nhãn. Viết truy vấn số ghi chú theo người dùng, kể cả người chưa có ghi chú; tránh lưu danh sách nhãn bằng chuỗi phân cách dấu phẩy.",
+          "output": "Sơ đồ 4 bảng và 3 câu JOIN có kết quả mẫu.",
+          "selfCheck": "Bạn giải thích vì sao JOIN có thể làm tăng số hàng và vì sao khóa ngoại ngăn ghi chú trỏ tới người không tồn tại.",
+          "sourceIds": [
+            "postgres"
+          ]
+        },
+        {
+          "id": "04.3",
+          "title": "Transaction và dữ liệu nhất quán",
+          "concepts": [
+            "BEGIN/COMMIT/ROLLBACK; thao tác nhiều bước",
+            "Ràng buộc duy nhất; cập nhật đồng thời ở mức nhập môn",
+            "Migration có thứ tự; seed giả tách khỏi schema"
+          ],
+          "exercise": "Gói tạo ghi chú và gắn nhãn trong một transaction; cố gây lỗi bước gắn nhãn rồi kiểm tra toàn bộ thao tác được hủy. Thêm cột archived bằng migration.",
+          "output": "Migration, seed và kịch bản chứng minh rollback.",
+          "selfCheck": "Database không còn ghi chú “nửa hoàn thành”; dựng schema từ đầu được. Bây giờ có thể tiếp tục 03.4.",
+          "sourceIds": [
+            "postgres"
+          ]
+        },
+        {
+          "id": "04.4",
+          "title": "Truy vấn chậm và index",
+          "concepts": [
+            "EXPLAIN; index hỗ trợ truy vấn nào",
+            "Chi phí đọc/ghi; chỉ mục không miễn phí",
+            "Phân trang; tránh gọi một truy vấn cho từng hàng"
+          ],
+          "exercise": "Sinh dữ liệu giả nhiều hơn, đo truy vấn ghi chú theo owner và ngày. Đọc kế hoạch trước/sau index; không chỉ đo trên 10 hàng rồi kết luận.",
+          "output": "Một ghi chú so sánh kế hoạch truy vấn và lý do giữ hoặc bỏ index.",
+          "selfCheck": "Bạn chỉ ra query được cải thiện và đánh đổi dung lượng/cập nhật; không tạo index cho mọi cột.",
+          "sourceIds": [
+            "postgres-explain"
+          ]
+        },
+        {
+          "id": "04.5",
+          "title": "Backup, restore và giới hạn truy cập",
+          "concepts": [
+            "pg_dump và phục hồi vào database khác",
+            "Tài khoản ứng dụng quyền tối thiểu; thông tin kết nối là secret",
+            "Chính sách lưu/xóa dữ liệu; kiểm tra sau phục hồi"
+          ],
+          "exercise": "Sao lưu database bài tập, phục hồi vào bản mới rồi đối chiếu số hàng và thử luồng đọc/ghi. Ghi rõ bản sao lưu nằm đâu và cách xóa dữ liệu giả.",
+          "output": "Hướng dẫn phục hồi đã chạy thử, không chỉ một tệp backup chưa kiểm tra.",
+          "selfCheck": "Khôi phục được khi mất database bài tập; ứng dụng không cần quyền quản trị database để chạy CRUD.",
+          "sourceIds": [
+            "postgres-backup",
+            "owasp-rest"
+          ]
+        }
+      ],
+      "completionChecks": [
+        "Viết được CRUD và JOIN không cần ORM sinh hộ.",
+        "Chứng minh ràng buộc và transaction ngăn dữ liệu sai.",
+        "Khôi phục được bản sao vào môi trường riêng trước khi tin vào backup."
+      ],
+      "commonMistakes": [
+        "Học ORM trước SQL nên không giải thích được truy vấn đang chạy.",
+        "Test hoặc thử DELETE trên dữ liệu thật; có backup nhưng chưa từng restore."
       ]
     },
     {
@@ -110,17 +555,123 @@
       "tag": "CỘT MỐC SẢN PHẨM",
       "goal": "Biến dự án chạy trên máy thành ứng dụng có thể vận hành.",
       "topics": [
-        "Build • cấu hình môi trường",
-        "Hosting • DNS • HTTPS",
-        "CI/CD cơ bản",
-        "Log • giám sát • rollback"
+        "Build • cấu hình • secret",
+        "Render • HTTPS • database",
+        "GitHub Actions • CI",
+        "Smoke test • log • rollback"
       ],
-      "practice": "Triển khai thư viện sách demo, tự động chạy test trước khi phát hành.",
-      "done": "Có URL hoạt động, README cài đặt, cảnh báo lỗi và cách quay về bản ổn định.",
+      "practice": "Phát hành ứng dụng ghi chú demo, có test trước deploy và tài liệu vận hành.",
+      "done": "Người khác mở được demo; bạn phát hiện lỗi và khôi phục được bản ổn định.",
       "note": "Ưu tiên hosting đơn giản; giới hạn chi phí, không lưu secret vào Git.",
       "sourceIds": [
+        "vite",
+        "node",
+        "render-deploy",
+        "mdn-http",
+        "owasp-session",
         "github-actions",
-        "owasp-rest"
+        "postgres-backup",
+        "playwright",
+        "mdn-a11y"
+      ],
+      "prerequisite": "Hoàn tất frontend, API và database ở 01–04; test chạy ổn trên máy.",
+      "defaultPath": "Một dịch vụ Node trên Render phục vụ frontend đã build và API, cộng PostgreSQL được quản lý. Ưu tiên cùng origin để giảm cấu hình.",
+      "optionalTools": [
+        "Domain riêng, Docker, VPS, CDN riêng: chưa bắt buộc.",
+        "Không cần Kubernetes để đưa bản demo đầu tiên lên mạng."
+      ],
+      "modules": [
+        {
+          "id": "05.1",
+          "title": "Build có thể lặp lại",
+          "concepts": [
+            "Development khác production; build frontend, khởi động server",
+            "Lockfile; phiên bản runtime còn hỗ trợ; biến môi trường",
+            "Secret phía server khác cấu hình công khai trong bundle"
+          ],
+          "exercise": "Clone vào thư mục sạch; cài theo lockfile, chạy type-check, test và build. Tạo .env.example chỉ chứa tên biến và giá trị giả.",
+          "output": "README giúp một người khác chạy lại ứng dụng mà không hỏi thêm.",
+          "selfCheck": "Không phụ thuộc tệp chỉ có trên máy bạn; tìm trong output build không thấy API key hay mật khẩu database.",
+          "sourceIds": [
+            "vite",
+            "node"
+          ]
+        },
+        {
+          "id": "05.2",
+          "title": "Triển khai bản nhỏ và HTTPS",
+          "concepts": [
+            "Dịch vụ web, database được quản lý, cổng và health check",
+            "URL, DNS ở mức khái niệm; TLS/HTTPS",
+            "Migration có kiểm soát; cấu hình cookie và origin thực tế"
+          ],
+          "exercise": "Theo hướng dẫn Render để triển khai bản chỉ có dữ liệu giả. Chạy migration, mở URL HTTPS và thử thêm ghi chú rồi restart dịch vụ. Xem giá/gói hiện hành trước khi tạo tài nguyên.",
+          "output": "URL demo hoạt động và danh sách cấu hình đã kiểm tra.",
+          "selfCheck": "Frontend không gọi localhost; dữ liệu sống trong database, không dựa vào ổ đĩa tạm của dịch vụ.",
+          "sourceIds": [
+            "render-deploy",
+            "mdn-http",
+            "owasp-session"
+          ]
+        },
+        {
+          "id": "05.3",
+          "title": "CI trước khi phát hành",
+          "concepts": [
+            "GitHub Actions: trigger, job, step, secret",
+            "Cài phụ thuộc, kiểm tra kiểu, test, build",
+            "Chỉ phát hành commit đã qua kiểm tra"
+          ],
+          "exercise": "Tạo workflow chạy khi mở pull request và khi thay đổi nhánh chính. Cố đưa vào một test lỗi để kiểm tra pipeline đỏ; sửa rồi xác nhận xanh.",
+          "output": "Lịch sử CI có một lần thất bại có chủ đích và lần sửa thành công.",
+          "selfCheck": "Bạn xác định được bước lỗi; cấu hình deploy không bỏ qua kiểm tra bằng cách phát hành mọi commit ngay lập tức.",
+          "sourceIds": [
+            "github-actions"
+          ]
+        },
+        {
+          "id": "05.4",
+          "title": "Log, giám sát và rollback",
+          "concepts": [
+            "Log theo request; lỗi ứng dụng khác lỗi kết nối",
+            "Health check và kiểm tra một chức năng thật",
+            "Rollback mã khác rollback schema; thay đổi tương thích ngược"
+          ],
+          "exercise": "Gây lỗi an toàn ở môi trường thử, đọc log tìm nguyên nhân và quay lại bản mã ổn định. Với migration, ghi cách phục hồi hoặc sửa tiến lên thay vì xóa dữ liệu bừa.",
+          "output": "Runbook ngắn: nhận biết sự cố → chẩn đoán → khôi phục → kiểm tra.",
+          "selfCheck": "Sau rollback, dữ liệu vẫn đọc được; log không ghi secret hay nội dung ghi chú riêng tư.",
+          "sourceIds": [
+            "github-actions",
+            "render-deploy",
+            "postgres-backup"
+          ]
+        },
+        {
+          "id": "05.5",
+          "title": "Bàn giao demo có trách nhiệm",
+          "concepts": [
+            "Giới hạn chi phí, dung lượng và lưu lượng; dọn tài nguyên thử",
+            "README, tài khoản demo, dữ liệu giả, giới hạn chức năng",
+            "Smoke test sau phát hành; accessibility và quyền truy cập"
+          ],
+          "exercise": "Mở demo trên điện thoại; thử bàn phím, tạo/sửa/xóa, đăng xuất và truy cập trái quyền. Ghi lịch backup, đầu mối xem lỗi và cách tắt tài nguyên tránh phát sinh phí.",
+          "output": "Demo + repo/README + báo cáo test + hướng dẫn phục hồi.",
+          "selfCheck": "Người khác làm theo README được; bạn nói rõ demo học tập chưa tương đương sản phẩm đủ điều kiện xử lý dữ liệu thật.",
+          "sourceIds": [
+            "render-deploy",
+            "playwright",
+            "mdn-a11y"
+          ]
+        }
+      ],
+      "completionChecks": [
+        "Có URL HTTPS, CI và một lần diễn tập rollback/restore.",
+        "Tự dựng lại từ mã nguồn và cấu hình đã ghi chép.",
+        "Chỉ dùng dữ liệu giả; hiểu giới hạn chi phí và việc vận hành còn thiếu."
+      ],
+      "commonMistakes": [
+        "Đưa .env vào Git hoặc nhúng secret vào biến môi trường frontend.",
+        "Tưởng deploy thành công đồng nghĩa mọi chức năng, quyền và backup đều đúng."
       ]
     },
     {
@@ -131,18 +682,112 @@
       "tag": "NHÁNH TÙY CHỌN",
       "goal": "Tạo tính năng AI có thể đo chất lượng và kiểm soát rủi ro.",
       "topics": [
-        "LLM API • đầu ra có cấu trúc",
-        "Embeddings • RAG",
+        "LLM API • JSON Schema",
+        "RAG • nguồn • quyền dữ liệu",
         "Evals • chi phí • độ trễ",
-        "Quyền riêng tư • prompt injection"
+        "Prompt injection • duyệt bản nháp"
       ],
-      "practice": "Làm trợ lý tra cứu tài liệu công khai, trả lời kèm nguồn và biết báo thiếu thông tin.",
-      "done": "Có bộ câu hỏi kiểm thử, đánh giá câu sai và thử tài liệu chứa chỉ dẫn độc hại.",
+      "practice": "Thêm tóm tắt bản nháp và hỏi-đáp tài liệu công khai cho ứng dụng ghi chú.",
+      "done": "Đo được chất lượng, thử được tấn công và giữ quyền quyết định ở người dùng.",
       "note": "Dùng dữ liệu giả; giới hạn quyền công cụ, duyệt hành động quan trọng.",
       "sourceIds": [
-        "openai-evals",
         "openai-safety",
+        "openai-structured",
+        "openai-search",
+        "openai-evals",
         "openai-injection"
+      ],
+      "prerequisite": "Tùy chọn sau 05: biết gọi API server-side, test, bảo vệ secret và kiểm soát quyền dữ liệu.",
+      "defaultPath": "Thêm tính năng gợi ý tóm tắt bằng LLM API; sau đó tìm tài liệu có nguồn. Mọi kết quả ban đầu chỉ là bản nháp.",
+      "optionalTools": [
+        "Tự huấn luyện model, fine-tuning, agent nhiều công cụ và vector database riêng: học khi có yêu cầu đo được."
+      ],
+      "modules": [
+        {
+          "id": "06.1",
+          "title": "Một lời gọi AI có ranh giới",
+          "concepts": [
+            "Input, instructions, output; token, độ trễ và chi phí",
+            "API key ở server; timeout, giới hạn độ dài và số lần gọi",
+            "Model có thể trả sai; dữ liệu gửi đi phải được phép sử dụng"
+          ],
+          "exercise": "Tạo nút “Gợi ý tóm tắt” cho ghi chú giả; server gọi model và trả bản nháp. Ghi số lần gọi, ước tính chi phí và xử lý trường hợp dịch vụ không phản hồi.",
+          "output": "Một tính năng AI nhỏ không tự ghi đè nội dung người dùng.",
+          "selfCheck": "Bạn chỉ rõ dữ liệu gửi nhà cung cấp; lỗi API không làm hỏng chức năng ghi chú gốc.",
+          "sourceIds": [
+            "openai-safety"
+          ]
+        },
+        {
+          "id": "06.2",
+          "title": "Đầu ra có cấu trúc và kiểm tra",
+          "concepts": [
+            "JSON Schema; trường bắt buộc và giới hạn",
+            "Phân biệt đúng cấu trúc với đúng nội dung",
+            "Refusal, thiếu dữ liệu, kết quả không hoàn chỉnh"
+          ],
+          "exercise": "Yêu cầu kết quả gồm summary và suggestedTags; kiểm tra schema ở server, hiển thị riêng bản nháp và nút chấp nhận. Thử ghi chú rỗng hoặc nội dung không liên quan.",
+          "output": "Pipeline nhận kết quả có cấu trúc và xử lý đường lỗi.",
+          "selfCheck": "JSON hợp lệ vẫn có thể bịa thông tin; bạn không tự động coi suggestedTags là sự thật.",
+          "sourceIds": [
+            "openai-structured"
+          ]
+        },
+        {
+          "id": "06.3",
+          "title": "Tìm thông tin trước khi trả lời",
+          "concepts": [
+            "RAG: chia tài liệu, tìm đoạn liên quan, đưa ngữ cảnh",
+            "Embeddings là biểu diễn để tìm tương đồng, không phải bằng chứng đúng",
+            "Nguồn trích dẫn; quyền đọc tài liệu; trả lời không đủ thông tin"
+          ],
+          "exercise": "Tạo tập tài liệu công khai nhỏ có quyền sử dụng. Thử hỏi-đáp kèm nguồn qua công cụ tìm tệp; so sánh câu có trong tài liệu với câu không có đáp án.",
+          "output": "Trợ lý tra cứu giới hạn trong bộ tài liệu, liên kết về đoạn nguồn.",
+          "selfCheck": "Người không có quyền không lấy được nội dung qua tìm kiếm; trích nguồn không tự đảm bảo câu trả lời khớp nguồn.",
+          "sourceIds": [
+            "openai-search"
+          ]
+        },
+        {
+          "id": "06.4",
+          "title": "Evals trước khi sửa prompt",
+          "concepts": [
+            "Tập câu hỏi cố định; đáp án hoặc tiêu chí chấm",
+            "Đúng nội dung, đúng nguồn, biết từ chối; latency và chi phí",
+            "Tách dữ liệu để phát triển khỏi dữ liệu đánh giá"
+          ],
+          "exercise": "Soạn 20 tình huống: dễ, mơ hồ, thiếu nguồn và cố tình gây lỗi. Chạy trước/sau thay đổi prompt; đọc thủ công các ca sai và giữ một tập kiểm tra chưa dùng để chỉnh prompt.",
+          "output": "Bảng kết quả có số ca đạt, ví dụ lỗi và quyết định giữ/bỏ thay đổi.",
+          "selfCheck": "Không kết luận tốt hơn chỉ vì một câu trả lời hay; ghi cấu hình và ngày chạy để so sánh có ý nghĩa.",
+          "sourceIds": [
+            "openai-evals"
+          ]
+        },
+        {
+          "id": "06.5",
+          "title": "Prompt injection, riêng tư và duyệt hành động",
+          "concepts": [
+            "Tài liệu truy xuất là dữ liệu không đáng tin, không phải chỉ thị hệ thống",
+            "Tối thiểu quyền công cụ; xác thực và phân quyền vẫn ở server",
+            "Không gửi secret; giới hạn lưu dữ liệu; con người duyệt thay đổi quan trọng"
+          ],
+          "exercise": "Chèn vào tài liệu giả câu yêu cầu bỏ qua chỉ dẫn hoặc tiết lộ secret giả. Kiểm tra hệ thống không cấp thêm quyền; tính năng xóa, chia sẻ hay gửi nội dung phải hiện rõ thao tác để người dùng duyệt.",
+          "output": "Bộ test tấn công, sơ đồ luồng dữ liệu và danh sách quyền bị giới hạn.",
+          "selfCheck": "Prompt “hãy an toàn” không phải hàng rào bảo mật; model không có quyền tự duyệt hành động của chính nó.",
+          "sourceIds": [
+            "openai-injection",
+            "openai-safety"
+          ]
+        }
+      ],
+      "completionChecks": [
+        "Có tập eval, nguồn kiểm chứng và xử lý câu hỏi thiếu dữ liệu.",
+        "Chức năng gốc vẫn chạy khi AI lỗi hoặc hết ngân sách.",
+        "Bản nháp được duyệt trước khi thay đổi dữ liệu; không truyền thông tin riêng tư ngoài phạm vi đã cho phép."
+      ],
+      "commonMistakes": [
+        "Thêm agent tự hành trước khi có bộ test và quyền hạn rõ.",
+        "Nhầm JSON đúng định dạng hoặc câu có trích dẫn với nội dung đúng."
       ]
     },
     {
@@ -153,17 +798,116 @@
       "tag": "NHÁNH TÙY CHỌN",
       "goal": "Triển khai lặp lại được và xử lý sự cố có phương pháp.",
       "topics": [
-        "Linux • mạng • container",
-        "Một nền tảng cloud • IAM",
-        "Infrastructure as Code",
-        "Metrics • cảnh báo • phục hồi"
+        "Linux cơ bản • mạng",
+        "Docker • môi trường riêng",
+        "Blueprint • quyền tối thiểu",
+        "Sự cố • phục hồi • chi phí"
       ],
-      "practice": "Đóng gói ứng dụng, tạo môi trường thử nghiệm và diễn tập khôi phục sau lỗi.",
-      "done": "Dựng lại môi trường từ cấu hình, đọc được log sự cố và kiểm soát ngân sách.",
+      "practice": "Đóng gói, dựng lại và diễn tập phục hồi ứng dụng ghi chú.",
+      "done": "Môi trường lặp lại được; có runbook sự cố và kiểm soát chi phí.",
       "note": "Kubernetes là lựa chọn nâng cao, không bắt buộc cho ứng dụng nhỏ.",
       "sourceIds": [
-        "github-actions",
-        "kubernetes"
+        "docker",
+        "mdn-http",
+        "render-docker",
+        "owasp-rest",
+        "render-iac",
+        "postgres-backup"
+      ],
+      "prerequisite": "Tùy chọn sau 05: đã tự triển khai và khôi phục ứng dụng; không cần hoàn thành AI.",
+      "defaultPath": "Docker cục bộ → Docker trên Render → cấu hình Render Blueprint. Chỉ đào sâu một nền tảng trước.",
+      "optionalTools": [
+        "AWS/Azure/GCP là hướng thay thế khi có nhu cầu công việc cụ thể.",
+        "Terraform và Kubernetes: bước nâng cao, không điều kiện để hoàn thành nhánh này."
+      ],
+      "modules": [
+        {
+          "id": "07.1",
+          "title": "Tiến trình, mạng và log",
+          "concepts": [
+            "Lệnh xem tệp, biến môi trường, tiến trình và log",
+            "IP, port, DNS; localhost bên trong container",
+            "Exit code; tín hiệu dừng; kiểm tra dịch vụ phụ thuộc"
+          ],
+          "exercise": "Vẽ sơ đồ trình duyệt → server → database với cổng tương ứng. Dừng database bài tập, quan sát lỗi rồi khởi động lại; ghi khác biệt với server không lắng nghe cổng.",
+          "output": "Sơ đồ mạng nhỏ và checklist chẩn đoán kết nối.",
+          "selfCheck": "Bạn xác định lỗi thuộc DNS, kết nối hay ứng dụng trước khi thay đổi cấu hình.",
+          "sourceIds": [
+            "docker",
+            "mdn-http"
+          ]
+        },
+        {
+          "id": "07.2",
+          "title": "Container có thể chạy lại",
+          "concepts": [
+            "Image khác container; Dockerfile; build context và .dockerignore",
+            "Port mapping, network, volume; Compose cho môi trường local",
+            "Không đưa secret vào image; chạy quyền thấp phù hợp"
+          ],
+          "exercise": "Đóng gói ứng dụng, thêm PostgreSQL trong Compose cho bài tập local. Xóa rồi dựng lại container ứng dụng; kiểm tra dữ liệu database tồn tại theo cấu hình volume.",
+          "output": "Dockerfile và cấu hình môi trường local có lệnh khởi động rõ ràng.",
+          "selfCheck": "Bạn phân biệt dữ liệu trong container với volume; image không chứa .env hoặc tệp không cần thiết.",
+          "sourceIds": [
+            "docker"
+          ]
+        },
+        {
+          "id": "07.3",
+          "title": "Quyền truy cập và môi trường tách biệt",
+          "concepts": [
+            "Tài khoản cá nhân khác quyền dịch vụ; tối thiểu quyền",
+            "Dev/staging/production có secret và database riêng",
+            "Phạm vi tính năng phụ thuộc gói; kiểm tra chi phí trước khi dùng"
+          ],
+          "exercise": "Lập bảng ai hoặc dịch vụ nào cần đọc/ghi gì. Thiết lập môi trường thử riêng bằng cơ chế nền tảng hỗ trợ, chỉ với quyền cần thiết; kiểm tra app không dùng kết nối quản trị.",
+          "output": "Bảng quyền và danh sách cấu hình, không ghi giá trị secret.",
+          "selfCheck": "Một test lỗi ở staging không sửa dữ liệu production; không dùng chung token toàn quyền cho mọi tác vụ.",
+          "sourceIds": [
+            "render-docker",
+            "owasp-rest"
+          ]
+        },
+        {
+          "id": "07.4",
+          "title": "Hạ tầng bằng cấu hình",
+          "concepts": [
+            "Infrastructure as Code; cấu hình được review như mã",
+            "Render Blueprint khai báo service và phụ thuộc",
+            "Giữ secret ngoài repo; kiểm tra thay đổi trước áp dụng"
+          ],
+          "exercise": "Mô tả môi trường demo bằng Blueprint và dựng một bản thử từ cấu hình. So sánh với thao tác bằng dashboard; ghi những bước vẫn cần làm thủ công.",
+          "output": "Cấu hình tái tạo được cùng hướng dẫn tạo/xóa tài nguyên.",
+          "selfCheck": "Bạn đọc được thay đổi sẽ tạo hoặc sửa gì, và không áp dụng mù quáng khi có nguy cơ mất dữ liệu hoặc tăng phí.",
+          "sourceIds": [
+            "render-iac"
+          ]
+        },
+        {
+          "id": "07.5",
+          "title": "Diễn tập sự cố và ngân sách",
+          "concepts": [
+            "Đo tỷ lệ lỗi, độ trễ, tài nguyên; cảnh báo có hành động cụ thể",
+            "Mục tiêu thời gian phục hồi và mức mất dữ liệu chấp nhận được",
+            "Backup, restore, rollback; tài nguyên thừa và chi phí"
+          ],
+          "exercise": "Ở môi trường thử, làm server không khởi động hoặc mất kết nối database. Dùng checklist tìm lỗi, phục hồi rồi ghi thời gian thực tế; dọn tài nguyên đã tạo cho bài tập.",
+          "output": "Báo cáo sự cố một trang và runbook đã sửa theo bài học.",
+          "selfCheck": "Cảnh báo nêu người xử lý và bước tiếp theo; bạn biết restore đã mất bao lâu thay vì chỉ đoán.",
+          "sourceIds": [
+            "postgres-backup",
+            "render-docker"
+          ]
+        }
+      ],
+      "completionChecks": [
+        "Dựng lại được môi trường và chứng minh secret không nằm trong image/repo.",
+        "Tách môi trường thử, test phục hồi và dọn tài nguyên không dùng.",
+        "Giải thích được đường đi request và quyền của từng thành phần."
+      ],
+      "commonMistakes": [
+        "Chuyển sang Kubernetes chỉ vì nghĩ mọi hệ thống chuyên nghiệp đều cần.",
+        "Dựng nhiều tài nguyên cloud mà không xem giá và cách dọn dẹp."
       ]
     },
     {
@@ -174,83 +918,383 @@
       "tag": "ĐÀO SÂU QUA TRẢI NGHIỆM",
       "goal": "Chọn thiết kế phù hợp yêu cầu, quy mô và khả năng của đội.",
       "topics": [
-        "Ranh giới module • thiết kế API",
-        "Cache • queue • tính nhất quán",
-        "Độ tin cậy • đo hiệu năng",
-        "Tài liệu quyết định kiến trúc"
+        "Yêu cầu • ranh giới module",
+        "Đo tải • query • điểm nghẽn",
+        "Cache • queue • nhất quán",
+        "ADR • đánh đổi • quay lui"
       ],
-      "practice": "Thiết kế lại một điểm nghẽn của dự án, so sánh hai phương án bằng số đo.",
-      "done": "Giải thích đánh đổi về chi phí, độ phức tạp và vận hành trong một bản quyết định ngắn.",
+      "practice": "Chọn và cải thiện một vấn đề thực tế của ứng dụng ghi chú bằng bằng chứng.",
+      "done": "Giải thích được đánh đổi, số đo và điều kiện xem xét lại thiết kế.",
       "note": "Bắt đầu với monolith chia module; chỉ chọn microservices khi cần.",
       "sourceIds": [
-        "azure-architecture"
+        "azure-architecture",
+        "node-test",
+        "postgres-explain",
+        "azure-cache",
+        "azure-queue"
+      ],
+      "prerequisite": "Tùy chọn sau 05 và một vòng tự vận hành: có vấn đề thực tế hoặc số đo để phân tích. Không cần hoàn thành 06–07.",
+      "defaultPath": "Giữ monolith chia module; viết quyết định và đo trước khi thêm cache, queue hoặc dịch vụ mới.",
+      "optionalTools": [
+        "Microservices, event sourcing và hệ thống đa vùng chỉ học khi yêu cầu thật biện minh được độ phức tạp."
+      ],
+      "modules": [
+        {
+          "id": "08.1",
+          "title": "Từ yêu cầu đến giới hạn rõ ràng",
+          "concepts": [
+            "Use case; yêu cầu chức năng và phi chức năng",
+            "Số người dùng, dữ liệu, độ trễ, độ sẵn sàng: giả định cần kiểm chứng",
+            "Ranh giới tin cậy và dữ liệu riêng tư"
+          ],
+          "exercise": "Viết yêu cầu cho ứng dụng ghi chú: ai được đọc gì, cần lưu bao lâu, khi nào chậm là khó dùng. Chọn một mục tiêu đo được cho bài thử, ghi rõ đó là giả định học tập.",
+          "output": "Một trang yêu cầu và sơ đồ bối cảnh, không chỉ danh sách công nghệ.",
+          "selfCheck": "Bạn liên hệ mỗi quyết định với nhu cầu; không tuyên bố chịu tải lớn khi chưa đo.",
+          "sourceIds": [
+            "azure-architecture"
+          ]
+        },
+        {
+          "id": "08.2",
+          "title": "Chia module trước khi chia dịch vụ",
+          "concepts": [
+            "Module ghi chú, người dùng, tìm kiếm; trách nhiệm và phụ thuộc",
+            "API công khai của module; tách lưu trữ khỏi nghiệp vụ",
+            "Test hợp đồng; thay đổi nội bộ ít ảnh hưởng bên ngoài"
+          ],
+          "exercise": "Tách phần quản lý ghi chú thành module có hàm vào/ra rõ. Thay cách lưu dữ liệu trong test mà không sửa route; giữ cùng một tiến trình triển khai.",
+          "output": "Sơ đồ phụ thuộc và một refactor giữ nguyên hành vi.",
+          "selfCheck": "Đổi một module không buộc các module khác truy cập trực tiếp bảng nội bộ của nó.",
+          "sourceIds": [
+            "azure-architecture",
+            "node-test"
+          ]
+        },
+        {
+          "id": "08.3",
+          "title": "Đo điểm nghẽn trước khi tối ưu",
+          "concepts": [
+            "Độ trễ trung vị/p95, tỷ lệ lỗi; tải thử có kiểm soát",
+            "Thời gian ở network, server, query; dữ liệu đại diện",
+            "So sánh trước/sau với điều kiện đo giống nhau"
+          ],
+          "exercise": "Trên môi trường riêng, tạo lượng ghi chú giả đủ lớn và đo endpoint danh sách. Kiểm tra SQL bằng EXPLAIN, thử phân trang hoặc index rồi đo lại; không thử tải lên hệ thống người khác.",
+          "output": "Báo cáo có điều kiện thử, số đo và một thay đổi có tác dụng.",
+          "selfCheck": "Bạn xác định được thành phần chậm, không suy ra cần microservices chỉ vì một query thiếu index.",
+          "sourceIds": [
+            "postgres-explain"
+          ]
+        },
+        {
+          "id": "08.4",
+          "title": "Cache và queue có đánh đổi",
+          "concepts": [
+            "Cache-aside; TTL; dữ liệu cũ và vô hiệu hóa cache",
+            "Queue cho việc nền; retry, idempotency, lỗi lặp",
+            "Tính nhất quán và quyền truy cập phải giữ qua mọi lớp"
+          ],
+          "exercise": "Chọn một thí nghiệm: cache kết quả thống kê không riêng tư, hoặc mô phỏng hàng đợi tạo bản xuất ghi chú. Thử cập nhật dữ liệu hoặc xử lý lặp; ghi rõ khi nào kết quả cũ/nhân đôi có thể xảy ra.",
+          "output": "Một thử nghiệm nhỏ cùng test ca lỗi; không bắt buộc triển khai vào demo chính.",
+          "selfCheck": "Cache không làm lộ dữ liệu giữa người dùng; tác vụ được thử lại không tạo tác dụng phụ trùng.",
+          "sourceIds": [
+            "azure-cache",
+            "azure-queue"
+          ]
+        },
+        {
+          "id": "08.5",
+          "title": "Ghi quyết định và kế hoạch thay đổi",
+          "concepts": [
+            "ADR: bối cảnh, lựa chọn, quyết định, hệ quả",
+            "So sánh độ phức tạp, chi phí, kiểm thử và vận hành",
+            "Triển khai từng bước, quan sát, quay lui"
+          ],
+          "exercise": "Viết ADR so sánh giữ monolith với tách dịch vụ tìm kiếm. Dùng số đo của 08.3; nếu chưa có lý do đủ mạnh, quyết định giữ nguyên cũng là kết quả tốt.",
+          "output": "Một ADR ngắn, sơ đồ cuối cùng và điều kiện để xem xét lại.",
+          "selfCheck": "Người khác hiểu vì sao chọn phương án, khi nào quyết định hết phù hợp và cách quay lại nếu thử nghiệm thất bại.",
+          "sourceIds": [
+            "azure-architecture"
+          ]
+        }
+      ],
+      "completionChecks": [
+        "Có yêu cầu, số đo, phương án so sánh và ADR.",
+        "Nêu được mặt bất lợi của lựa chọn mình thích.",
+        "Giải pháp mới không làm mất test quyền truy cập hoặc khả năng khôi phục."
+      ],
+      "commonMistakes": [
+        "Vẽ hệ thống nhiều dịch vụ trước khi có vấn đề cần giải quyết.",
+        "Tối ưu theo cảm giác hoặc dùng một benchmark để kết luận cho mọi tải."
       ]
     }
   ],
   "capstone": {
-    "title": "Một dự án xuyên suốt, nhiều lần nâng cấp",
-    "text": "Thư viện sách demo: trang tĩnh → giao diện tương tác → API + SQL → triển khai → chọn thêm AI hoặc vận hành cloud.",
+    "title": "Một ứng dụng ghi chú học tập, tám lần hiểu sâu hơn",
+    "text": "Bắt đầu bằng 5 ghi chú giả về HTML/CSS/JavaScript. Giữ cùng dự án khi thêm form, React, API, SQL và triển khai. Sau đó tùy chọn AI tóm tắt bản nháp, container hoặc một thí nghiệm kiến trúc.",
     "deliverables": [
-      "Demo chạy được",
-      "Mã nguồn có README",
-      "Test cho luồng quan trọng",
-      "Một bài ghi lại quyết định và bài học"
+      "Giao diện dùng được trên điện thoại và bàn phím",
+      "API CRUD, validation và test quyền sở hữu",
+      "Schema SQL, migration, seed giả và backup đã restore",
+      "Demo HTTPS, CI, README và runbook phục hồi",
+      "Nếu học nhánh chuyên sâu: eval AI, cấu hình hạ tầng hoặc ADR có số đo"
     ],
-    "privacy": "Chỉ dùng dữ liệu giả lập hoặc tài liệu công khai phù hợp; không thu thập hồ sơ học sinh hay thông tin cá nhân thật."
+    "privacy": "Chỉ dùng ghi chú, danh tính và dữ liệu giả; tài liệu AI phải công khai và được phép sử dụng. Không thu thập hồ sơ học sinh, thông tin cá nhân thật hoặc secret để làm bài tập."
   },
-  "closing": "Hoàn thành, giải thích, rồi mở rộng. Đo tiến độ bằng sản phẩm thực hành, không phải số logo công nghệ.",
+  "closing": "Đi tiếp khi tự làm được, giải thích được và kiểm tra được. Nếu chưa đạt, quay lại đúng mô-đun đang vướng; không cần học thêm một công cụ mới.",
   "sourcesTitle": "Đọc tiếp từ tài liệu chính thức",
-  "editorialNote": "Thứ tự học và tiêu chí hoàn thành là đề xuất biên soạn.",
+  "editorialNote": "Bài tập, thứ tự và tiêu chí hoàn thành là đề xuất biên soạn, không phải chứng chỉ chính thức. Liên kết tài liệu đã được mở kiểm tra ngày 10/10/2026; chọn phiên bản phần mềm còn được hỗ trợ và đọc yêu cầu cài đặt tại thời điểm học.",
   "sources": [
     {
       "id": "mdn-core",
       "title": "MDN · Nền tảng web",
-      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core"
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core",
+      "verifiedDate": "2026-10-10"
     },
     {
       "id": "mdn-http",
       "title": "MDN · HTTP",
-      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview",
+      "verifiedDate": "2026-10-10"
     },
     {
       "id": "owasp-rest",
       "title": "OWASP · Bảo mật REST API",
-      "url": "https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html"
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html",
+      "verifiedDate": "2026-10-10"
     },
     {
       "id": "postgres",
       "title": "PostgreSQL · SQL & dữ liệu",
-      "url": "https://www.postgresql.org/docs/current/tutorial.html"
+      "url": "https://www.postgresql.org/docs/current/tutorial.html",
+      "verifiedDate": "2026-10-10"
     },
     {
       "id": "github-actions",
       "title": "GitHub · CI/CD",
-      "url": "https://docs.github.com/en/actions/get-started/understand-github-actions"
+      "url": "https://docs.github.com/en/actions/get-started/understand-github-actions",
+      "verifiedDate": "2026-10-10"
     },
     {
       "id": "openai-evals",
       "title": "OpenAI · Đánh giá ứng dụng AI",
-      "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices"
+      "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+      "verifiedDate": "2026-10-10"
     },
     {
       "id": "openai-safety",
       "title": "OpenAI · An toàn ứng dụng AI",
-      "url": "https://developers.openai.com/api/docs/guides/safety-best-practices"
+      "url": "https://developers.openai.com/api/docs/guides/safety-best-practices",
+      "verifiedDate": "2026-10-10"
     },
     {
       "id": "openai-injection",
       "title": "OpenAI · Prompt injection",
-      "url": "https://openai.com/safety/prompt-injections/"
-    },
-    {
-      "id": "kubernetes",
-      "title": "Kubernetes · Yêu cầu vận hành",
-      "url": "https://kubernetes.io/docs/setup/production-environment/"
+      "url": "https://openai.com/safety/prompt-injections/",
+      "verifiedDate": "2026-10-10"
     },
     {
       "id": "azure-architecture",
       "title": "Microsoft · Kiểu kiến trúc",
-      "url": "https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/"
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "mdn-html",
+      "title": "MDN · HTML có nghĩa",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "mdn-css",
+      "title": "MDN · Bố cục CSS",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "mdn-js",
+      "title": "MDN · JavaScript thực hành",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "mdn-a11y",
+      "title": "MDN · Khả năng tiếp cận",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "git",
+      "title": "Git · Pro Git",
+      "url": "https://git-scm.com/book/en/v2",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "typescript",
+      "title": "TypeScript · Handbook",
+      "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "react",
+      "title": "React · Learn",
+      "url": "https://react.dev/learn",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "react-state",
+      "title": "React · Quản lý state",
+      "url": "https://react.dev/learn/managing-state",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "vite",
+      "title": "Vite · Khởi tạo dự án",
+      "url": "https://vite.dev/guide/",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "playwright",
+      "title": "Playwright · Bắt đầu kiểm thử",
+      "url": "https://playwright.dev/docs/intro",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "node",
+      "title": "Node.js · Bắt đầu",
+      "url": "https://nodejs.org/learn/getting-started/introduction-to-nodejs",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "node-test",
+      "title": "Node.js · Test runner",
+      "url": "https://nodejs.org/api/test.html",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "express",
+      "title": "Express · Routing cơ bản",
+      "url": "https://expressjs.com/en/starter/basic-routing/",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "pg-driver",
+      "title": "node-postgres · Query có tham số",
+      "url": "https://node-postgres.com/features/queries",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "postgres-explain",
+      "title": "PostgreSQL · Đọc EXPLAIN",
+      "url": "https://www.postgresql.org/docs/current/using-explain.html",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "postgres-backup",
+      "title": "PostgreSQL · Backup và restore",
+      "url": "https://www.postgresql.org/docs/current/backup-dump.html",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "owasp-session",
+      "title": "OWASP · Quản lý session",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "owasp-csrf",
+      "title": "OWASP · Phòng chống CSRF",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "render-deploy",
+      "title": "Render · Deploy Express",
+      "url": "https://render.com/docs/deploy-node-express-app",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "docker",
+      "title": "Docker · Nhập môn",
+      "url": "https://docs.docker.com/get-started/",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "render-docker",
+      "title": "Render · Triển khai Docker",
+      "url": "https://render.com/docs/docker",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "render-iac",
+      "title": "Render · Hạ tầng bằng Blueprint",
+      "url": "https://render.com/docs/infrastructure-as-code",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "openai-structured",
+      "title": "OpenAI · Structured outputs",
+      "url": "https://developers.openai.com/api/docs/guides/structured-outputs",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "openai-search",
+      "title": "OpenAI · File search",
+      "url": "https://developers.openai.com/api/docs/guides/tools-file-search",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "azure-cache",
+      "title": "Microsoft · Cache-aside",
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "azure-queue",
+      "title": "Microsoft · Queue-based load leveling",
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/queue-based-load-leveling",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "express-session",
+      "title": "Express · Session middleware",
+      "url": "https://expressjs.com/en/resources/middleware/session/",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "passport",
+      "title": "Passport · Đăng nhập bằng mật khẩu",
+      "url": "https://www.passportjs.org/concepts/authentication/password/",
+      "verifiedDate": "2026-10-10"
+    },
+    {
+      "id": "owasp-password",
+      "title": "OWASP · Lưu mật khẩu an toàn",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html",
+      "verifiedDate": "2026-10-10"
     }
-  ]
+  ],
+  "learningMethod": [
+    "Mỗi mô-đun: đọc đúng mục trong tài liệu → gõ lại ví dụ nhỏ → đóng tài liệu và tự làm bài → kiểm tra kết quả → commit. Không cần đọc hết tài liệu mới bắt đầu viết mã.",
+    "Khi bí: viết rõ kết quả mong đợi, kết quả thực tế và thông báo lỗi; tạo ví dụ nhỏ nhất gây lỗi. Dùng Console, Network hoặc log để kiểm tra giả thuyết thay vì đổi mã ngẫu nhiên.",
+    "Có thể nhờ AI giải thích lỗi hoặc gợi ý câu hỏi kiểm thử. Chỉ giữ đoạn mã bạn giải thích được, chạy được và đã thử trường hợp sai; không dán secret hay dữ liệu cá nhân vào hội thoại.",
+    "Tiến độ đo bằng bài tự làm và tiêu chí đầu ra. Nếu chưa qua tự kiểm tra, làm lại bài nhỏ; không cần học thêm framework. Không có mốc thời gian hay bảo đảm việc làm áp dụng cho mọi người."
+  ],
+  "dependencyGuide": [
+    "Chặng 01 không cần biết lập trình. Chặng 02 dùng JavaScript, DOM và Git của chặng 01.",
+    "Bắt đầu chặng 03 bằng API chạy trên dữ liệu trong bộ nhớ. Sau mô-đun 03.3, học 04.1–04.3 để biết SQL, quan hệ và transaction trước khi nối cơ sở dữ liệu ở 03.4.",
+    "Hoàn tất API, phân quyền, test và phần vận hành dữ liệu của 04 rồi mới triển khai ở 05. Vì vậy không cần học hết backend mới được học SQL.",
+    "Chặng 06 và 07 độc lập sau chặng 05. Chặng 08 cần ứng dụng đã chạy và một vấn đề đo được; không cần học AI hay Kubernetes trước.",
+    "Bộ công nghệ học mặc định: HTML/CSS/JavaScript → TypeScript + React → Node.js + Express → PostgreSQL → Render. Website đang chứa roadmap có thể dùng Astro; bạn không cần đổi công nghệ của website đó để học theo lộ trình."
+  ],
+  "firstSession": {
+    "title": "Buổi đầu tiên: tạo một trang ghi chú đọc được",
+    "steps": [
+      "Tạo thư mục learning-notes và hai tệp index.html, style.css trong trình soạn thảo mã. Mở index.html bằng trình duyệt.",
+      "Trong HTML, khai báo ngôn ngữ tiếng Việt, tiêu đề trang; thêm một h1 “Ghi chú học tập”, một main và ba article. Mỗi article có tiêu đề cùng hai câu ghi chú giả về HTML, CSS hoặc JavaScript.",
+      "Thêm liên kết “Tới ghi chú” trỏ vào main và một label gắn với ô tìm kiếm. Chưa cần làm chức năng tìm kiếm.",
+      "Liên kết style.css; đặt font dễ đọc, chiều rộng nội dung tối đa, khoảng cách giữa thẻ và viền focus rõ. Thu nhỏ cửa sổ và thử phím Tab.",
+      "Mở DevTools, đổi một màu rồi tải lại để phân biệt sửa tạm trong trình duyệt với sửa tệp. Lưu ảnh kết quả; bắt đầu Git ở mô-đun 01.1."
+    ],
+    "done": "Có trang ba ghi chú, hiển thị trên màn hình nhỏ, liên kết và ô nhập dùng được bằng bàn phím. Bạn chỉ ra được HTML tạo nội dung và CSS tạo cách trình bày."
+  }
 }

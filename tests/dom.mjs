@@ -84,17 +84,35 @@ console.log('PASS editorial poster: 10 separate illustrations, qualified ancient
 const roadmapHtml=await readFile('dist/lap-trinh/lo-trinh/index.html','utf8');
 const roadmapDom=new JSDOM(roadmapHtml);const roadmap=roadmapDom.window.document;
 assert.equal(roadmap.querySelectorAll('.roadmap-phase').length,8);
-assert.equal(roadmap.querySelectorAll('.roadmap-phase details').length,8);
+const curriculum=JSON.parse(await readFile('src/data/developer-roadmap.json','utf8'));
+assert.equal(roadmap.querySelectorAll('.roadmap-phase .roadmap-study-link').length,8);
+assert.equal(roadmap.querySelectorAll('.roadmap-course').length,8);
+assert.equal(roadmap.querySelectorAll('.roadmap-module').length,curriculum.phases.reduce((n,p)=>n+p.modules.length,0));
 assert.equal(roadmap.querySelectorAll('.roadmap-phase .roadmap-art').length,8);
 assert.equal(roadmap.querySelectorAll('.roadmap-project').length,4);
 assert.equal(roadmap.querySelectorAll('.roadmap-request li').length,3);
 assert.equal(roadmap.querySelectorAll('.roadmap-support>div').length,3);
-assert.equal(roadmap.querySelectorAll('.roadmap-references a').length,10);
+assert.equal(roadmap.querySelectorAll('.roadmap-references a').length,curriculum.sources.length);
 const roadmapIds=[...roadmap.querySelectorAll('[id]')].map(e=>e.id);assert.equal(roadmapIds.length,new Set(roadmapIds).size);
-for(const detail of roadmap.querySelectorAll('.roadmap-phase details')){assert.equal(detail.open,false);detail.querySelector('summary').click();assert.equal(detail.open,true);detail.querySelector('summary').click();assert.equal(detail.open,false);}
+for(const detail of roadmap.querySelectorAll('.roadmap-module,.roadmap-extra')){const initial=detail.open;detail.querySelector('summary').click();assert.equal(detail.open,!initial);detail.querySelector('summary').click();assert.equal(detail.open,initial);}
+assert.equal(roadmap.querySelectorAll('.roadmap-module[open]').length,1,'Only the first lesson is open initially');
+for(const phase of curriculum.phases){
+ const course=roadmap.getElementById(`hoc-${phase.id}`);assert.ok(course);assert.ok(phase.modules.length>=4);
+ for(const key of ['prerequisite','defaultPath'])assert.ok(course.textContent.includes(phase[key]));
+ for(const module of phase.modules){
+  const el=roadmap.getElementById(`bai-${phase.id}-${module.id}`);assert.ok(el);assert.equal(el.querySelectorAll('h4').length,2);
+  for(const text of [...module.concepts,module.exercise,module.output,module.selfCheck])assert.ok(el.textContent.includes(text));
+  assert.ok(module.sourceIds.length>0);
+  for(const id of module.sourceIds){const source=curriculum.sources.find(s=>s.id===id);assert.ok(source,`Missing source ${id}`);assert.ok(el.querySelector(`a[href="${source.url}"]`));}
+ }
+ for(const text of [...phase.completionChecks,...phase.commonMistakes,...phase.optionalTools])assert.ok(course.textContent.includes(text));
+}
+assert.equal(roadmap.querySelectorAll('.roadmap-start ol>li').length,curriculum.firstSession.steps.length);
+assert.equal(roadmap.querySelectorAll('input[type="checkbox"]').length,0,'No misleading completion persistence UI');
+
 assert.match(roadmap.body.textContent,/Kubernetes.*không bắt buộc/);
-assert.match(roadmap.body.textContent,/SQL trước ORM/);
+assert.match(roadmap.body.textContent,/SQL/);assert.match(roadmap.body.textContent,/ORM/);
 assert.equal(roadmap.querySelectorAll('img').length,0,'Roadmap visuals are original vectors, not a raster poster');
 roadmapDom.window.close();
 const roadmapLive=await load('lap-trinh/lo-trinh/');const rs=roadmapLive.window.document.querySelector('#lesson-search');rs.value='lap trinh';rs.dispatchEvent(new roadmapLive.window.Event('input'));assert.equal(roadmapLive.window.document.querySelectorAll('[data-search]:not([hidden])').length,1);roadmapLive.window.close();
-console.log('PASS developer roadmap: 8 phases, native details, 4 projects, layered stack, 10 sources, unique IDs, no-JS content, search.');
+console.log('PASS developer roadmap: 8 phases and detailed curricula, module content/source links/checkpoints, repeatable native details, first-session starter, 4 projects, layered stack, unique IDs, no-JS content, search.');

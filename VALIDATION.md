@@ -49,3 +49,13 @@ GitHub Pages deployment is enabled in `.github/workflows/pages.yml`, triggered b
 - Astro check: zero errors/warnings/hints. Root and `/kien-thuc/` production builds and DOM suites pass
 - Existing history source and all unrelated lesson styles/markup preserved; tests retain mobile fixed-menu and no-autofocus regression assertions
 - Local Playwright launch remains blocked by Chromium socket restrictions. Live cloud-browser verification follows deployment and is reported separately
+
+## Detailed developer curriculum (2026-10-10)
+
+- Expanded the existing roadmap to 42 ordered modules across eight stages, with prerequisites, a concrete default stack, concepts, practical exercises, expected output and self-checks
+- First-session starter and explicit backend-to-SQL learning handoff; five core stages and three optional specializations
+- 38 official reading sources, linked directly in the relevant modules; all verified by public-web research on the update date
+- Full-width native disclosures keep the curriculum readable without JavaScript; only the first module starts open
+- No progress tracker, authentication, backend or other site functionality added; all other lesson source files and shared header/menu code remain unchanged
+- Astro check and the four-page release build/DOM checks passed; tests now assert all module content, source references, course criteria, native toggling and existing mobile-menu behavior
+- Local browser suite could not start because Chromium socket creation is prohibited by the execution environment. Live cloud-browser inspection is performed separately after the exact deployment; this source report does not claim a visual pass
