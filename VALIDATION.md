@@ -112,3 +112,11 @@ Inspected the supplied crop and removed its exact text, “Chạm vào cụm t�
 ## Context-led visual teaching (2026-10-10)
 
 Inspected the user’s screenshot of the middle introduction, abstract meaning boxes and plain last/this/next strip. Replaced that specific area with three original accessible SVG situations: making another appointment, passing a bus wait with a game, and arriving on schedule. Each scene pairs a highlighted English expression with a Vietnamese translation and its precise sense of time. Removed the general introductory advice/statistics and abstract navigation boxes. Reworked the occurrence strip into a small past/present/next story using existing example sentences and translations. Preserved the top 13-keyword grid, meanings/detail cards, quiz, content-only colors and original shell. DOM checks assert scene titles, bilingual examples, group anchors and all three story moments.
+
+
+## JWT poster (2026-10-11)
+
+- Added the fifteenth lesson at `/lap-trinh/jwt/`, with text-based anatomy and an accessible SVG sequence inspired by the supplied chalkboard reference. Shared shell and all earlier lesson sources remain unchanged.
+- Scope explicitly describes signed/MAC JWS compact serialization, not all JWT representations. Example JSON is synthetic; no real credentials or complete bearer tokens are included.
+- Astro/TypeScript: 44 files, zero errors, warnings or hints. Builds produce 15 pages. Full DOM/link/interaction checks pass at both `/` and `/kien-thuc/`, including JWT anatomy, synthetic JSON, claim categories, sequence labels, source links, and scoped CSS. API and Git regression scripts pass.
+- Local preview exited before ready. The reference browser test could not launch Chromium because socket creation is restricted. The browser-only URL suite was not run locally. These are not visual passes; live cloud-browser QA follows authorized deployment.

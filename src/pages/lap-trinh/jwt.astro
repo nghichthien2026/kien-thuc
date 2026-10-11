@@ -1,0 +1,86 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import '../../styles/jwt.css';
+const header = '{\n  "typ": "JWT",\n  "alg": "HS256"\n}';
+const payload = '{\n  "sub": "user-123",\n  "name": "An",\n  "iss": "auth.example",\n  "aud": "api.example",\n  "exp": 2000000000\n}';
+---
+<LessonLayout title="JWT" topic="Lập trình" subtitle="JSON Web Token" current="lap-trinh/jwt/" sections={[{id:'jwt',label:'JSON Web Token'},{id:'cau-truc',label:'Ba phần của token'},{id:'auth-flow',label:'Luồng xác thực'},{id:'ghi-nho',label:'Ghi nhớ'}]}>
+<article class="jwt-poster">
+  <header id="jwt" class="jwt-hero">
+    <div class="jwt-kicker"><span>AUTHENTICATION NOTES</span><span>01 / JWT</span></div>
+    <div class="jwt-wordmark">
+      <span class="jwt-annotation jwt-json">JSON<svg viewBox="0 0 72 42" aria-hidden="true"><path d="M68 7Q36 39 6 15m0 0 1 14m-1-14 15 1"/></svg></span>
+      <h1 class="lesson-title">JWT</h1>
+      <span class="jwt-annotation jwt-web">Web<svg viewBox="0 0 50 42" aria-hidden="true"><path d="M8 37Q5 10 35 9m0 0-8-6m8 6-7 8"/></svg></span>
+      <span class="jwt-annotation jwt-token-label"><svg viewBox="0 0 72 42" aria-hidden="true"><path d="M5 8Q44-4 62 31m0 0-13-4m13 4 4-13"/></svg>Token</span>
+      <svg class="jwt-underline" viewBox="0 0 330 18" aria-hidden="true"><path d="M4 9Q162 0 326 7M18 13Q181 16 306 10"/></svg>
+    </div>
+    <p class="jwt-deck">Một token nhỏ. <span>Ba phần để hiểu.</span></p>
+    <p class="jwt-intro">JWT là định dạng mang các <em>claims</em>, thường được dùng trong hệ thống xác thực và phân quyền.</p>
+  </header>
+
+  <section id="cau-truc" class="jwt-anatomy" aria-labelledby="anatomy-title">
+    <h2 id="anatomy-title" class="jwt-section-note">JWT được ký, dạng compact <span>· 3 phần, ngăn bằng dấu chấm</span></h2>
+    <div class="jwt-token" aria-label="Header chấm Payload chấm Signature. Sơ đồ cấu trúc, không phải token dùng thật."><span>HHHHHH</span><b>.</b><span>PPPPPP</span><b>.</b><span>SSSSSSSS</span></div>
+    <svg class="jwt-branches" viewBox="0 0 700 58" preserveAspectRatio="none" aria-hidden="true"><path class="jwt-cyan" d="M245 2Q235 29 112 47m0 0 15-1m-15 1 8-13"/><path class="jwt-green" d="M350 2v45m0 0-9-12m9 12 9-12"/><path class="jwt-yellow" d="M468 2Q485 29 588 47m0 0-15-1m15 1-8-13"/></svg>
+    <div class="jwt-anatomy-frame">
+      <div class="jwt-columns">
+        <section class="jwt-part jwt-header-part" aria-labelledby="header-title">
+          <span class="jwt-part-index">01</span><h3 id="header-title">Header</h3>
+          <p>Thông tin về loại token<br/>và thuật toán bảo vệ.</p>
+          <div class="jwt-code-wrap"><span class="jwt-code-caption">JOSE HEADER</span><pre><code>{header}</code></pre></div>
+          <dl class="jwt-field-notes"><div><dt>typ</dt><dd>Loại token <span>→ JWT</span></dd></div><div><dt>alg</dt><dd>Thuật toán <span>→ HS256</span></dd></div></dl>
+          <svg class="jwt-small-arrow" viewBox="0 0 90 45" aria-hidden="true"><path d="M7 3Q6 32 77 31m0 0-12-8m12 8-13 6"/></svg>
+          <p class="jwt-handnote">HS256 = HMAC-SHA-256</p>
+        </section>
+        <section class="jwt-part jwt-payload-part" aria-labelledby="payload-title">
+          <span class="jwt-part-index">02</span><h3 id="payload-title">Payload</h3>
+          <p>Các thông tin về thực thể<br/>và dữ liệu bổ sung: <em>claims</em>.</p>
+          <div class="jwt-code-wrap"><span class="jwt-code-caption">VÍ DỤ GIẢ LẬP</span><pre><code>{payload}</code></pre></div>
+          <p class="jwt-claims-label">3 nhóm claims</p>
+          <div class="jwt-claim-branches" aria-hidden="true"></div>
+          <div class="jwt-claim-tags"><span>Registered</span><span>Public</span><span>Private</span></div>
+          <p class="jwt-claims-note"><strong>Registered:</strong> tên đã đăng ký, như sub, iss, aud, exp. <strong>Public:</strong> tên tránh trùng. <strong>Private:</strong> hai bên tự quy ước.</p>
+        </section>
+        <section class="jwt-part jwt-signature-part" aria-labelledby="signature-title">
+          <span class="jwt-part-index">03</span><h3 id="signature-title">Signature</h3>
+          <p>Kiểm tra tính toàn vẹn<br/>và nguồn phát hành token.</p>
+          <div class="jwt-signature-stack" aria-label="Các thành phần để tính HMAC trong ví dụ HS256"><span>Base64url(Header)</span><b>+</b><span>“.” + Base64url(Payload)</span><b>+</b><span>Khóa bí mật</span><b>↓</b><strong>HMAC-SHA-256</strong></div>
+          <p class="jwt-handnote">Ký lên hai phần đầu</p>
+          <p class="jwt-signature-note">Kết quả HMAC được mã hóa Base64url thành phần thứ ba.</p>
+          <p class="jwt-key-note">HS256 dùng khóa chung. RS256 / ES256 dùng khóa riêng để ký, khóa công khai để kiểm tra.</p>
+        </section>
+      </div>
+      <p class="jwt-frame-note"><span>↳</span> Base64url là <strong>mã hóa biểu diễn</strong>, không phải mã hóa bảo mật. Header và payload có thể đọc được.</p>
+    </div>
+  </section>
+
+  <section id="auth-flow" class="jwt-auth" aria-labelledby="auth-title">
+    <div class="jwt-section-top"><span>FOLLOW THE TOKEN</span><span>02 / FLOW</span></div>
+    <h2 id="auth-title">Basic JWT <span>Auth Flow</span></h2>
+    <p class="jwt-flow-intro">Từ đăng nhập đến nhận dữ liệu, trong một luồng minh họa.</p>
+    <p class="jwt-pan-hint">Vuốt ngang sơ đồ để xem đủ ba cột →</p>
+    <div class="jwt-flow-scroll" tabindex="0" role="region" aria-label="Sơ đồ xác thực ba cột; có thể cuộn ngang trên màn hình nhỏ">
+      <svg class="jwt-flow" viewBox="0 0 720 476" role="img" aria-labelledby="flow-title flow-description">
+        <title id="flow-title">Luồng xác thực với JWT</title>
+        <desc id="flow-description">Một: Client đăng nhập với Auth Server qua HTTPS. Hai: Auth Server kiểm tra rồi ký JWT và trả token. Ba: Client gửi yêu cầu kèm Bearer token đến Resource Server. Bốn: Resource Server kiểm tra chữ ký, thuật toán, issuer, audience, thời hạn và quyền trước khi trả dữ liệu. Token sai hoặc hết hạn bị từ chối.</desc>
+        <defs><marker id="jwt-arrow-peach" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#edbca9"/></marker><marker id="jwt-arrow-mint" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#9fe9bb"/></marker><linearGradient id="jwt-auth-gradient"><stop stop-color="#f5eda0"/><stop offset="1" stop-color="#efb177"/></linearGradient></defs>
+        <g class="jwt-lane-boxes"><rect x="20" y="10" width="152" height="48" rx="3" class="jwt-client-box"/><rect x="274" y="10" width="172" height="48" rx="3" class="jwt-auth-box"/><rect x="521" y="10" width="185" height="48" rx="3" class="jwt-resource-box"/></g>
+        <g class="jwt-lane-names"><text x="96" y="40">Client</text><text x="360" y="40">Auth Server</text><text x="614" y="40">Resource Server</text></g>
+        <g class="jwt-lifelines"><path d="M96 60v378M360 60v378M614 60v378"/></g>
+        <g class="jwt-flow-requests"><path d="M97 117H356"/><path d="M97 282H610"/></g>
+        <g class="jwt-flow-responses"><path d="M359 225H100"/><path d="M613 405H100"/></g>
+        <g class="jwt-flow-labels"><text x="114" y="102"><tspan class="jwt-step-num">01</tspan> Đăng nhập qua HTTPS</text><text x="115" y="210"><tspan class="jwt-step-num">02</tspan> Trả JWT đã ký</text><text x="114" y="265"><tspan class="jwt-step-num">03</tspan> Gửi request + Bearer token</text><text x="268" y="390"><tspan class="jwt-step-num">04</tspan> Trả dữ liệu nếu có quyền</text></g>
+        <g class="jwt-process"><rect x="292" y="133" width="136" height="31" rx="3"/><text x="360" y="154">Kiểm tra đăng nhập</text><rect x="292" y="174" width="136" height="31" rx="3"/><text x="360" y="195">Ký JWT</text></g>
+        <g class="jwt-verify"><rect x="523" y="299" width="180" height="64" rx="3"/><text x="613" y="323">Kiểm tra JWT</text><text class="jwt-verify-detail" x="613" y="346">chữ ký · claims · quyền</text></g>
+        <g class="jwt-side-note"><path d="M78 226Q39 229 41 253"/><text x="16" y="274">Giữ token</text><text x="16" y="291">an toàn</text></g>
+        <text class="jwt-reject-note" x="613" y="431" text-anchor="middle">Sai / hết hạn → từ chối</text>
+        <text class="jwt-flow-foot" x="700" y="469" text-anchor="end">Luồng rút gọn · chưa thể hiện refresh token</text>
+      </svg>
+    </div>
+  </section>
+
+  <section id="ghi-nho" class="jwt-remember" aria-labelledby="remember-title"><h2 id="remember-title">Đọc được ≠ tin được</h2><p>Chỉ tin claims sau khi xác minh token. Máy chủ phải cố định thuật toán cho phép, dùng đúng khóa, kiểm tra <code>iss</code>, <code>aud</code>, <code>exp</code> và <code>nbf</code> khi áp dụng, rồi kiểm tra quyền cho từng yêu cầu.</p><p>Không đặt mật khẩu hay bí mật vào payload. Token được ký không đồng nghĩa dữ liệu được giữ kín.</p></section>
+  <footer class="jwt-sources"><span>ĐỌC THÊM</span><a href="https://www.rfc-editor.org/rfc/rfc7519">RFC 7519 · JWT ↗</a><a href="https://www.rfc-editor.org/rfc/rfc7515">RFC 7515 · JWS ↗</a><a href="https://www.rfc-editor.org/rfc/rfc8725">RFC 8725 · Thực hành an toàn ↗</a><p>Bài này mô tả JWT được ký/MAC dạng JWS compact. JWT được mã hóa bảo mật (JWE) có cấu trúc khác.</p></footer>
+</article>
+</LessonLayout>
