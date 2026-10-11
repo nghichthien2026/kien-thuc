@@ -149,3 +149,13 @@ Inspected the user’s screenshot of the middle introduction, abstract meaning b
 - 15 repeatable toggles, native bounded brightness/volume ranges, output values, previous/next wrapping, play/pause visual state and repeated complete resets passed
 - Source scan confirms no device APIs, permission requests, audio playback, network calls, persistence or background timers in this demo
 - Reduced-motion CSS present; real-browser layout, focus and keyboard QA is a separate post-publication check
+
+
+## Neumorphism Chat · 2026-10-11
+- Viewed the actual supplied reference image before implementation
+- Added the twentieth lesson with light styling scoped to its canvas; shared dark shell unchanged
+- Original detailed gradient SVG portraits, source labels/badges, four verbatim sample messages, silver/blue material treatment
+- Type checking: zero errors, warnings, hints
+- Both `/` and `/kien-thuc/`: production builds, full DOM link/navigation/legacy-interaction suite and focused chat tests pass
+- Focused tests: 9 contacts; exact 4 messages; repeated filters, selection and reset; Arrow/Home/End tab navigation; unique SVG IDs; no network/form submission
+- Browser visual, responsive and physical-keyboard QA is a separate live check, not established by DOM tests

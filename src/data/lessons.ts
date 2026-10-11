@@ -18,6 +18,7 @@ export const lessons = [
   { title: 'Neumorphism', topic: 'Thiết kế', path: 'thiet-ke/neumorphism/', keywords: 'neumorphic soft ui dark mode giao diện mềm nền tối bóng đổ nổi chìm cyan mint button slider switch' },
   { title: 'Liquid Glass', topic: 'Thiết kế', path: 'thiet-ke/liquid-glass/', keywords: 'liquid glass kit kính trong mờ giao diện thủy tinh violet mint cyan blur phản quang chiều sâu button search workspace' },
   { title: 'Glass Control Center', topic: 'Thiết kế', path: 'thiet-ke/glass-control-center/', keywords: 'candy glass kính màu bảng điều khiển control center iPhone concept sắc màu thủy tinh nút bóng 3d' },
+  { title: 'Neumorphism Chat', topic: 'Thiết kế', path: 'thiet-ke/neumorphism-chat/', keywords: 'neumorphism chat soft ui giao diện trò chuyện ánh sáng bóng đổ avatar blue silver light' },
 ];
 export const href = (path = '') => `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${path}`;
 

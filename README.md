@@ -103,3 +103,7 @@ The seventeenth lesson at `/kien-thuc/thiet-ke/neumorphism/` is an original CSS/
 
 ### Glass Control Center
 The nineteenth lesson at `thiet-ke/glass-control-center/` explores glossy candy-colored glass controls on a warm canvas. All controls are local visual simulations: no camera/microphone permissions, networking, real device settings, audio playback, or persistent storage. The settings button resets the complete demo. The reference-inspired brand lettering is decorative and does not imply sponsorship or an official iOS theme.
+
+
+### Neumorphism Chat
+The twentieth lesson at `thiet-ke/neumorphism-chat/` recreates a pale silver chat interface with original gradient-vector fictional portraits, nine conversations and the four English sample messages in the supplied reference. All/Unread/Mentions filters, conversation selection, keyboard tab navigation and reset remain entirely local. No contact access, composer, network request or external messaging is present. On phones, the conversation list becomes a labeled portrait rail. Run `node tests/neumorphism-chat.mjs` for focused tests.

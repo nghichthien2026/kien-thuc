@@ -1,0 +1,25 @@
+---
+interface Props { person: string; instance?: string }
+const {person,instance='row'}=Astro.props;
+const id=`portrait-${person}-${instance}`;
+const female=['sarah','emily','family'].includes(person), group=['team','family'].includes(person), game=person==='gaming';
+const bg:Record<string,string>={alex:'#a9d8e6',sarah:'#f7cf62',team:'#ccd7e8',marketing:'#98d5e5',family:'#b1d3bf',john:'#8bcf9f',emily:'#f197b8',support:'#d0d9e7',gaming:'#b9a1ed'};
+const shirt= female?'#9b477b':person==='john'?'#317b68':'#426ca1';
+---
+<svg class="nc-portrait" viewBox="0 0 100 100" aria-hidden="true">
+<defs><radialGradient id={`${id}-bg`} cx="70%" cy="20%" r="90%"><stop stop-color="#fff" stop-opacity=".6"/><stop offset=".38" stop-color={bg[person]}/><stop offset="1" stop-color={bg[person]}/></radialGradient><linearGradient id={`${id}-skin`} x1="0" x2="1" y2=".8"><stop stop-color="#9f5d40"/><stop offset=".38" stop-color="#f3c4a0"/><stop offset=".7" stop-color="#e6aa84"/><stop offset="1" stop-color="#a6644e"/></linearGradient><linearGradient id={`${id}-hair`}><stop stop-color="#171214"/><stop offset=".52" stop-color="#613a27"/><stop offset="1" stop-color="#26191c"/></linearGradient><linearGradient id={`${id}-shirt`} x1="0" x2=".7" y2="1"><stop stop-color="#e2edff"/><stop offset=".28" stop-color={shirt}/><stop offset="1" stop-color="#152849"/></linearGradient><radialGradient id={`${id}-cheek`}><stop stop-color="#d77968" stop-opacity=".45"/><stop offset="1" stop-color="#d77968" stop-opacity="0"/></radialGradient><clipPath id={`${id}-clip`}><circle cx="50" cy="50" r="49"/></clipPath></defs>
+<g clip-path={`url(#${id}-clip)`}><circle cx="50" cy="50" r="50" fill={`url(#${id}-bg)`}/>
+{game?<g><path d="M29 28Q22 28 18 45L10 75Q9 85 17 85Q22 85 33 69H67Q79 87 85 84Q93 82 88 66L80 38Q78 27 68 28Z" fill="#222530" stroke="#565964" stroke-width="2"/><path d="M30 39V56M21 47H39" stroke="#9ea6af" stroke-width="6"/><circle cx="69" cy="40" r="3" fill="#66b99d"/><circle cx="78" cy="49" r="3" fill="#f09692"/><circle cx="60" cy="49" r="3" fill="#62a2d4"/><circle cx="69" cy="58" r="3" fill="#c6b557"/><circle cx="40" cy="62" r="8" fill="#10131c" stroke="#4c515b" stroke-width="3"/><circle cx="58" cy="63" r="8" fill="#10131c" stroke="#4c515b" stroke-width="3"/><path d="M25 30Q45 25 73 31" stroke="#85838e" stroke-width="2" fill="none"/></g>:<>
+{(group?[{x:-14,y:1,s:.73},{x:40,y:6,s:.69},{x:15,y:31,s:.7}]:[{x:0,y:0,s:1}]).map((p,i)=><g transform={`translate(${p.x} ${p.y}) scale(${p.s})`}>
+{(female||group&&i===1)&&<path d="M25 76Q18 59 25 29Q30 13 49 13Q73 12 78 37L78 85Z" fill={`url(#${id}-hair)`}/>}
+<path d="M8 108Q10 78 31 76L42 70H60L70 77Q92 80 95 108" fill={`url(#${id}-shirt)`}/><path d="M40 60L40 76Q50 87 61 76L59 60" fill={`url(#${id}-skin)`}/><path d="M36 76L43 81L50 90L41 101L30 80M63 76L57 82L50 90L60 99L73 80" fill="#e6eaf1" opacity={female?'.15':'.85'}/>
+<ellipse cx="31" cy="45" rx="5" ry="8" fill="#bf8467"/><ellipse cx="69" cy="45" rx="5" ry="8" fill="#d8a07a"/><path d="M31 30Q50 18 69 32L68 53Q65 69 51 73Q35 69 32 54Z" fill={`url(#${id}-skin)`}/><ellipse cx="38" cy="53" rx="10" ry="8" fill={`url(#${id}-cheek)`}/><ellipse cx="62" cy="53" rx="10" ry="8" fill={`url(#${id}-cheek)`}/>
+<path d={female?'M28 46Q21 25 36 18Q59 8 73 28L71 58Q65 32 51 26Q39 30 29 50':'M29 42L27 28Q29 14 46 14Q65 11 73 27L70 43L63 28Q50 35 36 29Z'} fill={`url(#${id}-hair)`}/><path d="M33 22Q46 15 60 20" fill="none" stroke="#a37b57" stroke-width="2" opacity=".55"/>
+<path d="M36 40Q41 37 46 40M56 40Q61 37 65 40" fill="none" stroke="#573824" stroke-width="2.2" stroke-linecap="round"/><ellipse cx="41" cy="45" rx="4.5" ry="2.6" fill="#fff7e9"/><ellipse cx="60" cy="45" rx="4.5" ry="2.6" fill="#fff7e9"/><ellipse cx="42" cy="45" rx="2" ry="2.5" fill="#34281f"/><ellipse cx="59" cy="45" rx="2" ry="2.5" fill="#34281f"/><circle cx="42.7" cy="44.2" r=".7" fill="white"/><circle cx="59.7" cy="44.2" r=".7" fill="white"/><path d="M50 44L47 54Q50 56 54 54" fill="none" stroke="#b17c5b" stroke-width="1.4"/>
+{['alex','support'].includes(person)&&<path d="M32 52Q39 58 39 61Q49 70 62 61L69 50L67 64Q50 83 35 65Z" fill="#523327" opacity=".8"/>}
+<path d="M41 60Q50 64 60 59Q51 72 41 60" fill="#994e45"/><path d="M43 60L58 60Q50 65 43 60" fill="#fff4e9"/>
+{person==='support'&&<g fill="none" stroke="#222832" stroke-width="2.7"><rect x="32" y="40" width="15" height="11" rx="4"/><rect x="54" y="40" width="15" height="11" rx="4"/><path d="M47 43H54"/></g>}
+</g>)}
+</>}
+</g><circle cx="50" cy="50" r="49" fill="none" stroke="#fff" stroke-opacity=".35"/>
+</svg>
