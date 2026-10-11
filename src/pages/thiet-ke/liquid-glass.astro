@@ -1,0 +1,59 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import '../../styles/liquid-glass.css';
+---
+<LessonLayout title="Liquid Glass" topic="Thiết kế" subtitle="Chất liệu giao diện" current="thiet-ke/liquid-glass/" sections={[{id:'liquid-glass',label:'Liquid Glass'},{id:'glass-kit',label:'Thử bộ giao diện'},{id:'glass-notes',label:'Ba lớp chất liệu'}]}>
+<article class="lg-article">
+<header id="liquid-glass" class="lg-intro"><span class="lg-eyebrow">UI MATERIAL STUDY / 03</span><h1 class="lesson-title">Liquid Glass</h1><p>Giao diện như một lớp kính: trong mờ, bắt sáng ở viền và để màu sắc phía sau xuyên qua.</p></header>
+<section id="glass-kit" class="lg-stage" aria-label="Bộ giao diện kính tương tác">
+  <div class="lg-light" aria-hidden="true"></div>
+  <div class="lg-board">
+    <header class="lg-board-heading"><h2>Liquid Glass Kit</h2><div class="lg-window-marks" aria-hidden="true"><span>▢</span><i></i></div></header>
+    <div class="lg-kit-grid">
+      <div class="lg-left">
+        <button class="lg-pill lg-primary" id="lg-primary" type="button" aria-pressed="false">Primary <span aria-hidden="true">↗</span></button>
+        <button class="lg-pill lg-secondary" id="lg-secondary" type="button" aria-pressed="false">Secondary <span aria-hidden="true">✓</span></button>
+        <div class="lg-round-row"><button class="lg-round lg-white" id="lg-add" type="button" aria-label="Thêm một dự án mẫu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16"/></svg></button><button class="lg-round lg-clear" id="lg-reset" type="button" aria-label="Đặt lại bản demo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 8a8 8 0 1 0 1 8M19 3v5h-5"/></svg></button></div>
+        <form class="lg-workspace-form" id="lg-workspace-form"><label class="sr-only" for="lg-workspace-name">Tên workspace mẫu</label><input id="lg-workspace-name" maxlength="24" placeholder="Create workspace" autocomplete="off"/><button type="submit" aria-label="Tạo workspace mẫu"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg></button></form>
+        <div class="lg-workspace lg-glass"><div><strong id="lg-workspace-title">Workspace</strong><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 12 5 5L20 5"/></svg></div><p id="lg-workspace-caption">Your creative space</p></div>
+        <div class="lg-segments" role="group" aria-label="Chọn chế độ xem"><button type="button" id="lg-toast-button" aria-pressed="true">Toast</button><button type="button" id="lg-tabs-button" aria-pressed="false">Tabs</button></div>
+      </div>
+      <div class="lg-right">
+        <div class="lg-search-card lg-glass"><div class="lg-search-top"><div class="lg-logo" aria-hidden="true"><svg viewBox="0 0 42 42"><defs><linearGradient id="lg-logo-color" x2="1" y2="1"><stop stop-color="#994fee"/><stop offset=".6" stop-color="#8b5fed"/><stop offset="1" stop-color="#64f0d1"/></linearGradient></defs><path fill="url(#lg-logo-color)" d="M9 30 13 13q2-7 8-3l3 3 5-4q6-3 5 4l-2 12q-1 5-6 4l-6-1-5 6q-7 5-6-4Z"/></svg></div><div class="lg-orbit" aria-hidden="true"><i></i></div></div><div class="lg-search-line"><label class="sr-only" for="lg-project-search">Tìm dự án mẫu</label><input id="lg-project-search" type="search" placeholder="Search projects…" autocomplete="off"/><button id="lg-search-add" type="button" aria-label="Thêm một dự án mẫu">+</button></div></div>
+        <button class="lg-project-row lg-glass" type="button" id="lg-next-project" aria-label="Chuyển sang dự án mẫu tiếp theo"><span class="lg-check" aria-hidden="true">✓</span><span id="lg-project-label">Search projects…</span><span class="lg-arrow" aria-hidden="true">›</span></button>
+        <div class="lg-small-row"><label class="lg-checkbox lg-glass"><input type="checkbox" id="lg-rim" checked/><span>Glass rim</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3v4m8-4v4M6 7h12v5q0 4-6 4t-6-4Zm6 9v5"/></svg></label><button id="lg-light-toggle" class="lg-toggle" type="button" role="switch" aria-checked="true" aria-label="Ánh sáng màu"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button></div>
+        <div class="lg-invite lg-glass"><span class="lg-invite-badge" aria-hidden="true"></span><div><h3>Invite member</h3><p id="lg-plan-caption">Upgrade plan</p><button class="lg-invite-button" type="button" id="lg-invite-button" aria-pressed="false"><b aria-hidden="true">+</b> Upgrade plan</button></div></div>
+      </div>
+    </div>
+    <div class="lg-feedback" role="status" aria-live="polite" aria-atomic="true"><span class="lg-status-dot" aria-hidden="true"></span><span id="lg-feedback-text">Chạm vào các thành phần để thử</span></div>
+  </div>
+  <div class="lg-stage-caption"><span>TRANSLUCENT / TACTILE / LUMINOUS</span><span>Interactive material study</span></div>
+</section>
+<footer id="glass-notes" class="lg-notes"><div><span>01</span><p><strong>Trong mờ</strong>Màu nền vẫn hiện qua bề mặt</p></div><div><span>02</span><p><strong>Viền sáng</strong>Phản quang gợi độ dày của kính</p></div><div><span>03</span><p><strong>Chiều sâu</strong>Bóng mềm tách từng lớp giao diện</p></div><small>Bản demo chạy tại chỗ. Dự án và thành viên đều là dữ liệu mẫu; tải lại trang để bắt đầu lại.</small></footer>
+</article>
+</LessonLayout>
+<script>
+const root=document.querySelector<HTMLElement>('.lg-article')!;
+const get=<T extends HTMLElement>(id:string)=>root.querySelector<T>(`#${id}`)!;
+const board=root.querySelector<HTMLElement>('.lg-board')!;
+const status=get<HTMLElement>('lg-feedback-text');
+const search=get<HTMLInputElement>('lg-project-search');
+const project=get<HTMLButtonElement>('lg-next-project');
+const label=get<HTMLElement>('lg-project-label');
+let projects=['Glass Studio','Mint Workspace','Violet Library'];let index=-1;let upgraded=false;let toast=true;
+function say(text:string){status.textContent=text;}
+function filter(){const matches=projects.filter(p=>p.toLocaleLowerCase().includes(search.value.trim().toLocaleLowerCase()));index=0;label.textContent=matches[0]||'Không tìm thấy';project.disabled=matches.length===0;say(`${matches.length} dự án mẫu phù hợp`);}
+function add(){projects.push(`New project ${projects.length-2}`);search.value='';index=projects.length-1;label.textContent=projects[index];project.disabled=false;say(`Đã thêm ${projects[index]} trong bản demo`);}
+get('lg-add').addEventListener('click',add);get('lg-search-add').addEventListener('click',add);
+get('lg-primary').addEventListener('click',()=>{say('Primary · hành động chính đã được chọn');const on=get('lg-primary').classList.toggle('is-pressed');get('lg-primary').setAttribute('aria-pressed',String(on));});
+get('lg-secondary').addEventListener('click',()=>{say('Secondary · hành động phụ đã được chọn');const on=get('lg-secondary').classList.toggle('is-pressed');get('lg-secondary').setAttribute('aria-pressed',String(on));});
+search.addEventListener('input',filter);
+project.addEventListener('click',()=>{const matches=projects.filter(p=>p.toLowerCase().includes(search.value.trim().toLowerCase()));if(!matches.length)return;index=(index+1)%matches.length;label.textContent=matches[index];say(`Đang xem ${matches[index]}`);});
+get<HTMLFormElement>('lg-workspace-form').addEventListener('submit',e=>{e.preventDefault();const input=get<HTMLInputElement>('lg-workspace-name');const value=input.value.trim();if(!value){say('Nhập tên workspace mẫu trước khi tạo');input.focus();return;}get('lg-workspace-title').textContent=value;get('lg-workspace-caption').textContent='Ready to create';say(`Workspace “${value}” đã sẵn sàng trong bản demo`);input.value='';});
+get<HTMLInputElement>('lg-rim').addEventListener('change',e=>{const on=(e.target as HTMLInputElement).checked;board.classList.toggle('lg-no-rim',!on);say(on?'Đã bật viền phản quang':'Đã tắt viền phản quang');});
+get('lg-light-toggle').addEventListener('click',()=>{const button=get('lg-light-toggle');const on=button.getAttribute('aria-checked')!=='true';button.setAttribute('aria-checked',String(on));board.classList.toggle('lg-no-light',!on);say(on?'Đã bật ánh sáng màu':'Đã tắt ánh sáng màu');});
+function view(value:boolean){toast=value;get('lg-toast-button').setAttribute('aria-pressed',String(toast));get('lg-tabs-button').setAttribute('aria-pressed',String(!toast));get('lg-workspace-caption').textContent=toast?'Your creative space':'Components · Colors · Layers';say(toast?'Toast · thông báo ngay dưới bộ giao diện':'Tabs · chuyển sang các nhóm thành phần');}
+get('lg-toast-button').addEventListener('click',()=>view(true));get('lg-tabs-button').addEventListener('click',()=>view(false));
+get('lg-invite-button').addEventListener('click',()=>{upgraded=!upgraded;get('lg-invite-button').setAttribute('aria-pressed',String(upgraded));get('lg-plan-caption').textContent=upgraded?'Demo plan · 5 members':'Upgrade plan';say(upgraded?'Đang xem gói mẫu cho 5 thành viên':'Đã đóng bản xem thử gói mẫu');});
+get('lg-reset').addEventListener('click',()=>{projects=['Glass Studio','Mint Workspace','Violet Library'];index=-1;upgraded=false;search.value='';get<HTMLInputElement>('lg-workspace-name').value='';label.textContent='Search projects…';project.disabled=false;get('lg-workspace-title').textContent='Workspace';get('lg-plan-caption').textContent='Upgrade plan';get('lg-invite-button').setAttribute('aria-pressed','false');get<HTMLInputElement>('lg-rim').checked=true;get('lg-light-toggle').setAttribute('aria-checked','true');board.classList.remove('lg-no-rim','lg-no-light');get('lg-primary').classList.remove('is-pressed');get('lg-secondary').classList.remove('is-pressed');get('lg-primary').setAttribute('aria-pressed','false');get('lg-secondary').setAttribute('aria-pressed','false');view(true);say('Đã đặt lại toàn bộ bản demo');});
+</script>

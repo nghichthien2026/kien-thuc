@@ -16,6 +16,7 @@ export const lessons = [
   { title: 'JWT', topic: 'Lập trình', path: 'lap-trinh/jwt/', keywords: 'JSON Web Token JWT JWS header payload signature claims authentication authorization HS256 xác thực phân quyền chữ ký bảo mật token' },
   { title: 'Skeuomorphism', topic: 'Thiết kế', path: 'thiet-ke/skeuomorphism/', keywords: 'skeuomorphic ui kit giao diện chất liệu nút nhấn thanh trượt slider switch công tắc chiều sâu mô phỏng vật liệu' },
   { title: 'Neumorphism', topic: 'Thiết kế', path: 'thiet-ke/neumorphism/', keywords: 'neumorphic soft ui dark mode giao diện mềm nền tối bóng đổ nổi chìm cyan mint button slider switch' },
+  { title: 'Liquid Glass', topic: 'Thiết kế', path: 'thiet-ke/liquid-glass/', keywords: 'liquid glass kit kính trong mờ giao diện thủy tinh violet mint cyan blur phản quang chiều sâu button search workspace' },
 ];
 export const href = (path = '') => `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${path}`;
 
