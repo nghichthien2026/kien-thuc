@@ -1,0 +1,54 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import '../../styles/neumorphism.css';
+const icons:Record<string,string>={search:'M21 21l-5-5m2-6a7 7 0 1 1-14 0 7 7 0 0 1 14 0',up:'M12 20V4m-7 7 7-7 7 7',down:'M12 4v16m-7-7 7 7 7-7',left:'m15 5-7 7 7 7',right:'m9 5 7 7-7 7',check:'m4 12 5 5L20 6',close:'m5 5 14 14M19 5 5 19',menu:'M4 5h16M4 12h16M4 19h11',plus:'M12 4v16M4 12h16',minus:'M4 12h16',bell:'M5 17h14l-2-4V9a5 5 0 0 0-10 0v4l-2 4m5 3h4M12 2v2',calendar:'M4 5h16v16H4zM8 2v6M16 2v6M4 10h16M8 14h1m3 0h1m3 0h1m-9 3h1m3 0h1',settings:'M12 3v3m0 12v3M3 12h3m12 0h3M6 6l2 2m8 8 2 2M6 18l2-2m8-8 2-2M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0',home:'m3 10 9-7 9 7M6 9v12h5v-7h3v7h4V9',shield:'m12 3 8 3-1 8-7 7-7-7-1-8z',lock:'M5 10h14v11H5zM8 10V6a4 4 0 0 1 8 0v4'};
+const icon=(name:string)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${icons[name]}"/></svg>`;
+---
+<LessonLayout title="Neumorphism" topic="Thiết kế" subtitle="Soft UI · Dark mode" current="thiet-ke/neumorphism/" sections={[{id:'neumorphism',label:'Neumorphism'},{id:'bo-giao-dien',label:'Bộ giao diện'},{id:'ghi-nho',label:'Ghi nhớ'}]}>
+<article class="neo-article">
+<header class="neo-heading" id="neumorphism"><p class="neo-eyebrow">DESIGN STUDY / 02</p><h1 class="lesson-title">Neumorphism</h1><p class="neo-subtitle">Giao diện mềm trong chế độ tối</p><p class="neo-intro">Một bề mặt, hai lớp bóng: thành phần như được đúc nổi hoặc khắc chìm vào nền.</p></header>
+<section class="neo-stage" id="bo-giao-dien" aria-label="Bộ điều khiển Neumorphism tương tác">
+<div class="neo-stage-top"><span>SOFT UI KIT <b>•</b> DARK EDITION</span><button id="neo-reset" type="button">Reset demo</button></div>
+<div class="neo-kit">
+<div class="neo-column">
+<form class="neo-search" id="neo-search-form"><input type="search" id="neo-search" aria-label="Tìm thành phần trong bộ mẫu" placeholder="Search" autocomplete="off"/><button type="submit" aria-label="Tìm thành phần" set:html={icon('search')}/></form>
+<div class="neo-action-row"><button class="neo-orb" data-toggle aria-pressed="true" aria-label="Bật hoặc tắt đèn mẫu"><span></span></button><button class="neo-pill neo-primary" data-toggle aria-pressed="false">BUTTON</button></div>
+<div class="neo-action-row"><button class="neo-orb neo-hollow" data-toggle aria-pressed="false" aria-label="Bật hoặc tắt trạng thái phụ"><span></span></button><button class="neo-pill" data-toggle aria-pressed="false">BUTTON</button></div>
+<button class="neo-wide" data-toggle aria-pressed="false"><i set:html={icon('lock')}/>Private mode</button>
+<button class="neo-wide" id="neo-credit"><i class="neo-dollar">$</i>Demo credits <span id="neo-credits">36</span></button>
+<div class="neo-keypad">{[['left','Previous'],['right','Next'],['check','Confirm'],['right','Forward'],['menu','Menu'],['close','Clear']].map(([key,label])=><button class="neo-square" data-action={label} aria-label={label} set:html={icon(key)}/>)}</div>
+<div class="neo-progress-card"><div><span>Progress</span><strong id="neo-progress-value">36%</strong></div><div class="neo-progress-track" role="progressbar" aria-label="Tiến độ mẫu" aria-valuemin="0" aria-valuemax="100" aria-valuenow="36"><span id="neo-progress-fill"></span></div></div>
+</div>
+<div class="neo-column">
+<div class="neo-mini-grid"><div class="neo-mini-card"><span>Demo balance</span><strong id="neo-balance">$ 11,300</strong><span class="neo-mini-tag">sample <b>›</b></span></div><div class="neo-spark"><span>↑ &nbsp; Trend</span><svg viewBox="0 0 140 80" role="img" aria-label="Đường xu hướng minh họa"><path class="neo-spark-shadow" d="M2 63C22 67 24 30 42 43S62 77 78 48 99 13 138 47"/><path d="M2 57C22 61 24 24 42 37S62 71 78 42 99 7 138 41"/><circle cx="98" cy="24" r="4"/></svg></div></div>
+<div class="neo-transfer"><button class="neo-square" data-balance="100" aria-label="Tăng số dư mẫu 100 đô" set:html={icon('up')}/><button class="neo-square" data-balance="-100" aria-label="Giảm số dư mẫu 100 đô" set:html={icon('down')}/><div class="neo-inset-square" aria-hidden="true"></div></div>
+<div class="neo-amount"><div><span>LOREM IPSUM</span><strong>$356</strong></div><button class="neo-circle neo-primary" data-balance="356" aria-label="Cộng 356 vào số dư mẫu" set:html={icon('plus')}/></div>
+<div class="neo-amount"><div><span>LOREM IPSUM</span><strong>$117</strong></div><button class="neo-circle" data-balance="-117" aria-label="Trừ 117 khỏi số dư mẫu" set:html={icon('minus')}/></div>
+<div class="neo-sliders">{[['Progress',36],['Light',94],['Depth',6],['Volume',72]].map(([name,value],i)=><label><span class="sr-only">{name}</span><input type="range" min="0" max="100" value={value} data-neo-range={i} aria-label={`${name}`}/><output>{value}</output></label>)}</div>
+</div>
+<div class="neo-column">
+<div class="neo-preferences"><div class="neo-radio-list">{['Ipsum','Dolor','Amet'].map((name,i)=><label><input type="radio" name="neo-choice" value={name} checked={i===0}/><span>{name}</span></label>)}</div><div class="neo-dot-controls">{[0,1].map((row)=><div class="neo-dots" role="group" aria-label={`Chọn mức ${row+1}`}>{[0,1,2].map((x)=><button data-dot-row={row} aria-label={`Mức ${x+1}`} aria-pressed={x===row+1}><span></span></button>)}</div>)}</div></div>
+<div class="neo-avatars" role="group" aria-label="Chọn nhân vật mẫu">{['An','Bình','Chi'].map((name,i)=><button class="neo-avatar" data-avatar aria-label={`Nhân vật ${name}`} aria-pressed={i===0}><svg viewBox="0 0 60 60" aria-hidden="true"><path d={i===0?'M15 31 18 13 29 7 41 15 46 35 40 47H16z':i===1?'m18 19 3-9 15-3 10 13-4 22H19z':'M30 7a11 11 0 1 1 0 22 11 11 0 0 1 0-22'} class="neo-hair"/>{i<2&&<path d="m24 17 12 1 4 11-6 8v7H24v-9l-5-9z" fill="#e9f5f1"/>}<path d="M7 60c0-27 46-27 46 0" fill={i===2?'#36737a':'#2b505c'}/></svg></button>)}</div>
+<div class="neo-tabs" role="tablist" aria-label="Nội dung mẫu">{['Dolor','Lorem ipsum','Amet'].map((text,i)=><button id={`neo-tab-${i}`} type="button" role="tab" aria-selected={i===1} aria-controls="neo-tab-panel" tabindex={i===1?0:-1}>{text}</button>)}</div>
+<div class="neo-tab-summary" id="neo-tab-panel" role="tabpanel" aria-labelledby="neo-tab-1">Lorem ipsum · Giao diện mềm</div>
+<details class="neo-select"><summary>Lorem Ipsum<span>▾</span></summary><div><button data-option="Option one">Option one</button><button data-option="Option two">Option two</button></div></details>
+<details class="neo-accordion" open><summary>Lorem Ipsum<span>▴</span></summary><div><p>Dolor sit <span>01</span></p><p>Dolor sit <span>02</span></p><p>Dolor sit <span>03</span></p></div></details>
+<div class="neo-switches"><label class="neo-switch"><input type="checkbox" checked aria-label="Bật hiệu ứng sáng" id="neo-glow"/><span></span></label><label class="neo-switch"><input type="checkbox" aria-label="Bật thông báo mẫu" id="neo-notifications"/><span></span></label></div>
+</div>
+<div class="neo-column">
+<div class="neo-chart-card"><h2>Lorem Ipsum</h2><div class="neo-chart-body"><ul><li><span>Ipsum dolor</span><b>34%</b></li><li><span>Dolor sit</span><b>54%</b></li><li><span>Amet lorem</span><b>12%</b></li></ul><svg viewBox="0 0 100 100" role="img" aria-label="Biểu đồ mẫu: Ipsum dolor 34%, Dolor sit 54%, Amet lorem 12%"><circle class="neo-ring-base" cx="50" cy="50" r="36"/><circle class="neo-ring-a" cx="50" cy="50" r="36" pathLength="100" stroke-dasharray="32 68"/><circle class="neo-ring-b" cx="50" cy="50" r="36" pathLength="100" stroke-dasharray="52 48" stroke-dashoffset="-34"/><circle class="neo-ring-c" cx="50" cy="50" r="36" pathLength="100" stroke-dasharray="10 90" stroke-dashoffset="-88"/></svg></div></div>
+<div class="neo-icon-row">{[['bell','Thông báo'],['calendar','Lịch mẫu'],['settings','Cài đặt mẫu']].map(([key,label])=><button class="neo-round-icon" data-info={label} aria-label={label} set:html={icon(key)}/>)}</div>
+<div class="neo-text-card"><p>Soft shadows.<br/>Quiet surfaces.<br/><strong>A little light.</strong></p><span>Chạm vào các điều khiển<br/>để thử trạng thái nổi / chìm.</span></div>
+<button class="neo-nav-button" id="neo-open-note">Lorem Ipsum <i set:html={icon('right')}/></button>
+<p class="neo-note" id="neo-note" hidden>Hai bóng ngược chiều tạo cảm giác nổi. Đổi sang inset để tạo bề mặt chìm.</p>
+<label class="neo-text-field"><span class="sr-only">Nội dung mẫu</span><input id="neo-text" placeholder="Lorem Ipsum" maxlength="60" aria-label="Nội dung mẫu"/></label>
+<div class="neo-icon-row">{[['home','Home'],['shield','Protected'],['plus','Add']].map(([key,label])=><button class="neo-square" data-info={label} aria-label={label} set:html={icon(key)}/>)}</div>
+</div>
+</div>
+<div class="neo-stage-bottom"><span id="neo-status" role="status" aria-live="polite">Ready to explore</span><span>100% demo · Không gửi dữ liệu</span></div>
+</section>
+<section class="neo-notes" id="ghi-nho" aria-label="Ghi nhớ về Neumorphism"><p><b>01 / Ánh sáng</b> Bóng sáng ở trên trái, bóng tối ở dưới phải. Giữ hướng chiếu nhất quán.</p><p><b>02 / Trạng thái</b> Nổi để mời nhấn, chìm khi được chọn. Dùng thêm chữ, biểu tượng và viền focus.</p><p><b>03 / Độ rõ</b> Đừng để bóng mềm làm mờ ranh giới. Kiểm tra tương phản và kích thước vùng chạm.</p></section>
+<p class="neo-credit">Dựng lại bằng CSS/SVG từ hướng thị giác của ảnh tham khảo người dùng cung cấp (ảnh có watermark Freepik và dòng “Author alexdndz”). Các giá trị tiền và biểu đồ đều là dữ liệu mẫu.</p>
+</article>
+<script src="../../scripts/neumorphism.ts"></script>
+</LessonLayout>

@@ -96,3 +96,7 @@ Type checks, root-path builds, the selected `/kien-thuc/` release build and DOM-
 ## Tactile UI lesson
 
 `/kien-thuc/thiet-ke/skeuomorphism/` is a paper-textured white/crimson physical UI workbench: switches, pressable buttons, native ranges, an adjustable minute dial, ingredient filtering/selection and a complete reset. It is a local demonstration with no login, credentials, order, payment or network submission. `node tests/skeuomorphism.mjs` checks repeatable behavior; native browser keyboard and responsive visual checks are separate.
+
+## Neumorphism soft UI kit
+
+The seventeenth lesson at `/kien-thuc/thiet-ke/neumorphism/` is an original CSS/SVG recreation of a user-supplied navy/mint visual reference. It includes 38 demo buttons, four vertical ranges, keyboard tabs, radio choices, switches, native accordion controls, local component search, synthetic balances and a repeatable reset. Values are illustrative and nothing is submitted to a service. The original shell and previous lessons are preserved. Run `node tests/neumorphism.mjs` after building for focused interaction checks.

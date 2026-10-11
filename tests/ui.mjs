@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 const base = process.env.BASE_URL || 'http://localhost:4321/kien-thuc/';
-const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/', 'tieng-anh/cum-tu-voi-time/', 'lap-trinh/cau-truc-backend/', 'lap-trinh/sql-co-ban/', 'lap-trinh/http-status-codes/', 'devops/cong-mang/', 'devops/cac-loai-mang/', 'lap-trinh/cau-truc-url/', 'lap-trinh/api-testing/', 'lap-trinh/git-workflow/', 'lap-trinh/jwt/', 'thiet-ke/skeuomorphism/'];
+const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/', 'tieng-anh/cum-tu-voi-time/', 'lap-trinh/cau-truc-backend/', 'lap-trinh/sql-co-ban/', 'lap-trinh/http-status-codes/', 'devops/cong-mang/', 'devops/cac-loai-mang/', 'lap-trinh/cau-truc-url/', 'lap-trinh/api-testing/', 'lap-trinh/git-workflow/', 'lap-trinh/jwt/', 'thiet-ke/skeuomorphism/', 'thiet-ke/neumorphism/'];
 const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH || '/usr/bin/chromium',headless:true,args:['--no-sandbox']});
 const page=await browser.newPage({viewport:{width:1440,height:1100},deviceScaleFactor:1});
 const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`)});
@@ -68,7 +68,7 @@ await page.locator('.time-question summary').first().click();await page.locator(
 await page.setViewportSize({width:390,height:844});await page.goto(base);
 assert.equal(await page.locator('#sidebar').evaluate(el=>el.inert),true);
 await page.locator('#menu-toggle').click();assert.equal(await page.locator('#menu-toggle').evaluate(el=>el===document.activeElement),true,'Opening the mobile menu must not focus the search input');
-await page.locator('#lesson-search').click();await page.locator('#lesson-search').fill('thiet ke');assert.equal(await page.locator('[data-search]:visible').count(),2,'Mobile search still filters while typing');
+await page.locator('#lesson-search').click();await page.locator('#lesson-search').fill('thiet ke');assert.equal(await page.locator('[data-search]:visible').count(),3,'Mobile search still filters while typing');
 await page.locator('#lesson-search').fill('');assert.equal(await page.locator('[data-search]:visible').count(),paths.length);
 await page.keyboard.press('Escape');assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'false');assert.equal(await page.locator('#menu-toggle').evaluate(el=>el===document.activeElement),true);
 await page.locator('#menu-toggle').click();await page.locator('#sidebar a[href*="auto-layout"]').click();await page.locator('#demo-frame').waitFor();assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'false');
