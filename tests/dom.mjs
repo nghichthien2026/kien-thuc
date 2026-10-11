@@ -264,3 +264,6 @@ const referenceCss=await readFile('src/styles/reference-posters.css','utf8');ass
 console.log('PASS references: 17 accurate HTTP codes, 18 ports with correct RDP and Docker caveat, 4 vector network cards, qualified comparison, scoped palettes and selectable no-JS content.');
 
 await import('./jwt.mjs');
+
+// Interactive material controls remain part of the publishing gate.
+await import('./skeuomorphism.mjs');
