@@ -141,3 +141,11 @@ Inspected the user’s screenshot of the middle introduction, abstract meaning b
 - Local development server exited before readiness; local Chromium could not launch because socket creation is restricted. These are not browser-layout passes. Actual live desktop/mobile browser review follows deployment.
 
 - Live 1173px browser review found the initial conservative breakpoint made the reference kit too spread out vertically. A focused responsive refinement keeps four compact columns above 1120px and tightens only the narrow-desktop controls/legend; tablet and phone layouts remain two and one columns. Native range, arrow-key tabs, glow toggle and synthetic balance controls already passed live checks. Final layout review follows this patch.
+
+## Glass Control Center — 2026-10-11
+- Astro check: 55 files, zero errors/warnings/hints
+- Static production builds: 19 routes, `/kien-thuc/` and `/`
+- Full DOM regression suite passed on both bases, including prior 18 lessons
+- 15 repeatable toggles, native bounded brightness/volume ranges, output values, previous/next wrapping, play/pause visual state and repeated complete resets passed
+- Source scan confirms no device APIs, permission requests, audio playback, network calls, persistence or background timers in this demo
+- Reduced-motion CSS present; real-browser layout, focus and keyboard QA is a separate post-publication check

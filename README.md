@@ -100,3 +100,6 @@ Type checks, root-path builds, the selected `/kien-thuc/` release build and DOM-
 ## Neumorphism soft UI kit
 
 The seventeenth lesson at `/kien-thuc/thiet-ke/neumorphism/` is an original CSS/SVG recreation of a user-supplied navy/mint visual reference. It includes 38 demo buttons, four vertical ranges, keyboard tabs, radio choices, switches, native accordion controls, local component search, synthetic balances and a repeatable reset. Values are illustrative and nothing is submitted to a service. The original shell and previous lessons are preserved. Run `node tests/neumorphism.mjs` after building for focused interaction checks.
+
+### Glass Control Center
+The nineteenth lesson at `thiet-ke/glass-control-center/` explores glossy candy-colored glass controls on a warm canvas. All controls are local visual simulations: no camera/microphone permissions, networking, real device settings, audio playback, or persistent storage. The settings button resets the complete demo. The reference-inspired brand lettering is decorative and does not imply sponsorship or an official iOS theme.

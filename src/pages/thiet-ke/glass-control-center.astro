@@ -1,0 +1,45 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import ControlIcon from '../../components/ControlIcon.astro';
+import '../../styles/glass-control-center.css';
+const connections=[['plane','Máy bay','blue'],['arrows','Dữ liệu di động','red'],['wifi','Wi-Fi','teal'],['bluetooth','Bluetooth','amber']];
+const utilities=[['flash','Đèn pin','clear'],['timer','Hẹn giờ','amber'],['calculator','Máy tính','teal'],['camera','Máy ảnh','rainbow'],['wave','Âm thanh','peach'],['record','Ghi màn hình','clear'],['battery','Tiết kiệm pin','red'],['crop','Cắt khung hình','peach']];
+---
+<LessonLayout title="Glass Control Center" topic="Thiết kế" subtitle="Giao diện kính sắc màu" current="thiet-ke/glass-control-center/" sections={[{id:'control-intro',label:'Glass Control Center'},{id:'control-demo',label:'Chạm để thử'},{id:'control-notes',label:'Chất liệu & sắc màu'}]}>
+<article class="cc-article">
+<header id="control-intro" class="cc-intro"><span class="cc-eyebrow">INTERFACE EXPLORATION / 04</span><h1 class="lesson-title">Glass Control Center</h1><p>Một bảng điều khiển như những viên kẹo thủy tinh: trong veo, căng bóng và đầy sắc màu.</p></header>
+<section class="cc-stage" id="control-demo" aria-label="Bảng điều khiển kính tương tác">
+<div class="cc-haze" aria-hidden="true"></div><div class="cc-board">
+<div class="cc-connections cc-glass">{connections.map(([icon,label,color])=><button class={`cc-orb ${color}`} type="button" data-toggle={label} aria-label={`${label} · mô phỏng`} aria-pressed="false"><ControlIcon name={icon}/></button>)}</div>
+<div class="cc-music cc-glass"><div class="cc-word-art" aria-hidden="true"><span>n</span><span>i</span><span>k</span><span>e</span><svg viewBox="0 0 240 75"><path d="M23 5C-18 54 0 84 68 58L237 0 61 38C23 48 17 30 23 5Z" fill="#ffe077" stroke="#15151a" stroke-width="5"/></svg></div><div class="cc-track"><span id="cc-track">Unknown</span><span id="cc-artist">Unknown</span></div><div class="cc-transport"><button type="button" id="cc-prev" aria-label="Bản mẫu trước"><ControlIcon name="prev"/></button><button type="button" id="cc-play" aria-label="Phát mô phỏng" aria-pressed="false"><ControlIcon name="play"/><span class="cc-pause" aria-hidden="true">Ⅱ</span></button><button type="button" id="cc-next" aria-label="Bản mẫu tiếp theo"><ControlIcon name="next"/></button></div></div>
+<button class="cc-orb clear cc-lock" data-toggle="Khóa xoay" aria-label="Khóa xoay · mô phỏng" aria-pressed="false"><ControlIcon name="lock"/></button>
+<button class="cc-orb clear cc-bell" data-toggle="Im lặng" aria-label="Im lặng · mô phỏng" aria-pressed="false"><ControlIcon name="bell"/></button>
+<button class="cc-focus cc-glass" data-toggle="Tập trung" aria-label="Tập trung · mô phỏng" aria-pressed="false"><span class="cc-moon"><ControlIcon name="moon"/></span><span class="cc-focus-art" aria-hidden="true"><b>JUST</b><b>DO IT</b></span></button>
+<label class="cc-slider cc-glass cc-brightness"><span class="cc-fill"></span><span class="cc-slider-icon"><ControlIcon name="sun"/></span><input id="cc-brightness" type="range" min="20" max="100" value="70" aria-label="Độ sáng bản demo"/><output for="cc-brightness">70%</output></label>
+<label class="cc-slider cc-glass cc-volume"><span class="cc-slider-icon"><ControlIcon name="speaker"/></span><span class="cc-sticker" aria-hidden="true"><span>✦</span><b>MAKE<br/>WAVES.</b><i></i></span><input id="cc-volume" type="range" min="0" max="100" value="60" aria-label="Âm lượng mô phỏng"/><output for="cc-volume">60%</output></label>
+{utilities.map(([icon,label,color])=><button class={`cc-orb ${color} cc-utility`} data-toggle={label} data-icon={icon} type="button" aria-label={`${label} · mô phỏng`} aria-pressed="false"><ControlIcon name={icon}/></button>)}
+<button class="cc-orb clear cc-settings" id="cc-reset" type="button" aria-label="Đặt lại toàn bộ bản demo"><ControlIcon name="gear"/></button>
+<div class="cc-poster-label" aria-hidden="true"><span>CHROMATIC GLASS</span><span>TOUCH. FEEL. PLAY.</span></div>
+</div><div class="cc-feedback" role="status" aria-live="polite" aria-atomic="true" id="cc-status">Chạm để khám phá · bánh răng để đặt lại</div>
+</section>
+<section id="control-notes" class="cc-notes"><div><span>01 / CHẤT LIỆU</span><h2>Kính có chiều sâu</h2><p>Viền dày, ánh phản chiếu và bóng đổ mềm tạo cảm giác từng nút đang nổi trên nền.</p></div><div><span>02 / SẮC MÀU</span><h2>Màu như kẹo</h2><p>Cobalt, đỏ anh đào, xanh ngọc và vàng mật ong biến những thao tác quen thuộc thành điểm nhấn.</p></div><div><span>03 / TƯƠNG TÁC</span><h2>Chạm và cảm nhận</h2><p>Nút lún nhẹ khi chạm. Kéo thanh sáng và âm lượng để thử; mọi thay đổi chỉ nằm trong bản demo.</p></div></section><p class="cc-disclosure">Một concept lấy cảm hứng từ Control Center, không phải giao diện iOS chính thức hay theme để cài đặt. Không thay đổi kết nối, âm lượng thiết bị hoặc truy cập camera, micro. Chữ và biểu tượng thương hiệu chỉ là chi tiết trang trí tham khảo, không hàm ý tài trợ.</p>
+</article>
+</LessonLayout>
+<script>
+const root=document.querySelector<HTMLElement>('.cc-article')!;
+const status=root.querySelector<HTMLElement>('#cc-status')!;
+const stage=root.querySelector<HTMLElement>('.cc-stage')!;
+const toggles=root.querySelectorAll<HTMLButtonElement>('[data-toggle]');
+const say=(text:string)=>{status.textContent=text;};
+toggles.forEach(button=>button.addEventListener('click',()=>{const on=button.getAttribute('aria-pressed')!=='true';button.setAttribute('aria-pressed',String(on));say(`${button.dataset.toggle} · ${on?'bật':'tắt'} trong bản mô phỏng`);}));
+const brightness=root.querySelector<HTMLInputElement>('#cc-brightness')!;
+const volume=root.querySelector<HTMLInputElement>('#cc-volume')!;
+function range(input:HTMLInputElement,announce=true){const value=Math.min(+input.max,Math.max(+input.min,+input.value));input.value=String(value);input.closest('label')!.querySelector('output')!.textContent=`${value}%`;input.closest('label')!.style.setProperty('--level',`${value}%`);if(input===brightness)stage.style.setProperty('--scene-light',String(.74+value*.0026));if(announce)say(`${input===brightness?'Độ sáng bản demo':'Âm lượng mô phỏng'} · ${value}%`);}
+[brightness,volume].forEach(input=>{input.addEventListener('input',()=>range(input));range(input,false);});
+const play=root.querySelector<HTMLButtonElement>('#cc-play')!;
+play.addEventListener('click',()=>{const on=play.getAttribute('aria-pressed')!=='true';play.setAttribute('aria-pressed',String(on));play.setAttribute('aria-label',on?'Tạm dừng mô phỏng':'Phát mô phỏng');root.querySelector('.cc-music')!.classList.toggle('is-playing',on);say(on?'Đang phát hoạt ảnh mẫu · không có âm thanh':'Đã tạm dừng hoạt ảnh mẫu');});
+const tracks=['Unknown','Candy Skies','Prism Dreams'];let track=0;
+function change(delta:number){track=(track+delta+tracks.length)%tracks.length;root.querySelector('#cc-track')!.textContent=tracks[track];root.querySelector('#cc-artist')!.textContent=track?'Glass Studio · demo':'Unknown';say(`Bản mẫu · ${tracks[track]}`);}
+root.querySelector('#cc-prev')!.addEventListener('click',()=>change(-1));root.querySelector('#cc-next')!.addEventListener('click',()=>change(1));
+root.querySelector('#cc-reset')!.addEventListener('click',()=>{toggles.forEach(button=>button.setAttribute('aria-pressed','false'));brightness.value='70';volume.value='60';range(brightness,false);range(volume,false);play.setAttribute('aria-pressed','false');play.setAttribute('aria-label','Phát mô phỏng');root.querySelector('.cc-music')!.classList.remove('is-playing');track=0;change(0);say('Đã đặt lại toàn bộ bản demo');});
+</script>
