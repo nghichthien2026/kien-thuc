@@ -159,3 +159,13 @@ Inspected the user’s screenshot of the middle introduction, abstract meaning b
 - Both `/` and `/kien-thuc/`: production builds, full DOM link/navigation/legacy-interaction suite and focused chat tests pass
 - Focused tests: 9 contacts; exact 4 messages; repeated filters, selection and reset; Arrow/Home/End tab navigation; unique SVG IDs; no network/form submission
 - Browser visual, responsive and physical-keyboard QA is a separate live check, not established by DOM tests
+
+
+## Vietnamese singers · 2026-10-11
+- Exact requested 51 unique singers, each with 3 linked song suggestions (153 entries); performer attribution and collaboration notes reviewed
+- Page-scoped sage/ivory editorial styling; original typography and record illustration, no real-artist likenesses or external image loading
+- Type checking clean; both production base-path builds and full 21-article DOM regression suite pass
+- Focused tests cover all names, valid HTTPS link shape, 18/20/13 filters, accent-insensitive artist/title search, empty states, repeated reset and TOC navigation restoring content
+- No autoplay, forms, local persistence or runtime content requests
+- DOM tests do not establish external playback availability or real-browser visual/keyboard behavior; live browser QA is separate
+- Local Playwright visual run could not start Chromium: socket creation denied by the execution environment. No visual result was inferred from that attempt; supported live cloud-browser QA is required after deployment.

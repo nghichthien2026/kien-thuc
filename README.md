@@ -107,3 +107,7 @@ The nineteenth lesson at `thiet-ke/glass-control-center/` explores glossy candy-
 
 ### Neumorphism Chat
 The twentieth lesson at `thiet-ke/neumorphism-chat/` recreates a pale silver chat interface with original gradient-vector fictional portraits, nine conversations and the four English sample messages in the supplied reference. All/Unread/Mentions filters, conversation selection, keyboard tab navigation and reset remain entirely local. No contact access, composer, network request or external messaging is present. On phones, the conversation list becomes a labeled portrait rail. Run `node tests/neumorphism-chat.mjs` for focused tests.
+
+
+### Ca sĩ Việt Nam
+The twenty-first article at `am-nhac/ca-si-viet-nam/` introduces 51 singers and 153 song suggestions, grouped for browsing (18 / 20 / 13). Every song links to a verified recording/catalog source; duet and performance-version notes are explicit. Local, accent-insensitive artist/song search, group filters and reset work without network requests or autoplay. Typographic monograms are decorative and do not depict the artists. Content is fully readable without JavaScript. Run `node tests/vietnamese-singers.mjs` after building.

@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 const base = process.env.BASE_URL || 'http://localhost:4321/kien-thuc/';
-const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/', 'tieng-anh/cum-tu-voi-time/', 'lap-trinh/cau-truc-backend/', 'lap-trinh/sql-co-ban/', 'lap-trinh/http-status-codes/', 'devops/cong-mang/', 'devops/cac-loai-mang/', 'lap-trinh/cau-truc-url/', 'lap-trinh/api-testing/', 'lap-trinh/git-workflow/', 'lap-trinh/jwt/', 'thiet-ke/skeuomorphism/', 'thiet-ke/neumorphism/', 'thiet-ke/liquid-glass/', 'thiet-ke/glass-control-center/', 'thiet-ke/neumorphism-chat/'];
+const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/', 'tieng-anh/cum-tu-voi-time/', 'lap-trinh/cau-truc-backend/', 'lap-trinh/sql-co-ban/', 'lap-trinh/http-status-codes/', 'devops/cong-mang/', 'devops/cac-loai-mang/', 'lap-trinh/cau-truc-url/', 'lap-trinh/api-testing/', 'lap-trinh/git-workflow/', 'lap-trinh/jwt/', 'thiet-ke/skeuomorphism/', 'thiet-ke/neumorphism/', 'thiet-ke/liquid-glass/', 'thiet-ke/glass-control-center/', 'thiet-ke/neumorphism-chat/', 'am-nhac/ca-si-viet-nam/'];
 const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH || '/usr/bin/chromium',headless:true,args:['--no-sandbox']});
 const page=await browser.newPage({viewport:{width:1440,height:1100},deviceScaleFactor:1});
 const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`)});
@@ -75,3 +75,4 @@ await page.locator('#menu-toggle').click();await page.locator('#sidebar a[href*=
 await page.locator('#menu-toggle').click();await page.locator('#nav-backdrop').click({position:{x:350,y:400}});assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'false');
 assert.deepEqual(errors,[]);console.log('PASS: root/subpath navigation, search, simulation/replay, history, playground/reset, nine responsive widths, mobile menu, no console or network errors');
 } finally { await browser.close(); }
+
