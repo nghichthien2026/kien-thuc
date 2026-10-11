@@ -123,3 +123,10 @@ Inspected the user’s screenshot of the middle introduction, abstract meaning b
 
 - Live cloud-browser QA after first deployment: desktop at 1173px matched the reference's teal chalkboard, gradient wordmark, shared dashed three-column anatomy and clean lifeline diagram. At 323px the anatomy stacks readably, the page has no horizontal overflow, the 580px diagram pans with ArrowRight to the Resource Server, the menu keeps focus on its toggle, and JWT live search returns one of 15 lessons.
 - Follow-up polish replaces an unsupported arrow glyph with inline SVG and hides the triple anatomy connectors when the columns stack, preventing a misleading mapping into Header. Typecheck plus both base-path builds and complete DOM suites pass again. Final live verification follows this patch's deployment.
+
+## Skeuomorphic UI workbench
+
+- Reference image inspected directly. New 16th lesson reproduces paper grain, white raised bevels, crimson recessed states, slider tracks, circular dial and compact sample forms. The original dark shell and all 15 prior lesson files remain byte-identical to remote a4e9314.
+- Astro check: 47 files, zero errors/warnings/hints. Builds: 16 routes at `/` and `/kien-thuc/`. Full DOM suites pass at both bases; dedicated control/filter/selection/repeated-reset tests pass. API and Git regression tests pass.
+- No real password input, authentication, order, form submission, external fonts, assets, or runtime network behavior.
+- Local preview exits before ready and Chromium cannot create sockets in this workspace. Live cloud-browser pixel, native keyboard and responsive QA follows deployment. These local limitations are not visual passes.

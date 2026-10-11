@@ -1,0 +1,49 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import '../../styles/skeuomorphism.css';
+const ingredients = ['Cheese','Pepperoni','Ham','Green Olives','Mushrooms'];
+---
+<LessonLayout title="Skeuomorphism" topic="Thiết kế" subtitle="Chất liệu & tương tác" current="thiet-ke/skeuomorphism/" sections={[{id:'tong-quan',label:'Skeuomorphism'},{id:'ui-kit',label:'Chạm & thử'},{id:'nguyen-tac',label:'Ba điều cốt lõi'}]}>
+<article class="skeuo-article">
+<header id="tong-quan" class="skeuo-heading"><span class="eyebrow">THIẾT KẾ GIAO DIỆN · UI MATERIALS</span><h1 class="lesson-title">Skeuomorphism</h1><p>Mô phỏng chất liệu và cách dùng của đồ vật thật: nút nhấn có độ nổi, rãnh trượt có chiều sâu, mặt số có cảm giác xoay.</p></header>
+<section id="ui-kit" class="skeuo-kit" aria-label="Bộ điều khiển mô phỏng vật liệu, có thể tương tác">
+<div class="sk-kit-top"><span>TACTILE INTERFACE / 01</span><span>WHITE & CRIMSON</span></div>
+<div class="sk-workbench">
+<section class="sk-column sk-controls" aria-label="Công tắc và nút nhấn">
+<div class="sk-switchboard">
+{[false,true].map((on,i)=><div class="sk-switch-row"><button type="button" class="sk-rocker" role="switch" aria-checked={on} aria-label={`Công tắc nguồn ${i+1}`} data-switch data-initial={String(on)}><span>I</span><span>O</span></button><button type="button" class="sk-slide-switch" role="switch" aria-checked={!on} aria-label={`Công tắc trượt ${i+1}`} data-switch data-initial={String(!on)}><span></span></button><button type="button" class="sk-toggle sk-vertical" role="switch" aria-checked={on} aria-label={`Công tắc dọc ${i+1}`} data-switch data-initial={String(on)}><span></span></button><button type="button" class="sk-toggle" role="switch" aria-checked={on} aria-label={`Công tắc tròn ${i+1}`} data-switch data-initial={String(on)}><span></span></button></div>)}
+</div>
+<div class="sk-small-controls"><label class="sk-check sk-round"><input type="checkbox" aria-label="Chấm tròn"/><span></span></label><label class="sk-check"><input type="checkbox" aria-label="Ô vuông"/><span></span></label>{['+','−','✓','×','‹','›'].map((label,i)=><button type="button" class="sk-key" data-key aria-label={['Thêm','Bớt','Đánh dấu','Bỏ chọn','Trước','Sau'][i]}>{label}</button>)}</div>
+<div class="sk-small-controls sk-red-icons"><label class="sk-check sk-round"><input type="checkbox" checked aria-label="Chấm tròn đỏ"/><span></span></label><label class="sk-check"><input type="checkbox" checked aria-label="Ô vuông đỏ"/><span></span></label>{['+','−','✓','×','‹','›'].map((label,i)=><button type="button" class="sk-key" data-key aria-label={['Thêm đỏ','Bớt đỏ','Đánh dấu đỏ','Bỏ chọn đỏ','Trước đỏ','Sau đỏ'][i]}>{label}</button>)}</div>
+<div class="sk-button-grid">
+<button type="button" class="sk-button" data-sample>Button</button><button type="button" class="sk-button sk-red" data-sample>Button</button>
+<button type="button" class="sk-button sk-hover-sample" data-sample>Hover</button><button type="button" class="sk-button sk-red sk-hover-sample" data-sample>Hover</button>
+<button type="button" class="sk-button sk-pressed" aria-pressed="true" data-latch data-initial="true">Pressed</button><button type="button" class="sk-button sk-red sk-pressed" aria-pressed="true" data-latch data-initial="true">Pressed</button>
+</div>
+<div class="sk-segments" role="group" aria-label="Chọn mẫu chữ">{['A','B','C','D','E'].map(letter=><button type="button" class="sk-button" aria-pressed={letter==='B'} data-letter>{letter}</button>)}</div>
+<div class="sk-tags"><span class="sk-tag">5%</span><span class="sk-tag">✓</span><span class="sk-tag">×</span><span class="sk-ribbon">Tags</span><span class="sk-ribbon">Pizza</span></div><div class="sk-tags sk-tags-red"><span class="sk-tag">0%</span><span class="sk-tag">✓</span><span class="sk-tag">×</span><span class="sk-ribbon">Bread Sticks</span></div>
+<p class="sk-caption">01 / NÚT NHẤN & CÔNG TẮC</p>
+</section>
+<section class="sk-column sk-sliders" aria-label="Thanh trượt và mặt số">
+{[30,70].map((value,i)=><label class={`sk-range-row ${i===0?'sk-square-thumb':''}`}><span class="sr-only">Thanh trượt {i+1}</span><output for={`sk-range-${i}`}>{value}%</output><input id={`sk-range-${i}`} type="range" min="0" max="100" value={value} style={`--value:${value}%`} data-range data-initial={value}/></label>)}
+<div class="sk-mixer"><div class="sk-mini-ranges">{[50,20,60,30].map((value,i)=><label class={`sk-range-row ${i%2?'sk-square-thumb':''}`}><span class="sr-only">Thanh trộn {i+1}</span><output for={`sk-mix-${i}`} class={i===0?'':'sr-only'}>{value}%</output><input id={`sk-mix-${i}`} type="range" min="0" max="100" value={value} style={`--value:${value}%`} data-range data-initial={value}/></label>)}</div><div class="sk-vertical-ranges">{[30,70,10].map((value,i)=><label class={`sk-range-row sk-up ${i===1?'sk-square-thumb':''}`}><span class="sr-only">Thanh dọc {i+1}</span><input aria-label={`Thanh dọc ${i+1}`} type="range" min="0" max="100" value={value} style={`--value:${value}%`} data-range data-initial={value}/></label>)}</div></div>
+<div class="sk-dials"><div class="sk-dial-control"><div class="sk-dial" style="--angle:216deg" id="sk-dial"><div class="sk-dial-face"><output id="sk-minutes" for="sk-time">18</output><span>Min</span></div><span class="sk-dial-hand"></span></div><label class="sr-only" for="sk-time">Thời gian mô phỏng, từ 1 đến 30 phút</label><input id="sk-time" type="range" min="1" max="30" value="18" aria-describedby="sk-time-help"/><span id="sk-time-help" class="sr-only">Dùng phím mũi tên để thay đổi mặt số</span></div><button type="button" class="sk-ready" id="sk-ready" aria-pressed="false"><span class="sk-ready-light"></span><span>Pizza<br/>Ready!</span></button></div>
+<div class="sk-input-sample"><span>User</span><span>NomNom</span></div><div class="sk-input-sample"><span class="sk-red-label">Pass</span><span aria-label="Mẫu mật khẩu trang trí">••••••••</span><span class="sk-input-x" aria-hidden="true">×</span></div><p class="sk-caption">02 / RÃNH TRƯỢT & MẶT SỐ</p>
+</section>
+<section class="sk-column sk-fields" aria-label="Chọn thành phần">
+<label class="sk-search-box"><input type="search" id="sk-search" placeholder="Search…" aria-label="Tìm thành phần" autocomplete="off"/><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8" cy="8" r="5"/><path d="m12 12 5 5"/></svg></label>
+<div class="sk-search-box sk-query-preview" aria-hidden="true"><span>Pizza, Ingredients</span><svg viewBox="0 0 20 20"><circle cx="8" cy="8" r="5"/><path d="m12 12 5 5"/></svg></div>
+<div class="sk-breadcrumb"><strong>Pizza</strong><span>›</span><span>Ingredients</span><span>⌕</span></div>
+<label class="sk-select-label"><select id="sk-crust" aria-label="Chọn đế pizza"><option>Classic crust</option><option>Thin crust</option><option>Pan crust</option></select><span aria-hidden="true">⌄</span></label>
+<fieldset class="sk-ingredients"><legend class="sr-only">Ingredients</legend><div class="sk-ingredient-heading">Ingredients<span aria-hidden="true">⌃</span></div>{ingredients.map(name=><label data-ingredient-row><span>{name}</span><input type="checkbox" value={name} checked={name==='Pepperoni'} data-ingredient/><span class="sk-ingredient-check" aria-hidden="true">✓</span></label>)}<p id="sk-empty" hidden>Không có thành phần phù hợp</p></fieldset>
+<div class="sk-confirmation" role="status"><span class="sk-confirm-icon">✓</span><div><strong id="sk-confirm-title">Your selection</strong><span id="sk-selection">Pepperoni · Classic crust</span></div></div>
+<p class="sk-caption">03 / BIỂU MẪU & PHẢN HỒI</p>
+</section>
+</div>
+<div class="sk-kit-bottom"><p id="sk-feedback" role="status">Chạm, kéo hoặc dùng bàn phím để thử.</p><button type="button" class="sk-reset" id="sk-reset">Đặt lại ↺</button></div>
+<p class="sk-demo-note">UI demo · Không đăng nhập, không đặt hàng. Hover là mẫu rê chuột; Pressed có thể bật/tắt.</p>
+</section>
+<section id="nguyen-tac" class="sk-principles"><div><span>01</span><h2>Chất liệu</h2><p>Hạt giấy, viền vát và phản sáng gợi bề mặt thật.</p></div><div><span>02</span><h2>Chiều sâu</h2><p>Bóng dưới nút tạo độ nổi; bóng trong rãnh tạo độ lõm.</p></div><div><span>03</span><h2>Phản hồi</h2><p>Nút lún khi nhấn, tay nắm trượt, màu đỏ báo trạng thái.</p></div></section>
+</article>
+<script>import '../../scripts/skeuomorphism';</script>
+</LessonLayout>

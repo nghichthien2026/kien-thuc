@@ -92,3 +92,7 @@ npm run test:dom
 The history visuals use no external images, fonts, tracking or runtime dependencies. The large illustrations are explicitly labeled conceptual rather than documentary reconstructions. Their reading effects respect reduced motion, and all lesson text and native disclosure controls remain available without JavaScript.
 
 Type checks, root-path builds, the selected `/kien-thuc/` release build and DOM-based link/interaction tests pass. Real-browser QA could not run in the preparation environment because Chromium sockets and local preview access were restricted. DOM checks do not establish visual correctness, responsive layout or real-browser accessibility. The included Playwright suite still needs to run in a browser-capable environment. See `VALIDATION.md` for details.
+
+## Tactile UI lesson
+
+`/kien-thuc/thiet-ke/skeuomorphism/` is a paper-textured white/crimson physical UI workbench: switches, pressable buttons, native ranges, an adjustable minute dial, ingredient filtering/selection and a complete reset. It is a local demonstration with no login, credentials, order, payment or network submission. `node tests/skeuomorphism.mjs` checks repeatable behavior; native browser keyboard and responsive visual checks are separate.

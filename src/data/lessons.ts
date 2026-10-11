@@ -14,6 +14,7 @@ export const lessons = [
   { title: 'API Testing', topic: 'Lập trình', path: 'lap-trinh/api-testing/', keywords: 'API testing smoke functional integration regression load stress security UI fuzz JMeter kiểm thử kiểm tra' },
   { title: 'Git Workflow', topic: 'Lập trình', path: 'lap-trinh/git-workflow/', keywords: 'git workflow version control add commit staging index HEAD push fetch pull merge diff quản lý phiên bản luồng dữ liệu' },
   { title: 'JWT', topic: 'Lập trình', path: 'lap-trinh/jwt/', keywords: 'JSON Web Token JWT JWS header payload signature claims authentication authorization HS256 xác thực phân quyền chữ ký bảo mật token' },
+  { title: 'Skeuomorphism', topic: 'Thiết kế', path: 'thiet-ke/skeuomorphism/', keywords: 'skeuomorphic ui kit giao diện chất liệu nút nhấn thanh trượt slider switch công tắc chiều sâu mô phỏng vật liệu' },
 ];
 export const href = (path = '') => `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${path}`;
 

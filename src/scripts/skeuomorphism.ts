@@ -1,0 +1,20 @@
+const kit=document.querySelector<HTMLElement>('.skeuo-kit')!;
+const feedback=kit.querySelector<HTMLElement>('#sk-feedback')!;
+const say=(text:string)=>feedback.textContent=text;
+kit.querySelectorAll<HTMLButtonElement>('[data-switch]').forEach(button=>button.addEventListener('click',()=>{const on=button.getAttribute('aria-checked')!=='true';button.setAttribute('aria-checked',String(on));say(`${button.getAttribute('aria-label')}: ${on?'bật':'tắt'}`);}));
+kit.querySelectorAll<HTMLButtonElement>('[data-latch]').forEach(button=>button.addEventListener('click',()=>{const on=button.getAttribute('aria-pressed')!=='true';button.setAttribute('aria-pressed',String(on));button.classList.toggle('sk-pressed',on);say(on?'Pressed: nút đang lún xuống.':'Pressed: nút đã nhả.');}));
+kit.querySelectorAll<HTMLButtonElement>('[data-sample],[data-key]').forEach(button=>button.addEventListener('click',()=>say(`Đã nhấn ${button.textContent?.trim()}. Nút trở về trạng thái nghỉ khi nhả.`)));
+kit.querySelectorAll<HTMLButtonElement>('[data-letter]').forEach(button=>button.addEventListener('click',()=>{kit.querySelectorAll('[data-letter]').forEach(other=>other.setAttribute('aria-pressed',String(other===button)));say(`Mẫu chữ ${button.textContent}`);}));
+function rangeUpdate(input:HTMLInputElement){input.style.setProperty('--value',`${input.value}%`);const output=input.parentElement?.querySelector('output');if(output)output.textContent=`${input.value}%`;}
+kit.querySelectorAll<HTMLInputElement>('[data-range]').forEach(input=>input.addEventListener('input',()=>rangeUpdate(input)));
+const time=kit.querySelector<HTMLInputElement>('#sk-time')!,dial=kit.querySelector<HTMLElement>('#sk-dial')!;
+function timeUpdate(){kit.querySelector('#sk-minutes')!.textContent=time.value;dial.style.setProperty('--angle',`${Number(time.value)/30*360}deg`);time.setAttribute('aria-valuetext',`${time.value} phút`);}time.addEventListener('input',timeUpdate);timeUpdate();
+const ready=kit.querySelector<HTMLButtonElement>('#sk-ready')!;
+ready.addEventListener('click',()=>{const on=ready.getAttribute('aria-pressed')!=='true';ready.setAttribute('aria-pressed',String(on));kit.querySelector('#sk-confirm-title')!.textContent=on?'Pizza Ready!':'Your selection';say(on?'Đã bật trạng thái sẵn sàng (mô phỏng).':'Đã tắt trạng thái sẵn sàng.');});
+const crust=kit.querySelector<HTMLSelectElement>('#sk-crust')!;
+function selectionUpdate(){const selected=[...kit.querySelectorAll<HTMLInputElement>('[data-ingredient]:checked')].map(input=>input.value);kit.querySelector('#sk-selection')!.textContent=`${selected.join(', ')||'Chưa chọn topping'} · ${crust.value}`;}
+kit.querySelectorAll('[data-ingredient]').forEach(input=>input.addEventListener('change',selectionUpdate));crust.addEventListener('change',selectionUpdate);
+const search=kit.querySelector<HTMLInputElement>('#sk-search')!;
+function searchUpdate(){let count=0;kit.querySelectorAll<HTMLElement>('[data-ingredient-row]').forEach(row=>{const show=row.textContent!.toLowerCase().includes(search.value.trim().toLowerCase());row.hidden=!show;if(show)count++;});kit.querySelector<HTMLElement>('#sk-empty')!.hidden=count!==0;}
+search.addEventListener('input',searchUpdate);
+kit.querySelector('#sk-reset')!.addEventListener('click',()=>{kit.querySelectorAll<HTMLElement>('[data-switch]').forEach(button=>button.setAttribute('aria-checked',button.dataset.initial!));kit.querySelectorAll<HTMLElement>('[data-latch]').forEach(button=>{button.setAttribute('aria-pressed','true');button.classList.add('sk-pressed');});kit.querySelectorAll('[data-letter]').forEach(button=>button.setAttribute('aria-pressed',String(button.textContent==='B')));kit.querySelectorAll<HTMLInputElement>('[data-range]').forEach(input=>{input.value=input.dataset.initial!;rangeUpdate(input);});kit.querySelectorAll<HTMLInputElement>('input[type=checkbox]').forEach(input=>input.checked=input.defaultChecked);time.value='18';timeUpdate();ready.setAttribute('aria-pressed','false');kit.querySelector('#sk-confirm-title')!.textContent='Your selection';crust.selectedIndex=0;search.value='';selectionUpdate();searchUpdate();say('Đã đặt lại toàn bộ bộ điều khiển.');});
