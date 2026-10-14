@@ -11,7 +11,7 @@ assert.equal((css.match(/left:20px;right:auto;top:14px/g)||[]).length,1,'One aut
 assert.match(css,/\.sidebar\{[^}]*overflow-y:auto/,'Desktop sidebar remains scrollable in short viewports');
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 async function load(path,mobile=false){const html=await readFile(`dist/${path}index.html`,'utf8');const dom=new JSDOM(html,{runScripts:'outside-only',url:`https://example.invalid${base}${path}`,pretendToBeVisual:true});const w=dom.window;w.matchMedia=()=>({matches:mobile,addEventListener(){}});w.IntersectionObserver=class{observe(){}};const original=w.setTimeout.bind(w);w.setTimeout=(fn)=>original(fn,1);for(const script of w.document.querySelectorAll('script')){const source=script.getAttribute('src');if(source)assert.ok(source.startsWith(`${base}_astro/`),'Compiled scripts stay under the configured base');const code=source?await readFile(resolve('dist',source.slice(base.length)),'utf8'):script.textContent;w.eval(`(()=>{${code}\n})()`);}return dom;}
-const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/', 'tieng-anh/cum-tu-voi-time/', 'lap-trinh/cau-truc-backend/', 'lap-trinh/sql-co-ban/', 'lap-trinh/http-status-codes/', 'devops/cong-mang/', 'devops/cac-loai-mang/', 'lap-trinh/cau-truc-url/', 'lap-trinh/api-testing/', 'lap-trinh/git-workflow/', 'lap-trinh/jwt/', 'thiet-ke/skeuomorphism/', 'thiet-ke/neumorphism/', 'thiet-ke/liquid-glass/', 'thiet-ke/glass-control-center/', 'thiet-ke/neumorphism-chat/', 'am-nhac/ca-si-viet-nam/'];
+const paths=['', 'thiet-ke/auto-layout/', 'lich-su/viet-nam/', 'lap-trinh/lo-trinh/', 'lap-trinh/dsa-roadmap/', 'tieng-anh/cum-tu-voi-time/', 'lap-trinh/cau-truc-backend/', 'lap-trinh/sql-co-ban/', 'lap-trinh/http-status-codes/', 'devops/cong-mang/', 'devops/cac-loai-mang/', 'lap-trinh/cau-truc-url/', 'lap-trinh/api-testing/', 'lap-trinh/git-workflow/', 'lap-trinh/jwt/', 'thiet-ke/skeuomorphism/', 'thiet-ke/neumorphism/', 'thiet-ke/liquid-glass/', 'thiet-ke/glass-control-center/', 'thiet-ke/neumorphism-chat/', 'am-nhac/ca-si-viet-nam/', 'am-nhac/co-dai-va-hoa-danh-danh/'];
 for(const path of paths){
 const dom=await load(path);const d=dom.window.document;
 assert.equal(d.querySelectorAll('h1.lesson-title').length,1,'Each lesson has one responsive hero title');
@@ -289,3 +289,5 @@ await import("./neumorphism-chat.mjs");
 
 
 await import("./vietnamese-singers.mjs");
+
+await import("./gardenia-song.mjs");

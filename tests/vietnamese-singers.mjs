@@ -11,7 +11,7 @@ const dom=new JSDOM(html,{runScripts:'outside-only',url:`https://example.invalid
 for(const script of d.querySelectorAll('script')){const src=script.getAttribute('src');const code=src?await readFile(resolve('dist',src.slice(base.length)),'utf8'):script.textContent;w.eval(`(()=>{${code}\n})()`)}
 const visible=()=>[...d.querySelectorAll('[data-artist]')].filter(a=>!a.hidden);
 const search=d.querySelector('#artist-search');const searchFor=q=>{search.value=q;search.dispatchEvent(new w.Event('input'))};
-assert.equal(visible().length,51);assert.equal(d.querySelectorAll('.vm-songs a').length,153);assert.equal(d.querySelectorAll('nav[aria-label="Danh mục bài học"] a').length,21);assert.equal(d.querySelectorAll('h1').length,1);assert.equal(d.querySelector('h1').textContent,'Ca sĩ Việt Nam');assert.equal(d.querySelectorAll('audio,video,iframe,img,form,[autofocus]').length,0);
+assert.equal(visible().length,51);assert.equal(d.querySelectorAll('.vm-songs a').length,153);assert.equal(d.querySelectorAll('nav[aria-label="Danh mục bài học"] a').length,22);assert.equal(d.querySelectorAll('h1').length,1);assert.equal(d.querySelector('h1').textContent,'Ca sĩ Việt Nam');assert.equal(d.querySelectorAll('audio,video,iframe,img,form,[autofocus]').length,0);
 for(const a of d.querySelectorAll('.vm-songs a')){assert.equal(new URL(a.href).protocol,'https:');assert.equal(a.target,'_blank');assert.match(a.rel,/noopener/);assert.ok(a.textContent.trim());}
 for(let i=0;i<3;i++){
 for(const [group,count]of [['nam',18],['nu',20],['truyen-thong',13]]){d.querySelector(`[data-music-filter="${group}"]`).click();assert.equal(visible().length,count);assert.equal(d.querySelectorAll('[data-music-filter][aria-pressed=true]').length,1);}
@@ -26,4 +26,4 @@ d.querySelector('.toc a[href="#nu"]').click();assert.equal(visible().length,51);
 for(const a of source){searchFor(a.name);assert.ok(visible().some(c=>c.dataset.artist===a.name));}
 d.querySelector('#artist-reset').click();assert.equal(visible().length,51);assert.equal(network,0);
 const ids=[...d.querySelectorAll('[id]')].map(e=>e.id);assert.equal(ids.length,new Set(ids).size);dom.window.close();
-console.log(`PASS Vietnamese singers (${base}): exact 51 artists / 153 verified-source song entries, groups 18/20/13, accent-insensitive names/titles, repeated combined filter/no-result/reset, TOC restores full content, no network/media/autofocus, 21 navigation links. External availability and visual browser QA separate.`);
+console.log(`PASS Vietnamese singers (${base}): exact 51 artists / 153 verified-source song entries, groups 18/20/13, accent-insensitive names/titles, repeated combined filter/no-result/reset, TOC restores full content, no network/media/autofocus, 22 navigation links. External availability and visual browser QA separate.`);

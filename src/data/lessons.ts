@@ -20,6 +20,7 @@ export const lessons = [
   { title: 'Glass Control Center', topic: 'Thiết kế', path: 'thiet-ke/glass-control-center/', keywords: 'candy glass kính màu bảng điều khiển control center iPhone concept sắc màu thủy tinh nút bóng 3d' },
   { title: 'Neumorphism Chat', topic: 'Thiết kế', path: 'thiet-ke/neumorphism-chat/', keywords: 'neumorphism chat soft ui giao diện trò chuyện ánh sáng bóng đổ avatar blue silver light' },
   { title: 'Ca sĩ Việt Nam', topic: 'Âm nhạc', path: 'am-nhac/ca-si-viet-nam/', keywords: 'ca sĩ bài hát nhạc việt pop ballad bolero dân gian trữ tình 51 nghệ sĩ Sơn Tùng Mỹ Tâm Khánh Ly' },
+  { title: 'Cỏ Dại Và Hoa Dành Dành', topic: 'Âm nhạc', path: 'am-nhac/co-dai-va-hoa-danh-danh/', keywords: 'lời bài hát hát theo karaoke cỏ dại hoa dành dành Đặng Thanh Tuyền ballad' },
 ];
 export const href = (path = '') => `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${path}`;
 
